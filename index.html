@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>The Fant4sy Four</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080b12;
+      color: white;
+    }
+
+    /* HEADER */
+
+    header {
+      text-align: center;
+      padding: 45px 20px 30px;
+      background:
+        linear-gradient(
+          rgba(5,10,20,.75),
+          rgba(5,10,20,.95)
+        ),
+        radial-gradient(circle at top, #124b88, #080b12 65%);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 8vw, 85px);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .four {
+      color: #18a8ff;
+      text-shadow: 0 0 20px #18a8ff;
+    }
+
+    .tagline {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #d9e8f5;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      background: #111827;
+      border-top: 1px solid #1e90ff;
+      border-bottom: 1px solid #1e90ff;
+      padding: 16px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 16px;
+    }
+
+    nav a:hover {
+      color: #18a8ff;
+    }
+
+    /* MAIN */
+
+    main {
+      width: min(1100px, 92%);
+      margin: auto;
+      padding: 40px 0 80px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      text-transform: uppercase;
+      border-left: 6px solid #18a8ff;
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
+
+    /* TEAM CARDS */
+
+    .teams {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .team {
+      background: #111827;
+      border-radius: 12px;
+      padding: 24px 15px;
+      text-align: center;
+      border-top: 5px solid;
+      box-shadow: 0 8px 25px rgba(0,0,0,.35);
+    }
+
+    .team h2 {
+      margin: 5px 0;
+    }
+
+    .team p {
+      color: #aeb9c6;
+    }
+
+    .brad {
+      border-color: #1687ff;
+    }
+
+    .maria {
+      border-color: #ff3b30;
+    }
+
+    .mackenzie {
+      border-color: #16d5d1;
+    }
+
+    .madison {
+      border-color: #9c4dff;
+    }
+
+    /* SCOREBOARD */
+
+    .scoreboard {
+      margin-top: 50px;
+      background: #111827;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .score-row {
+      display: grid;
+      grid-template-columns: 1fr 120px;
+      padding: 18px 22px;
+      border-bottom: 1px solid #263244;
+    }
+
+    .score-row:last-child {
+      border-bottom: none;
+    }
+
+    .score {
+      text-align: right;
+      font-size: 22px;
+      font-weight: bold;
+      color: #18a8ff;
+    }
+
+    /* NEWS */
+
+    .news {
+      margin-top: 50px;
+    }
+
+    .news-card {
+      background: linear-gradient(135deg, #111827, #182437);
+      border-radius: 12px;
+      padding: 28px;
+      border: 1px solid #263244;
+    }
+
+    .breaking {
+      color: #ff4b4b;
+      font-weight: bold;
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+
+    .news-card h2 {
+      font-size: 30px;
+      margin: 8px 0;
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #05070b;
+      color: #778394;
+    }
+
+    @media (max-width: 800px) {
+
+      .teams {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 6px 9px;
+      }
+
+    }
+
+    @media (max-width: 500px) {
+
+      .teams {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <h1>
+    THE FANT<span class="four">4</span>SY FOUR
+  </h1>
+
+  <div class="tagline">
+    FOUR MANAGERS • ONE FAMILY • ENDLESS TRASH TALK
+  </div>
+
+</header>
+
+
+<nav>
+
+  <a href="#">HOME</a>
+  <a href="#">SCOREBOARD</a>
+  <a href="#">STANDINGS</a>
+  <a href="#">TEAMS</a>
+  <a href="#">LEAGUE NEWS</a>
+  <a href="#">HALL OF SHAME</a>
+
+</nav>
+
+
+<main>
+
+  <h2 class="section-title">Meet The Fant4sy Four</h2>
+
+  <div class="teams">
+
+    <div class="team brad">
+      <h2>BRAD</h2>
+      <p>Blue Team</p>
+    </div>
+
+    <div class="team maria">
+      <h2>MARIA</h2>
+      <p>Red Team</p>
+    </div>
+
+    <div class="team mackenzie">
+      <h2>MACKENZIE</h2>
+      <p>Teal Team</p>
+    </div>
+
+    <div class="team madison">
+      <h2>MADISON</h2>
+      <p>Purple Team</p>
+    </div>
+
+  </div>
+
+
+  <section class="scoreboard">
+
+    <div class="score-row">
+      <strong>BRAD</strong>
+      <span class="score">0.00</span>
+    </div>
+
+    <div class="score-row">
+      <strong>MARIA</strong>
+      <span class="score">0.00</span>
+    </div>
+
+    <div class="score-row">
+      <strong>MACKENZIE</strong>
+      <span class="score">0.00</span>
+    </div>
+
+    <div class="score-row">
+      <strong>MADISON</strong>
+      <span class="score">0.00</span>
+    </div>
+
+  </section>
+
+
+  <section class="news">
+
+    <h2 class="section-title">Fant4sy Four News</h2>
+
+    <article class="news-card">
+
+      <div class="breaking">
+        BREAKING NEWS
+      </div>
+
+      <h2>
+        The Fant4sy Four Have Officially Gone Online
+      </h2>
+
+      <p>
+        League officials confirmed today that Brad, Maria,
+        Mackenzie and Madison now have their own fantasy
+        football headquarters.
+      </p>
+
+      <p>
+        Sources close to the league say the website will
+        feature weekly scores, season standings, questionable
+        managerial decisions and absolutely no accountability.
+      </p>
+
+    </article>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  THE FANT4SY FOUR • EST. 2026
+
+</footer>
+
+</body>
+</html>
