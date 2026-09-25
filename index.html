@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>The Fant4sy Four</title>
+  <title>The Fant4sy Four | F4SN</title>
 
   <style>
     * {
@@ -13,16 +13,36 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 95px;
+    }
+
+    :root {
+      --bg: #080b12;
+      --panel: #111827;
+      --panel2: #182437;
+      --border: #263244;
+      --blue: #18a8ff;
+      --yellow: #facc15;
+      --red: #ff4b4b;
+      --muted: #aeb9c6;
+
+      --brad: #1687ff;
+      --maria: #ff3b30;
+      --mackenzie: #16d5d1;
+      --madison: #9c4dff;
     }
 
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #080b12;
+      background:
+        radial-gradient(circle at top, #111a29 0, #080b12 420px);
       color: white;
     }
 
-    /* HERO BANNER */
+    /* ======================================================
+       HERO
+    ====================================================== */
 
     .hero {
       margin: 0;
@@ -40,47 +60,115 @@
       margin: 0 auto;
     }
 
-    /* NAVIGATION */
+    /* ======================================================
+       NETWORK BAR
+    ====================================================== */
+
+    .network-bar {
+      background: #05070b;
+      border-top: 1px solid #263244;
+      border-bottom: 1px solid #263244;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #ff3b30;
+      border-radius: 50%;
+      margin-right: 6px;
+      box-shadow: 0 0 10px rgba(255,59,48,.8);
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .35; }
+    }
+
+    .network-name {
+      color: var(--yellow);
+    }
+
+    .update-status {
+      color: #8895a7;
+    }
+
+    /* ======================================================
+       NAVIGATION
+    ====================================================== */
 
     nav {
-      background: #111827;
-      border-top: 1px solid #1e90ff;
-      border-bottom: 1px solid #1e90ff;
-      padding: 16px;
+      background: rgba(17,24,39,.97);
+      border-bottom: 1px solid var(--blue);
+      padding: 15px 12px;
       text-align: center;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,.35);
+      backdrop-filter: blur(8px);
     }
 
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
-      margin: 0 16px;
+      margin: 0 10px;
+      font-size: 13px;
+      letter-spacing: .5px;
+      transition: color .2s ease;
     }
 
     nav a:hover {
-      color: #18a8ff;
+      color: var(--blue);
     }
 
-    /* MAIN CONTENT */
+    /* ======================================================
+       MAIN CONTENT
+    ====================================================== */
 
     main {
-      width: min(1100px, 92%);
+      width: min(1150px, 92%);
       margin: auto;
-      padding: 40px 0 80px;
+      padding: 42px 0 80px;
+    }
+
+    section {
+      margin-top: 55px;
+    }
+
+    section:first-child {
+      margin-top: 0;
     }
 
     .section-title {
       font-size: 28px;
       text-transform: uppercase;
-      border-left: 6px solid #18a8ff;
+      border-left: 6px solid var(--blue);
       padding-left: 12px;
-      margin-bottom: 20px;
+      margin: 0 0 22px;
+      letter-spacing: .5px;
     }
 
-    /* TEAM CARDS */
+    .section-subtitle {
+      color: #93a1b3;
+      margin: -12px 0 24px 18px;
+      line-height: 1.5;
+    }
+
+    /* ======================================================
+       MANAGER CARDS
+    ====================================================== */
 
     .teams {
       display: grid;
@@ -89,315 +177,1834 @@
     }
 
     .team {
-      background: #111827;
+      position: relative;
+      background: linear-gradient(145deg, #111827, #0d1420);
       border-radius: 12px;
-      padding: 24px 15px;
+      padding: 26px 15px;
       text-align: center;
       border-top: 5px solid;
+      border-left: 1px solid #202c3d;
+      border-right: 1px solid #202c3d;
+      border-bottom: 1px solid #202c3d;
       box-shadow: 0 8px 25px rgba(0,0,0,.35);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .team:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.5);
     }
 
     .team h2 {
-      margin: 5px 0;
+      margin: 4px 0 8px;
+      font-size: 23px;
     }
 
     .team p {
       color: #aeb9c6;
-      margin-bottom: 0;
+      margin: 0;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .brad {
-      border-color: #1687ff;
+      border-top-color: var(--brad);
     }
 
     .maria {
-      border-color: #ff3b30;
+      border-top-color: var(--maria);
     }
 
     .mackenzie {
-      border-color: #16d5d1;
+      border-top-color: var(--mackenzie);
     }
 
     .madison {
-      border-color: #9c4dff;
+      border-top-color: var(--madison);
     }
 
-    /* SCOREBOARD */
-
-    .scoreboard-section {
-      margin-top: 50px;
-    }
+    /* ======================================================
+       SCOREBOARD
+    ====================================================== */
 
     .scoreboard {
-      background: #111827;
+      background: var(--panel);
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 8px 25px rgba(0,0,0,.35);
+      border: 1px solid var(--border);
+    }
+
+    .scoreboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0c121d;
+      padding: 13px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: #94a3b8;
+    }
+
+    .live-label {
+      color: #ff5656;
+      font-weight: bold;
     }
 
     .score-row {
       display: grid;
-      grid-template-columns: 1fr 120px;
-      padding: 18px 22px;
-      border-bottom: 1px solid #263244;
+      grid-template-columns: 1fr 150px;
+      align-items: center;
+      padding: 19px 22px;
+      border-bottom: 1px solid var(--border);
     }
 
     .score-row:last-child {
       border-bottom: none;
     }
 
+    .score-manager {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: bold;
+    }
+
+    .manager-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex: 0 0 auto;
+    }
+
     .score {
       text-align: right;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
-      color: #18a8ff;
+      color: var(--blue);
     }
 
-    /* NEWS */
+    /* ======================================================
+       STANDINGS
+    ====================================================== */
 
-    .news {
-      margin-top: 50px;
+    .standings-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,.35);
     }
+
+    .standings-table th {
+      background: #0c121d;
+      color: #9eacbd;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 12px;
+      padding: 14px 16px;
+      text-align: left;
+    }
+
+    .standings-table td {
+      padding: 17px 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .standings-table th:not(:first-child),
+    .standings-table td:not(:first-child) {
+      text-align: right;
+    }
+
+    .rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 29px;
+      height: 29px;
+      border-radius: 50%;
+      background: #202b3b;
+      margin-right: 10px;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .first-place {
+      background:
+        linear-gradient(90deg, rgba(250,204,21,.11), transparent 70%);
+    }
+
+    .first-place .rank {
+      background: var(--yellow);
+      color: #111;
+      box-shadow: 0 0 15px rgba(250,204,21,.25);
+    }
+
+    .season-total {
+      color: var(--yellow);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* ======================================================
+       LINEUPS
+    ====================================================== */
+
+    .lineup-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .lineup-card {
+      background: var(--panel);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 25px rgba(0,0,0,.3);
+    }
+
+    .lineup-title {
+      padding: 17px 20px;
+      font-size: 19px;
+      font-weight: bold;
+      border-bottom: 1px solid var(--border);
+      border-left: 5px solid var(--blue);
+    }
+
+    .lineup-player {
+      display: grid;
+      grid-template-columns: 85px 1fr;
+      padding: 11px 18px;
+      border-bottom: 1px solid #202b3b;
+      align-items: center;
+    }
+
+    .lineup-player:last-child {
+      border-bottom: none;
+    }
+
+    .position {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: .6px;
+    }
+
+    .player-name {
+      font-weight: bold;
+    }
+
+    /* ======================================================
+       NEWS
+    ====================================================== */
 
     .news-card {
       background: linear-gradient(135deg, #111827, #182437);
       border-radius: 12px;
-      padding: 28px;
-      border: 1px solid #263244;
+      padding: 30px;
+      border: 1px solid var(--border);
       box-shadow: 0 8px 25px rgba(0,0,0,.35);
+      margin-bottom: 22px;
+    }
+
+    .news-meta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
     }
 
     .breaking {
       color: #ff4b4b;
       font-weight: bold;
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .news-date {
+      color: #7f8da0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .news-card h2 {
-      font-size: 30px;
-      margin: 8px 0 15px;
+      font-size: 29px;
+      margin: 8px 0 9px;
+      line-height: 1.15;
+    }
+
+    .subheadline {
+      color: #9fb0c5;
+      font-size: 16px;
+      font-style: italic;
+      margin-bottom: 18px;
     }
 
     .news-card p {
       color: #d2d9e2;
+      line-height: 1.7;
+    }
+
+    .news-quote {
+      margin-top: 22px;
+      padding: 17px 20px;
+      border-left: 4px solid var(--yellow);
+      background: rgba(0,0,0,.22);
+      font-style: italic;
+      color: #eef2f7;
+    }
+
+    .quote-by {
+      display: block;
+      margin-top: 8px;
+      color: #8f9caf;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    /* ======================================================
+       F4SN TV
+    ====================================================== */
+
+    .tv-shell {
+      background: linear-gradient(145deg, #111827, #090e16);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(0,0,0,.45);
+    }
+
+    .tv-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      background: #0b1018;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tv-logo {
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .tv-logo span {
+      color: var(--yellow);
+    }
+
+    .on-air {
+      color: #ff4b4b;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: black;
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .tv-description {
+      padding: 20px 24px 24px;
+    }
+
+    .tv-description h3 {
+      margin: 0 0 8px;
+      font-size: 21px;
+    }
+
+    .tv-description p {
+      margin: 0;
+      color: #9eacbd;
       line-height: 1.6;
     }
 
-    /* FOOTER */
+    /* ======================================================
+       PRESS ROOM
+    ====================================================== */
+
+    .press-intro {
+      background: linear-gradient(135deg, #111827, #182437);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 22px;
+    }
+
+    .press-live {
+      color: #ff4b4b;
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 12px;
+    }
+
+    .press-intro h3 {
+      font-size: 26px;
+      margin: 7px 0 9px;
+    }
+
+    .press-intro p {
+      color: #b8c3d0;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    .press-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .press-card {
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--blue);
+      box-shadow: 0 8px 25px rgba(0,0,0,.3);
+    }
+
+    .press-card.brad-card {
+      border-top-color: var(--brad);
+    }
+
+    .press-card.maria-card {
+      border-top-color: var(--maria);
+    }
+
+    .press-card.mackenzie-card {
+      border-top-color: var(--mackenzie);
+    }
+
+    .press-card.madison-card {
+      border-top-color: var(--madison);
+    }
+
+    .press-name {
+      font-size: 23px;
+      font-weight: 900;
+      margin-bottom: 3px;
+    }
+
+    .press-role {
+      color: #8290a3;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .press-quote {
+      color: #eef2f7;
+      font-size: 17px;
+      font-style: italic;
+      line-height: 1.55;
+      margin-bottom: 21px;
+    }
+
+    .qa {
+      background: #0c121d;
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .reporter {
+      color: #8b99ab;
+      font-weight: bold;
+    }
+
+    .answer {
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    .media-notice {
+      margin-top: 20px;
+      padding: 14px 18px;
+      text-align: center;
+      border: 1px dashed #39475b;
+      border-radius: 8px;
+      color: #7f8da0;
+      font-size: 11px;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+    }
+
+    /* ======================================================
+       HALL OF SHAME
+    ====================================================== */
+
+    .shame-card {
+      text-align: center;
+      padding: 40px 25px;
+    }
+
+    .shame-icon {
+      font-size: 44px;
+      margin-bottom: 10px;
+    }
+
+    .shame-card h3 {
+      font-size: 24px;
+      margin: 5px 0 8px;
+    }
+
+    .shame-card p {
+      max-width: 650px;
+      margin: auto;
+      color: #aeb9c6;
+    }
+
+    /* ======================================================
+       LOADING / ERROR
+    ====================================================== */
+
+    .loading {
+      padding: 28px;
+      text-align: center;
+      color: #8290a3;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .error-message {
+      padding: 20px;
+      background: rgba(255,75,75,.08);
+      border: 1px solid rgba(255,75,75,.35);
+      border-radius: 10px;
+      color: #ff8b8b;
+    }
+
+    /* ======================================================
+       FOOTER
+    ====================================================== */
 
     footer {
       text-align: center;
-      padding: 30px;
+      padding: 34px 20px;
       background: #05070b;
-      color: #778394;
+      color: #687587;
       border-top: 1px solid #182437;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    /* MOBILE */
+    footer strong {
+      color: var(--yellow);
+    }
 
-    @media (max-width: 800px) {
+    /* ======================================================
+       MOBILE
+    ====================================================== */
+
+    @media (max-width: 900px) {
+
       .teams {
         grid-template-columns: repeat(2, 1fr);
       }
 
+      .lineup-grid,
+      .press-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        white-space: nowrap;
+        overflow-x: auto;
+        padding: 12px 8px;
+      }
+
       nav a {
         display: inline-block;
-        margin: 6px 9px;
+        margin: 4px 8px;
       }
+
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
+
+      main {
+        width: 94%;
+        padding-top: 28px;
+      }
+
+      .network-bar {
+        flex-direction: column;
+        gap: 4px;
+      }
+
       .teams {
         grid-template-columns: 1fr;
       }
 
+      .section-title {
+        font-size: 23px;
+      }
+
       .score-row {
-        grid-template-columns: 1fr 90px;
+        grid-template-columns: 1fr 100px;
+        padding: 16px;
+      }
+
+      .score {
+        font-size: 21px;
+      }
+
+      .standings-table th,
+      .standings-table td {
+        padding: 13px 8px;
+        font-size: 12px;
+      }
+
+      .rank {
+        margin-right: 5px;
+        width: 24px;
+        height: 24px;
+      }
+
+      .news-card {
+        padding: 22px;
       }
 
       .news-card h2 {
-        font-size: 24px;
+        font-size: 23px;
       }
+
+      .press-card {
+        padding: 20px;
+      }
+
     }
   </style>
 </head>
 
 <body>
 
-  <!-- FANT4SY FOUR HERO -->
+  <!-- ======================================================
+       HERO
+  ======================================================= -->
 
   <header class="hero">
+
     <img
       src="fant4sy-four-banner.png"
       alt="The Fant4sy Four - Brad, Maria, Mackenzie and Madison"
       class="hero-banner"
     >
+
   </header>
 
-  <!-- NAVIGATION -->
+
+  <!-- ======================================================
+       F4SN NETWORK BAR
+  ======================================================= -->
+
+  <div class="network-bar">
+
+    <span class="network-name">
+      F4SN • FANT4SY FOUR SPORTS NETWORK
+    </span>
+
+    <span>
+      <span class="live-dot"></span>
+      LIVE LEAGUE COVERAGE
+    </span>
+
+    <span
+      id="last-updated"
+      class="update-status"
+    >
+      CONNECTING...
+    </span>
+
+  </div>
+
+
+  <!-- ======================================================
+       NAVIGATION
+  ======================================================= -->
 
   <nav>
+
     <a href="#home">HOME</a>
-    <a href="#scoreboard">SCOREBOARD</a>
-    <a href="#standings">STANDINGS</a>
-    <a href="#teams">TEAMS</a>
-    <a href="#news">LEAGUE NEWS</a>
-    <a href="#hall-of-shame">HALL OF SHAME</a>
+
+    <a href="#scoreboard">
+      SCOREBOARD
+    </a>
+
+    <a href="#standings">
+      STANDINGS
+    </a>
+
+    <a href="#lineups">
+      LINEUPS
+    </a>
+
+    <a href="#news">
+      LEAGUE NEWS
+    </a>
+
+    <a href="#f4sn-tv">
+      F4SN TV
+    </a>
+
+    <a href="#press-room">
+      PRESS ROOM
+    </a>
+
+    <a href="#hall-of-shame">
+      HALL OF SHAME
+    </a>
+
   </nav>
+
 
   <main id="home">
 
-    <!-- TEAMS -->
+
+    <!-- ====================================================
+         MANAGERS
+    ===================================================== -->
 
     <section id="teams">
 
-      <h2 class="section-title">Meet The Fant4sy Four</h2>
+      <h2 class="section-title">
+        Meet The Fant4sy Four
+      </h2>
 
       <div class="teams">
 
         <div class="team brad">
+
           <h2>BRAD</h2>
+
           <p>Blue Team</p>
+
         </div>
+
 
         <div class="team maria">
+
           <h2>MARIA</h2>
+
           <p>Red Team</p>
+
         </div>
+
 
         <div class="team mackenzie">
+
           <h2>MACKENZIE</h2>
+
           <p>Teal Team</p>
+
         </div>
 
+
         <div class="team madison">
+
           <h2>MADISON</h2>
+
           <p>Purple Team</p>
+
         </div>
 
       </div>
 
     </section>
 
-    <!-- SCOREBOARD -->
 
-    <section
-      id="scoreboard"
-      class="scoreboard-section"
-    >
+    <!-- ====================================================
+         LIVE SCOREBOARD
+    ===================================================== -->
 
-      <h2 class="section-title">Week 3 Scoreboard</h2>
+    <section id="scoreboard">
+
+      <h2
+        class="section-title"
+        id="scoreboard-title"
+      >
+        Week 3 Scoreboard
+      </h2>
 
       <div class="scoreboard">
 
-        <div class="score-row">
-          <strong>BRAD</strong>
-          <span class="score">0.00</span>
+        <div class="scoreboard-header">
+
+          <span>
+            F4SN LIVE SCORE CENTER
+          </span>
+
+          <span class="live-label">
+            ● LIVE
+          </span>
+
         </div>
 
-        <div class="score-row">
-          <strong>MARIA</strong>
-          <span class="score">0.00</span>
-        </div>
-
-        <div class="score-row">
-          <strong>MACKENZIE</strong>
-          <span class="score">0.00</span>
-        </div>
-
-        <div class="score-row">
-          <strong>MADISON</strong>
-          <span class="score">0.00</span>
+        <div
+          id="scoreboard-data"
+          class="loading"
+        >
+          Loading live scores...
         </div>
 
       </div>
 
     </section>
 
-    <!-- STANDINGS PLACEHOLDER -->
 
-    <section
-      id="standings"
-      class="scoreboard-section"
-    >
+    <!-- ====================================================
+         STANDINGS
+    ===================================================== -->
 
-      <h2 class="section-title">Season Standings</h2>
+    <section id="standings">
 
-      <div class="news-card">
-        <p>
-          Season standings will soon be pulled directly
-          from the official Fant4sy Four scoring sheet.
-        </p>
-      </div>
+      <h2 class="section-title">
+        Season Standings
+      </h2>
 
-    </section>
+      <p class="section-subtitle">
+        The race for family bragging rights and the season championship.
+      </p>
 
-    <!-- LEAGUE NEWS -->
+      <div id="standings-data">
 
-    <section
-      id="news"
-      class="news"
-    >
-
-      <h2 class="section-title">Fant4sy Four News</h2>
-
-      <article class="news-card">
-
-        <div class="breaking">
-          BREAKING NEWS
+        <div class="loading">
+          Loading season standings...
         </div>
 
-        <h2>
-          The Fant4sy Four Have Officially Gone Online
-        </h2>
-
-        <p>
-          League officials confirmed today that Brad,
-          Maria, Mackenzie and Madison now have their
-          own fantasy football headquarters.
-        </p>
-
-        <p>
-          Sources close to the league say the website
-          will feature weekly scores, season standings,
-          questionable managerial decisions and
-          absolutely no accountability.
-        </p>
-
-      </article>
+      </div>
 
     </section>
 
-    <!-- HALL OF SHAME -->
 
-    <section
-      id="hall-of-shame"
-      class="news"
-    >
+    <!-- ====================================================
+         LINEUPS
+    ===================================================== -->
 
-      <h2 class="section-title">Hall of Shame</h2>
+    <section id="lineups">
 
-      <div class="news-card">
+      <h2
+        class="section-title"
+        id="lineup-title"
+      >
+        Week 3 Lineups
+      </h2>
+
+      <p class="section-subtitle">
+        The decisions that will either look brilliant or be denied later.
+      </p>
+
+      <div
+        id="lineup-data"
+        class="lineup-grid"
+      >
+
+        <div class="loading">
+          Loading lineups...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ====================================================
+         F4NN LEAGUE NEWS
+    ===================================================== -->
+
+    <section id="news">
+
+      <h2 class="section-title">
+        F4NN League News
+      </h2>
+
+      <p class="section-subtitle">
+        Breaking news, questionable sources and completely unnecessary family drama.
+      </p>
+
+      <div id="news-data">
+
+        <div class="loading">
+          Contacting the F4NN newsroom...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ====================================================
+         F4SN TV
+    ===================================================== -->
+
+    <section id="f4sn-tv">
+
+      <h2 class="section-title">
+        F4SN TV
+      </h2>
+
+      <p class="section-subtitle">
+        Original programming from the network nobody asked for.
+      </p>
+
+      <div class="tv-shell">
+
+        <div class="tv-header">
+
+          <div class="tv-logo">
+            F4SN <span>TV</span>
+          </div>
+
+          <div class="on-air">
+            ● ON AIR
+          </div>
+
+        </div>
+
+
+        <div class="video-wrap">
+
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/f4O8AezuBrQ"
+            title="F4SN Fant4sy Four Sports Network"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+
+        </div>
+
+
+        <div class="tv-description">
+
+          <h3>
+            F4SN SportsCenter – The Pilot
+          </h3>
+
+          <p>
+            The latest completely serious coverage of the
+            least serious fantasy football league in America.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ====================================================
+         PRESS ROOM
+    ===================================================== -->
+
+    <section id="press-room">
+
+      <h2 class="section-title">
+        F4SN Press Room
+      </h2>
+
+
+      <div class="press-intro">
+
+        <div class="press-live">
+          ● LIVE FROM THE PODIUM
+        </div>
+
+        <h3>
+          Manager Press Conferences
+        </h3>
 
         <p>
-          Nothing here yet.
+          Four managers. Four microphones. Absolutely zero
+          accountability. Welcome to the official Fant4sy Four
+          postgame press room.
         </p>
 
+      </div>
+
+
+      <div class="press-grid">
+
+
+        <!-- BRAD -->
+
+        <div class="press-card brad-card">
+
+          <div class="press-name">
+            BRAD
+          </div>
+
+          <div class="press-role">
+            Manager • The Fant4sy Four
+          </div>
+
+          <div class="press-quote">
+            “I stand by every decision I made.
+            The fact that several of them were terrible
+            is completely irrelevant.”
+          </div>
+
+          <div class="qa">
+
+            <div class="reporter">
+              REPORTER: Any regrets?
+            </div>
+
+            <div class="answer">
+              BRAD: Next question.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- MARIA -->
+
+        <div class="press-card maria-card">
+
+          <div class="press-name">
+            MARIA
+          </div>
+
+          <div class="press-role">
+            Manager • Meltdown Watch
+          </div>
+
+          <div class="press-quote">
+            “I am completely calm.
+            I don't know why everyone keeps asking me that.”
+          </div>
+
+          <div class="qa">
+
+            <div class="reporter">
+              REPORTER: You threatened to throw the league into the sun.
+            </div>
+
+            <div class="answer">
+              MARIA: I SAID I'M CALM.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- MACKENZIE -->
+
+        <div class="press-card mackenzie-card">
+
+          <div class="press-name">
+            MACKENZIE
+          </div>
+
+          <div class="press-role">
+            Manager • Injury Department
+          </div>
+
+          <div class="press-quote">
+            “At this point I'm not managing a fantasy team.
+            I'm managing an emergency room.”
+          </div>
+
+          <div class="qa">
+
+            <div class="reporter">
+              REPORTER: What's the injury report?
+            </div>
+
+            <div class="answer">
+              MACKENZIE: Yes.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- MADISON -->
+
+        <div class="press-card madison-card">
+
+          <div class="press-name">
+            MADISON
+          </div>
+
+          <div class="press-role">
+            Manager • Lock of the Week
+          </div>
+
+          <div class="press-quote">
+            “My strategy is simple:
+            make the pick and then act like I knew it all along.”
+          </div>
+
+          <div class="qa">
+
+            <div class="reporter">
+              REPORTER: And if the pick loses?
+            </div>
+
+            <div class="answer">
+              MADISON: We don't discuss those.
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="media-notice">
+
+        F4SN MEDIA NOTICE:
+        Statements made in the Press Room may contain excuses,
+        revisionist history and completely fabricated expert analysis.
+
+      </div>
+
+    </section>
+
+
+    <!-- ====================================================
+         HALL OF SHAME
+    ===================================================== -->
+
+    <section id="hall-of-shame">
+
+      <h2 class="section-title">
+        Hall of Shame
+      </h2>
+
+      <div class="news-card shame-card">
+
+        <div class="shame-icon">
+          🏆
+        </div>
+
+        <h3>
+          No Inductees... Yet.
+        </h3>
+
         <p>
-          Don't worry. It's only a matter of time.
-          😂
+          The Fant4sy Four Hall of Shame is currently empty.
+          League officials remain confident that this situation
+          will not last long.
         </p>
 
       </div>
 
     </section>
+
 
   </main>
 
+
+  <!-- ======================================================
+       FOOTER
+  ======================================================= -->
+
   <footer>
-    THE FANT4SY FOUR • EST. 2026
+
+    <strong>F4SN</strong>
+    • FANT4SY FOUR SPORTS NETWORK
+    • QUESTIONABLE ANALYSIS SINCE 2026
+
   </footer>
+
+
+  <!-- ======================================================
+       LIVE DATA
+  ======================================================= -->
+
+  <script>
+
+    const DATA_URL =
+      "https://script.google.com/macros/s/AKfycbxZ8peC-11b7ook2LRoKnsq7hmeDkIt_2_my5taux33KaTdoBy1Rzj_26GVyasQvAB3Pw/exec?api=1";
+
+
+    const TEAM_COLORS = {
+
+      brad: "#1687ff",
+
+      maria: "#ff3b30",
+
+      mackenzie: "#16d5d1",
+
+      madison: "#9c4dff"
+
+    };
+
+
+    /* ======================================================
+       HELPERS
+    ====================================================== */
+
+    function safeText(value) {
+
+      return String(
+        value ?? ""
+      )
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    function managerKey(name) {
+
+      return String(name || "")
+        .trim()
+        .toLowerCase();
+
+    }
+
+
+    function teamColor(name) {
+
+      return (
+        TEAM_COLORS[
+          managerKey(name)
+        ] || "#18a8ff"
+      );
+
+    }
+
+
+    function points(value) {
+
+      const number =
+        Number(value || 0);
+
+      return number.toFixed(2);
+
+    }
+
+
+    /* ======================================================
+       LOAD DATA
+    ====================================================== */
+
+    async function loadFantasyData() {
+
+      try {
+
+        const response =
+          await fetch(
+            DATA_URL,
+            {
+              cache: "no-store"
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "Data request failed."
+          );
+
+        }
+
+
+        const data =
+          await response.json();
+
+
+        if (!data.success) {
+
+          throw new Error(
+            data.error ||
+            "League data could not be loaded."
+          );
+
+        }
+
+
+        renderWebsite(data);
+
+
+      } catch (error) {
+
+        console.error(
+          "Fant4sy Four data error:",
+          error
+        );
+
+
+        showDataError();
+
+      }
+
+    }
+
+
+    /* ======================================================
+       RENDER WEBSITE
+    ====================================================== */
+
+    function renderWebsite(data) {
+
+      document
+        .getElementById(
+          "last-updated"
+        )
+        .textContent =
+          "UPDATED " +
+          String(data.updated || "");
+
+
+      document
+        .getElementById(
+          "scoreboard-title"
+        )
+        .textContent =
+          "Week " +
+          data.week +
+          " Scoreboard";
+
+
+      document
+        .getElementById(
+          "lineup-title"
+        )
+        .textContent =
+          "Week " +
+          data.week +
+          " Lineups";
+
+
+      renderScoreboard(
+        data.teams || []
+      );
+
+
+      renderStandings(
+        data.standings || []
+      );
+
+
+      renderLineups(
+        data.teams || []
+      );
+
+
+      renderNews(
+        data.news || []
+      );
+
+    }
+
+
+    /* ======================================================
+       SCOREBOARD
+    ====================================================== */
+
+    function renderScoreboard(teams) {
+
+      const container =
+        document.getElementById(
+          "scoreboard-data"
+        );
+
+
+      if (!teams.length) {
+
+        container.innerHTML =
+          '<div class="loading">No scores available.</div>';
+
+        return;
+
+      }
+
+
+      container.className = "";
+
+
+      container.innerHTML =
+        teams
+          .map(
+            function(team) {
+
+              const color =
+                teamColor(
+                  team.name
+                );
+
+
+              return `
+
+                <div class="score-row">
+
+                  <div class="score-manager">
+
+                    <span
+                      class="manager-dot"
+                      style="background:${color}">
+                    </span>
+
+                    ${safeText(team.name)}
+
+                  </div>
+
+                  <div class="score">
+                    ${points(team.currentWeek)}
+                  </div>
+
+                </div>
+
+              `;
+
+            }
+          )
+          .join("");
+
+    }
+
+
+    /* ======================================================
+       STANDINGS
+    ====================================================== */
+
+    function renderStandings(standings) {
+
+      const container =
+        document.getElementById(
+          "standings-data"
+        );
+
+
+      if (!standings.length) {
+
+        container.innerHTML =
+          '<div class="loading">No standings available.</div>';
+
+        return;
+
+      }
+
+
+      let html = `
+
+        <table class="standings-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Manager</th>
+
+              <th>Week 2</th>
+
+              <th>Week 3</th>
+
+              <th>Season</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+      `;
+
+
+      standings.forEach(
+        function(team, index) {
+
+          const place =
+            index + 1;
+
+
+          html += `
+
+            <tr class="${place === 1 ? "first-place" : ""}">
+
+              <td>
+
+                <span class="rank">
+                  ${place}
+                </span>
+
+                <strong>
+                  ${safeText(team.name)}
+                </strong>
+
+              </td>
+
+              <td>
+                ${points(team.week2)}
+              </td>
+
+              <td>
+                ${points(team.week3)}
+              </td>
+
+              <td class="season-total">
+                ${points(team.seasonTotal)}
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      );
+
+
+      html += `
+
+          </tbody>
+
+        </table>
+
+      `;
+
+
+      container.innerHTML =
+        html;
+
+    }
+
+
+    /* ======================================================
+       LINEUPS
+    ====================================================== */
+
+    function renderLineups(teams) {
+
+      const container =
+        document.getElementById(
+          "lineup-data"
+        );
+
+
+      if (!teams.length) {
+
+        container.innerHTML =
+          '<div class="loading">No lineups available.</div>';
+
+        return;
+
+      }
+
+
+      container.innerHTML =
+        teams
+          .map(
+            function(team) {
+
+              const color =
+                teamColor(
+                  team.name
+                );
+
+
+              let players = "";
+
+
+              (
+                team.lineup || []
+              )
+                .forEach(
+                  function(player) {
+
+                    players += `
+
+                      <div class="lineup-player">
+
+                        <div class="position">
+                          ${safeText(player.position)}
+                        </div>
+
+                        <div class="player-name">
+                          ${safeText(player.player)}
+                        </div>
+
+                      </div>
+
+                    `;
+
+                  }
+                );
+
+
+              return `
+
+                <div class="lineup-card">
+
+                  <div
+                    class="lineup-title"
+                    style="border-left-color:${color}"
+                  >
+                    ${safeText(team.name)}
+                  </div>
+
+                  ${players}
+
+                </div>
+
+              `;
+
+            }
+          )
+          .join("");
+
+    }
+
+
+    /* ======================================================
+       LEAGUE NEWS
+    ====================================================== */
+
+    function renderNews(news) {
+
+      const container =
+        document.getElementById(
+          "news-data"
+        );
+
+
+      if (!news.length) {
+
+        container.innerHTML = `
+
+          <article class="news-card">
+
+            <div class="breaking">
+              F4NN NEWS DESK
+            </div>
+
+            <h2>
+              The Newsroom Is Suspiciously Quiet
+            </h2>
+
+            <p>
+              No league stories have been filed yet.
+              This almost certainly means someone is up to something.
+            </p>
+
+          </article>
+
+        `;
+
+        return;
+
+      }
+
+
+      container.innerHTML =
+        news
+          .map(
+            function(article) {
+
+              let quote = "";
+
+
+              if (article.quote) {
+
+                quote = `
+
+                  <div class="news-quote">
+
+                    “${safeText(article.quote)}”
+
+                    ${
+                      article.quoteBy
+                        ? `
+                          <span class="quote-by">
+                            — ${safeText(article.quoteBy)}
+                          </span>
+                        `
+                        : ""
+                    }
+
+                  </div>
+
+                `;
+
+              }
+
+
+              return `
+
+                <article class="news-card">
+
+                  <div class="news-meta">
+
+                    <span class="breaking">
+                      ${safeText(
+                        article.category ||
+                        "LEAGUE NEWS"
+                      )}
+                    </span>
+
+                    <span class="news-date">
+
+                      WEEK
+                      ${safeText(article.week)}
+
+                      ${
+                        article.date
+                          ? " • " +
+                            safeText(article.date)
+                          : ""
+                      }
+
+                    </span>
+
+                  </div>
+
+
+                  <h2>
+                    ${safeText(article.headline)}
+                  </h2>
+
+
+                  ${
+                    article.subheadline
+                      ? `
+                        <div class="subheadline">
+                          ${safeText(article.subheadline)}
+                        </div>
+                      `
+                      : ""
+                  }
+
+
+                  ${
+                    article.story
+                      ? `
+                        <p>
+                          ${safeText(article.story)}
+                        </p>
+                      `
+                      : ""
+                  }
+
+
+                  ${quote}
+
+                </article>
+
+              `;
+
+            }
+          )
+          .join("");
+
+    }
+
+
+    /* ======================================================
+       ERROR STATE
+    ====================================================== */
+
+    function showDataError() {
+
+      document
+        .getElementById(
+          "last-updated"
+        )
+        .textContent =
+          "LIVE DATA UNAVAILABLE";
+
+
+      const message = `
+
+        <div class="error-message">
+
+          F4SN temporarily lost contact with league headquarters.
+          Refresh the page in a moment to try again.
+
+        </div>
+
+      `;
+
+
+      document
+        .getElementById(
+          "scoreboard-data"
+        )
+        .innerHTML =
+          message;
+
+
+      document
+        .getElementById(
+          "standings-data"
+        )
+        .innerHTML =
+          message;
+
+
+      document
+        .getElementById(
+          "lineup-data"
+        )
+        .innerHTML =
+          message;
+
+
+      document
+        .getElementById(
+          "news-data"
+        )
+        .innerHTML =
+          message;
+
+    }
+
+
+    /* ======================================================
+       START
+    ====================================================== */
+
+    loadFantasyData();
+
+
+    /*
+      Refresh the live league data every 60 seconds
+      while somebody has the site open.
+    */
+
+    setInterval(
+      loadFantasyData,
+      60000
+    );
+
+  </script>
 
 </body>
 </html>
