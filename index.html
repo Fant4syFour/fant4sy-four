@@ -1,223 +1,466 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>The Fant4sy Four</title>
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #080b12;
+      background: #0b0f17;
       color: white;
     }
 
-    /* HERO BANNER */
+    .header {
+      background: linear-gradient(135deg, #111827, #1f2937);
+      border-bottom: 4px solid #facc15;
+      padding: 28px 20px;
+      text-align: center;
+    }
 
-    .hero {
+    .league-name {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: 2px;
       margin: 0;
-      padding: 0;
-      background: #080b12;
-      line-height: 0;
-      text-align: center;
     }
 
-    .hero-banner {
-      display: block;
-      width: 100%;
-      max-width: 1600px;
-      height: auto;
-      margin: 0 auto;
+    .league-name span { color: #facc15; }
+
+    .season {
+      color: #9ca3af;
+      margin-top: 8px;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
     }
 
-    /* NAVIGATION */
-
-    nav {
+    .nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
       background: #111827;
-      border-top: 1px solid #1e90ff;
-      border-bottom: 1px solid #1e90ff;
-      padding: 16px;
-      text-align: center;
+      padding: 12px;
+      border-bottom: 1px solid #293241;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
+    .nav button {
+      background: transparent;
+      color: #d1d5db;
+      border: none;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 14px;
       font-weight: bold;
-      margin: 0 16px;
+      border-radius: 6px;
     }
 
-    nav a:hover {
-      color: #18a8ff;
+    .nav button:hover,
+    .nav button.active {
+      background: #facc15;
+      color: #111827;
     }
 
-    /* MAIN CONTENT */
-
-    main {
-      width: min(1100px, 92%);
-      margin: auto;
-      padding: 40px 0 80px;
+    .container {
+      width: 94%;
+      max-width: 1200px;
+      margin: 30px auto 60px;
     }
+
+    section { scroll-margin-top: 80px; }
 
     .section-title {
-      font-size: 28px;
-      text-transform: uppercase;
-      border-left: 6px solid #18a8ff;
+      font-size: 25px;
+      font-weight: 900;
+      margin: 35px 0 18px;
       padding-left: 12px;
-      margin-bottom: 20px;
-    }
-
-    /* TEAM CARDS */
-
-    .teams {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .team {
-      background: #111827;
-      border-radius: 12px;
-      padding: 24px 15px;
-      text-align: center;
-      border-top: 5px solid;
-      box-shadow: 0 8px 25px rgba(0,0,0,.35);
-    }
-
-    .team h2 {
-      margin: 5px 0;
-    }
-
-    .team p {
-      color: #aeb9c6;
-      margin-bottom: 0;
-    }
-
-    .brad {
-      border-color: #1687ff;
-    }
-
-    .maria {
-      border-color: #ff3b30;
-    }
-
-    .mackenzie {
-      border-color: #16d5d1;
-    }
-
-    .madison {
-      border-color: #9c4dff;
+      border-left: 5px solid #facc15;
     }
 
     /* SCOREBOARD */
 
-    .scoreboard-section {
-      margin-top: 50px;
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
     }
 
-    .scoreboard {
-      background: #111827;
+    .score-card {
+      background: #151b26;
+      border: 1px solid #293241;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,.35);
+      box-shadow: 0 8px 20px rgba(0,0,0,.25);
     }
 
-    .score-row {
-      display: grid;
-      grid-template-columns: 1fr 120px;
-      padding: 18px 22px;
-      border-bottom: 1px solid #263244;
+    .score-card-header {
+      background: #1f2937;
+      padding: 15px;
+      font-size: 19px;
+      font-weight: 900;
+      text-align: center;
     }
 
-    .score-row:last-child {
-      border-bottom: none;
+    .score-number {
+      text-align: center;
+      font-size: 42px;
+      font-weight: 900;
+      color: #facc15;
+      padding: 22px 10px 8px;
     }
 
-    .score {
-      text-align: right;
-      font-size: 22px;
-      font-weight: bold;
-      color: #18a8ff;
-    }
-
-    /* NEWS */
-
-    .news {
-      margin-top: 50px;
-    }
-
-    .news-card {
-      background: linear-gradient(135deg, #111827, #182437);
-      border-radius: 12px;
-      padding: 28px;
-      border: 1px solid #263244;
-      box-shadow: 0 8px 25px rgba(0,0,0,.35);
-    }
-
-    .breaking {
-      color: #ff4b4b;
-      font-weight: bold;
-      font-size: 13px;
+    .score-label {
+      text-align: center;
+      color: #9ca3af;
+      font-size: 12px;
+      text-transform: uppercase;
       letter-spacing: 2px;
+      padding-bottom: 18px;
     }
 
-    .news-card h2 {
-      font-size: 30px;
-      margin: 8px 0 15px;
+    .sleeper {
+      border-top: 1px solid #293241;
+      padding: 12px 8px;
+      font-size: 12px;
+      color: #d1d5db;
+      text-align: center;
+      line-height: 1.5;
     }
 
-    .news-card p {
-      color: #d2d9e2;
+    /* STANDINGS */
+
+    .standings-box {
+      background: #151b26;
+      border: 1px solid #293241;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      background: #1f2937;
+      color: #9ca3af;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+      padding: 14px;
+      text-align: left;
+    }
+
+    td {
+      padding: 15px 14px;
+      border-top: 1px solid #293241;
+    }
+
+    tr:hover td { background: #1a2230; }
+
+    .rank {
+      color: #facc15;
+      font-weight: 900;
+      width: 50px;
+    }
+
+    .team-name { font-weight: 800; }
+
+    .season-total {
+      font-weight: 900;
+      color: #facc15;
+    }
+
+    /* LINEUPS */
+
+    .lineup-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .lineup-card {
+      background: #151b26;
+      border: 1px solid #293241;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .lineup-title {
+      background: #1f2937;
+      font-size: 20px;
+      font-weight: 900;
+      padding: 15px;
+      border-bottom: 3px solid #facc15;
+    }
+
+    .player-row {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      border-bottom: 1px solid #293241;
+      padding: 10px 14px;
+    }
+
+    .player-row:last-child { border-bottom: none; }
+
+    .position {
+      color: #facc15;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .player { font-weight: 600; }
+
+    /* =========================
+       F4NN NEWS NETWORK
+    ========================== */
+
+    .news-network {
+      background: #151b26;
+      border: 1px solid #293241;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,.3);
+    }
+
+    .f4nn-header {
+      background: #facc15;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 18px;
+      gap: 15px;
+    }
+
+    .f4nn-logo {
+      font-size: 27px;
+      font-weight: 1000;
+      letter-spacing: -1px;
+    }
+
+    .f4nn-name {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-align: right;
+    }
+
+    .breaking-bar {
+      display: flex;
+      background: #991b1b;
+      min-height: 40px;
+      align-items: stretch;
+    }
+
+    .breaking-label {
+      background: #dc2626;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .breaking-text {
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .lead-story {
+      padding: 30px;
+    }
+
+    .story-meta {
+      color: #facc15;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .story-headline {
+      font-size: 34px;
+      line-height: 1.08;
+      font-weight: 1000;
+      margin: 0 0 12px;
+    }
+
+    .story-subheadline {
+      color: #aeb6c2;
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    .story-body {
+      color: #e5e7eb;
+      font-size: 16px;
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+
+    .pull-quote {
+      margin: 28px 0 10px;
+      padding: 22px 25px;
+      border-left: 5px solid #facc15;
+      background: #0f1520;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .quote-text {
+      font-size: 21px;
+      font-weight: 800;
+      line-height: 1.45;
+      font-style: italic;
+    }
+
+    .quote-by {
+      margin-top: 12px;
+      color: #facc15;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .archive-title {
+      border-top: 1px solid #293241;
+      background: #111827;
+      padding: 14px 20px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #9ca3af;
+    }
+
+    .archive-story {
+      padding: 18px 22px;
+      border-top: 1px solid #293241;
+      cursor: pointer;
+    }
+
+    .archive-story:hover {
+      background: #1a2230;
+    }
+
+    .archive-category {
+      color: #facc15;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .archive-headline {
+      font-size: 17px;
+      font-weight: 900;
+      margin-top: 5px;
+    }
+
+    /* PRESS ROOM */
+
+    .feature-card {
+      min-height: 180px;
+      background: linear-gradient(135deg, #151b26, #202a39);
+      border: 1px solid #293241;
+      border-radius: 12px;
+      padding: 25px;
+    }
+
+    .feature-card h3 {
+      font-size: 24px;
+      margin: 10px 0;
+      color: #facc15;
+    }
+
+    .feature-card p {
+      color: #aeb6c2;
       line-height: 1.6;
     }
 
-    /* FOOTER */
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      background: #05070b;
-      color: #778394;
-      border-top: 1px solid #182437;
+    .coming-badge {
+      display: inline-block;
+      background: #facc15;
+      color: #111827;
+      padding: 5px 9px;
+      font-size: 10px;
+      font-weight: 900;
+      border-radius: 4px;
+      letter-spacing: 1px;
     }
 
-    /* MOBILE */
+    /* STATUS */
 
-    @media (max-width: 800px) {
-      .teams {
+    #loading {
+      text-align: center;
+      padding: 70px 20px;
+      color: #9ca3af;
+      font-size: 18px;
+    }
+
+    #error {
+      display: none;
+      background: #451a1a;
+      border: 1px solid #991b1b;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+
+    .updated {
+      text-align: center;
+      color: #6b7280;
+      margin-top: 35px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .score-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-
-      nav a {
-        display: inline-block;
-        margin: 6px 9px;
-      }
     }
 
-    @media (max-width: 500px) {
-      .teams {
+    @media (max-width: 650px) {
+
+      .league-name { font-size: 30px; }
+
+      .score-grid,
+      .lineup-grid {
         grid-template-columns: 1fr;
       }
 
-      .score-row {
-        grid-template-columns: 1fr 90px;
+      .story-headline {
+        font-size: 27px;
       }
 
-      .news-card h2 {
-        font-size: 24px;
+      .lead-story {
+        padding: 22px;
+      }
+
+      .f4nn-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .f4nn-name { text-align: left; }
+
+      .breaking-bar {
+        display: block;
+      }
+
+      th, td {
+        padding: 10px 7px;
+        font-size: 12px;
       }
     }
   </style>
@@ -225,179 +468,455 @@
 
 <body>
 
-  <!-- FANT4SY FOUR HERO -->
+  <div class="header">
+    <h1 class="league-name">THE FANT<span>4</span>SY FOUR</h1>
+    <div class="season">2026 Family Fantasy Football</div>
+  </div>
 
-  <header class="hero">
-    <img
-      src="fant4sy-four-banner.png"
-      alt="The Fant4sy Four - Brad, Maria, Mackenzie and Madison"
-      class="hero-banner"
-    >
-  </header>
+  <div class="nav">
+    <button class="active" onclick="scrollToSection('scores')">SCOREBOARD</button>
+    <button onclick="scrollToSection('standings')">STANDINGS</button>
+    <button onclick="scrollToSection('lineups')">LINEUPS</button>
+    <button onclick="scrollToSection('news')">LEAGUE NEWS</button>
+    <button onclick="scrollToSection('pressroom')">PRESS ROOM</button>
+  </div>
 
-  <!-- NAVIGATION -->
+  <div class="container">
 
-  <nav>
-    <a href="#home">HOME</a>
-    <a href="#scoreboard">SCOREBOARD</a>
-    <a href="#standings">STANDINGS</a>
-    <a href="#teams">TEAMS</a>
-    <a href="#news">LEAGUE NEWS</a>
-    <a href="#hall-of-shame">HALL OF SHAME</a>
-  </nav>
+    <div id="loading">Loading The Fant4sy Four...</div>
+    <div id="error"></div>
 
-  <main id="home">
+    <div id="siteContent" style="display:none;">
 
-    <!-- TEAMS -->
+      <section id="scores">
+        <div class="section-title">
+          WEEK <span id="weekNumber"></span> SCOREBOARD
+        </div>
+        <div id="scoreGrid" class="score-grid"></div>
+      </section>
 
-    <section id="teams">
+      <section id="standings">
+        <div class="section-title">SEASON STANDINGS</div>
 
-      <h2 class="section-title">Meet The Fant4sy Four</h2>
+        <div class="standings-box">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Manager</th>
+                <th>Week 2</th>
+                <th>Week 3</th>
+                <th>Season Total</th>
+              </tr>
+            </thead>
+            <tbody id="standingsBody"></tbody>
+          </table>
+        </div>
+      </section>
 
-      <div class="teams">
+      <section id="lineups">
+        <div class="section-title">
+          WEEK <span id="lineupWeekNumber"></span> LINEUPS
+        </div>
+        <div id="lineupGrid" class="lineup-grid"></div>
+      </section>
 
-        <div class="team brad">
-          <h2>BRAD</h2>
-          <p>Blue Team</p>
+
+      <!-- F4NN NEWS -->
+
+      <section id="news">
+
+        <div class="section-title">LEAGUE NEWS</div>
+
+        <div class="news-network">
+
+          <div class="f4nn-header">
+            <div class="f4nn-logo">F4NN</div>
+            <div class="f4nn-name">
+              FANT4SY FOUR NEWS NETWORK
+            </div>
+          </div>
+
+          <div id="breakingBar" class="breaking-bar">
+            <div class="breaking-label">BREAKING NEWS</div>
+            <div id="breakingText" class="breaking-text"></div>
+          </div>
+
+          <div id="leadStory" class="lead-story"></div>
+
+          <div id="archiveArea"></div>
+
         </div>
 
-        <div class="team maria">
-          <h2>MARIA</h2>
-          <p>Red Team</p>
+      </section>
+
+
+      <!-- PRESS ROOM -->
+
+      <section id="pressroom">
+
+        <div class="section-title">PRESS ROOM</div>
+
+        <div class="feature-card">
+
+          <span class="coming-badge">COMING SOON</span>
+
+          <h3>Manager Press Conferences</h3>
+
+          <p>
+            F4NN cameras will soon bring you exclusive postgame
+            press conferences featuring The Fant4sy Four managers
+            explaining questionable roster decisions, devastating
+            losses and completely undeserved victories.
+          </p>
+
         </div>
 
-        <div class="team mackenzie">
-          <h2>MACKENZIE</h2>
-          <p>Teal Team</p>
+      </section>
+
+      <div id="updated" class="updated"></div>
+
+    </div>
+
+  </div>
+
+
+<script>
+
+  let leagueNews = [];
+
+
+  window.addEventListener("load", function() {
+
+    google.script.run
+      .withSuccessHandler(renderWebsite)
+      .withFailureHandler(showError)
+      .getFant4syFourWebsiteData();
+
+  });
+
+
+  function renderWebsite(data) {
+
+    if (!data || !data.success) {
+      showError("Unable to load league data.");
+      return;
+    }
+
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("siteContent").style.display = "block";
+
+    document.getElementById("weekNumber").textContent = data.week;
+    document.getElementById("lineupWeekNumber").textContent = data.week;
+
+    renderScores(data.teams || []);
+    renderStandings(data.standings || []);
+    renderLineups(data.teams || []);
+    renderNews(data.news || []);
+
+    document.getElementById("updated").textContent =
+      "Last updated: " + data.updated;
+  }
+
+
+  function renderScores(teams) {
+
+    const grid = document.getElementById("scoreGrid");
+    grid.innerHTML = "";
+
+    teams.forEach(function(team) {
+
+      const card = document.createElement("div");
+      card.className = "score-card";
+
+      card.innerHTML = `
+        <div class="score-card-header">
+          ${escapeHtml(team.name)}
         </div>
 
-        <div class="team madison">
-          <h2>MADISON</h2>
-          <p>Purple Team</p>
+        <div class="score-number">
+          ${formatScore(team.currentWeek)}
         </div>
 
+        <div class="score-label">
+          WEEKLY POINTS
+        </div>
+
+        <div class="sleeper">
+          Sleeper:
+          <strong>${escapeHtml(team.sleeper || "—")}</strong><br>
+          ${formatScore(team.sleeperPoints)} pts
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+  }
+
+
+  function renderStandings(standings) {
+
+    const body = document.getElementById("standingsBody");
+    body.innerHTML = "";
+
+    standings.forEach(function(team, index) {
+
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td class="rank">${index + 1}</td>
+        <td class="team-name">${escapeHtml(team.name)}</td>
+        <td>${formatScore(team.week2)}</td>
+        <td>${formatScore(team.week3)}</td>
+        <td class="season-total">${formatScore(team.seasonTotal)}</td>
+      `;
+
+      body.appendChild(row);
+    });
+  }
+
+
+  function renderLineups(teams) {
+
+    const grid = document.getElementById("lineupGrid");
+    grid.innerHTML = "";
+
+    teams.forEach(function(team) {
+
+      const card = document.createElement("div");
+      card.className = "lineup-card";
+
+      let playerRows = "";
+
+      team.lineup.forEach(function(player) {
+
+        playerRows += `
+          <div class="player-row">
+            <div class="position">
+              ${escapeHtml(player.position)}
+            </div>
+            <div class="player">
+              ${escapeHtml(player.player)}
+            </div>
+          </div>
+        `;
+      });
+
+      card.innerHTML = `
+        <div class="lineup-title">
+          ${escapeHtml(team.name)}
+        </div>
+        ${playerRows}
+      `;
+
+      grid.appendChild(card);
+    });
+  }
+
+
+  /************************************************************
+   F4NN NEWS
+  ************************************************************/
+
+  function renderNews(news) {
+
+    leagueNews = news;
+
+    const leadStory = document.getElementById("leadStory");
+    const archiveArea = document.getElementById("archiveArea");
+    const breakingBar = document.getElementById("breakingBar");
+
+    if (!news.length) {
+
+      breakingBar.style.display = "none";
+
+      leadStory.innerHTML = `
+        <div class="story-headline">
+          F4NN NEWSROOM IS CURRENTLY QUIET
+        </div>
+        <div class="story-subheadline">
+          This is unlikely to last.
+        </div>
+      `;
+
+      return;
+    }
+
+    showNewsStory(0);
+
+    if (news.length > 1) {
+
+      let archiveHtml = `
+        <div class="archive-title">
+          F4NN NEWS ARCHIVE
+        </div>
+      `;
+
+      for (let i = 1; i < news.length; i++) {
+
+        archiveHtml += `
+          <div class="archive-story"
+               onclick="showNewsStory(${i})">
+
+            <div class="archive-category">
+              WEEK ${escapeHtml(news[i].week)} •
+              ${escapeHtml(news[i].category)}
+            </div>
+
+            <div class="archive-headline">
+              ${escapeHtml(news[i].headline)}
+            </div>
+
+          </div>
+        `;
+      }
+
+      archiveArea.innerHTML = archiveHtml;
+
+    } else {
+
+      archiveArea.innerHTML = "";
+
+    }
+  }
+
+
+  function showNewsStory(index) {
+
+    const story = leagueNews[index];
+
+    if (!story) return;
+
+    const breakingText =
+      document.getElementById("breakingText");
+
+    const breakingBar =
+      document.getElementById("breakingBar");
+
+
+    if (
+      String(story.category).toUpperCase()
+        .includes("BREAKING")
+    ) {
+
+      breakingBar.style.display = "flex";
+
+      breakingText.textContent =
+        story.headline;
+
+    } else {
+
+      breakingBar.style.display = "none";
+
+    }
+
+
+    let quoteHtml = "";
+
+    if (story.quote) {
+
+      quoteHtml = `
+        <div class="pull-quote">
+
+          <div class="quote-text">
+            “${escapeHtml(story.quote)}”
+          </div>
+
+          <div class="quote-by">
+            — ${escapeHtml(story.quoteBy)}
+          </div>
+
+        </div>
+      `;
+    }
+
+
+    document.getElementById("leadStory").innerHTML = `
+
+      <div class="story-meta">
+        WEEK ${escapeHtml(story.week)}
+        &nbsp;•&nbsp;
+        ${escapeHtml(story.category)}
+        &nbsp;•&nbsp;
+        ${escapeHtml(story.date)}
       </div>
 
-    </section>
+      <h2 class="story-headline">
+        ${escapeHtml(story.headline)}
+      </h2>
 
-    <!-- SCOREBOARD -->
-
-    <section
-      id="scoreboard"
-      class="scoreboard-section"
-    >
-
-      <h2 class="section-title">Week 3 Scoreboard</h2>
-
-      <div class="scoreboard">
-
-        <div class="score-row">
-          <strong>BRAD</strong>
-          <span class="score">0.00</span>
-        </div>
-
-        <div class="score-row">
-          <strong>MARIA</strong>
-          <span class="score">0.00</span>
-        </div>
-
-        <div class="score-row">
-          <strong>MACKENZIE</strong>
-          <span class="score">0.00</span>
-        </div>
-
-        <div class="score-row">
-          <strong>MADISON</strong>
-          <span class="score">0.00</span>
-        </div>
-
+      <div class="story-subheadline">
+        ${escapeHtml(story.subheadline)}
       </div>
 
-    </section>
-
-    <!-- STANDINGS PLACEHOLDER -->
-
-    <section
-      id="standings"
-      class="scoreboard-section"
-    >
-
-      <h2 class="section-title">Season Standings</h2>
-
-      <div class="news-card">
-        <p>
-          Season standings will soon be pulled directly
-          from the official Fant4sy Four scoring sheet.
-        </p>
+      <div class="story-body">
+        ${escapeHtml(story.story)}
       </div>
 
-    </section>
+      ${quoteHtml}
 
-    <!-- LEAGUE NEWS -->
+    `;
 
-    <section
-      id="news"
-      class="news"
-    >
+    if (index > 0) {
 
-      <h2 class="section-title">Fant4sy Four News</h2>
+      document.getElementById("news")
+        .scrollIntoView({ behavior: "smooth" });
 
-      <article class="news-card">
+    }
+  }
 
-        <div class="breaking">
-          BREAKING NEWS
-        </div>
 
-        <h2>
-          The Fant4sy Four Have Officially Gone Online
-        </h2>
+  /************************************************************
+   HELPERS
+  ************************************************************/
 
-        <p>
-          League officials confirmed today that Brad,
-          Maria, Mackenzie and Madison now have their
-          own fantasy football headquarters.
-        </p>
+  function formatScore(number) {
 
-        <p>
-          Sources close to the league say the website
-          will feature weekly scores, season standings,
-          questionable managerial decisions and
-          absolutely no accountability.
-        </p>
+    const n = Number(number);
 
-      </article>
+    if (isNaN(n)) return "0.00";
 
-    </section>
+    return n.toFixed(2);
+  }
 
-    <!-- HALL OF SHAME -->
 
-    <section
-      id="hall-of-shame"
-      class="news"
-    >
+  function escapeHtml(value) {
 
-      <h2 class="section-title">Hall of Shame</h2>
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
 
-      <div class="news-card">
 
-        <p>
-          Nothing here yet.
-        </p>
+  function showError(error) {
 
-        <p>
-          Don't worry. It's only a matter of time.
-          😂
-        </p>
+    document.getElementById("loading").style.display = "none";
 
-      </div>
+    const box = document.getElementById("error");
 
-    </section>
+    box.style.display = "block";
 
-  </main>
+    box.textContent =
+      "Website error: " +
+      (error && error.message ? error.message : error);
+  }
 
-  <footer>
-    THE FANT4SY FOUR • EST. 2026
-  </footer>
+
+  function scrollToSection(id) {
+
+    const section = document.getElementById(id);
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+  }
+
+</script>
 
 </body>
 </html>
