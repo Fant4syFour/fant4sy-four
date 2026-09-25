@@ -744,7 +744,6 @@
         display: inline-block;
         margin: 4px 8px;
       }
-
     }
 
     @media (max-width: 600px) {
@@ -799,31 +798,24 @@
       .press-card {
         padding: 20px;
       }
-
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ======================================================
-       HERO
-  ======================================================= -->
+  <!-- HERO -->
 
   <header class="hero">
-
     <img
       src="fant4sy-four-banner.png"
       alt="The Fant4sy Four - Brad, Maria, Mackenzie and Madison"
       class="hero-banner"
     >
-
   </header>
 
 
-  <!-- ======================================================
-       F4SN NETWORK BAR
-  ======================================================= -->
+  <!-- F4SN NETWORK BAR -->
 
   <div class="network-bar">
 
@@ -846,41 +838,18 @@
   </div>
 
 
-  <!-- ======================================================
-       NAVIGATION
-  ======================================================= -->
+  <!-- NAVIGATION -->
 
   <nav>
 
     <a href="#home">HOME</a>
-
-    <a href="#scoreboard">
-      SCOREBOARD
-    </a>
-
-    <a href="#standings">
-      STANDINGS
-    </a>
-
-    <a href="#lineups">
-      LINEUPS
-    </a>
-
-    <a href="#news">
-      LEAGUE NEWS
-    </a>
-
-    <a href="#f4sn-tv">
-      F4SN TV
-    </a>
-
-    <a href="#press-room">
-      PRESS ROOM
-    </a>
-
-    <a href="#hall-of-shame">
-      HALL OF SHAME
-    </a>
+    <a href="#scoreboard">SCOREBOARD</a>
+    <a href="#standings">STANDINGS</a>
+    <a href="#lineups">LINEUPS</a>
+    <a href="#news">LEAGUE NEWS</a>
+    <a href="#f4sn-tv">F4SN TV</a>
+    <a href="#press-room">PRESS ROOM</a>
+    <a href="#hall-of-shame">HALL OF SHAME</a>
 
   </nav>
 
@@ -888,9 +857,7 @@
   <main id="home">
 
 
-    <!-- ====================================================
-         MANAGERS
-    ===================================================== -->
+    <!-- MANAGERS -->
 
     <section id="teams">
 
@@ -901,38 +868,23 @@
       <div class="teams">
 
         <div class="team brad">
-
           <h2>BRAD</h2>
-
           <p>Blue Team</p>
-
         </div>
-
 
         <div class="team maria">
-
           <h2>MARIA</h2>
-
           <p>Red Team</p>
-
         </div>
-
 
         <div class="team mackenzie">
-
           <h2>MACKENZIE</h2>
-
           <p>Teal Team</p>
-
         </div>
 
-
         <div class="team madison">
-
           <h2>MADISON</h2>
-
           <p>Purple Team</p>
-
         </div>
 
       </div>
@@ -940,9 +892,7 @@
     </section>
 
 
-    <!-- ====================================================
-         LIVE SCOREBOARD
-    ===================================================== -->
+    <!-- LIVE SCOREBOARD -->
 
     <section id="scoreboard">
 
@@ -979,9 +929,7 @@
     </section>
 
 
-    <!-- ====================================================
-         STANDINGS
-    ===================================================== -->
+    <!-- STANDINGS -->
 
     <section id="standings">
 
@@ -1004,9 +952,7 @@
     </section>
 
 
-    <!-- ====================================================
-         LINEUPS
-    ===================================================== -->
+    <!-- LINEUPS -->
 
     <section id="lineups">
 
@@ -1035,9 +981,7 @@
     </section>
 
 
-    <!-- ====================================================
-         F4NN LEAGUE NEWS
-    ===================================================== -->
+    <!-- LEAGUE NEWS -->
 
     <section id="news">
 
@@ -1060,9 +1004,7 @@
     </section>
 
 
-    <!-- ====================================================
-         F4SN TV
-    ===================================================== -->
+    <!-- F4SN TV -->
 
     <section id="f4sn-tv">
 
@@ -1119,9 +1061,7 @@
     </section>
 
 
-    <!-- ====================================================
-         PRESS ROOM
-    ===================================================== -->
+    <!-- PRESS ROOM -->
 
     <section id="press-room">
 
@@ -1151,8 +1091,6 @@
 
       <div class="press-grid">
 
-
-        <!-- BRAD -->
 
         <div class="press-card brad-card">
 
@@ -1185,8 +1123,6 @@
         </div>
 
 
-        <!-- MARIA -->
-
         <div class="press-card maria-card">
 
           <div class="press-name">
@@ -1217,8 +1153,6 @@
         </div>
 
 
-        <!-- MACKENZIE -->
-
         <div class="press-card mackenzie-card">
 
           <div class="press-name">
@@ -1248,8 +1182,6 @@
 
         </div>
 
-
-        <!-- MADISON -->
 
         <div class="press-card madison-card">
 
@@ -1294,9 +1226,7 @@
     </section>
 
 
-    <!-- ====================================================
-         HALL OF SHAME
-    ===================================================== -->
+    <!-- HALL OF SHAME -->
 
     <section id="hall-of-shame">
 
@@ -1324,13 +1254,10 @@
 
     </section>
 
-
   </main>
 
 
-  <!-- ======================================================
-       FOOTER
-  ======================================================= -->
+  <!-- FOOTER -->
 
   <footer>
 
@@ -1341,9 +1268,7 @@
   </footer>
 
 
-  <!-- ======================================================
-       LIVE DATA
-  ======================================================= -->
+  <!-- LIVE DATA -->
 
   <script>
 
@@ -1354,14 +1279,26 @@
     const TEAM_COLORS = {
 
       brad: "#1687ff",
-
       maria: "#ff3b30",
-
       mackenzie: "#16d5d1",
-
       madison: "#9c4dff"
 
     };
+
+
+    /*
+      This is the permanent display order for the
+      scoreboard and lineup cards.
+
+      Standings are intentionally NOT affected.
+    */
+
+    const MANAGER_ORDER = [
+      "brad",
+      "maria",
+      "mackenzie",
+      "madison"
+    ];
 
 
     /* ======================================================
@@ -1408,6 +1345,41 @@
         Number(value || 0);
 
       return number.toFixed(2);
+
+    }
+
+
+    function orderManagers(teams) {
+
+      return [...teams].sort(
+        function(a, b) {
+
+          const aIndex =
+            MANAGER_ORDER.indexOf(
+              managerKey(a.name)
+            );
+
+          const bIndex =
+            MANAGER_ORDER.indexOf(
+              managerKey(b.name)
+            );
+
+
+          const safeA =
+            aIndex === -1
+              ? 999
+              : aIndex;
+
+          const safeB =
+            bIndex === -1
+              ? 999
+              : bIndex;
+
+
+          return safeA - safeB;
+
+        }
+      );
 
     }
 
@@ -1476,6 +1448,18 @@
 
     function renderWebsite(data) {
 
+      /*
+        Sort only the manager-based displays.
+        We make a copy so the original API data
+        remains untouched.
+      */
+
+      const orderedTeams =
+        orderManagers(
+          data.teams || []
+        );
+
+
       document
         .getElementById(
           "last-updated"
@@ -1505,18 +1489,32 @@
           " Lineups";
 
 
+      /*
+        Brad → Maria → Mackenzie → Madison
+      */
+
       renderScoreboard(
-        data.teams || []
+        orderedTeams
       );
 
+
+      /*
+        IMPORTANT:
+        Standings stay in the API's actual
+        season-points ranking.
+      */
 
       renderStandings(
         data.standings || []
       );
 
 
+      /*
+        Brad → Maria → Mackenzie → Madison
+      */
+
       renderLineups(
-        data.teams || []
+        orderedTeams
       );
 
 
@@ -1624,11 +1622,8 @@
             <tr>
 
               <th>Manager</th>
-
               <th>Week 2</th>
-
               <th>Week 3</th>
-
               <th>Season</th>
 
             </tr>
@@ -1995,8 +1990,8 @@
 
 
     /*
-      Refresh the live league data every 60 seconds
-      while somebody has the site open.
+      Refresh live league data every 60 seconds
+      while the site is open.
     */
 
     setInterval(
