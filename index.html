@@ -1096,6 +1096,7 @@ game.overtime
 else if(game.time){
 
 meta=
+"SCHEDULED • "+
 formatNFLDate(
 game.date
 )+
@@ -1180,9 +1181,9 @@ return safeText(value);
 }
 
 return (
-Number(parts[1])+
+String(parts[1]).padStart(2,"0")+
 "/"+
-Number(parts[2])
+String(parts[2]).padStart(2,"0")
 );
 
 }
