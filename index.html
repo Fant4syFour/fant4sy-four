@@ -378,7 +378,8 @@
 
     .lineup-player {
       display: grid;
-      grid-template-columns: 85px 1fr;
+      grid-template-columns: 85px 1fr 100px;
+      gap: 10px;
       padding: 11px 18px;
       border-bottom: 1px solid #202b3b;
       align-items: center;
@@ -397,6 +398,22 @@
 
     .player-name {
       font-weight: bold;
+    }
+
+    .player-points {
+      text-align: right;
+      color: var(--yellow);
+      font-size: 15px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .player-points-label {
+      color: #7f8da0;
+      font-size: 9px;
+      font-weight: bold;
+      letter-spacing: .8px;
+      margin-left: 3px;
     }
 
     /* ======================================================
@@ -785,6 +802,16 @@
         margin-right: 5px;
         width: 24px;
         height: 24px;
+      }
+
+      .lineup-player {
+        grid-template-columns: 55px 1fr 82px;
+        gap: 6px;
+        padding: 11px 12px;
+      }
+
+      .player-points {
+        font-size: 13px;
       }
 
       .news-card {
@@ -1745,6 +1772,13 @@
 
                         <div class="player-name">
                           ${safeText(player.player)}
+                        </div>
+
+                        <div class="player-points">
+                          ${points(player.points)}
+                          <span class="player-points-label">
+                            PTS
+                          </span>
                         </div>
 
                       </div>
