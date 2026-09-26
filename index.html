@@ -920,7 +920,7 @@ data.news||[]
  returned by the Apps Script backend.
 
  Scheduled games:
-   Date / time
+   SCHEDULED + date / time
 
  Live games:
    Score + quarter / clock
@@ -950,7 +950,6 @@ return;
 
 }
 
-
 const week=
 scoreboard&&scoreboard.week
 ?scoreboard.week
@@ -961,13 +960,11 @@ week
 ?"NFL WEEK "+week
 :"NFL";
 
-
 const games=
 scoreboard&&
 Array.isArray(scoreboard.games)
 ?scoreboard.games
 :[];
-
 
 if(
 !scoreboard.success||
@@ -984,73 +981,55 @@ return;
 
 }
 
-
 container.innerHTML=
 games.map(function(game){
-
 
 const hasScore=
 game.hasScore===true;
 
-
 const completed=
 game.completed===true;
 
-
 const live=
 game.live===true;
-
 
 const awayScore=
 hasScore
 ?safeText(game.awayScore)
 :"";
 
-
 const homeScore=
 hasScore
 ?safeText(game.homeScore)
 :"";
 
-
 let meta="";
 
 
 /*
- First choice:
- Use the status text supplied by our ESPN-backed
- Apps Script scoreboard.
+ ESPN can sometimes send a scheduled game's date
+ as statusText, for example "9/27" or "09/27".
 
- Examples:
- FINAL
- FINAL/OT
- 1ST • 12:34
- 2ND • 4:17
- 3RD • 8:42
- 4TH • 0:52
- OT • 6:11
+ We do not want that to override our scheduled-game
+ display.
 */
 
-if(
-game.statusText
-){
+const statusText=
+String(
+game.statusText||""
+).trim();
 
-meta=
-safeText(
-game.statusText
+const statusIsDate=
+/^\d{1,2}\/\d{1,2}$/.test(
+statusText
 );
-
-}
 
 
 /*
- Fallback for completed games.
-
- This protects us in case ESPN reports completed=true
- but does not send statusText for some reason.
+ Completed game.
 */
 
-else if(completed){
+if(completed){
 
 meta=
 game.overtime
@@ -1061,22 +1040,25 @@ game.overtime
 
 
 /*
- Fallback for live games.
+ Live game.
 
- Normally statusText will already contain the
- quarter and clock.
+ Use statusText when available because it normally
+ contains the quarter and clock.
 */
 
 else if(live){
 
-meta="LIVE";
+meta=
+statusText&&!statusIsDate
+?safeText(statusText)
+:"LIVE";
 
 }
 
 
 /*
- If we somehow have a score but no ESPN status,
- show SCORE rather than incorrectly claiming FINAL.
+ Score exists, but game is neither marked live
+ nor completed.
 */
 
 else if(hasScore){
@@ -1090,35 +1072,39 @@ game.overtime
 
 
 /*
- Scheduled game with a known time.
+ Scheduled game.
+
+ Build this ourselves instead of trusting statusText.
+ This prevents a value such as "9/27" from replacing
+ the word SCHEDULED.
 */
 
-else if(game.time){
+else{
 
-meta=
-"SCHEDULED • "+
+meta="SCHEDULED";
+
+const gameDate=
 formatNFLDate(
 game.date
-)+
+);
+
+if(gameDate){
+
+meta+=
+" • "+
+gameDate;
+
+}
+
+if(game.time){
+
+meta+=
 " • "+
 safeText(
 game.time
 );
 
 }
-
-
-/*
- Scheduled game without a known time.
-*/
-
-else{
-
-meta=
-formatNFLDate(
-game.date
-)||
-"SCHEDULED";
 
 }
 
