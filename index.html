@@ -320,18 +320,25 @@ class="hero-banner">
 </header>
 
 <div class="nfl-strip" aria-label="NFL Week Scoreboard">
+
 <div class="nfl-strip-label">
 <strong id="nfl-week-label">NFL</strong>
 <span>Score Center</span>
 </div>
 
 <div id="nfl-games" class="nfl-games">
-<div class="nfl-ticker-message">Loading NFL games...</div>
+<div class="nfl-ticker-message">
+Loading NFL games...
 </div>
 </div>
 
+</div>
+
 <div class="network-bar">
-<span class="network-name">F4SN • FANT4SY FOUR SPORTS NETWORK</span>
+
+<span class="network-name">
+F4SN • FANT4SY FOUR SPORTS NETWORK
+</span>
 
 <span>
 <span class="live-dot"></span>
@@ -341,6 +348,7 @@ LIVE LEAGUE COVERAGE
 <span id="last-updated" class="update-status">
 CONNECTING...
 </span>
+
 </div>
 
 <nav>
@@ -357,7 +365,10 @@ CONNECTING...
 <main id="home">
 
 <section id="teams">
-<h2 class="section-title">Meet The Fant4sy Four</h2>
+
+<h2 class="section-title">
+Meet The Fant4sy Four
+</h2>
 
 <div class="teams">
 
@@ -384,6 +395,7 @@ CONNECTING...
 </div>
 </section>
 
+
 <section id="scoreboard">
 
 <h2 class="section-title" id="scoreboard-title">
@@ -404,6 +416,7 @@ Loading live scores...
 </div>
 </section>
 
+
 <section id="standings">
 
 <h2 class="section-title">
@@ -421,6 +434,7 @@ Loading season standings...
 </div>
 
 </section>
+
 
 <section id="lineups">
 
@@ -440,6 +454,7 @@ Loading lineups...
 
 </section>
 
+
 <section id="news">
 
 <h2 class="section-title">
@@ -458,6 +473,7 @@ Contacting the F4NN newsroom...
 
 </section>
 
+
 <section id="f4sn-tv">
 
 <h2 class="section-title">
@@ -471,33 +487,44 @@ Original programming from the network nobody asked for.
 <div class="tv-shell">
 
 <div class="tv-header">
+
 <div class="tv-logo">
 F4SN <span>TV</span>
 </div>
+
 <div class="on-air">
 ● ON AIR
 </div>
+
 </div>
 
 <div class="video-wrap">
+
 <iframe
 src="https://www.youtube-nocookie.com/embed/f4O8AezuBrQ"
 title="F4SN Fant4sy Four Sports Network"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 allowfullscreen>
 </iframe>
+
 </div>
 
 <div class="tv-description">
-<h3>F4SN SportsCenter – The Pilot</h3>
+
+<h3>
+F4SN SportsCenter – The Pilot
+</h3>
+
 <p>
 The latest completely serious coverage of the
 least serious fantasy football league in America.
 </p>
+
 </div>
 
 </div>
 </section>
+
 
 <section id="press-room">
 
@@ -541,15 +568,18 @@ is completely irrelevant.”
 </div>
 
 <div class="qa">
+
 <div class="reporter">
 REPORTER: Any regrets?
 </div>
+
 <div class="answer">
 BRAD: Next question.
 </div>
-</div>
 
 </div>
+</div>
+
 
 <div class="press-card maria-card">
 
@@ -567,15 +597,18 @@ I don't know why everyone keeps asking me that.”
 </div>
 
 <div class="qa">
+
 <div class="reporter">
 REPORTER: You threatened to throw the league into the sun.
 </div>
+
 <div class="answer">
 MARIA: I SAID I'M CALM.
 </div>
-</div>
 
 </div>
+</div>
+
 
 <div class="press-card mackenzie-card">
 
@@ -593,15 +626,18 @@ I'm managing an emergency room.”
 </div>
 
 <div class="qa">
+
 <div class="reporter">
 REPORTER: What's the injury report?
 </div>
+
 <div class="answer">
 MACKENZIE: Yes.
 </div>
-</div>
 
 </div>
+</div>
+
 
 <div class="press-card madison-card">
 
@@ -619,14 +655,16 @@ make the pick and then act like I knew it all along.”
 </div>
 
 <div class="qa">
+
 <div class="reporter">
 REPORTER: And if the pick loses?
 </div>
+
 <div class="answer">
 MADISON: We don't discuss those.
 </div>
-</div>
 
+</div>
 </div>
 
 </div>
@@ -638,6 +676,7 @@ revisionist history and completely fabricated expert analysis.
 </div>
 
 </section>
+
 
 <section id="hall-of-shame">
 
@@ -666,16 +705,19 @@ will not last long.
 
 </main>
 
+
 <footer>
 <strong>F4SN</strong>
 • FANT4SY FOUR SPORTS NETWORK
 • QUESTIONABLE ANALYSIS SINCE 2026
 </footer>
 
+
 <script>
 
 const DATA_URL =
 "https://script.google.com/macros/s/AKfycbxZ8peC-11b7ook2LRoKnsq7hmeDkIt_2_my5taux33KaTdoBy1Rzj_26GVyasQvAB3Pw/exec?api=1";
+
 
 const TEAM_COLORS = {
 brad:"#1687ff",
@@ -684,6 +726,7 @@ mackenzie:"#16d5d1",
 madison:"#9c4dff"
 };
 
+
 const MANAGER_ORDER = [
 "brad",
 "maria",
@@ -691,37 +734,70 @@ const MANAGER_ORDER = [
 "madison"
 ];
 
+
 function safeText(value){
+
 return String(value??"")
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
 .replace(/"/g,"&quot;")
 .replace(/'/g,"&#039;");
+
 }
+
 
 function managerKey(name){
-return String(name||"").trim().toLowerCase();
+
+return String(name||"")
+.trim()
+.toLowerCase();
+
 }
+
 
 function teamColor(name){
-return TEAM_COLORS[managerKey(name)]||"#18a8ff";
+
+return TEAM_COLORS[
+managerKey(name)
+]||"#18a8ff";
+
 }
 
+
 function points(value){
-const number=Number(value||0);
+
+const number=
+Number(value||0);
+
 return number.toFixed(2);
+
 }
+
 
 function orderManagers(teams){
 
 return [...teams].sort(function(a,b){
 
-const aIndex=MANAGER_ORDER.indexOf(managerKey(a.name));
-const bIndex=MANAGER_ORDER.indexOf(managerKey(b.name));
+const aIndex=
+MANAGER_ORDER.indexOf(
+managerKey(a.name)
+);
 
-const safeA=aIndex===-1?999:aIndex;
-const safeB=bIndex===-1?999:bIndex;
+const bIndex=
+MANAGER_ORDER.indexOf(
+managerKey(b.name)
+);
+
+const safeA=
+aIndex===-1
+?999
+:aIndex;
+
+const safeB=
+bIndex===-1
+?999
+:bIndex;
 
 return safeA-safeB;
 
@@ -729,26 +805,41 @@ return safeA-safeB;
 
 }
 
+
+/**************************************************************
+ LOAD FANTASY DATA
+**************************************************************/
+
 async function loadFantasyData(){
 
 try{
 
-const response=await fetch(
+const response=
+await fetch(
 DATA_URL,
-{cache:"no-store"}
+{
+cache:"no-store"
+}
 );
 
 if(!response.ok){
-throw new Error("Data request failed.");
+
+throw new Error(
+"Data request failed."
+);
+
 }
 
-const data=await response.json();
+const data=
+await response.json();
 
 if(!data.success){
+
 throw new Error(
 data.error||
 "League data could not be loaded."
 );
+
 }
 
 renderWebsite(data);
@@ -766,6 +857,11 @@ showDataError();
 
 }
 
+
+/**************************************************************
+ RENDER WEBSITE
+**************************************************************/
+
 function renderWebsite(data){
 
 const orderedTeams=
@@ -776,17 +872,23 @@ data.teams||[]
 document
 .getElementById("last-updated")
 .textContent=
-"UPDATED "+String(data.updated||"");
+"UPDATED "+
+String(data.updated||"");
 
 document
 .getElementById("scoreboard-title")
 .textContent=
-"Week "+data.week+" Scoreboard";
+"Week "+
+data.week+
+" Scoreboard";
 
 document
 .getElementById("lineup-title")
 .textContent=
-"Week "+data.week+" Lineups";
+"Week "+
+data.week+
+" Lineups";
+
 
 renderNFLScoreboard(
 data.nflScoreboard||{}
@@ -810,17 +912,44 @@ data.news||[]
 
 }
 
+
+/**************************************************************
+ NFL SCOREBOARD
+
+ Uses the merged NFLData.org + ESPN scoreboard information
+ returned by the Apps Script backend.
+
+ Scheduled games:
+   Date / time
+
+ Live games:
+   Score + quarter / clock
+
+ Completed games:
+   Score + FINAL / FINAL/OT
+**************************************************************/
+
 function renderNFLScoreboard(scoreboard){
 
 const container=
-document.getElementById("nfl-games");
+document.getElementById(
+"nfl-games"
+);
 
 const weekLabel=
-document.getElementById("nfl-week-label");
+document.getElementById(
+"nfl-week-label"
+);
 
-if(!container||!weekLabel){
+if(
+!container||
+!weekLabel
+){
+
 return;
+
 }
+
 
 const week=
 scoreboard&&scoreboard.week
@@ -832,12 +961,18 @@ week
 ?"NFL WEEK "+week
 :"NFL";
 
+
 const games=
-scoreboard&&Array.isArray(scoreboard.games)
+scoreboard&&
+Array.isArray(scoreboard.games)
 ?scoreboard.games
 :[];
 
-if(!scoreboard.success||!games.length){
+
+if(
+!scoreboard.success||
+!games.length
+){
 
 container.innerHTML=`
 <div class="nfl-ticker-message">
@@ -849,57 +984,165 @@ return;
 
 }
 
+
 container.innerHTML=
 games.map(function(game){
 
+
 const hasScore=
 game.hasScore===true;
+
+
+const completed=
+game.completed===true;
+
+
+const live=
+game.live===true;
+
 
 const awayScore=
 hasScore
 ?safeText(game.awayScore)
 :"";
 
+
 const homeScore=
 hasScore
 ?safeText(game.homeScore)
 :"";
 
+
 let meta="";
 
-if(hasScore){
+
+/*
+ First choice:
+ Use the status text supplied by our ESPN-backed
+ Apps Script scoreboard.
+
+ Examples:
+ FINAL
+ FINAL/OT
+ 1ST • 12:34
+ 2ND • 4:17
+ 3RD • 8:42
+ 4TH • 0:52
+ OT • 6:11
+*/
+
+if(
+game.statusText
+){
+
+meta=
+safeText(
+game.statusText
+);
+
+}
+
+
+/*
+ Fallback for completed games.
+
+ This protects us in case ESPN reports completed=true
+ but does not send statusText for some reason.
+*/
+
+else if(completed){
+
+meta=
+game.overtime
+?"FINAL/OT"
+:"FINAL";
+
+}
+
+
+/*
+ Fallback for live games.
+
+ Normally statusText will already contain the
+ quarter and clock.
+*/
+
+else if(live){
+
+meta="LIVE";
+
+}
+
+
+/*
+ If we somehow have a score but no ESPN status,
+ show SCORE rather than incorrectly claiming FINAL.
+*/
+
+else if(hasScore){
 
 meta=
 game.overtime
 ?"SCORE • OT"
 :"SCORE";
 
-}else if(game.time){
+}
+
+
+/*
+ Scheduled game with a known time.
+*/
+
+else if(game.time){
 
 meta=
-formatNFLDate(game.date)+
+formatNFLDate(
+game.date
+)+
 " • "+
-safeText(game.time);
+safeText(
+game.time
+);
 
-}else{
+}
+
+
+/*
+ Scheduled game without a known time.
+*/
+
+else{
 
 meta=
-formatNFLDate(game.date)||
+formatNFLDate(
+game.date
+)||
 "SCHEDULED";
 
 }
+
 
 return `
 <div class="nfl-game">
 
 <div class="nfl-team-row">
-<span>${safeText(game.awayTeam)}</span>
-<span class="nfl-team-score">${awayScore}</span>
+<span>
+${safeText(game.awayTeam)}
+</span>
+
+<span class="nfl-team-score">
+${awayScore}
+</span>
 </div>
 
 <div class="nfl-team-row">
-<span>${safeText(game.homeTeam)}</span>
-<span class="nfl-team-score">${homeScore}</span>
+<span>
+${safeText(game.homeTeam)}
+</span>
+
+<span class="nfl-team-score">
+${homeScore}
+</span>
 </div>
 
 <div class="nfl-game-meta ${hasScore?"has-score":""}">
@@ -913,27 +1156,48 @@ ${meta}
 
 }
 
+
+/**************************************************************
+ FORMAT NFL DATE
+**************************************************************/
+
 function formatNFLDate(value){
 
 if(!value){
+
 return "";
+
 }
 
 const parts=
-String(value).split("-");
+String(value)
+.split("-");
 
 if(parts.length!==3){
+
 return safeText(value);
-}
-
-return Number(parts[1])+"/"+Number(parts[2]);
 
 }
+
+return (
+Number(parts[1])+
+"/"+
+Number(parts[2])
+);
+
+}
+
+
+/**************************************************************
+ FAMILY SCOREBOARD
+**************************************************************/
 
 function renderScoreboard(teams){
 
 const container=
-document.getElementById("scoreboard-data");
+document.getElementById(
+"scoreboard-data"
+);
 
 if(!teams.length){
 
@@ -950,7 +1214,9 @@ container.innerHTML=
 teams.map(function(team){
 
 const color=
-teamColor(team.name);
+teamColor(
+team.name
+);
 
 return `
 <div class="score-row">
@@ -977,10 +1243,17 @@ ${points(team.currentWeek)}
 
 }
 
+
+/**************************************************************
+ STANDINGS
+**************************************************************/
+
 function renderStandings(standings){
 
 const container=
-document.getElementById("standings-data");
+document.getElementById(
+"standings-data"
+);
 
 if(!standings.length){
 
@@ -990,6 +1263,7 @@ container.innerHTML=
 return;
 
 }
+
 
 let html=`
 <table class="standings-table">
@@ -1006,14 +1280,18 @@ let html=`
 <tbody>
 `;
 
-standings.forEach(function(team,index){
 
-const place=index+1;
+standings.forEach(
+function(team,index){
+
+const place=
+index+1;
 
 html+=`
 <tr class="${place===1?"first-place":""}">
 
 <td>
+
 <span class="rank">
 ${place}
 </span>
@@ -1021,6 +1299,7 @@ ${place}
 <strong>
 ${safeText(team.name)}
 </strong>
+
 </td>
 
 <td>
@@ -1040,19 +1319,28 @@ ${points(team.seasonTotal)}
 
 });
 
+
 html+=`
 </tbody>
 </table>
 `;
 
-container.innerHTML=html;
+container.innerHTML=
+html;
 
 }
+
+
+/**************************************************************
+ LINEUPS
+**************************************************************/
 
 function renderLineups(teams){
 
 const container=
-document.getElementById("lineup-data");
+document.getElementById(
+"lineup-data"
+);
 
 if(!teams.length){
 
@@ -1063,15 +1351,20 @@ return;
 
 }
 
+
 container.innerHTML=
 teams.map(function(team){
 
 const color=
-teamColor(team.name);
+teamColor(
+team.name
+);
 
 let players="";
 
-(team.lineup||[]).forEach(function(player){
+
+(team.lineup||[])
+.forEach(function(player){
 
 players+=`
 <div class="lineup-player">
@@ -1085,11 +1378,13 @@ ${safeText(player.player)}
 </div>
 
 <div class="player-points">
+
 ${points(player.points)}
 
 <span class="player-points-label">
 PTS
 </span>
+
 </div>
 
 </div>
@@ -1097,13 +1392,16 @@ PTS
 
 });
 
+
 return `
 <div class="lineup-card">
 
 <div
 class="lineup-title"
 style="border-left-color:${color}">
+
 ${safeText(team.name)}
+
 </div>
 
 ${players}
@@ -1115,10 +1413,17 @@ ${players}
 
 }
 
+
+/**************************************************************
+ LEAGUE NEWS
+**************************************************************/
+
 function renderNews(news){
 
 const container=
-document.getElementById("news-data");
+document.getElementById(
+"news-data"
+);
 
 if(!news.length){
 
@@ -1145,10 +1450,12 @@ return;
 
 }
 
+
 container.innerHTML=
 news.map(function(article){
 
 let quote="";
+
 
 if(article.quote){
 
@@ -1171,6 +1478,7 @@ article.quoteBy
 `;
 
 }
+
 
 return `
 <article class="news-card">
@@ -1231,15 +1539,25 @@ ${quote}
 
 }
 
+
+/**************************************************************
+ DATA ERROR
+**************************************************************/
+
 function showDataError(){
 
 document
-.getElementById("last-updated")
+.getElementById(
+"last-updated"
+)
 .textContent=
 "LIVE DATA UNAVAILABLE";
 
+
 const nflContainer=
-document.getElementById("nfl-games");
+document.getElementById(
+"nfl-games"
+);
 
 if(nflContainer){
 
@@ -1251,6 +1569,7 @@ NFL scoreboard temporarily unavailable.
 
 }
 
+
 const message=`
 <div class="error-message">
 F4SN temporarily lost contact with league headquarters.
@@ -1258,25 +1577,53 @@ Refresh the page in a moment to try again.
 </div>
 `;
 
-document
-.getElementById("scoreboard-data")
-.innerHTML=message;
 
 document
-.getElementById("standings-data")
-.innerHTML=message;
+.getElementById(
+"scoreboard-data"
+)
+.innerHTML=
+message;
+
 
 document
-.getElementById("lineup-data")
-.innerHTML=message;
+.getElementById(
+"standings-data"
+)
+.innerHTML=
+message;
+
 
 document
-.getElementById("news-data")
-.innerHTML=message;
+.getElementById(
+"lineup-data"
+)
+.innerHTML=
+message;
+
+
+document
+.getElementById(
+"news-data"
+)
+.innerHTML=
+message;
 
 }
 
+
+/**************************************************************
+ INITIAL LOAD
+**************************************************************/
+
 loadFantasyData();
+
+
+/**************************************************************
+ AUTO REFRESH
+
+ Refresh the fantasy data and NFL scoreboard every 60 seconds.
+**************************************************************/
 
 setInterval(
 loadFantasyData,
