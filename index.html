@@ -20,6 +20,12 @@ color:white
 }
 .hero{margin:0;padding:0;background:#080b12;line-height:0;text-align:center}
 .hero-banner{display:block;width:100%;max-width:1600px;height:auto;margin:0 auto}
+.franchise-banner{
+display:block;width:100%;height:auto;border-radius:14px;
+border:1px solid #263244;
+box-shadow:0 12px 35px rgba(0,0,0,.45);
+margin:0 0 22px
+}
 
 /* NFL SCORE STRIP */
 .nfl-strip{
@@ -370,31 +376,35 @@ CONNECTING...
 Meet The Fant4sy Four
 </h2>
 
+<img
+src="Fant4syFour-Team-Banner.png"
+alt="The Fant4sy Four franchise teams - Breaking Brad, The Real Housewives of the Red Zone, Mack Around & Find Out, and Maddie's Anatomy"
+class="franchise-banner">
+
 <div class="teams">
 
 <div class="team brad">
-<h2>BRAD</h2>
-<p>Blue Team</p>
+<h2>BREAKING BRAD</h2>
+<p>We cook on Sundays.</p>
 </div>
 
 <div class="team maria">
-<h2>MARIA</h2>
-<p>Red Team</p>
+<h2>THE REAL HOUSEWIVES OF THE RED ZONE</h2>
+<p>The drama starts at kickoff.</p>
 </div>
 
 <div class="team mackenzie">
-<h2>MACKENZIE</h2>
-<p>Teal Team</p>
+<h2>MACK AROUND &amp; FIND OUT</h2>
+<p>Results may vary. Injuries won’t.</p>
 </div>
 
 <div class="team madison">
-<h2>MADISON</h2>
-<p>Purple Team</p>
+<h2>MADDIE’S ANATOMY</h2>
+<p>Your playoff hopes are in critical condition.</p>
 </div>
 
 </div>
 </section>
-
 
 <section id="scoreboard">
 
@@ -416,7 +426,6 @@ Loading live scores...
 </div>
 </section>
 
-
 <section id="standings">
 
 <h2 class="section-title">
@@ -434,7 +443,6 @@ Loading season standings...
 </div>
 
 </section>
-
 
 <section id="lineups">
 
@@ -454,7 +462,6 @@ Loading lineups...
 
 </section>
 
-
 <section id="news">
 
 <h2 class="section-title">
@@ -472,7 +479,6 @@ Contacting the F4NN newsroom...
 </div>
 
 </section>
-
 
 <section id="f4sn-tv">
 
@@ -525,7 +531,6 @@ least serious fantasy football league in America.
 </div>
 </section>
 
-
 <section id="press-room">
 
 <h2 class="section-title">
@@ -558,7 +563,7 @@ BRAD
 </div>
 
 <div class="press-role">
-Manager • The Fant4sy Four
+Manager • Breaking Brad
 </div>
 
 <div class="press-quote">
@@ -580,7 +585,6 @@ BRAD: Next question.
 </div>
 </div>
 
-
 <div class="press-card maria-card">
 
 <div class="press-name">
@@ -588,7 +592,7 @@ MARIA
 </div>
 
 <div class="press-role">
-Manager • Meltdown Watch
+Manager • The Real Housewives of the Red Zone
 </div>
 
 <div class="press-quote">
@@ -609,7 +613,6 @@ MARIA: I SAID I'M CALM.
 </div>
 </div>
 
-
 <div class="press-card mackenzie-card">
 
 <div class="press-name">
@@ -617,7 +620,7 @@ MACKENZIE
 </div>
 
 <div class="press-role">
-Manager • Injury Department
+Manager • Mack Around &amp; Find Out
 </div>
 
 <div class="press-quote">
@@ -638,7 +641,6 @@ MACKENZIE: Yes.
 </div>
 </div>
 
-
 <div class="press-card madison-card">
 
 <div class="press-name">
@@ -646,7 +648,7 @@ MADISON
 </div>
 
 <div class="press-role">
-Manager • Lock of the Week
+Manager • Maddie’s Anatomy
 </div>
 
 <div class="press-quote">
@@ -677,7 +679,6 @@ revisionist history and completely fabricated expert analysis.
 
 </section>
 
-
 <section id="hall-of-shame">
 
 <h2 class="section-title">
@@ -705,13 +706,11 @@ will not last long.
 
 </main>
 
-
 <footer>
 <strong>F4SN</strong>
 • FANT4SY FOUR SPORTS NETWORK
 • QUESTIONABLE ANALYSIS SINCE 2026
 </footer>
-
 
 <script>
 
@@ -735,6 +734,14 @@ const MANAGER_ORDER = [
 ];
 
 
+const DISPLAY_NAMES = {
+brad:"Breaking Brad",
+maria:"The Real Housewives of the Red Zone",
+mackenzie:"Mack Around & Find Out",
+madison:"Maddie’s Anatomy"
+};
+
+
 function safeText(value){
 
 return String(value??"")
@@ -752,6 +759,15 @@ function managerKey(name){
 return String(name||"")
 .trim()
 .toLowerCase();
+
+}
+
+
+function displayTeamName(name){
+
+return DISPLAY_NAMES[
+managerKey(name)
+]||String(name||"");
 
 }
 
@@ -1215,7 +1231,7 @@ class="manager-dot"
 style="background:${color}">
 </span>
 
-${safeText(team.name)}
+${safeText(displayTeamName(team.name))}
 
 </div>
 
@@ -1284,7 +1300,7 @@ ${place}
 </span>
 
 <strong>
-${safeText(team.name)}
+${safeText(displayTeamName(team.name))}
 </strong>
 
 </td>
@@ -1387,7 +1403,7 @@ return `
 class="lineup-title"
 style="border-left-color:${color}">
 
-${safeText(team.name)}
+${safeText(displayTeamName(team.name))}
 
 </div>
 
