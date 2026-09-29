@@ -252,9 +252,7 @@ border-bottom:1px solid #202b3b;
 align-items:center
 }
 
-.lineup-player:last-child{
-border-bottom:none
-}
+.lineup-player:last-child{border-bottom:none}
 
 .position{
 color:var(--blue);
@@ -263,9 +261,7 @@ font-weight:bold;
 letter-spacing:.6px
 }
 
-.player-info{
-min-width:0
-}
+.player-info{min-width:0}
 
 .player-name{
 font-weight:bold;
@@ -325,6 +321,42 @@ color:#ff4b4b;font-weight:bold;font-size:12px;letter-spacing:2px;text-transform:
 .subheadline{color:#9fb0c5;font-size:16px;font-style:italic;margin-bottom:18px}
 .news-card p{color:#d2d9e2;line-height:1.7}
 
+.news-story{
+margin-top:20px
+}
+
+.news-story p{
+margin:0 0 18px;
+color:#d2d9e2;
+line-height:1.75
+}
+
+.news-story h3{
+margin:30px 0 12px;
+padding:10px 0 10px 14px;
+border-left:4px solid var(--blue);
+font-size:20px;
+line-height:1.25;
+text-transform:uppercase;
+letter-spacing:.35px;
+color:#fff
+}
+
+.news-dialogue{
+background:#0c121d;
+border:1px solid #263244;
+border-radius:8px;
+padding:13px 16px;
+margin:10px 0;
+line-height:1.6;
+color:#e7edf5
+}
+
+.news-dialogue strong{
+color:var(--yellow);
+letter-spacing:.4px
+}
+
 .news-quote{
 margin-top:22px;padding:17px 20px;border-left:4px solid var(--yellow);
 background:rgba(0,0,0,.22);font-style:italic;color:#eef2f7
@@ -336,21 +368,259 @@ font-weight:bold;text-transform:uppercase
 }
 
 
-/* TV */
+/* F4SN COMICS */
 
-.tv-shell{
-background:linear-gradient(145deg,#111827,#090e16);border:1px solid var(--border);
-border-radius:14px;overflow:hidden;box-shadow:0 12px 35px rgba(0,0,0,.45)
+.comics-shell{
+background:linear-gradient(145deg,#111827,#090e16);
+border:1px solid var(--border);
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 12px 35px rgba(0,0,0,.45)
 }
 
-.tv-header{
-display:flex;justify-content:space-between;align-items:center;padding:16px 20px;
-background:#0b1018;border-bottom:1px solid var(--border)
+.cancelled-banner{
+padding:28px;
+background:
+linear-gradient(135deg,rgba(255,75,75,.13),rgba(0,0,0,.15)),
+#0b1018;
+border-bottom:1px solid var(--border)
 }
 
-.tv-logo{font-size:21px;font-weight:900;letter-spacing:1px}
-.tv-logo span{color:var(--yellow)}
-.on-air{color:#ff4b4b;font-size:12px;font-weight:bold;letter-spacing:1.5px}
+.cancelled-label{
+display:inline-block;
+background:#ff4b4b;
+color:#fff;
+font-size:12px;
+font-weight:900;
+letter-spacing:2px;
+padding:7px 10px;
+border-radius:5px;
+margin-bottom:12px
+}
+
+.cancelled-banner h3{
+font-size:29px;
+margin:0 0 12px
+}
+
+.cancelled-banner p{
+color:#c7d0dc;
+line-height:1.7;
+margin:10px 0
+}
+
+.cancelled-reasons{
+margin:18px 0;
+padding:17px 20px;
+background:rgba(0,0,0,.25);
+border:1px solid #29364a;
+border-radius:9px;
+color:#b8c3d0;
+line-height:1.7
+}
+
+.redacted{
+background:#080b12;
+color:#080b12;
+padding:2px 7px;
+border-radius:2px;
+user-select:none
+}
+
+.comics-launch{
+padding:32px 28px;
+text-align:center;
+background:
+radial-gradient(circle at top,rgba(24,168,255,.14),transparent 50%),
+#101722;
+border-bottom:1px solid var(--border)
+}
+
+.comics-launch-kicker{
+color:var(--yellow);
+font-size:12px;
+font-weight:900;
+letter-spacing:2.5px;
+text-transform:uppercase
+}
+
+.comics-launch h3{
+font-size:36px;
+margin:8px 0 7px
+}
+
+.comics-tagline{
+font-size:20px;
+font-weight:900;
+font-style:italic;
+color:#fff
+}
+
+.issue-card{
+padding:28px
+}
+
+.issue-heading{
+display:flex;
+justify-content:space-between;
+gap:20px;
+align-items:flex-end;
+flex-wrap:wrap;
+margin-bottom:20px
+}
+
+.issue-number{
+color:var(--yellow);
+font-size:12px;
+font-weight:900;
+letter-spacing:2px;
+text-transform:uppercase
+}
+
+.issue-heading h3{
+font-size:28px;
+margin:5px 0 0
+}
+
+.issue-week{
+color:#8f9caf;
+font-size:12px;
+font-weight:bold;
+letter-spacing:1px;
+text-transform:uppercase
+}
+
+.comic-reader{
+background:#05070b;
+border:1px solid #263244;
+border-radius:12px;
+overflow:hidden
+}
+
+.comic-stage{
+display:flex;
+justify-content:center;
+align-items:flex-start;
+padding:20px;
+min-height:400px;
+background:
+radial-gradient(circle at top,#182437 0,#080b12 55%)
+}
+
+.comic-stage img{
+display:block;
+max-width:100%;
+max-height:1100px;
+width:auto;
+height:auto;
+border-radius:4px;
+box-shadow:0 15px 45px rgba(0,0,0,.65)
+}
+
+.comic-controls{
+display:grid;
+grid-template-columns:150px 1fr 150px;
+align-items:center;
+gap:15px;
+padding:15px;
+border-top:1px solid #263244;
+background:#0b1018
+}
+
+.comic-button{
+border:1px solid #34445a;
+background:#182437;
+color:white;
+border-radius:7px;
+padding:11px 15px;
+font-weight:900;
+cursor:pointer;
+transition:background .2s ease,transform .2s ease
+}
+
+.comic-button:hover{
+background:#22334a;
+transform:translateY(-1px)
+}
+
+.comic-button:disabled{
+opacity:.35;
+cursor:not-allowed;
+transform:none
+}
+
+.comic-counter{
+text-align:center;
+font-size:12px;
+font-weight:900;
+letter-spacing:1.4px;
+color:#aeb9c6;
+text-transform:uppercase
+}
+
+.comic-thumbnails{
+display:flex;
+gap:9px;
+padding:14px;
+overflow-x:auto;
+background:#080b12;
+border-top:1px solid #1d2838
+}
+
+.comic-thumb{
+flex:0 0 70px;
+height:92px;
+padding:0;
+border:2px solid transparent;
+border-radius:6px;
+overflow:hidden;
+background:#111827;
+cursor:pointer;
+opacity:.55
+}
+
+.comic-thumb img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block
+}
+
+.comic-thumb.active{
+border-color:var(--yellow);
+opacity:1
+}
+
+.comic-thumb:hover{opacity:1}
+
+.archive{
+margin:0 28px 28px;
+border:1px solid #29364a;
+border-radius:10px;
+background:#0b1018;
+overflow:hidden
+}
+
+.archive summary{
+cursor:pointer;
+padding:17px 20px;
+font-weight:900;
+letter-spacing:.5px;
+color:#c5cfdb
+}
+
+.archive summary:hover{color:white}
+
+.archive-content{
+padding:0 20px 20px
+}
+
+.archive-note{
+color:#8795a8;
+line-height:1.6;
+font-size:13px;
+margin:0 0 15px
+}
 
 .video-wrap{
 position:relative;width:100%;padding-top:56.25%;background:black
@@ -359,10 +629,6 @@ position:relative;width:100%;padding-top:56.25%;background:black
 .video-wrap iframe{
 position:absolute;inset:0;width:100%;height:100%;border:0
 }
-
-.tv-description{padding:20px 24px 24px}
-.tv-description h3{margin:0 0 8px;font-size:21px}
-.tv-description p{margin:0;color:#9eacbd;line-height:1.6}
 
 
 /* PRESS ROOM */
@@ -449,14 +715,10 @@ footer strong{color:var(--yellow)}
 
 @media(max-width:900px){
 
-.teams{
-grid-template-columns:repeat(2,1fr)
-}
+.teams{grid-template-columns:repeat(2,1fr)}
 
 .lineup-grid,
-.press-grid{
-grid-template-columns:1fr
-}
+.press-grid{grid-template-columns:1fr}
 
 nav{
 white-space:nowrap;
@@ -492,22 +754,16 @@ flex-direction:column;
 gap:4px
 }
 
-.teams{
-grid-template-columns:1fr
-}
+.teams{grid-template-columns:1fr}
 
-.section-title{
-font-size:23px
-}
+.section-title{font-size:23px}
 
 .score-row{
 grid-template-columns:1fr 100px;
 padding:16px
 }
 
-.score{
-font-size:21px
-}
+.score{font-size:21px}
 
 .standings-table th,
 .standings-table td{
@@ -527,9 +783,7 @@ gap:7px;
 padding:11px 10px
 }
 
-.player-name{
-font-size:13px
-}
+.player-name{font-size:13px}
 
 .player-team{
 font-size:9px;
@@ -541,21 +795,46 @@ font-size:9px;
 line-height:1.35
 }
 
-.player-points{
-font-size:12px
+.player-points{font-size:12px}
+
+.news-card{padding:22px}
+
+.news-card h2{font-size:23px}
+
+.news-story h3{font-size:17px}
+
+.press-card{padding:20px}
+
+.cancelled-banner,
+.comics-launch,
+.issue-card{
+padding:22px 16px
 }
 
-.news-card{
-padding:22px
+.comics-launch h3{font-size:29px}
+.comics-tagline{font-size:17px}
+
+.comic-stage{
+padding:10px;
+min-height:250px
 }
 
-.news-card h2{
-font-size:23px
+.comic-controls{
+grid-template-columns:1fr 1fr;
+gap:8px
 }
 
-.press-card{
-padding:20px
+.comic-counter{
+grid-column:1 / -1;
+grid-row:1;
+margin-bottom:3px
 }
+
+.comic-button{
+grid-row:2
+}
+
+.archive{margin:0 16px 22px}
 
 }
 
@@ -627,7 +906,7 @@ CONNECTING...
 <a href="#standings">STANDINGS</a>
 <a href="#lineups">LINEUPS</a>
 <a href="#news">LEAGUE NEWS</a>
-<a href="#f4sn-tv">F4SN TV</a>
+<a href="#comics">COMICS</a>
 <a href="#press-room">PRESS ROOM</a>
 <a href="#hall-of-shame">HALL OF SHAME</a>
 
@@ -804,56 +1083,185 @@ Contacting the F4NN newsroom...
 </section>
 
 
-<section id="f4sn-tv">
+<section id="comics">
 
 <h2 class="section-title">
-F4SN TV
+F4SN Comics
 </h2>
 
 <p class="section-subtitle">
-Original programming from the network nobody asked for.
+When television collapsed, the network discovered an exciting new technology: pictures that don't move.
 </p>
 
 
-<div class="tv-shell">
+<div class="comics-shell">
 
-<div class="tv-header">
 
-<div class="tv-logo">
-F4SN <span>TV</span>
+<div class="cancelled-banner">
+
+<div class="cancelled-label">
+NETWORK ANNOUNCEMENT
 </div>
 
-<div class="on-air">
-● ON AIR
+<h3>
+F4SN TV — CANCELLED
+</h3>
+
+<p>
+F4SN executives regret to announce that F4SN TV has been cancelled
+after one episode due to extreme budget constraints, questionable
+financial decisions and the discovery that producing television
+apparently requires more than YouTube and blind confidence.
+</p>
+
+<div class="cancelled-reasons">
+The network's official investigation cited studio expenses,
+production costs, an alarming absence of functioning financial controls
+and several purchases nobody in management remembers authorizing.
+Ratings were described only as
+<strong>“information we have chosen not to make public.”</strong>
+</div>
+
+<p>
+The production department has been dissolved. The studio lights have
+been returned. Several executives now deny approving the project at all.
+</p>
+
+<p>
+When asked to explain the network's financial position,
+F4SN CFO <span class="redacted">NAME REDACTED</span> responded:
+<strong>“Define ‘money.’”</strong>
+</p>
+
+<p>
+Following an exhaustive search for a replacement medium requiring fewer
+cameras, microphones, animators, actors, editors, production assistants,
+lawyers and functioning financial controls, F4SN is proud to announce
+its newest division.
+</p>
+
+</div>
+
+
+<div class="comics-launch">
+
+<div class="comics-launch-kicker">
+A Questionably Funded F4SN Production
+</div>
+
+<h3>
+F4SN COMICS
+</h3>
+
+<div class="comics-tagline">
+Because pictures were cheaper.
 </div>
 
 </div>
 
+
+<div class="issue-card">
+
+<div class="issue-heading">
+
+<div>
+
+<div class="issue-number">
+ISSUE #1 • WEEK 3
+</div>
+
+<h3>
+MACK AROUND &amp; FIND OUT
+</h3>
+
+</div>
+
+<div class="issue-week">
+The Fant4sy Four • 2026
+</div>
+
+</div>
+
+
+<div class="comic-reader">
+
+<div class="comic-stage">
+
+<img
+id="comic-main-image"
+src="comics/issue-1/cover.png"
+alt="The Fant4sy Four Issue 1 comic cover">
+
+</div>
+
+
+<div class="comic-controls">
+
+<button
+id="comic-prev"
+class="comic-button"
+type="button"
+onclick="changeComicPage(-1)">
+← PREVIOUS
+</button>
+
+<div
+id="comic-counter"
+class="comic-counter">
+COVER • 1 OF 9
+</div>
+
+<button
+id="comic-next"
+class="comic-button"
+type="button"
+onclick="changeComicPage(1)">
+NEXT →
+</button>
+
+</div>
+
+
+<div
+id="comic-thumbnails"
+class="comic-thumbnails"
+aria-label="Comic page thumbnails">
+</div>
+
+</div>
+
+</div>
+
+
+<details class="archive">
+
+<summary>
+F4SN ARCHIVES — The TV Experiment We Would Prefer You Forget
+</summary>
+
+<div class="archive-content">
+
+<p class="archive-note">
+For historical transparency—and because deleting evidence apparently
+violates several internal policies—the original F4SN television pilot
+remains available in the network archives.
+</p>
 
 <div class="video-wrap">
 
 <iframe
 src="https://www.youtube-nocookie.com/embed/f4O8AezuBrQ"
-title="F4SN Fant4sy Four Sports Network"
+title="F4SN SportsCenter - The Pilot"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 allowfullscreen>
 </iframe>
 
 </div>
 
-
-<div class="tv-description">
-
-<h3>
-F4SN SportsCenter – The Pilot
-</h3>
-
-<p>
-The latest completely serious coverage of the
-least serious fantasy football league in America.
-</p>
-
 </div>
+
+</details>
+
 
 </div>
 
@@ -1099,6 +1507,211 @@ madison:"Maddie’s Anatomy"
 
 };
 
+
+/**************************************************************
+ COMIC READER
+**************************************************************/
+
+const COMIC_PAGES = [
+
+{
+src:"comics/issue-1/cover.png",
+label:"Cover"
+},
+
+{
+src:"comics/issue-1/page-01.png",
+label:"Page 1"
+},
+
+{
+src:"comics/issue-1/page-02.png",
+label:"Page 2"
+},
+
+{
+src:"comics/issue-1/page-03.png",
+label:"Page 3"
+},
+
+{
+src:"comics/issue-1/page-04.png",
+label:"Page 4"
+},
+
+{
+src:"comics/issue-1/page-05.png",
+label:"Page 5"
+},
+
+{
+src:"comics/issue-1/page-06.png",
+label:"Page 6"
+},
+
+{
+src:"comics/issue-1/page-07.png",
+label:"Page 7"
+},
+
+{
+src:"comics/issue-1/page-08.png",
+label:"Page 8"
+}
+
+];
+
+
+let currentComicPage=0;
+
+
+function renderComicReader(){
+
+const image=
+document.getElementById(
+"comic-main-image"
+);
+
+const counter=
+document.getElementById(
+"comic-counter"
+);
+
+const previous=
+document.getElementById(
+"comic-prev"
+);
+
+const next=
+document.getElementById(
+"comic-next"
+);
+
+const thumbnails=
+document.getElementById(
+"comic-thumbnails"
+);
+
+
+if(
+!image||
+!counter||
+!previous||
+!next||
+!thumbnails
+){
+
+return;
+
+}
+
+
+const page=
+COMIC_PAGES[
+currentComicPage
+];
+
+
+image.src=
+page.src;
+
+image.alt=
+"The Fant4sy Four Issue 1 "+
+page.label;
+
+
+counter.textContent=
+page.label.toUpperCase()+
+" • "+
+(currentComicPage+1)+
+" OF "+
+COMIC_PAGES.length;
+
+
+previous.disabled=
+currentComicPage===0;
+
+next.disabled=
+currentComicPage===
+COMIC_PAGES.length-1;
+
+
+thumbnails.innerHTML=
+COMIC_PAGES.map(
+function(item,index){
+
+return `
+<button
+class="comic-thumb ${index===currentComicPage?"active":""}"
+type="button"
+onclick="goToComicPage(${index})"
+aria-label="${safeText(item.label)}">
+
+<img
+src="${safeText(item.src)}"
+alt="${safeText(item.label)} thumbnail">
+
+</button>
+`;
+
+}
+).join("");
+
+}
+
+
+function changeComicPage(direction){
+
+const target=
+currentComicPage+
+direction;
+
+if(
+target<0||
+target>=COMIC_PAGES.length
+){
+
+return;
+
+}
+
+currentComicPage=
+target;
+
+renderComicReader();
+
+document
+.getElementById("comic-main-image")
+.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+}
+
+
+function goToComicPage(index){
+
+if(
+index<0||
+index>=COMIC_PAGES.length
+){
+
+return;
+
+}
+
+currentComicPage=
+index;
+
+renderComicReader();
+
+}
+
+
+/**************************************************************
+ HELPERS
+**************************************************************/
 
 function safeText(value){
 
@@ -2074,9 +2687,9 @@ ${safeText(article.subheadline)}
 ${
 article.story
 ?`
-<p>
-${safeText(article.story)}
-</p>
+<div class="news-story">
+${formatNewsStory(article.story)}
+</div>
 `
 :""
 }
@@ -2085,6 +2698,126 @@ ${safeText(article.story)}
 ${quote}
 
 </article>
+`;
+
+}).join("");
+
+}
+
+
+/**************************************************************
+ FORMAT LONG-FORM F4NN STORIES
+
+ In the League News sheet:
+
+ ## HEADING
+ becomes a section heading.
+
+ Blank lines become paragraph breaks.
+
+ Dialogue beginning with:
+ REPORTER:
+ BRAD:
+ MARIA:
+ MACKENZIE:
+ MADISON:
+ ORACLE:
+ F4NN:
+ becomes a highlighted interview block.
+**************************************************************/
+
+function formatNewsStory(story){
+
+const normalized=
+String(story||"")
+.replace(/\r\n/g,"\n")
+.replace(/\r/g,"\n")
+.trim();
+
+if(!normalized){
+
+return "";
+
+}
+
+
+const blocks=
+normalized.split(/\n\s*\n/);
+
+return blocks.map(function(block){
+
+const text=
+String(block||"").trim();
+
+if(!text){
+
+return "";
+
+}
+
+
+/*
+ Section headings.
+*/
+
+if(text.startsWith("## ")){
+
+return `
+<h3>
+${safeText(
+text.substring(3).trim()
+)}
+</h3>
+`;
+
+}
+
+
+/*
+ Interview / dialogue lines.
+*/
+
+const dialogueMatch=
+text.match(
+/^(REPORTER|BRAD|MARIA|MACKENZIE|MADISON|ORACLE|F4NN)\s*:\s*([\s\S]*)$/i
+);
+
+if(dialogueMatch){
+
+const speaker=
+dialogueMatch[1].toUpperCase();
+
+const words=
+dialogueMatch[2];
+
+return `
+<div class="news-dialogue">
+
+<strong>
+${safeText(speaker)}:
+</strong>
+
+${safeText(words)}
+
+</div>
+`;
+
+}
+
+
+/*
+ Normal paragraph.
+
+ Preserve single line breaks inside the paragraph
+ as spaces so pasted Google Sheet text reads naturally.
+*/
+
+return `
+<p>
+${safeText(
+text.replace(/\n+/g," ")
+)}
+</p>
 `;
 
 }).join("");
@@ -2167,6 +2900,8 @@ message;
 /**************************************************************
  INITIAL LOAD
 **************************************************************/
+
+renderComicReader();
 
 loadFantasyData();
 
