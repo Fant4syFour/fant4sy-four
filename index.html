@@ -13,13 +13,16 @@ html{scroll-behavior:smooth;scroll-padding-top:95px}
 --blue:#18a8ff;--yellow:#facc15;--red:#ff4b4b;--muted:#aeb9c6;
 --brad:#1687ff;--maria:#ff3b30;--mackenzie:#16d5d1;--madison:#9c4dff
 }
+
 body{
 margin:0;font-family:Arial,Helvetica,sans-serif;
 background:radial-gradient(circle at top,#111a29 0,#080b12 420px);
 color:white
 }
+
 .hero{margin:0;padding:0;background:#080b12;line-height:0;text-align:center}
 .hero-banner{display:block;width:100%;max-width:1600px;height:auto;margin:0 auto}
+
 .franchise-banner{
 display:block;width:100%;height:auto;border-radius:14px;
 border:1px solid #263244;
@@ -27,86 +30,115 @@ box-shadow:0 12px 35px rgba(0,0,0,.45);
 margin:0 0 22px
 }
 
+
 /* NFL SCORE STRIP */
+
 .nfl-strip{
 background:#090d14;border-top:1px solid #263244;border-bottom:1px solid #263244;
 display:flex;min-height:86px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.28)
 }
+
 .nfl-strip-label{
 flex:0 0 118px;background:#05070b;border-right:1px solid #263244;
 display:flex;flex-direction:column;justify-content:center;padding:12px 14px
 }
+
 .nfl-strip-label strong{
 color:var(--yellow);font-size:15px;letter-spacing:1.3px;text-transform:uppercase
 }
+
 .nfl-strip-label span{
 color:#8290a3;font-size:10px;font-weight:bold;letter-spacing:1px;
 margin-top:5px;text-transform:uppercase
 }
+
 .nfl-games{
 display:flex;flex:1 1 auto;min-width:0;overflow-x:auto;overflow-y:hidden;
 scrollbar-width:thin;scrollbar-color:#39475b #090d14
 }
+
 .nfl-game{
 flex:0 0 185px;min-height:84px;padding:10px 14px;border-right:1px solid #263244;
 display:flex;flex-direction:column;justify-content:center;
 background:linear-gradient(180deg,#101722,#0b1018)
 }
+
 .nfl-game:last-child{border-right:none}
+
 .nfl-team-row{
 display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;
 font-size:14px;font-weight:900;line-height:1.25
 }
+
 .nfl-team-row+.nfl-team-row{margin-top:4px}
 .nfl-team-score{color:white;font-size:16px;min-width:22px;text-align:right}
+
 .nfl-game-meta{
 color:#8e9bad;font-size:10px;font-weight:bold;letter-spacing:.7px;
 margin-top:7px;text-transform:uppercase;white-space:nowrap
 }
+
 .nfl-game-meta.has-score{color:var(--yellow)}
+
 .nfl-ticker-message{
 color:#8290a3;display:flex;align-items:center;padding:0 20px;font-size:12px;
 font-weight:bold;letter-spacing:.7px;text-transform:uppercase;min-height:84px
 }
 
+
 /* NETWORK BAR */
+
 .network-bar{
 background:#05070b;border-top:1px solid #263244;border-bottom:1px solid #263244;
 padding:8px 20px;display:flex;justify-content:center;align-items:center;
 gap:18px;font-size:12px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase
 }
+
 .live-dot{
 display:inline-block;width:8px;height:8px;background:#ff3b30;border-radius:50%;
 margin-right:6px;box-shadow:0 0 10px rgba(255,59,48,.8);animation:pulse 1.6s infinite
 }
+
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
 .network-name{color:var(--yellow)}
 .update-status{color:#8895a7}
 
+
 /* NAV */
+
 nav{
 background:rgba(17,24,39,.97);border-bottom:1px solid var(--blue);
 padding:15px 12px;text-align:center;position:sticky;top:0;z-index:100;
 box-shadow:0 8px 24px rgba(0,0,0,.35);backdrop-filter:blur(8px)
 }
+
 nav a{
 color:white;text-decoration:none;font-weight:bold;margin:0 10px;
 font-size:13px;letter-spacing:.5px;transition:color .2s ease
 }
+
 nav a:hover{color:var(--blue)}
 
+
 /* MAIN */
+
 main{width:min(1150px,92%);margin:auto;padding:42px 0 80px}
 section{margin-top:55px}
 section:first-child{margin-top:0}
+
 .section-title{
 font-size:28px;text-transform:uppercase;border-left:6px solid var(--blue);
 padding-left:12px;margin:0 0 22px;letter-spacing:.5px
 }
+
 .section-subtitle{color:#93a1b3;margin:-12px 0 24px 18px;line-height:1.5}
 
+
 /* MANAGERS */
+
 .teams{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+
 .team{
 position:relative;background:linear-gradient(145deg,#111827,#0d1420);
 border-radius:12px;padding:26px 15px;text-align:center;border-top:5px solid;
@@ -114,184 +146,334 @@ border-left:1px solid #202c3d;border-right:1px solid #202c3d;
 border-bottom:1px solid #202c3d;box-shadow:0 8px 25px rgba(0,0,0,.35);
 transition:transform .2s ease,box-shadow .2s ease
 }
+
 .team:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.5)}
 .team h2{margin:4px 0 8px;font-size:23px}
+
 .team p{
 color:#aeb9c6;margin:0;font-size:13px;text-transform:uppercase;letter-spacing:1px
 }
+
 .brad{border-top-color:var(--brad)}
 .maria{border-top-color:var(--maria)}
 .mackenzie{border-top-color:var(--mackenzie)}
 .madison{border-top-color:var(--madison)}
 
+
 /* FAMILY SCOREBOARD */
+
 .scoreboard{
 background:var(--panel);border-radius:12px;overflow:hidden;
 box-shadow:0 8px 25px rgba(0,0,0,.35);border:1px solid var(--border)
 }
+
 .scoreboard-header{
 display:flex;justify-content:space-between;align-items:center;background:#0c121d;
 padding:13px 20px;border-bottom:1px solid var(--border);font-size:12px;
 text-transform:uppercase;letter-spacing:1.4px;color:#94a3b8
 }
+
 .live-label{color:#ff5656;font-weight:bold}
+
 .score-row{
 display:grid;grid-template-columns:1fr 150px;align-items:center;
 padding:19px 22px;border-bottom:1px solid var(--border)
 }
+
 .score-row:last-child{border-bottom:none}
 .score-manager{display:flex;align-items:center;gap:11px;font-weight:bold}
 .manager-dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto}
 .score{text-align:right;font-size:24px;font-weight:bold;color:var(--blue)}
 
+
 /* STANDINGS */
+
 .standings-table{
 width:100%;border-collapse:collapse;background:var(--panel);border-radius:12px;
 overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,.35)
 }
+
 .standings-table th{
 background:#0c121d;color:#9eacbd;text-transform:uppercase;letter-spacing:1px;
 font-size:12px;padding:14px 16px;text-align:left
 }
+
 .standings-table td{padding:17px 16px;border-top:1px solid var(--border)}
-.standings-table th:not(:first-child),.standings-table td:not(:first-child){text-align:right}
+
+.standings-table th:not(:first-child),
+.standings-table td:not(:first-child){
+text-align:right
+}
+
 .rank{
 display:inline-flex;align-items:center;justify-content:center;width:29px;height:29px;
 border-radius:50%;background:#202b3b;margin-right:10px;font-weight:bold;font-size:13px
 }
+
 .first-place{background:linear-gradient(90deg,rgba(250,204,21,.11),transparent 70%)}
+
 .first-place .rank{
 background:var(--yellow);color:#111;box-shadow:0 0 15px rgba(250,204,21,.25)
 }
+
 .season-total{color:var(--yellow);font-size:18px;font-weight:bold}
 
+
 /* LINEUPS */
-.lineup-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.lineup-card{
-background:var(--panel);border-radius:12px;overflow:hidden;border:1px solid var(--border);
-box-shadow:0 8px 25px rgba(0,0,0,.3)
-}
-.lineup-title{
-padding:17px 20px;font-size:19px;font-weight:bold;border-bottom:1px solid var(--border);
-border-left:5px solid var(--blue)
-}
-.lineup-player{
-display:grid;grid-template-columns:85px 1fr 100px;gap:10px;padding:11px 18px;
-border-bottom:1px solid #202b3b;align-items:center
-}
-.lineup-player:last-child{border-bottom:none}
-.position{color:var(--blue);font-size:12px;font-weight:bold;letter-spacing:.6px}
-.player-name{font-weight:bold}
-.player-points{
-text-align:right;color:var(--yellow);font-size:15px;font-weight:900;white-space:nowrap
-}
-.player-points-label{
-color:#7f8da0;font-size:9px;font-weight:bold;letter-spacing:.8px;margin-left:3px
+
+.lineup-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px
 }
 
+.lineup-card{
+background:var(--panel);
+border-radius:12px;
+overflow:hidden;
+border:1px solid var(--border);
+box-shadow:0 8px 25px rgba(0,0,0,.3)
+}
+
+.lineup-title{
+padding:17px 20px;
+font-size:19px;
+font-weight:bold;
+border-bottom:1px solid var(--border);
+border-left:5px solid var(--blue)
+}
+
+.lineup-player{
+display:grid;
+grid-template-columns:70px minmax(0,1fr) 100px;
+gap:12px;
+padding:12px 18px;
+border-bottom:1px solid #202b3b;
+align-items:center
+}
+
+.lineup-player:last-child{
+border-bottom:none
+}
+
+.position{
+color:var(--blue);
+font-size:12px;
+font-weight:bold;
+letter-spacing:.6px
+}
+
+.player-info{
+min-width:0
+}
+
+.player-name{
+font-weight:bold;
+line-height:1.25
+}
+
+.player-team{
+color:#8fa0b4;
+font-size:11px;
+font-weight:900;
+letter-spacing:.7px;
+margin-left:5px
+}
+
+.player-stat-line{
+color:#8795a8;
+font-size:10px;
+font-weight:bold;
+letter-spacing:.15px;
+line-height:1.4;
+margin-top:4px
+}
+
+.player-points{
+text-align:right;
+color:var(--yellow);
+font-size:15px;
+font-weight:900;
+white-space:nowrap
+}
+
+.player-points-label{
+color:#7f8da0;
+font-size:9px;
+font-weight:bold;
+letter-spacing:.8px;
+margin-left:3px
+}
+
+
 /* NEWS */
+
 .news-card{
 background:linear-gradient(135deg,#111827,#182437);border-radius:12px;
 padding:30px;border:1px solid var(--border);box-shadow:0 8px 25px rgba(0,0,0,.35);
 margin-bottom:22px
 }
+
 .news-meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+
 .breaking{
 color:#ff4b4b;font-weight:bold;font-size:12px;letter-spacing:2px;text-transform:uppercase
 }
+
 .news-date{color:#7f8da0;font-size:12px;text-transform:uppercase;letter-spacing:1px}
 .news-card h2{font-size:29px;margin:8px 0 9px;line-height:1.15}
 .subheadline{color:#9fb0c5;font-size:16px;font-style:italic;margin-bottom:18px}
 .news-card p{color:#d2d9e2;line-height:1.7}
+
 .news-quote{
 margin-top:22px;padding:17px 20px;border-left:4px solid var(--yellow);
 background:rgba(0,0,0,.22);font-style:italic;color:#eef2f7
 }
+
 .quote-by{
 display:block;margin-top:8px;color:#8f9caf;font-size:12px;font-style:normal;
 font-weight:bold;text-transform:uppercase
 }
 
+
 /* TV */
+
 .tv-shell{
 background:linear-gradient(145deg,#111827,#090e16);border:1px solid var(--border);
 border-radius:14px;overflow:hidden;box-shadow:0 12px 35px rgba(0,0,0,.45)
 }
+
 .tv-header{
 display:flex;justify-content:space-between;align-items:center;padding:16px 20px;
 background:#0b1018;border-bottom:1px solid var(--border)
 }
+
 .tv-logo{font-size:21px;font-weight:900;letter-spacing:1px}
 .tv-logo span{color:var(--yellow)}
 .on-air{color:#ff4b4b;font-size:12px;font-weight:bold;letter-spacing:1.5px}
-.video-wrap{position:relative;width:100%;padding-top:56.25%;background:black}
-.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+.video-wrap{
+position:relative;width:100%;padding-top:56.25%;background:black
+}
+
+.video-wrap iframe{
+position:absolute;inset:0;width:100%;height:100%;border:0
+}
+
 .tv-description{padding:20px 24px 24px}
 .tv-description h3{margin:0 0 8px;font-size:21px}
 .tv-description p{margin:0;color:#9eacbd;line-height:1.6}
 
+
 /* PRESS ROOM */
+
 .press-intro{
 background:linear-gradient(135deg,#111827,#182437);border:1px solid var(--border);
 border-radius:12px;padding:25px;margin-bottom:22px
 }
+
 .press-live{color:#ff4b4b;font-weight:bold;letter-spacing:2px;font-size:12px}
 .press-intro h3{font-size:26px;margin:7px 0 9px}
 .press-intro p{color:#b8c3d0;line-height:1.6;margin-bottom:0}
-.press-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+
+.press-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px
+}
+
 .press-card{
 background:var(--panel);border-radius:12px;padding:24px;border:1px solid var(--border);
 border-top:5px solid var(--blue);box-shadow:0 8px 25px rgba(0,0,0,.3)
 }
+
 .press-card.brad-card{border-top-color:var(--brad)}
 .press-card.maria-card{border-top-color:var(--maria)}
 .press-card.mackenzie-card{border-top-color:var(--mackenzie)}
 .press-card.madison-card{border-top-color:var(--madison)}
+
 .press-name{font-size:23px;font-weight:900;margin-bottom:3px}
+
 .press-role{
 color:#8290a3;font-size:11px;font-weight:bold;letter-spacing:1.3px;
 text-transform:uppercase;margin-bottom:18px
 }
-.press-quote{color:#eef2f7;font-size:17px;font-style:italic;line-height:1.55;margin-bottom:21px}
-.qa{background:#0c121d;padding:14px 16px;border-radius:8px;font-size:13px;line-height:1.55}
+
+.press-quote{
+color:#eef2f7;font-size:17px;font-style:italic;line-height:1.55;margin-bottom:21px
+}
+
+.qa{
+background:#0c121d;padding:14px 16px;border-radius:8px;font-size:13px;line-height:1.55
+}
+
 .reporter{color:#8b99ab;font-weight:bold}
 .answer{margin-top:8px;font-weight:bold}
+
 .media-notice{
 margin-top:20px;padding:14px 18px;text-align:center;border:1px dashed #39475b;
 border-radius:8px;color:#7f8da0;font-size:11px;letter-spacing:.7px;text-transform:uppercase
 }
 
+
 /* HALL OF SHAME */
+
 .shame-card{text-align:center;padding:40px 25px}
 .shame-icon{font-size:44px;margin-bottom:10px}
 .shame-card h3{font-size:24px;margin:5px 0 8px}
 .shame-card p{max-width:650px;margin:auto;color:#aeb9c6}
 
+
 /* LOADING */
+
 .loading{
 padding:28px;text-align:center;color:#8290a3;background:var(--panel);
 border:1px solid var(--border);border-radius:12px
 }
+
 .error-message{
 padding:20px;background:rgba(255,75,75,.08);border:1px solid rgba(255,75,75,.35);
 border-radius:10px;color:#ff8b8b
 }
 
+
 /* FOOTER */
+
 footer{
 text-align:center;padding:34px 20px;background:#05070b;color:#687587;
 border-top:1px solid #182437;font-size:12px;letter-spacing:1px;text-transform:uppercase
 }
+
 footer strong{color:var(--yellow)}
 
+
 @media(max-width:900px){
-.teams{grid-template-columns:repeat(2,1fr)}
-.lineup-grid,.press-grid{grid-template-columns:1fr}
-nav{white-space:nowrap;overflow-x:auto;padding:12px 8px}
-nav a{display:inline-block;margin:4px 8px}
+
+.teams{
+grid-template-columns:repeat(2,1fr)
 }
 
+.lineup-grid,
+.press-grid{
+grid-template-columns:1fr
+}
+
+nav{
+white-space:nowrap;
+overflow-x:auto;
+padding:12px 8px
+}
+
+nav a{
+display:inline-block;
+margin:4px 8px
+}
+
+}
+
+
 @media(max-width:600px){
+
 .nfl-strip{min-height:80px}
 .nfl-strip-label{flex-basis:88px;padding:10px}
 .nfl-strip-label strong{font-size:12px}
@@ -299,46 +481,126 @@ nav a{display:inline-block;margin:4px 8px}
 .nfl-game{flex-basis:158px;min-height:78px;padding:9px 12px}
 .nfl-team-row{font-size:13px}
 .nfl-team-score{font-size:15px}
-main{width:94%;padding-top:28px}
-.network-bar{flex-direction:column;gap:4px}
-.teams{grid-template-columns:1fr}
-.section-title{font-size:23px}
-.score-row{grid-template-columns:1fr 100px;padding:16px}
-.score{font-size:21px}
-.standings-table th,.standings-table td{padding:13px 8px;font-size:12px}
-.rank{margin-right:5px;width:24px;height:24px}
-.lineup-player{grid-template-columns:55px 1fr 82px;gap:6px;padding:11px 12px}
-.player-points{font-size:13px}
-.news-card{padding:22px}
-.news-card h2{font-size:23px}
-.press-card{padding:20px}
+
+main{
+width:94%;
+padding-top:28px
 }
+
+.network-bar{
+flex-direction:column;
+gap:4px
+}
+
+.teams{
+grid-template-columns:1fr
+}
+
+.section-title{
+font-size:23px
+}
+
+.score-row{
+grid-template-columns:1fr 100px;
+padding:16px
+}
+
+.score{
+font-size:21px
+}
+
+.standings-table th,
+.standings-table td{
+padding:13px 8px;
+font-size:12px
+}
+
+.rank{
+margin-right:5px;
+width:24px;
+height:24px
+}
+
+.lineup-player{
+grid-template-columns:48px minmax(0,1fr) 72px;
+gap:7px;
+padding:11px 10px
+}
+
+.player-name{
+font-size:13px
+}
+
+.player-team{
+font-size:9px;
+margin-left:3px
+}
+
+.player-stat-line{
+font-size:9px;
+line-height:1.35
+}
+
+.player-points{
+font-size:12px
+}
+
+.news-card{
+padding:22px
+}
+
+.news-card h2{
+font-size:23px
+}
+
+.press-card{
+padding:20px
+}
+
+}
+
 </style>
 </head>
 
+
 <body>
 
+
 <header class="hero">
+
 <img
 src="fant4sy-four-banner.png"
 alt="The Fant4sy Four - Brad, Maria, Mackenzie and Madison"
 class="hero-banner">
+
 </header>
+
 
 <div class="nfl-strip" aria-label="NFL Week Scoreboard">
 
 <div class="nfl-strip-label">
-<strong id="nfl-week-label">NFL</strong>
-<span>Score Center</span>
+
+<strong id="nfl-week-label">
+NFL
+</strong>
+
+<span>
+Score Center
+</span>
+
 </div>
 
+
 <div id="nfl-games" class="nfl-games">
+
 <div class="nfl-ticker-message">
 Loading NFL games...
 </div>
+
 </div>
 
 </div>
+
 
 <div class="network-bar">
 
@@ -357,7 +619,9 @@ CONNECTING...
 
 </div>
 
+
 <nav>
+
 <a href="#home">HOME</a>
 <a href="#scoreboard">SCOREBOARD</a>
 <a href="#standings">STANDINGS</a>
@@ -366,9 +630,12 @@ CONNECTING...
 <a href="#f4sn-tv">F4SN TV</a>
 <a href="#press-room">PRESS ROOM</a>
 <a href="#hall-of-shame">HALL OF SHAME</a>
+
 </nav>
 
+
 <main id="home">
+
 
 <section id="teams">
 
@@ -381,30 +648,64 @@ src="Fant4syFour-Team-Banner.png"
 alt="The Fant4sy Four franchise teams - Breaking Brad, The Real Housewives of the Red Zone, Mack Around & Find Out, and Maddie's Anatomy"
 class="franchise-banner">
 
+
 <div class="teams">
 
 <div class="team brad">
-<h2>BREAKING BRAD</h2>
-<p>We cook on Sundays.</p>
+
+<h2>
+BREAKING BRAD
+</h2>
+
+<p>
+We cook on Sundays.
+</p>
+
 </div>
+
 
 <div class="team maria">
-<h2>THE REAL HOUSEWIVES OF THE RED ZONE</h2>
-<p>The drama starts at kickoff.</p>
+
+<h2>
+THE REAL HOUSEWIVES OF THE RED ZONE
+</h2>
+
+<p>
+The drama starts at kickoff.
+</p>
+
 </div>
+
 
 <div class="team mackenzie">
-<h2>MACK AROUND &amp; FIND OUT</h2>
-<p>Results may vary. Injuries won’t.</p>
+
+<h2>
+MACK AROUND &amp; FIND OUT
+</h2>
+
+<p>
+Results may vary. Injuries won’t.
+</p>
+
 </div>
+
 
 <div class="team madison">
-<h2>MADDIE’S ANATOMY</h2>
-<p>Your playoff hopes are in critical condition.</p>
+
+<h2>
+MADDIE’S ANATOMY
+</h2>
+
+<p>
+Your playoff hopes are in critical condition.
+</p>
+
 </div>
 
 </div>
+
 </section>
+
 
 <section id="scoreboard">
 
@@ -412,19 +713,30 @@ class="franchise-banner">
 Week 3 Scoreboard
 </h2>
 
+
 <div class="scoreboard">
 
 <div class="scoreboard-header">
-<span>F4SN LIVE SCORE CENTER</span>
-<span class="live-label">● LIVE</span>
+
+<span>
+F4SN LIVE SCORE CENTER
+</span>
+
+<span class="live-label">
+● LIVE
+</span>
+
 </div>
+
 
 <div id="scoreboard-data" class="loading">
 Loading live scores...
 </div>
 
 </div>
+
 </section>
+
 
 <section id="standings">
 
@@ -436,13 +748,17 @@ Season Standings
 The race for family bragging rights and the season championship.
 </p>
 
+
 <div id="standings-data">
+
 <div class="loading">
 Loading season standings...
 </div>
+
 </div>
 
 </section>
+
 
 <section id="lineups">
 
@@ -454,13 +770,17 @@ Week 3 Lineups
 The decisions that will either look brilliant or be denied later.
 </p>
 
+
 <div id="lineup-data" class="lineup-grid">
+
 <div class="loading">
 Loading lineups...
 </div>
+
 </div>
 
 </section>
+
 
 <section id="news">
 
@@ -472,13 +792,17 @@ F4NN League News
 Breaking news, questionable sources and completely unnecessary family drama.
 </p>
 
+
 <div id="news-data">
+
 <div class="loading">
 Contacting the F4NN newsroom...
 </div>
+
 </div>
 
 </section>
+
 
 <section id="f4sn-tv">
 
@@ -489,6 +813,7 @@ F4SN TV
 <p class="section-subtitle">
 Original programming from the network nobody asked for.
 </p>
+
 
 <div class="tv-shell">
 
@@ -504,6 +829,7 @@ F4SN <span>TV</span>
 
 </div>
 
+
 <div class="video-wrap">
 
 <iframe
@@ -514,6 +840,7 @@ allowfullscreen>
 </iframe>
 
 </div>
+
 
 <div class="tv-description">
 
@@ -529,13 +856,16 @@ least serious fantasy football league in America.
 </div>
 
 </div>
+
 </section>
+
 
 <section id="press-room">
 
 <h2 class="section-title">
 F4SN Press Room
 </h2>
+
 
 <div class="press-intro">
 
@@ -554,7 +884,9 @@ Welcome to the official Fant4sy Four postgame press room.
 
 </div>
 
+
 <div class="press-grid">
+
 
 <div class="press-card brad-card">
 
@@ -583,7 +915,9 @@ BRAD: Next question.
 </div>
 
 </div>
+
 </div>
+
 
 <div class="press-card maria-card">
 
@@ -611,7 +945,9 @@ MARIA: I SAID I'M CALM.
 </div>
 
 </div>
+
 </div>
+
 
 <div class="press-card mackenzie-card">
 
@@ -639,7 +975,9 @@ MACKENZIE: Yes.
 </div>
 
 </div>
+
 </div>
+
 
 <div class="press-card madison-card">
 
@@ -667,9 +1005,11 @@ MADISON: We don't discuss those.
 </div>
 
 </div>
+
 </div>
 
 </div>
+
 
 <div class="media-notice">
 F4SN MEDIA NOTICE:
@@ -679,11 +1019,13 @@ revisionist history and completely fabricated expert analysis.
 
 </section>
 
+
 <section id="hall-of-shame">
 
 <h2 class="section-title">
 Hall of Shame
 </h2>
+
 
 <div class="news-card shame-card">
 
@@ -702,43 +1044,59 @@ will not last long.
 </p>
 
 </div>
+
 </section>
+
 
 </main>
 
+
 <footer>
-<strong>F4SN</strong>
+
+<strong>
+F4SN
+</strong>
+
 • FANT4SY FOUR SPORTS NETWORK
 • QUESTIONABLE ANALYSIS SINCE 2026
+
 </footer>
 
+
 <script>
+
 
 const DATA_URL =
 "https://script.google.com/macros/s/AKfycbxZ8peC-11b7ook2LRoKnsq7hmeDkIt_2_my5taux33KaTdoBy1Rzj_26GVyasQvAB3Pw/exec?api=1";
 
 
 const TEAM_COLORS = {
+
 brad:"#1687ff",
 maria:"#ff3b30",
 mackenzie:"#16d5d1",
 madison:"#9c4dff"
+
 };
 
 
 const MANAGER_ORDER = [
+
 "brad",
 "maria",
 "mackenzie",
 "madison"
+
 ];
 
 
 const DISPLAY_NAMES = {
+
 brad:"Breaking Brad",
 maria:"The Real Housewives of the Red Zone",
 mackenzie:"Mack Around & Find Out",
 madison:"Maddie’s Anatomy"
+
 };
 
 
@@ -915,7 +1273,8 @@ orderedTeams
 );
 
 renderStandings(
-data.standings||[]
+data.standings||[],
+data.weekColumns||[]
 );
 
 renderLineups(
@@ -1057,9 +1416,6 @@ game.overtime
 
 /*
  Live game.
-
- Use statusText when available because it normally
- contains the quarter and clock.
 */
 
 else if(live){
@@ -1089,10 +1445,6 @@ game.overtime
 
 /*
  Scheduled game.
-
- Build this ourselves instead of trusting statusText.
- This prevents a value such as "9/27" from replacing
- the word SCHEDULED.
 */
 
 else{
@@ -1129,6 +1481,7 @@ return `
 <div class="nfl-game">
 
 <div class="nfl-team-row">
+
 <span>
 ${safeText(game.awayTeam)}
 </span>
@@ -1136,9 +1489,12 @@ ${safeText(game.awayTeam)}
 <span class="nfl-team-score">
 ${awayScore}
 </span>
+
 </div>
 
+
 <div class="nfl-team-row">
+
 <span>
 ${safeText(game.homeTeam)}
 </span>
@@ -1146,7 +1502,9 @@ ${safeText(game.homeTeam)}
 <span class="nfl-team-score">
 ${homeScore}
 </span>
+
 </div>
+
 
 <div class="nfl-game-meta ${hasScore?"has-score":""}">
 ${meta}
@@ -1235,6 +1593,7 @@ ${safeText(displayTeamName(team.name))}
 
 </div>
 
+
 <div class="score">
 ${points(team.currentWeek)}
 </div>
@@ -1248,10 +1607,21 @@ ${points(team.currentWeek)}
 
 
 /**************************************************************
- STANDINGS
+ DYNAMIC STANDINGS
+
+ Uses the weekColumns array supplied by Website.gs.
+
+ Example:
+ Week 2
+ Week 3
+ Week 4
+ ...
 **************************************************************/
 
-function renderStandings(standings){
+function renderStandings(
+standings,
+weekColumns
+){
 
 const container=
 document.getElementById(
@@ -1268,17 +1638,106 @@ return;
 }
 
 
+/*
+ Sort week columns numerically.
+*/
+
+const weeks=
+Array.isArray(weekColumns)
+?[...weekColumns].sort(function(a,b){
+
+return Number(a.week)-Number(b.week);
+
+})
+:[];
+
+
+/*
+ Safety fallback.
+
+ If weekColumns is ever missing, infer the weeks
+ from weeklyScores.
+*/
+
+if(!weeks.length){
+
+const foundWeeks={};
+
+standings.forEach(function(team){
+
+const scores=
+team.weeklyScores||{};
+
+Object.keys(scores)
+.forEach(function(week){
+
+const weekNumber=
+Number(week);
+
+if(Number.isFinite(weekNumber)){
+
+foundWeeks[weekNumber]=true;
+
+}
+
+});
+
+});
+
+
+Object.keys(foundWeeks)
+.map(Number)
+.sort(function(a,b){
+
+return a-b;
+
+})
+.forEach(function(week){
+
+weeks.push({
+
+week:week,
+label:"Week "+week
+
+});
+
+});
+
+}
+
+
 let html=`
 <table class="standings-table">
 
 <thead>
+
 <tr>
-<th>Manager</th>
-<th>Week 2</th>
-<th>Week 3</th>
-<th>Season</th>
+
+<th>
+Manager
+</th>
+
+${weeks.map(function(info){
+
+return `
+<th>
+${safeText(
+info.label||
+("Week "+info.week)
+)}
+</th>
+`;
+
+}).join("")}
+
+<th>
+Season
+</th>
+
 </tr>
+
 </thead>
+
 
 <tbody>
 `;
@@ -1290,6 +1749,9 @@ function(team,index){
 const place=
 index+1;
 
+const weeklyScores=
+team.weeklyScores||{};
+
 html+=`
 <tr class="${place===1?"first-place":""}">
 
@@ -1300,18 +1762,29 @@ ${place}
 </span>
 
 <strong>
-${safeText(displayTeamName(team.name))}
+${safeText(
+displayTeamName(team.name)
+)}
 </strong>
 
 </td>
 
-<td>
-${points(team.week2)}
-</td>
 
+${weeks.map(function(info){
+
+const value=
+weeklyScores[
+String(info.week)
+]??0;
+
+return `
 <td>
-${points(team.week3)}
+${points(value)}
 </td>
+`;
+
+}).join("")}
+
 
 <td class="season-total">
 ${points(team.seasonTotal)}
@@ -1336,6 +1809,16 @@ html;
 
 /**************************************************************
  LINEUPS
+
+ Website.gs now supplies:
+
+ player.position
+ player.player
+ player.points
+ player.nflTeam
+ player.nflPosition
+ player.statLine
+ player.stats
 **************************************************************/
 
 function renderLineups(teams){
@@ -1369,6 +1852,51 @@ let players="";
 (team.lineup||[])
 .forEach(function(player){
 
+const nflTeam=
+String(
+player.nflTeam||""
+).trim();
+
+const statLine=
+String(
+player.statLine||""
+).trim();
+
+
+/*
+ Team abbreviation.
+
+ Example:
+ Christian McCaffrey • SF
+*/
+
+const teamMarkup=
+nflTeam
+?`
+<span class="player-team">
+• ${safeText(nflTeam)}
+</span>
+`
+:"";
+
+
+/*
+ Stat line only appears when stats exist.
+
+ Example:
+ 19 CAR • 98 RUSH • 2 REC • 5 REC YD • 1 TD
+*/
+
+const statMarkup=
+statLine
+?`
+<div class="player-stat-line">
+${safeText(statLine)}
+</div>
+`
+:"";
+
+
 players+=`
 <div class="lineup-player">
 
@@ -1376,9 +1904,21 @@ players+=`
 ${safeText(player.position)}
 </div>
 
+
+<div class="player-info">
+
 <div class="player-name">
+
 ${safeText(player.player)}
+
+${teamMarkup}
+
 </div>
+
+${statMarkup}
+
+</div>
+
 
 <div class="player-points">
 
@@ -1403,7 +1943,9 @@ return `
 class="lineup-title"
 style="border-left-color:${color}">
 
-${safeText(displayTeamName(team.name))}
+${safeText(
+displayTeamName(team.name)
+)}
 
 </div>
 
@@ -1489,11 +2031,14 @@ return `
 <div class="news-meta">
 
 <span class="breaking">
+
 ${safeText(
 article.category||
 "LEAGUE NEWS"
 )}
+
 </span>
+
 
 <span class="news-date">
 
@@ -1509,9 +2054,11 @@ article.date
 
 </div>
 
+
 <h2>
 ${safeText(article.headline)}
 </h2>
+
 
 ${
 article.subheadline
@@ -1523,6 +2070,7 @@ ${safeText(article.subheadline)}
 :""
 }
 
+
 ${
 article.story
 ?`
@@ -1532,6 +2080,7 @@ ${safeText(article.story)}
 `
 :""
 }
+
 
 ${quote}
 
@@ -1625,13 +2174,14 @@ loadFantasyData();
 /**************************************************************
  AUTO REFRESH
 
- Refresh the fantasy data and NFL scoreboard every 60 seconds.
+ Refresh fantasy data and NFL scoreboard every 60 seconds.
 **************************************************************/
 
 setInterval(
 loadFantasyData,
 60000
 );
+
 
 </script>
 
