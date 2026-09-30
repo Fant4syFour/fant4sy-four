@@ -514,7 +514,7 @@ margin-left:5px
 }
 
 .player-stat-line{
-color:#8795a8;
+color:#d8e0ea;
 font-size:10px;
 font-weight:bold;
 letter-spacing:.15px;
@@ -928,7 +928,189 @@ color:var(--yellow)
 }
 
 
+/* THE WHEELS */
+
+.wheel-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:22px
+}
+
+.wheel-card{
+background:linear-gradient(145deg,#111827,#0d1420);
+border:1px solid var(--border);
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,.4)
+}
+
+.wheel-head{
+text-align:center;
+padding:18px;
+border-bottom:3px solid var(--yellow)
+}
+
+.wheel-head h3{
+margin:0;
+font-size:24px
+}
+
+.wheel-head p{
+margin:6px 0 0;
+color:#93a1b3;
+font-size:11px;
+font-weight:900;
+letter-spacing:1px;
+text-transform:uppercase
+}
+
+.loser-wheel .wheel-head{
+border-bottom-color:var(--red)
+}
+
+.wheel-stage{
+padding:22px 14px 8px;
+display:flex;
+justify-content:center
+}
+
+.wheel-wrap{
+width:min(100%,430px);
+aspect-ratio:1;
+position:relative
+}
+
+.wheel-canvas{
+display:block;
+width:100%;
+height:100%;
+border-radius:50%;
+filter:drop-shadow(0 8px 14px rgba(0,0,0,.5))
+}
+
+.wheel-pointer{
+position:absolute;
+z-index:5;
+left:50%;
+top:-2px;
+transform:translateX(-50%);
+width:0;
+height:0;
+border-left:18px solid transparent;
+border-right:18px solid transparent;
+border-top:34px solid var(--yellow);
+filter:drop-shadow(0 3px 3px rgba(0,0,0,.5))
+}
+
+.loser-wheel .wheel-pointer{
+border-top-color:var(--red)
+}
+
+.wheel-hub{
+position:absolute;
+z-index:4;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+width:72px;
+height:72px;
+border-radius:50%;
+background:#080b12;
+border:5px solid var(--yellow);
+display:flex;
+align-items:center;
+justify-content:center;
+color:var(--yellow);
+font-weight:900;
+pointer-events:none
+}
+
+.loser-wheel .wheel-hub{
+border-color:var(--red);
+color:var(--red)
+}
+
+.wheel-controls{
+text-align:center;
+padding:12px 20px 22px
+}
+
+.spin-btn{
+border:0;
+border-radius:9px;
+background:var(--yellow);
+color:#111;
+font-size:16px;
+font-weight:900;
+padding:14px 25px;
+cursor:pointer;
+box-shadow:0 5px 0 #a16207
+}
+
+.spin-btn:disabled{
+opacity:.55;
+cursor:not-allowed
+}
+
+.loser-wheel .spin-btn{
+background:var(--red);
+color:#fff;
+box-shadow:0 5px 0 #991b1b
+}
+
+.wheel-result{
+min-height:92px;
+margin-top:20px;
+padding:15px;
+border:1px solid var(--border);
+border-radius:10px;
+background:#080d15;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center
+}
+
+.wheel-result-label{
+color:#8290a3;
+font-size:10px;
+font-weight:900;
+letter-spacing:1.5px;
+text-transform:uppercase;
+margin-bottom:6px
+}
+
+.wheel-result-value{
+color:var(--yellow);
+font-size:19px;
+font-weight:900;
+line-height:1.3
+}
+
+.loser-wheel .wheel-result-value{
+color:var(--red)
+}
+
+.wheel-result-note{
+color:#b7c1ce;
+font-size:12px;
+line-height:1.45;
+margin-top:7px
+}
+
+.wheel-note{
+color:#93a1b3;
+text-align:center;
+line-height:1.55;
+margin:-8px 0 24px
+}
+
+
 @media(max-width:900px){
+
+.wheel-grid{
+grid-template-columns:1fr
+}
 
 .teams{
 grid-template-columns:repeat(2,1fr)
@@ -1172,6 +1354,10 @@ STANDINGS
 LINEUPS
 </a>
 
+<a href="#wheels">
+THE WHEELS
+</a>
+
 <a href="#comics">
 COMICS
 </a>
@@ -1341,6 +1527,158 @@ Loading lineups...
 </section>
 
 
+<section id="wheels">
+
+<h2 class="section-title">
+The Wheels
+</h2>
+
+<p class="wheel-note">
+Weekly glory or weekly humiliation. Every wedge has equal odds.
+Once the wheel starts, The Oracle accepts no complaints.
+</p>
+
+
+<div class="wheel-grid">
+
+
+<div class="wheel-card">
+
+<div class="wheel-head">
+
+<h3>
+🏆 WINNER'S WHEEL
+</h3>
+
+<p>
+Victory has its rewards
+</p>
+
+</div>
+
+
+<div class="wheel-stage">
+
+<div class="wheel-wrap">
+
+<div class="wheel-pointer"></div>
+
+<canvas
+id="winner-wheel"
+class="wheel-canvas"
+width="700"
+height="700">
+</canvas>
+
+<div class="wheel-hub">
+F4
+</div>
+
+</div>
+
+</div>
+
+
+<div class="wheel-controls">
+
+<button
+id="winner-spin"
+class="spin-btn"
+type="button"
+onclick="spinLeagueWheel('winner')">
+SPIN TO WIN
+</button>
+
+<div
+id="winner-result"
+class="wheel-result">
+
+<div class="wheel-result-label">
+THE ORACLE AWAITS
+</div>
+
+<div class="wheel-result-value">
+Spin the wheel.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="wheel-card loser-wheel">
+
+<div class="wheel-head">
+
+<h3>
+💀 LOSER'S WHEEL
+</h3>
+
+<p>
+Defeat has consequences
+</p>
+
+</div>
+
+
+<div class="wheel-stage">
+
+<div class="wheel-wrap">
+
+<div class="wheel-pointer"></div>
+
+<canvas
+id="loser-wheel"
+class="wheel-canvas"
+width="700"
+height="700">
+</canvas>
+
+<div class="wheel-hub">
+RIP
+</div>
+
+</div>
+
+</div>
+
+
+<div class="wheel-controls">
+
+<button
+id="loser-spin"
+class="spin-btn"
+type="button"
+onclick="spinLeagueWheel('loser')">
+FACE YOUR FATE
+</button>
+
+<div
+id="loser-result"
+class="wheel-result">
+
+<div class="wheel-result-label">
+JUDGMENT AWAITS
+</div>
+
+<div class="wheel-result-value">
+Spin if you dare.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
 <section id="comics">
 
 <h2 class="section-title">
@@ -1410,11 +1748,9 @@ functioning financial controls, the network is proud to announce its latest pivo
 F4SN PRESENTS • ISSUE #1 • WEEK 3
 </div>
 
-
 <h3>
 MACK AROUND &amp; FIND OUT
 </h3>
-
 
 <div class="comics-tagline">
 F4SN COMICS — Because pictures were cheaper.
@@ -1493,8 +1829,6 @@ Preserved here strictly for historical and evidentiary purposes.
 </div>
 
 </section>
-
-
 <!-- FULL SCREEN COMIC READER -->
 
 <div
@@ -1667,6 +2001,798 @@ mackenzie:"Mack Around & Find Out",
 madison:"Maddie’s Anatomy"
 
 };
+
+
+/**************************************************************
+ THE WHEELS
+**************************************************************/
+
+
+const WINNER_WHEEL_ITEMS = [
+
+{
+label:"$25 B&N",
+result:"$25 Barnes & Noble Gift Card",
+note:"GRAND PRIZE! Bookstore glory has been achieved."
+},
+
+{
+label:"$25 7 Brew",
+result:"$25 7 Brew Gift Card",
+note:"GRAND PRIZE! Caffeine victory belongs to you."
+},
+
+{
+label:"$5 Cash",
+result:"$5 CASH MONEY",
+note:"Cold hard cash. Try not to spend it all in one place."
+},
+
+{
+label:"$5 Snack",
+result:"$5 SNACK DRAFT",
+note:"Draft your snack like a champion."
+},
+
+{
+label:"Drink",
+result:"COFFEE / DRINK ON THE LEAGUE",
+note:"One coffee or drink on the league."
+},
+
+{
+label:"Fast Food",
+result:"FAST-FOOD MVP",
+note:"A victory worthy of the drive-thru."
+},
+
+{
+label:"Dessert",
+result:"DESSERT CHAMPION",
+note:"The champion claims dessert glory."
+},
+
+{
+label:"Lottery",
+result:"LOTTERY TICKET SHOT",
+note:"Take your shot at turning fantasy glory into actual riches."
+},
+
+{
+label:"Remote",
+result:"REMOTE CONTROL CHAMPION",
+note:"You control the remote. Use this power responsibly."
+},
+
+{
+label:"No Chore",
+result:"NO CHORE PASS",
+note:"One chore avoided. Victory has never smelled so clean."
+},
+
+{
+label:"2X Oracle",
+result:"DOUBLE ORACLE GLORY",
+note:"The Oracle recognizes your greatness twice over."
+},
+
+{
+label:"Golden Flex",
+result:"THE GOLDEN FLEX",
+note:"A legendary flex worthy of the Fant4sy Four."
+}
+
+];
+
+
+const LOSER_WHEEL_ITEMS = [
+
+{
+label:"Selfie",
+result:"LOSER SELFIE",
+note:"Winner chooses the pose."
+},
+
+{
+label:"Chore",
+result:"CHORE OF SHAME",
+note:"The loser gets assigned a household chore."
+},
+
+{
+label:"Status",
+result:"EMBARRASSING STATUS",
+note:"The family chooses a ridiculous status or post for the loser."
+},
+
+{
+label:"Press Conf.",
+result:"PRESS CONFERENCE OF SHAME",
+note:"The loser has to answer ridiculous postgame questions."
+},
+
+{
+label:"Crown",
+result:"WEAR THE LOSER CROWN",
+note:"Wear the designated loser gear or crown."
+},
+
+{
+label:"Servant",
+result:"WINNER'S SERVANT",
+note:"The loser serves the winner during a meal or snack."
+},
+
+{
+label:"Walk-Up",
+result:"WALK-UP SONG OF SHAME",
+note:"The family chooses the loser's entrance song."
+},
+
+{
+label:"Trash Talk",
+result:"TRASH-TALK IMMUNITY",
+note:"The winner gets unrestricted fantasy trash-talking rights for the week."
+},
+
+{
+label:"Cleanup",
+result:"CLEANUP DUTY",
+note:"The loser handles cleanup after a family meal."
+},
+
+{
+label:"Last Pick",
+result:"LAST PICK",
+note:"The loser gets last choice of TV, movie or entertainment."
+},
+
+{
+label:"Double",
+result:"DOUBLE TROUBLE",
+note:"Spin the Loser's Wheel again and do BOTH punishments."
+},
+
+{
+label:"Oracle",
+result:"THE ORACLE'S CURSE",
+note:"The Fantasy Oracle creates a special one-off punishment for this week's loser."
+}
+
+];
+
+
+const WINNER_WHEEL_COLORS = [
+"#facc15",
+"#1687ff",
+"#16a34a",
+"#9c4dff",
+"#ea580c",
+"#0891b2",
+"#db2777",
+"#65a30d",
+"#4f46e5",
+"#d97706",
+"#0d9488",
+"#7c3aed"
+];
+
+
+const LOSER_WHEEL_COLORS = [
+"#dc2626",
+"#7f1d1d",
+"#b91c1c",
+"#991b1b",
+"#ef4444",
+"#881337",
+"#be123c",
+"#9f1239",
+"#c2410c",
+"#b45309",
+"#7c2d12",
+"#9a3412"
+];
+
+
+const WHEEL_STATE = {
+
+winner:{
+rotation:0,
+spinning:false
+},
+
+loser:{
+rotation:0,
+spinning:false
+}
+
+};
+
+
+function drawLeagueWheels(){
+
+drawLeagueWheel(
+"winner",
+WINNER_WHEEL_ITEMS,
+WINNER_WHEEL_COLORS
+);
+
+drawLeagueWheel(
+"loser",
+LOSER_WHEEL_ITEMS,
+LOSER_WHEEL_COLORS
+);
+
+}
+
+
+function drawLeagueWheel(
+type,
+items,
+colors
+){
+
+const canvas=
+document.getElementById(
+type+"-wheel"
+);
+
+
+if(!canvas){
+
+return;
+
+}
+
+
+const context=
+canvas.getContext("2d");
+
+
+const size=
+canvas.width;
+
+const center=
+size/2;
+
+const radius=
+center-14;
+
+const slice=
+Math.PI*2/items.length;
+
+const rotation=
+WHEEL_STATE[type].rotation;
+
+
+context.clearRect(
+0,
+0,
+size,
+size
+);
+
+
+context.save();
+
+context.translate(
+center,
+center
+);
+
+context.rotate(
+rotation
+);
+
+
+items.forEach(
+function(item,index){
+
+const start=
+index*slice-
+Math.PI/2-
+slice/2;
+
+const end=
+start+
+slice;
+
+
+context.beginPath();
+
+context.moveTo(
+0,
+0
+);
+
+context.arc(
+0,
+0,
+radius,
+start,
+end
+);
+
+context.closePath();
+
+context.fillStyle=
+colors[
+index%
+colors.length
+];
+
+context.fill();
+
+context.lineWidth=4;
+
+context.strokeStyle=
+"#080b12";
+
+context.stroke();
+
+
+context.save();
+
+
+const middle=
+start+
+slice/2;
+
+
+context.rotate(
+middle
+);
+
+context.translate(
+radius*.64,
+0
+);
+
+context.rotate(
+Math.PI/2
+);
+
+
+context.fillStyle=
+(
+type==="winner"&&
+(
+index===0||
+index===1
+)
+)
+?"#111827"
+:"#ffffff";
+
+
+context.font=
+"900 23px Arial";
+
+context.textAlign=
+"center";
+
+context.textBaseline=
+"middle";
+
+
+wrapWheelText(
+context,
+item.label,
+0,
+0,
+145,
+26
+);
+
+
+context.restore();
+
+}
+);
+
+
+context.beginPath();
+
+context.arc(
+0,
+0,
+radius,
+0,
+Math.PI*2
+);
+
+context.lineWidth=10;
+
+context.strokeStyle=
+type==="winner"
+?"#facc15"
+:"#ff4b4b";
+
+context.stroke();
+
+
+context.restore();
+
+}
+
+
+function wrapWheelText(
+context,
+text,
+x,
+y,
+maxWidth,
+lineHeight
+){
+
+const words=
+String(text).split(" ");
+
+const lines=[];
+
+let line="";
+
+
+words.forEach(
+function(word){
+
+const test=
+line
+?line+" "+word
+:word;
+
+
+if(
+context.measureText(test).width>
+maxWidth&&
+line
+){
+
+lines.push(line);
+
+line=word;
+
+}else{
+
+line=test;
+
+}
+
+}
+);
+
+
+if(line){
+
+lines.push(line);
+
+}
+
+
+const totalHeight=
+(lines.length-1)*
+lineHeight;
+
+
+lines.forEach(
+function(value,index){
+
+context.fillText(
+value,
+x,
+y-
+totalHeight/2+
+index*lineHeight
+);
+
+}
+);
+
+}
+
+
+function randomWheelIndex(length){
+
+if(
+window.crypto&&
+window.crypto.getRandomValues
+){
+
+const values=
+new Uint32Array(1);
+
+window.crypto.getRandomValues(
+values
+);
+
+return values[0]%
+length;
+
+}
+
+
+return Math.floor(
+Math.random()*
+length
+);
+
+}
+
+
+function normalizeWheelAngle(angle){
+
+const full=
+Math.PI*2;
+
+return (
+(angle%full)+
+full
+)%full;
+
+}
+
+
+function spinLeagueWheel(type){
+
+const items=
+type==="winner"
+?WINNER_WHEEL_ITEMS
+:LOSER_WHEEL_ITEMS;
+
+
+const colors=
+type==="winner"
+?WINNER_WHEEL_COLORS
+:LOSER_WHEEL_COLORS;
+
+
+const state=
+WHEEL_STATE[type];
+
+
+if(state.spinning){
+
+return;
+
+}
+
+
+state.spinning=true;
+
+
+const button=
+document.getElementById(
+type+"-spin"
+);
+
+
+const result=
+document.getElementById(
+type+"-result"
+);
+
+
+button.disabled=true;
+
+
+result.innerHTML=`
+
+<div class="wheel-result-label">
+${type==="winner"
+?"THE ORACLE IS DECIDING..."
+:"YOUR FATE IS BEING DECIDED..."}
+</div>
+
+<div class="wheel-result-value">
+SPINNING...
+</div>
+
+`;
+
+
+const selectedIndex=
+randomWheelIndex(
+items.length
+);
+
+
+const slice=
+Math.PI*2/
+items.length;
+
+
+const current=
+normalizeWheelAngle(
+state.rotation
+);
+
+
+/*
+ Wedge zero is centered at 12 o'clock
+ when rotation is zero.
+
+ Therefore the selected wedge lands under
+ the fixed pointer when the final normalized
+ rotation equals -selectedIndex * slice.
+*/
+
+const desired=
+normalizeWheelAngle(
+-selectedIndex*
+slice
+);
+
+
+let delta=
+desired-
+current;
+
+
+if(delta<0){
+
+delta+=
+Math.PI*2;
+
+}
+
+
+const fullSpins=
+6+
+Math.floor(
+Math.random()*3
+);
+
+
+const totalRotation=
+fullSpins*
+Math.PI*
+2+
+delta;
+
+
+const startRotation=
+state.rotation;
+
+
+const finalRotation=
+startRotation+
+totalRotation;
+
+
+const duration=
+5000;
+
+
+const startTime=
+performance.now();
+
+
+function animateWheel(now){
+
+const elapsed=
+now-
+startTime;
+
+
+const progress=
+Math.min(
+elapsed/duration,
+1
+);
+
+
+/*
+ Fast launch with a dramatic slowdown.
+*/
+
+const eased=
+1-
+Math.pow(
+1-progress,
+4
+);
+
+
+state.rotation=
+startRotation+
+totalRotation*
+eased;
+
+
+drawLeagueWheel(
+type,
+items,
+colors
+);
+
+
+if(progress<1){
+
+requestAnimationFrame(
+animateWheel
+);
+
+return;
+
+}
+
+
+state.rotation=
+finalRotation;
+
+state.spinning=false;
+
+button.disabled=false;
+
+
+drawLeagueWheel(
+type,
+items,
+colors
+);
+
+
+showLeagueWheelResult(
+type,
+items[selectedIndex]
+);
+
+}
+
+
+requestAnimationFrame(
+animateWheel
+);
+
+}
+
+
+function showLeagueWheelResult(
+type,
+item
+){
+
+const result=
+document.getElementById(
+type+"-result"
+);
+
+
+const grandPrize=
+type==="winner"&&
+(
+item.result===
+"$25 Barnes & Noble Gift Card"||
+item.result===
+"$25 7 Brew Gift Card"
+);
+
+
+const heading=
+grandPrize
+?"🏆 GRAND PRIZE 🏆"
+:type==="winner"
+?"WINNER'S WHEEL RESULT"
+:"LOSER'S WHEEL RESULT";
+
+
+result.innerHTML=`
+
+<div class="wheel-result-label">
+${safeText(heading)}
+</div>
+
+<div class="wheel-result-value">
+${safeText(item.result)}
+</div>
+
+<div class="wheel-result-note">
+${safeText(item.note)}
+</div>
+
+`;
+
+}
 
 
 /**************************************************************
@@ -2861,6 +3987,8 @@ Please refresh the page in a moment.
  START WEBSITE
 **************************************************************/
 
+
+drawLeagueWheels();
 
 loadFantasyData();
 
