@@ -57,7 +57,6 @@ box-shadow:0 12px 35px rgba(0,0,0,.45);
 margin:0 0 22px
 }
 
-
 /* NFL SCORE STRIP */
 
 .nfl-strip{
@@ -103,7 +102,7 @@ min-width:0;
 overflow-x:auto;
 overflow-y:hidden;
 scrollbar-width:thin;
-scrollbar-color:#39475b #090d14
+scroll-color:#39475b #090d14
 }
 
 .nfl-game{
@@ -180,7 +179,6 @@ text-transform:uppercase;
 min-height:84px
 }
 
-
 /* NETWORK BAR */
 
 .network-bar{
@@ -222,7 +220,6 @@ color:var(--yellow)
 color:#8895a7
 }
 
-
 /* NAV */
 
 nav{
@@ -250,7 +247,6 @@ transition:color .2s ease
 nav a:hover{
 color:var(--blue)
 }
-
 
 /* MAIN */
 
@@ -282,7 +278,6 @@ color:#93a1b3;
 margin:-12px 0 24px 18px;
 line-height:1.5
 }
-
 
 /* MANAGERS */
 
@@ -328,7 +323,6 @@ letter-spacing:1px
 .maria{border-top-color:var(--maria)}
 .mackenzie{border-top-color:var(--mackenzie)}
 .madison{border-top-color:var(--madison)}
-
 
 /* FAMILY SCOREBOARD */
 
@@ -391,7 +385,6 @@ font-weight:bold;
 color:var(--blue)
 }
 
-
 /* STANDINGS */
 
 .standings-table{
@@ -451,7 +444,6 @@ color:var(--yellow);
 font-size:18px;
 font-weight:bold
 }
-
 
 /* LINEUPS */
 
@@ -553,25 +545,6 @@ letter-spacing:.8px;
 margin-left:3px
 }
 
-
-/* VIDEO ARCHIVE */
-
-.video-wrap{
-position:relative;
-width:100%;
-padding-top:56.25%;
-background:black
-}
-
-.video-wrap iframe{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-border:0
-}
-
-
 /* F4SN COMICS */
 
 .comics-shell{
@@ -641,9 +614,6 @@ color:#eef2f7;
 margin-bottom:24px
 }
 
-
-/* SMALL ON-PAGE COMIC PREVIEW */
-
 .comic-reader{
 max-width:420px;
 margin:0 auto
@@ -695,7 +665,6 @@ cursor:pointer
 .comic-open-button:hover{
 background:#173a58
 }
-
 
 /* FULL SCREEN COMIC READER */
 
@@ -751,11 +720,6 @@ cursor:pointer;
 z-index:4
 }
 
-.comic-close:hover{
-border-color:var(--blue);
-color:var(--blue)
-}
-
 .comic-modal-counter{
 position:absolute;
 top:8px;
@@ -773,9 +737,6 @@ text-transform:uppercase;
 z-index:4
 }
 
-
-/* INVISIBLE CLICK AREAS */
-
 .comic-hit{
 position:absolute;
 top:0;
@@ -787,18 +748,8 @@ cursor:pointer;
 z-index:2
 }
 
-.comic-hit-left{
-left:0;
-cursor:w-resize
-}
-
-.comic-hit-right{
-right:0;
-cursor:e-resize
-}
-
-
-/* VISIBLE SIDE ARROWS */
+.comic-hit-left{left:0}
+.comic-hit-right{right:0}
 
 .comic-side-arrow{
 position:absolute;
@@ -815,18 +766,8 @@ font-size:30px;
 cursor:pointer
 }
 
-.comic-side-arrow:hover{
-border-color:var(--blue);
-color:var(--blue)
-}
-
-.comic-side-arrow.left{
-left:8px
-}
-
-.comic-side-arrow.right{
-right:8px
-}
+.comic-side-arrow.left{left:8px}
+.comic-side-arrow.right{right:8px}
 
 .comic-side-arrow:disabled{
 opacity:.2;
@@ -836,7 +777,8 @@ cursor:default
 .comic-modal-hint{
 position:absolute;
 bottom:7px;
-left:50%;transform:translateX(-50%);
+left:50%;
+transform:translateX(-50%);
 z-index:4;
 background:rgba(8,11,18,.82);
 border:1px solid #334155;
@@ -849,7 +791,6 @@ letter-spacing:.8px;
 text-transform:uppercase;
 white-space:nowrap
 }
-
 
 /* HALL OF SHAME */
 
@@ -878,7 +819,6 @@ max-width:620px;
 margin:10px auto 0;
 line-height:1.6
 }
-
 
 /* WHEELS */
 
@@ -950,10 +890,6 @@ cursor:pointer;
 text-transform:uppercase
 }
 
-.wheel-spin:hover{
-background:#173a58
-}
-
 .wheel-spin:disabled{
 opacity:.5;
 cursor:not-allowed
@@ -990,9 +926,6 @@ line-height:1.5;
 margin-top:6px
 }
 
-
-/* GENERAL */
-
 .loading{
 padding:25px;
 text-align:center;
@@ -1016,555 +949,217 @@ letter-spacing:1px;
 line-height:1.8
 }
 
-footer strong{
-color:var(--yellow)
-}
-
-
-/* RESPONSIVE */
+footer strong{color:var(--yellow)}
 
 @media(max-width:900px){
-
-.teams{
-grid-template-columns:repeat(2,1fr)
+.teams{grid-template-columns:repeat(2,1fr)}
+.lineup-grid{grid-template-columns:1fr}
+.wheels-grid{grid-template-columns:1fr}
+.nfl-strip-label{flex-basis:105px}
 }
-
-.lineup-grid{
-grid-template-columns:1fr
-}
-
-.wheels-grid{
-grid-template-columns:1fr
-}
-
-.nfl-strip-label{
-flex-basis:105px
-}
-
-}
-
 
 @media(max-width:650px){
-
-.network-bar{
-flex-wrap:wrap;
-gap:7px 14px;
-font-size:10px
+.network-bar{flex-wrap:wrap;gap:7px 14px;font-size:10px}
+nav{padding:11px 6px}
+nav a{display:inline-block;margin:5px 6px;font-size:11px}
+main{width:94%;padding-top:28px}
+.section-title{font-size:23px}
+.teams{grid-template-columns:1fr}
+.score-row{grid-template-columns:1fr 100px;padding:15px}
+.standings-table{font-size:12px}
+.standings-table th,.standings-table td{padding:12px 8px}
+.rank{width:23px;height:23px;margin-right:5px}
+.lineup-player{grid-template-columns:48px minmax(0,1fr) 72px;gap:7px;padding:11px 10px}
+.player-name{font-size:12px}
+.player-team{font-size:9px}
+.player-stat-line{font-size:9px}
+.player-points{font-size:13px}
+.nfl-strip{min-height:78px}
+.nfl-strip-label{flex-basis:84px;padding:8px}
+.nfl-strip-label strong{font-size:12px}
+.nfl-strip-label span{font-size:8px}
+.nfl-game{flex-basis:155px;min-height:76px;padding:8px 11px}
+.nfl-team-row{font-size:12px}
+.nfl-team-score{font-size:14px}
+.comic-modal{padding:6px}
+.comic-modal-image{max-width:98vw;max-height:90vh}
+.comic-side-arrow{width:38px;height:54px;font-size:24px}
+.comic-side-arrow.left{left:0}
+.comic-side-arrow.right{right:0}
+.comic-modal-hint{font-size:8px;max-width:90%;white-space:normal;text-align:center}
 }
-
-nav{
-padding:11px 6px
-}
-
-nav a{
-display:inline-block;
-margin:5px 6px;
-font-size:11px
-}
-
-main{
-width:94%;
-padding-top:28px
-}
-
-.section-title{
-font-size:23px
-}
-
-.teams{
-grid-template-columns:1fr
-}
-
-.score-row{
-grid-template-columns:1fr 100px;
-padding:15px
-}
-
-.standings-table{
-font-size:12px
-}
-
-.standings-table th,
-.standings-table td{
-padding:12px 8px
-}
-
-.rank{
-width:23px;
-height:23px;
-margin-right:5px
-}
-
-.lineup-player{
-grid-template-columns:48px minmax(0,1fr) 72px;
-gap:7px;
-padding:11px 10px
-}
-
-.player-name{
-font-size:12px
-}
-
-.player-team{
-font-size:9px
-}
-
-.player-stat-line{
-font-size:9px
-}
-
-.player-points{
-font-size:13px
-}
-
-.nfl-strip{
-min-height:78px
-}
-
-.nfl-strip-label{
-flex-basis:84px;
-padding:8px
-}
-
-.nfl-strip-label strong{
-font-size:12px
-}
-
-.nfl-strip-label span{
-font-size:8px
-}
-
-.nfl-game{
-flex-basis:155px;
-min-height:76px;
-padding:8px 11px
-}
-
-.nfl-team-row{
-font-size:12px
-}
-
-.nfl-team-score{
-font-size:14px
-}
-
-.comic-modal{
-padding:6px
-}
-
-.comic-modal-image{
-max-width:98vw;
-max-height:90vh
-}
-
-.comic-side-arrow{
-width:38px;
-height:54px;
-font-size:24px
-}
-
-.comic-side-arrow.left{
-left:0
-}
-
-.comic-side-arrow.right{
-right:0
-}
-
-.comic-modal-hint{
-font-size:8px;
-max-width:90%;
-white-space:normal;
-text-align:center
-}
-
-}
-
 </style>
 </head>
 
-
 <body>
 
-
 <header class="hero">
-
 <img
 src="fant4sy-four-banner.png"
-alt="The Fant4sy Four - Brad, Maria, Mackenzie and Madison"
+alt="The Fant4sy Four"
 class="hero-banner">
-
 </header>
 
-
 <div class="nfl-strip" aria-label="NFL Week Scoreboard">
-
 <div class="nfl-strip-label">
-
-<strong id="nfl-week-label">
-NFL
-</strong>
-
-<span>
-Score Center
-</span>
-
+<strong id="nfl-week-label">NFL</strong>
+<span>Score Center</span>
 </div>
 
 <div id="nfl-games" class="nfl-games">
-
-<div class="nfl-ticker-message">
-Loading NFL games...
+<div class="nfl-ticker-message">Loading NFL games...</div>
 </div>
-
 </div>
-
-</div>
-
 
 <div class="network-bar">
-
-<span class="network-name">
-F4SN • FANT4SY FOUR SPORTS NETWORK
-</span>
-
-<span>
-<span class="live-dot"></span>
-LIVE LEAGUE COVERAGE
-</span>
-
-<span id="last-updated" class="update-status">
-CONNECTING...
-</span>
-
+<span class="network-name">F4SN • FANT4SY FOUR SPORTS NETWORK</span>
+<span><span class="live-dot"></span>LIVE LEAGUE COVERAGE</span>
+<span id="last-updated" class="update-status">CONNECTING...</span>
 </div>
 
-
 <nav>
-
-<a href="#home">
-HOME
-</a>
-
-<a href="#scoreboard">
-SCOREBOARD
-</a>
-
-<a href="#standings">
-STANDINGS
-</a>
-
-<a href="#lineups">
-LINEUPS
-</a>
-
-<a href="#wheels">
-THE WHEELS
-</a>
-
-<a href="#comics">
-COMICS
-</a>
-
-<a href="#hall-of-shame">
-HALL OF SHAME
-</a>
-
+<a href="#home">HOME</a>
+<a href="#scoreboard">SCOREBOARD</a>
+<a href="#standings">STANDINGS</a>
+<a href="#lineups">LINEUPS</a>
+<a href="#wheels">THE WHEELS</a>
+<a href="#comics">COMICS</a>
+<a href="#hall-of-shame">HALL OF SHAME</a>
 </nav>
-
 
 <main id="home">
 
-
 <section id="teams">
-
-<h2 class="section-title">
-Meet The Fant4sy Four
-</h2>
+<h2 class="section-title">Meet The Fant4sy Four</h2>
 
 <img
 src="Fant4syFour-Team-Banner.png"
-alt="The Fant4sy Four franchise teams - Breaking Brad, The Real Housewives of the Red Zone, Mack Around & Find Out, and Maddie's Anatomy"
+alt="The Fant4sy Four franchise teams"
 class="franchise-banner">
-
 
 <div class="teams">
 
-
 <div class="team brad">
-
-<h2>
-BREAKING BRAD
-</h2>
-
-<p>
-We cook on Sundays.
-</p>
-
+<h2>BREAKING BRAD</h2>
+<p>We cook on Sundays.</p>
 </div>
-
 
 <div class="team maria">
-
-<h2>
-THE REAL HOUSEWIVES OF THE RED ZONE
-</h2>
-
-<p>
-The drama starts at kickoff.
-</p>
-
+<h2>THE REAL HOUSEWIVES OF THE RED ZONE</h2>
+<p>The drama starts at kickoff.</p>
 </div>
-
 
 <div class="team mackenzie">
-
-<h2>
-MACK AROUND &amp; FIND OUT
-</h2>
-
-<p>
-Results may vary. Injuries won’t.
-</p>
-
+<h2>MACK AROUND &amp; FIND OUT</h2>
+<p>Results may vary. Injuries won’t.</p>
 </div>
-
 
 <div class="team madison">
-
-<h2>
-MADDIE’S ANATOMY
-</h2>
-
-<p>
-Your playoff hopes are in critical condition.
-</p>
-
+<h2>MADDIE’S ANATOMY</h2>
+<p>Your playoff hopes are in critical condition.</p>
 </div>
 
-
 </div>
-
 </section>
-
 
 <section id="scoreboard">
-
-<h2
-class="section-title"
-id="scoreboard-title">
-Week 4 Scoreboard
-</h2>
-
+<h2 class="section-title" id="scoreboard-title">Week 4 Scoreboard</h2>
 
 <div class="scoreboard">
-
 <div class="scoreboard-header">
-
-<span>
-F4SN LIVE SCORE CENTER
-</span>
-
-<span class="live-label">
-● LIVE
-</span>
-
+<span>F4SN LIVE SCORE CENTER</span>
+<span class="live-label">● LIVE</span>
 </div>
 
-
-<div
-id="scoreboard-data"
-class="loading">
+<div id="scoreboard-data" class="loading">
 Loading live scores...
 </div>
-
 </div>
-
 </section>
 
-
 <section id="standings">
-
-<h2 class="section-title">
-Season Standings
-</h2>
+<h2 class="section-title">Season Standings</h2>
 
 <p class="section-subtitle">
 The race for family bragging rights and the season championship.
 </p>
 
-
 <div id="standings-data">
-
-<div class="loading">
-Loading standings...
+<div class="loading">Loading standings...</div>
 </div>
-
-</div>
-
 </section>
 
-
 <section id="lineups">
-
-<h2
-class="section-title"
-id="lineup-title">
-Week 4 Lineups
-</h2>
+<h2 class="section-title" id="lineup-title">Week 4 Lineups</h2>
 
 <p class="section-subtitle">
 Click an NFL player’s name to open their NFL.com player profile.
 </p>
 
-
-<div
-id="lineup-data"
-class="lineup-grid">
-
-<div class="loading">
-Loading lineups...
+<div id="lineup-data" class="lineup-grid">
+<div class="loading">Loading lineups...</div>
 </div>
-
-</div>
-
 </section>
 
-
 <section id="wheels">
-
-<h2 class="section-title">
-The Wheels
-</h2>
+<h2 class="section-title">The Wheels</h2>
 
 <p class="section-subtitle">
 Victory has rewards. Defeat has consequences. The Oracle accepts no appeals.
 </p>
 
-
 <div class="wheels-grid">
 
-
 <div class="wheel-card">
-
-<h3>
-🏆 Winner’s Wheel
-</h3>
-
-<p>
-Weekly champion spins for glory, prizes, and possibly an unreasonable amount of power.
-</p>
+<h3>🏆 Winner’s Wheel</h3>
+<p>Weekly champion spins for glory, prizes, and possibly an unreasonable amount of power.</p>
 
 <div class="wheel-wrap">
-
 <div class="wheel-pointer"></div>
-
-<canvas
-id="winner-wheel"
-class="wheel-canvas"
-width="700"
-height="700">
-</canvas>
-
+<canvas id="winner-wheel" class="wheel-canvas" width="700" height="700"></canvas>
 </div>
 
-<button
-id="winner-spin"
-class="wheel-spin"
-type="button"
-onclick="spinLeagueWheel('winner')">
+<button id="winner-spin" class="wheel-spin" type="button" onclick="spinLeagueWheel('winner')">
 SPIN WINNER’S WHEEL
 </button>
 
-<div
-id="winner-result"
-class="wheel-result">
-
-<div class="wheel-result-label">
-THE ORACLE AWAITS
+<div id="winner-result" class="wheel-result">
+<div class="wheel-result-label">THE ORACLE AWAITS</div>
+<div class="wheel-result-value">WHO WILL CLAIM THE PRIZE?</div>
 </div>
-
-<div class="wheel-result-value">
-WHO WILL CLAIM THE PRIZE?
 </div>
-
-</div>
-
-</div>
-
 
 <div class="wheel-card">
-
-<h3>
-💀 Loser’s Wheel
-</h3>
-
-<p>
-Last place spins for punishment. League management recommends losing with dignity. Nobody listens.
-</p>
+<h3>💀 Loser’s Wheel</h3>
+<p>Last place spins for punishment. League management recommends losing with dignity. Nobody listens.</p>
 
 <div class="wheel-wrap">
-
 <div class="wheel-pointer"></div>
-
-<canvas
-id="loser-wheel"
-class="wheel-canvas"
-width="700"
-height="700">
-</canvas>
-
+<canvas id="loser-wheel" class="wheel-canvas" width="700" height="700"></canvas>
 </div>
 
-<button
-id="loser-spin"
-class="wheel-spin"
-type="button"
-onclick="spinLeagueWheel('loser')">
+<button id="loser-spin" class="wheel-spin" type="button" onclick="spinLeagueWheel('loser')">
 SPIN LOSER’S WHEEL
 </button>
 
-<div
-id="loser-result"
-class="wheel-result">
-
-<div class="wheel-result-label">
-YOUR FATE AWAITS
+<div id="loser-result" class="wheel-result">
+<div class="wheel-result-label">YOUR FATE AWAITS</div>
+<div class="wheel-result-value">THE WHEEL SHOWS NO MERCY</div>
 </div>
-
-<div class="wheel-result-value">
-THE WHEEL SHOWS NO MERCY
 </div>
 
 </div>
-
-</div>
-
-
-</div>
-
 </section>
 
-
 <section id="comics">
-
-<h2 class="section-title">
-F4SN Comics
-</h2>
-
+<h2 class="section-title">F4SN Comics</h2>
 
 <div class="comics-shell">
 
-
 <div class="cancelled-banner">
+<div class="cancelled-stamp">CANCELLED</div>
 
-<div class="cancelled-stamp">
-CANCELLED
-</div>
-
-<h3>
-The F4SN Animated Series Has Been Sent to the Shadow Realm
-</h3>
+<h3>The F4SN Animated Series Has Been Sent to the Shadow Realm</h3>
 
 <p>
 After one glorious experiment in questionable television,
@@ -1582,24 +1177,15 @@ The production department has been reassigned to a far more dangerous format:
 <li>More opportunities for public humiliation.</li>
 <li>Far fewer rendering headaches.</li>
 </ul>
-
 </div>
-
 
 <div class="comics-launch">
-
-<div class="eyebrow">
-THE NEW ERA OF F4SN
-</div>
-
-<h3>
-F4SN COMICS
-</h3>
+<div class="eyebrow">THE NEW ERA OF F4SN</div>
+<h3>F4SN COMICS</h3>
 
 <div class="comics-tagline">
 Fantasy football was a mistake. We made it a comic book.
 </div>
-
 
 <div class="comic-reader">
 
@@ -1612,8 +1198,8 @@ onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openC
 
 <img
 id="comic-preview-image"
-src="cover.png"
-alt="F4SN Comics Week 3 cover">
+src="comics/issue-1/cover.png"
+alt="F4SN Comics Issue 1 cover">
 
 </div>
 
@@ -1625,71 +1211,41 @@ Click the comic to open the full-screen reader.
 class="comic-open-button"
 type="button"
 onclick="openComicReader(0)">
-OPEN WEEK 3 COMIC
+OPEN ISSUE #1
 </button>
 
 </div>
-
-
 </div>
-
 </div>
-
 </section>
 
-
 <section id="hall-of-shame">
-
-<h2 class="section-title">
-Hall of Shame
-</h2>
-
+<h2 class="section-title">Hall of Shame</h2>
 
 <div class="shame-card">
+<div class="shame-icon">🏆</div>
 
-<div class="shame-icon">
-🏆
-</div>
-
-
-<h3>
-Fantasy Oracle — Inaugural Inductee
-</h3>
-
+<h3>Fantasy Oracle — Inaugural Inductee</h3>
 
 <p>
 Inducted for repeatedly making the Commissioner explain that the entire
 index.html belongs directly in the chat. League officials described the
 offense as “completely avoidable” and “honestly kind of impressive.”
 </p>
-
-
 </div>
-
 </section>
-
 
 </main>
 
-
 <footer>
-
-<strong>
-F4SN
-</strong>
-
+<strong>F4SN</strong>
 • FANT4SY FOUR SPORTS NETWORK
 • QUESTIONABLE ANALYSIS SINCE 2026
-
 </footer>
-
 
 <!-- FULL SCREEN COMIC READER -->
 
-<div
-id="comic-modal"
-class="comic-modal"
-aria-hidden="true">
+<div id="comic-modal" class="comic-modal" aria-hidden="true">
 
 <div class="comic-modal-inner">
 
@@ -1701,12 +1257,9 @@ aria-label="Close comic reader">
 ×
 </button>
 
-<div
-id="comic-modal-counter"
-class="comic-modal-counter">
+<div id="comic-modal-counter" class="comic-modal-counter">
 PAGE 1
 </div>
-
 
 <button
 id="comic-left-hit"
@@ -1716,7 +1269,6 @@ onclick="previousComicPage()"
 aria-label="Previous comic page">
 </button>
 
-
 <button
 id="comic-right-hit"
 class="comic-hit comic-hit-right"
@@ -1724,7 +1276,6 @@ type="button"
 onclick="nextComicPage()"
 aria-label="Next comic page">
 </button>
-
 
 <button
 id="comic-left-arrow"
@@ -1735,13 +1286,11 @@ aria-label="Previous comic page">
 ‹
 </button>
 
-
 <img
 id="comic-modal-image"
 class="comic-modal-image"
-src="cover.png"
+src="comics/issue-1/cover.png"
 alt="F4SN comic cover">
-
 
 <button
 id="comic-right-arrow"
@@ -1752,812 +1301,384 @@ aria-label="Next comic page">
 ›
 </button>
 
-
 <div class="comic-modal-hint">
 Click left/right side • Arrow keys turn pages • Esc closes
 </div>
 
-
 </div>
-
 </div>
-
 
 <script>
-
 
 const DATA_URL =
 "https://script.google.com/macros/s/AKfycbxZ8peC-11b7ook2LRoKnsq7hmeDkIt_2_my5taux33KaTdoBy1Rzj_26GVyasQvAB3Pw/exec?api=1";
 
-
 const TEAM_COLORS = {
-
 brad:"#1687ff",
-
 maria:"#ff3b30",
-
 mackenzie:"#16d5d1",
-
 madison:"#9c4dff"
-
 };
-
 
 const MANAGER_ORDER = [
-
 "brad",
-
 "maria",
-
 "mackenzie",
-
 "madison"
-
 ];
 
-
 const DISPLAY_NAMES = {
-
 brad:"Breaking Brad",
-
 maria:"The Real Housewives of the Red Zone",
-
 mackenzie:"Mack Around & Find Out",
-
 madison:"Maddie’s Anatomy"
-
 };
-
 
 /**************************************************************
  THE WHEELS
 **************************************************************/
 
-
 const WINNER_WHEEL_ITEMS = [
-
 {
 label:"$25 B&N",
 result:"$25 Barnes & Noble Gift Card",
 note:"GRAND PRIZE! Bookstore glory has been achieved."
 },
-
 {
 label:"$25 7 Brew",
 result:"$25 7 Brew Gift Card",
 note:"GRAND PRIZE! Caffeine victory belongs to you."
 },
-
 {
 label:"$5 Cash",
 result:"$5 CASH MONEY",
 note:"Cold hard cash. Try not to spend it all in one place."
 },
-
 {
 label:"$5 Snack",
 result:"$5 SNACK DRAFT",
 note:"Draft your snack like a champion."
 },
-
 {
 label:"Drink",
 result:"COFFEE / DRINK ON THE LEAGUE",
 note:"One coffee or drink on the league."
 },
-
 {
 label:"Fast Food",
 result:"FAST-FOOD MVP",
 note:"A victory worthy of the drive-thru."
 },
-
 {
 label:"Dessert",
 result:"DESSERT CHAMPION",
 note:"The champion claims dessert glory."
 },
-
 {
 label:"Lottery",
 result:"LOTTERY TICKET SHOT",
 note:"Take your shot at turning fantasy glory into actual riches."
 },
-
 {
 label:"Remote",
 result:"REMOTE CONTROL CHAMPION",
 note:"You control the remote. Use this power responsibly."
 },
-
 {
 label:"No Chore",
 result:"NO CHORE PASS",
 note:"One chore avoided. Victory has never smelled so clean."
 },
-
 {
 label:"2X Oracle",
 result:"DOUBLE ORACLE GLORY",
 note:"The Oracle recognizes your greatness twice over."
 },
-
 {
 label:"Golden Flex",
 result:"THE GOLDEN FLEX",
 note:"A legendary flex worthy of the Fant4sy Four."
 }
-
 ];
 
-
 const LOSER_WHEEL_ITEMS = [
-
 {
 label:"Selfie",
 result:"LOSER SELFIE",
 note:"Winner chooses the pose."
-},{
+},
+{
 label:"Chore",
 result:"CHORE OF SHAME",
 note:"The loser gets assigned a household chore."
 },
-
 {
 label:"Status",
 result:"EMBARRASSING STATUS",
 note:"The family chooses a ridiculous status or post for the loser."
 },
-
 {
 label:"Press Conf.",
 result:"PRESS CONFERENCE OF SHAME",
 note:"The loser has to answer ridiculous postgame questions."
 },
-
 {
 label:"Crown",
 result:"WEAR THE LOSER CROWN",
 note:"Wear the designated loser gear or crown."
 },
-
 {
 label:"Servant",
 result:"WINNER'S SERVANT",
 note:"The loser serves the winner during a meal or snack."
 },
-
 {
 label:"Walk-Up",
 result:"WALK-UP SONG OF SHAME",
 note:"The family chooses the loser's entrance song."
 },
-
 {
 label:"Trash Talk",
 result:"TRASH-TALK IMMUNITY",
 note:"The winner gets unrestricted fantasy trash-talking rights for the week."
 },
-
 {
 label:"Cleanup",
 result:"CLEANUP DUTY",
 note:"The loser handles cleanup after a family meal."
 },
-
 {
 label:"Last Pick",
 result:"LAST PICK",
 note:"The loser gets last choice of TV, movie or entertainment."
 },
-
 {
 label:"Double",
 result:"DOUBLE TROUBLE",
 note:"Spin the Loser's Wheel again and do BOTH punishments."
 },
-
 {
 label:"Oracle",
 result:"THE ORACLE'S CURSE",
 note:"The Fantasy Oracle creates a special one-off punishment for this week's loser."
 }
-
 ];
-
 
 const WINNER_WHEEL_COLORS = [
-"#facc15",
-"#1687ff",
-"#16a34a",
-"#9c4dff",
-"#ea580c",
-"#0891b2",
-"#db2777",
-"#65a30d",
-"#4f46e5",
-"#d97706",
-"#0d9488",
-"#7c3aed"
+"#facc15","#1687ff","#16a34a","#9c4dff",
+"#ea580c","#0891b2","#db2777","#65a30d",
+"#4f46e5","#d97706","#0d9488","#7c3aed"
 ];
-
 
 const LOSER_WHEEL_COLORS = [
-"#dc2626",
-"#7f1d1d",
-"#b91c1c",
-"#991b1b",
-"#ef4444",
-"#881337",
-"#be123c",
-"#9f1239",
-"#c2410c",
-"#b45309",
-"#7c2d12",
-"#9a3412"
+"#dc2626","#7f1d1d","#b91c1c","#991b1b",
+"#ef4444","#881337","#be123c","#9f1239",
+"#c2410c","#b45309","#7c2d12","#9a3412"
 ];
-
 
 const WHEEL_STATE = {
-
-winner:{
-rotation:0,
-spinning:false
-},
-
-loser:{
-rotation:0,
-spinning:false
-}
-
+winner:{rotation:0,spinning:false},
+loser:{rotation:0,spinning:false}
 };
 
-
 function drawLeagueWheels(){
-
-drawLeagueWheel(
-"winner",
-WINNER_WHEEL_ITEMS,
-WINNER_WHEEL_COLORS
-);
-
-drawLeagueWheel(
-"loser",
-LOSER_WHEEL_ITEMS,
-LOSER_WHEEL_COLORS
-);
-
+drawLeagueWheel("winner",WINNER_WHEEL_ITEMS,WINNER_WHEEL_COLORS);
+drawLeagueWheel("loser",LOSER_WHEEL_ITEMS,LOSER_WHEEL_COLORS);
 }
 
+function drawLeagueWheel(type,items,colors){
 
-function drawLeagueWheel(
-type,
-items,
-colors
-){
+const canvas=document.getElementById(type+"-wheel");
+if(!canvas)return;
 
-const canvas=
-document.getElementById(
-type+"-wheel"
-);
+const context=canvas.getContext("2d");
+const size=canvas.width;
+const center=size/2;
+const radius=center-14;
+const slice=Math.PI*2/items.length;
+const rotation=WHEEL_STATE[type].rotation;
 
-
-if(!canvas){
-
-return;
-
-}
-
-
-const context=
-canvas.getContext("2d");
-
-
-const size=
-canvas.width;
-
-const center=
-size/2;
-
-const radius=
-center-14;
-
-const slice=
-Math.PI*2/items.length;
-
-const rotation=
-WHEEL_STATE[type].rotation;
-
-
-context.clearRect(
-0,
-0,
-size,
-size
-);
-
-
+context.clearRect(0,0,size,size);
 context.save();
+context.translate(center,center);
+context.rotate(rotation);
 
-context.translate(
-center,
-center
-);
+items.forEach(function(item,index){
 
-context.rotate(
-rotation
-);
-
-
-items.forEach(
-function(item,index){
-
-const start=
-index*slice-
-Math.PI/2-
-slice/2;
-
-const end=
-start+
-slice;
-
+const start=index*slice-Math.PI/2-slice/2;
+const end=start+slice;
 
 context.beginPath();
-
-context.moveTo(
-0,
-0
-);
-
-context.arc(
-0,
-0,
-radius,
-start,
-end
-);
-
+context.moveTo(0,0);
+context.arc(0,0,radius,start,end);
 context.closePath();
 
-context.fillStyle=
-colors[
-index%
-colors.length
-];
-
+context.fillStyle=colors[index%colors.length];
 context.fill();
 
 context.lineWidth=4;
-
-context.strokeStyle=
-"#080b12";
-
+context.strokeStyle="#080b12";
 context.stroke();
-
 
 context.save();
 
-
-const middle=
-start+
-slice/2;
-
-
-context.rotate(
-middle
-);
-
-context.translate(
-radius*.64,
-0
-);
-
-context.rotate(
-Math.PI/2
-);
-
+const middle=start+slice/2;
+context.rotate(middle);
+context.translate(radius*.64,0);
+context.rotate(Math.PI/2);
 
 context.fillStyle=
-(
-type==="winner"&&
-(
-index===0||
-index===1
-)
-)
+(type==="winner"&&(index===0||index===1))
 ?"#111827"
 :"#ffffff";
 
+context.font="900 23px Arial";
+context.textAlign="center";
+context.textBaseline="middle";
 
-context.font=
-"900 23px Arial";
-
-context.textAlign=
-"center";
-
-context.textBaseline=
-"middle";
-
-
-wrapWheelText(
-context,
-item.label,
-0,
-0,
-145,
-26
-);
-
+wrapWheelText(context,item.label,0,0,145,26);
 
 context.restore();
-
-}
-);
-
+});
 
 context.beginPath();
-
-context.arc(
-0,
-0,
-radius,
-0,
-Math.PI*2
-);
-
+context.arc(0,0,radius,0,Math.PI*2);
 context.lineWidth=10;
-
-context.strokeStyle=
-type==="winner"
-?"#facc15"
-:"#ff4b4b";
-
+context.strokeStyle=type==="winner"?"#facc15":"#ff4b4b";
 context.stroke();
 
-
 context.restore();
-
 }
 
+function wrapWheelText(context,text,x,y,maxWidth,lineHeight){
 
-function wrapWheelText(
-context,
-text,
-x,
-y,
-maxWidth,
-lineHeight
-){
-
-const words=
-String(text).split(" ");
-
+const words=String(text).split(" ");
 const lines=[];
-
 let line="";
 
+words.forEach(function(word){
 
-words.forEach(
-function(word){
+const test=line?line+" "+word:word;
 
-const test=
-line
-?line+" "+word
-:word;
-
-
-if(
-context.measureText(test).width>
-maxWidth&&
-line
-){
-
+if(context.measureText(test).width>maxWidth&&line){
 lines.push(line);
-
 line=word;
-
 }else{
-
 line=test;
-
 }
+});
 
-}
-);
+if(line)lines.push(line);
 
+const totalHeight=(lines.length-1)*lineHeight;
 
-if(line){
-
-lines.push(line);
-
-}
-
-
-const totalHeight=
-(lines.length-1)*
-lineHeight;
-
-
-lines.forEach(
-function(value,index){
-
+lines.forEach(function(value,index){
 context.fillText(
 value,
 x,
-y-
-totalHeight/2+
-index*lineHeight
+y-totalHeight/2+index*lineHeight
 );
-
+});
 }
-);
-
-}
-
 
 function randomWheelIndex(length){
 
-if(
-window.crypto&&
-window.crypto.getRandomValues
-){
-
-const values=
-new Uint32Array(1);
-
-window.crypto.getRandomValues(
-values
-);
-
-return values[0]%
-length;
-
+if(window.crypto&&window.crypto.getRandomValues){
+const values=new Uint32Array(1);
+window.crypto.getRandomValues(values);
+return values[0]%length;
 }
 
-
-return Math.floor(
-Math.random()*
-length
-);
-
+return Math.floor(Math.random()*length);
 }
-
 
 function normalizeWheelAngle(angle){
-
-const full=
-Math.PI*2;
-
-return (
-(angle%full)+
-full
-)%full;
-
+const full=Math.PI*2;
+return ((angle%full)+full)%full;
 }
-
 
 function spinLeagueWheel(type){
 
-const items=
-type==="winner"
+const items=type==="winner"
 ?WINNER_WHEEL_ITEMS
 :LOSER_WHEEL_ITEMS;
 
-
-const colors=
-type==="winner"
+const colors=type==="winner"
 ?WINNER_WHEEL_COLORS
 :LOSER_WHEEL_COLORS;
 
+const state=WHEEL_STATE[type];
 
-const state=
-WHEEL_STATE[type];
-
-
-if(state.spinning){
-
-return;
-
-}
-
+if(state.spinning)return;
 
 state.spinning=true;
 
-
-const button=
-document.getElementById(
-type+"-spin"
-);
-
-
-const result=
-document.getElementById(
-type+"-result"
-);
-
+const button=document.getElementById(type+"-spin");
+const result=document.getElementById(type+"-result");
 
 button.disabled=true;
 
-
 result.innerHTML=`
-
 <div class="wheel-result-label">
 ${type==="winner"
 ?"THE ORACLE IS DECIDING..."
 :"YOUR FATE IS BEING DECIDED..."}
 </div>
-
-<div class="wheel-result-value">
-SPINNING...
-</div>
-
+<div class="wheel-result-value">SPINNING...</div>
 `;
 
+const selectedIndex=randomWheelIndex(items.length);
+const slice=Math.PI*2/items.length;
+const current=normalizeWheelAngle(state.rotation);
+const desired=normalizeWheelAngle(-selectedIndex*slice);
 
-const selectedIndex=
-randomWheelIndex(
-items.length
-);
+let delta=desired-current;
 
+if(delta<0)delta+=Math.PI*2;
 
-const slice=
-Math.PI*2/
-items.length;
-
-
-const current=
-normalizeWheelAngle(
-state.rotation
-);
-
-
-const desired=
-normalizeWheelAngle(
--selectedIndex*
-slice
-);
-
-
-let delta=
-desired-
-current;
-
-
-if(delta<0){
-
-delta+=
-Math.PI*2;
-
-}
-
-
-const fullSpins=
-6+
-Math.floor(
-Math.random()*3
-);
-
-
-const totalRotation=
-fullSpins*
-Math.PI*
-2+
-delta;
-
-
-const startRotation=
-state.rotation;
-
-
-const finalRotation=
-startRotation+
-totalRotation;
-
-
-const duration=
-5000;
-
-
-const startTime=
-performance.now();
-
+const fullSpins=6+Math.floor(Math.random()*3);
+const totalRotation=fullSpins*Math.PI*2+delta;
+const startRotation=state.rotation;
+const finalRotation=startRotation+totalRotation;
+const duration=5000;
+const startTime=performance.now();
 
 function animateWheel(now){
 
-const elapsed=
-now-
-startTime;
+const elapsed=now-startTime;
+const progress=Math.min(elapsed/duration,1);
+const eased=1-Math.pow(1-progress,4);
 
+state.rotation=startRotation+totalRotation*eased;
 
-const progress=
-Math.min(
-elapsed/duration,
-1
-);
-
-
-const eased=
-1-
-Math.pow(
-1-progress,
-4
-);
-
-
-state.rotation=
-startRotation+
-totalRotation*
-eased;
-
-
-drawLeagueWheel(
-type,
-items,
-colors
-);
-
+drawLeagueWheel(type,items,colors);
 
 if(progress<1){
-
-requestAnimationFrame(
-animateWheel
-);
-
+requestAnimationFrame(animateWheel);
 return;
-
 }
 
-
-state.rotation=
-finalRotation;
-
+state.rotation=finalRotation;
 state.spinning=false;
-
 button.disabled=false;
 
-
-drawLeagueWheel(
-type,
-items,
-colors
-);
-
-
-showLeagueWheelResult(
-type,
-items[selectedIndex]
-);
-
+drawLeagueWheel(type,items,colors);
+showLeagueWheelResult(type,items[selectedIndex]);
 }
 
-
-requestAnimationFrame(
-animateWheel
-);
-
+requestAnimationFrame(animateWheel);
 }
 
+function showLeagueWheelResult(type,item){
 
-function showLeagueWheelResult(
-type,
-item
-){
-
-const result=
-document.getElementById(
-type+"-result"
-);
-
+const result=document.getElementById(type+"-result");
 
 const grandPrize=
 type==="winner"&&
 (
-item.result===
-"$25 Barnes & Noble Gift Card"||
-item.result===
-"$25 7 Brew Gift Card"
+item.result==="$25 Barnes & Noble Gift Card"||
+item.result==="$25 7 Brew Gift Card"
 );
-
 
 const heading=
 grandPrize
@@ -2566,378 +1687,156 @@ grandPrize
 ?"WINNER'S WHEEL RESULT"
 :"LOSER'S WHEEL RESULT";
 
-
 result.innerHTML=`
-
 <div class="wheel-result-label">
 ${safeText(heading)}
 </div>
-
 <div class="wheel-result-value">
 ${safeText(item.result)}
 </div>
-
 <div class="wheel-result-note">
 ${safeText(item.note)}
 </div>
-
 `;
-
 }
-
 
 /**************************************************************
  F4SN COMIC READER
 **************************************************************/
 
-
 const COMIC_PAGES = [
-
-"cover.png",
-
-"page-01.png",
-
-"page-02.png",
-
-"page-03.png",
-
-"page-04.png",
-
-"page-05.png",
-
-"page-06.png",
-
-"page-07.png",
-
-"page-08.png"
-
+"comics/issue-1/cover.png",
+"comics/issue-1/page-01.png",
+"comics/issue-1/page-02.png",
+"comics/issue-1/page-03.png",
+"comics/issue-1/page-04.png",
+"comics/issue-1/page-05.png",
+"comics/issue-1/page-06.png",
+"comics/issue-1/page-07.png",
+"comics/issue-1/page-08.png"
 ];
-
 
 let currentComicPage=0;
 
-
 function openComicReader(index){
 
-currentComicPage=
-Number(index)||0;
+currentComicPage=Number(index)||0;
 
+if(currentComicPage<0)currentComicPage=0;
 
-if(currentComicPage<0){
-
-currentComicPage=0;
-
+if(currentComicPage>=COMIC_PAGES.length){
+currentComicPage=COMIC_PAGES.length-1;
 }
 
+const modal=document.getElementById("comic-modal");
+if(!modal)return;
 
-if(
-currentComicPage>=
-COMIC_PAGES.length
-){
-
-currentComicPage=
-COMIC_PAGES.length-1;
-
-}
-
-
-const modal=
-document.getElementById(
-"comic-modal"
-);
-
-
-if(!modal){
-
-return;
-
-}
-
-
-modal.classList.add(
-"open"
-);
-
-modal.setAttribute(
-"aria-hidden",
-"false"
-);
-
-
-document.body.style.overflow=
-"hidden";
-
+modal.classList.add("open");
+modal.setAttribute("aria-hidden","false");
+document.body.style.overflow="hidden";
 
 renderComicPage();
-
 }
-
 
 function closeComicReader(){
 
-const modal=
-document.getElementById(
-"comic-modal"
-);
+const modal=document.getElementById("comic-modal");
+if(!modal)return;
 
-
-if(!modal){
-
-return;
-
+modal.classList.remove("open");
+modal.setAttribute("aria-hidden","true");
+document.body.style.overflow="";
 }
-
-
-modal.classList.remove(
-"open"
-);
-
-modal.setAttribute(
-"aria-hidden",
-"true"
-);
-
-
-document.body.style.overflow=
-"";
-
-}
-
 
 function renderComicPage(){
 
-const image=
-document.getElementById(
-"comic-modal-image"
-);
+const image=document.getElementById("comic-modal-image");
+const preview=document.getElementById("comic-preview-image");
+const counter=document.getElementById("comic-modal-counter");
+const leftArrow=document.getElementById("comic-left-arrow");
+const rightArrow=document.getElementById("comic-right-arrow");
+const leftHit=document.getElementById("comic-left-hit");
+const rightHit=document.getElementById("comic-right-hit");
 
-const preview=
-document.getElementById(
-"comic-preview-image"
-);
-
-const counter=
-document.getElementById(
-"comic-modal-counter"
-);
-
-const leftArrow=
-document.getElementById(
-"comic-left-arrow"
-);
-
-const rightArrow=
-document.getElementById(
-"comic-right-arrow"
-);
-
-const leftHit=
-document.getElementById(
-"comic-left-hit"
-);
-
-const rightHit=
-document.getElementById(
-"comic-right-hit"
-);
-
-
-const source=
-COMIC_PAGES[
-currentComicPage
-];
-
+const source=COMIC_PAGES[currentComicPage];
 
 if(image){
-
-image.src=
-source;
-
-image.alt=
-currentComicPage===0
+image.src=source;
+image.alt=currentComicPage===0
 ?"F4SN comic cover"
 :"F4SN comic page "+currentComicPage;
-
 }
-
 
 if(preview){
-
-preview.src=
-source;
-
-preview.alt=
-currentComicPage===0
-?"F4SN Comics Week 3 cover"
+preview.src=source;
+preview.alt=currentComicPage===0
+?"F4SN Comics Issue 1 cover"
 :"F4SN comic page "+currentComicPage;
-
 }
-
 
 if(counter){
-
 counter.textContent=
-"PAGE "+
-(currentComicPage+1)+
-" OF "+
-COMIC_PAGES.length;
-
+"PAGE "+(currentComicPage+1)+" OF "+COMIC_PAGES.length;
 }
 
+const atStart=currentComicPage===0;
+const atEnd=currentComicPage===COMIC_PAGES.length-1;
 
-const atStart=
-currentComicPage===0;
-
-const atEnd=
-currentComicPage===
-COMIC_PAGES.length-1;
-
-
-if(leftArrow){
-
-leftArrow.disabled=
-atStart;
-
+if(leftArrow)leftArrow.disabled=atStart;
+if(rightArrow)rightArrow.disabled=atEnd;
+if(leftHit)leftHit.disabled=atStart;
+if(rightHit)rightHit.disabled=atEnd;
 }
 
-
-if(rightArrow){
-
-rightArrow.disabled=
-atEnd;
-
-}
-
-
-if(leftHit){
-
-leftHit.disabled=
-atStart;
-
-}
-
-
-if(rightHit){
-
-rightHit.disabled=
-atEnd;
-
-}
-
-}
- function previousComicPage(){
-
-if(currentComicPage<=0){
-
-return;
-
-}
-
-
+function previousComicPage(){
+if(currentComicPage<=0)return;
 currentComicPage--;
-
 renderComicPage();
-
 }
-
 
 function nextComicPage(){
-
-if(
-currentComicPage>=
-COMIC_PAGES.length-1
-){
-
-return;
-
-}
-
-
+if(currentComicPage>=COMIC_PAGES.length-1)return;
 currentComicPage++;
-
 renderComicPage();
-
 }
 
+document.addEventListener("keydown",function(event){
 
-document.addEventListener(
-"keydown",
-function(event){
+const modal=document.getElementById("comic-modal");
 
-const modal=
-document.getElementById(
-"comic-modal"
-);
-
-
-if(
-!modal||
-!modal.classList.contains(
-"open"
-)
-){
-
-return;
-
-}
-
+if(!modal||!modal.classList.contains("open"))return;
 
 if(event.key==="Escape"){
-
 closeComicReader();
-
 return;
-
 }
-
 
 if(event.key==="ArrowLeft"){
-
 previousComicPage();
-
 return;
-
 }
-
 
 if(event.key==="ArrowRight"){
-
 nextComicPage();
-
 }
+});
 
-}
-);
+document.addEventListener("click",function(event){
 
-
-document.addEventListener(
-"click",
-function(event){
-
-const modal=
-document.getElementById(
-"comic-modal"
-);
-
+const modal=document.getElementById("comic-modal");
 
 if(
 modal&&
 modal.classList.contains("open")&&
 event.target===modal
 ){
-
 closeComicReader();
-
 }
-
-}
-);
-
+});
 
 /**************************************************************
  HELPERS
 **************************************************************/
-
 
 function safeText(value){
 
@@ -2947,143 +1846,71 @@ return String(value??"")
 .replace(/>/g,"&gt;")
 .replace(/"/g,"&quot;")
 .replace(/'/g,"&#039;");
-
 }
-
 
 function managerKey(name){
-
-return String(name||"")
-.trim()
-.toLowerCase();
-
+return String(name||"").trim().toLowerCase();
 }
-
 
 function displayTeamName(name){
-
-return DISPLAY_NAMES[
-managerKey(name)
-]||String(name||"");
-
+return DISPLAY_NAMES[managerKey(name)]||String(name||"");
 }
-
 
 function teamColor(name){
-
-return TEAM_COLORS[
-managerKey(name)
-]||"#18a8ff";
-
+return TEAM_COLORS[managerKey(name)]||"#18a8ff";
 }
-
 
 function points(value){
-
-const number=
-Number(value||0);
-
+const number=Number(value||0);
 return number.toFixed(2);
-
 }
-
 
 function orderManagers(teams){
 
 return [...teams].sort(function(a,b){
 
-const aIndex=
-MANAGER_ORDER.indexOf(
-managerKey(a.name)
-);
+const aIndex=MANAGER_ORDER.indexOf(managerKey(a.name));
+const bIndex=MANAGER_ORDER.indexOf(managerKey(b.name));
 
-const bIndex=
-MANAGER_ORDER.indexOf(
-managerKey(b.name)
-);
-
-const safeA=
-aIndex===-1
-?999
-:aIndex;
-
-const safeB=
-bIndex===-1
-?999
-:bIndex;
+const safeA=aIndex===-1?999:aIndex;
+const safeB=bIndex===-1?999:bIndex;
 
 return safeA-safeB;
-
 });
-
 }
-
 
 /**************************************************************
  NFL.COM PLAYER SLUG
 **************************************************************/
-
 
 function nflPlayerSlug(name){
 
 let value=
 String(name||"")
 .normalize("NFD")
-.replace(
-/[\u0300-\u036f]/g,
-""
-)
+.replace(/[\u0300-\u036f]/g,"")
 .trim();
 
-
-/*
- NFL.com writes consecutive initials separately.
-
- Examples:
-
- DK Metcalf -> d-k-metcalf
- TJ Hockenson -> t-j-hockenson
-
- Names already containing punctuation such as
- T.J. Hockenson naturally normalize the same way.
-*/
-
-value=
-value.replace(
+value=value.replace(
 /^([A-Za-z])([A-Za-z])(?=\s)/,
 "$1-$2"
 );
 
-
 return value
 .toLowerCase()
-.replace(
-/[^a-z0-9]+/g,
-"-"
-)
-.replace(
-/^-+|-+$/g,
-""
-);
-
+.replace(/[^a-z0-9]+/g,"-")
+.replace(/^-+|-+$/g,"");
 }
-
 
 /**************************************************************
  NFL.COM TEAM SLUG
 **************************************************************/
 
-
 function nflTeamSlug(team){
 
-const key=
-String(team||"")
-.trim()
-.toUpperCase();
-
+const key=String(team||"").trim().toUpperCase();
 
 const slugs={
-
 ARI:"cardinals",
 ATL:"falcons",
 BAL:"ravens",
@@ -3098,17 +1925,13 @@ DET:"lions",
 GB:"packers",
 HOU:"texans",
 IND:"colts",
-
 JAC:"jaguars",
 JAX:"jaguars",
-
 KC:"chiefs",
 LV:"raiders",
 LAC:"chargers",
-
 LA:"rams",
 LAR:"rams",
-
 MIA:"dolphins",
 MIN:"vikings",
 NE:"patriots",
@@ -3121,45 +1944,22 @@ SEA:"seahawks",
 SF:"49ers",
 TB:"buccaneers",
 TEN:"titans",
-
 WAS:"commanders",
 WSH:"commanders"
-
 };
 
-
 return slugs[key]||"";
-
 }
-
 
 /**************************************************************
  NFL.COM GAME URL
 **************************************************************/
 
+function nflGameUrl(game,week){
 
-function nflGameUrl(
-game,
-week
-){
-
-const away=
-nflTeamSlug(
-game.awayTeam
-);
-
-const home=
-nflTeamSlug(
-game.homeTeam
-);
-
-const weekNumber=
-Number(
-week||
-game.week||
-0
-);
-
+const away=nflTeamSlug(game.awayTeam);
+const home=nflTeamSlug(game.homeTeam);
+const weekNumber=Number(week||game.week||0);
 
 if(
 !away||
@@ -3167,11 +1967,8 @@ if(
 !Number.isFinite(weekNumber)||
 weekNumber<1
 ){
-
 return "";
-
 }
-
 
 return (
 "https://www.nfl.com/games/"+
@@ -3181,53 +1978,35 @@ home+
 "-2026-reg-"+
 weekNumber
 );
-
 }
-
 
 /**************************************************************
  LOAD FANTASY DATA
 **************************************************************/
 
-
 async function loadFantasyData(){
 
 try{
 
-const response=
-await fetch(
+const response=await fetch(
 DATA_URL,
-{
-cache:"no-store"
-}
+{cache:"no-store"}
 );
-
 
 if(!response.ok){
-
-throw new Error(
-"Data request failed."
-);
-
+throw new Error("Data request failed.");
 }
 
-
-const data=
-await response.json();
-
+const data=await response.json();
 
 if(!data.success){
-
 throw new Error(
 data.error||
 "League data could not be loaded."
 );
-
 }
 
-
 renderWebsite(data);
-
 
 }catch(error){
 
@@ -3237,122 +2016,65 @@ error
 );
 
 showDataError();
-
 }
-
 }
-
 
 /**************************************************************
  RENDER WEBSITE
 **************************************************************/
 
-
 function renderWebsite(data){
 
-const orderedTeams=
-orderManagers(
-data.teams||[]
-);
-
+const orderedTeams=orderManagers(data.teams||[]);
 
 document
 .getElementById("last-updated")
 .textContent=
-"UPDATED "+
-String(data.updated||"");
-
+"UPDATED "+String(data.updated||"");
 
 document
 .getElementById("scoreboard-title")
 .textContent=
-"Week "+
-data.week+
-" Scoreboard";
-
+"Week "+data.week+" Scoreboard";
 
 document
 .getElementById("lineup-title")
 .textContent=
-"Week "+
-data.week+
-" Lineups";
+"Week "+data.week+" Lineups";
 
-
-renderNFLScoreboard(
-data.nflScoreboard||{}
-);
-
-
-renderScoreboard(
-orderedTeams
-);
-
-
-renderStandings(
-data.standings||[],
-data.weekColumns||[]
-);
-
-
-renderLineups(
-orderedTeams
-);
-
+renderNFLScoreboard(data.nflScoreboard||{});
+renderScoreboard(orderedTeams);
+renderStandings(data.standings||[],data.weekColumns||[]);
+renderLineups(orderedTeams);
 }
-
 
 /**************************************************************
  NFL SCOREBOARD
 **************************************************************/
 
-
 function renderNFLScoreboard(scoreboard){
 
-const container=
-document.getElementById(
-"nfl-games"
-);
+const container=document.getElementById("nfl-games");
+const weekLabel=document.getElementById("nfl-week-label");
 
-const weekLabel=
-document.getElementById(
-"nfl-week-label"
-);
-
-
-if(
-!container||
-!weekLabel
-){
-
-return;
-
-}
-
+if(!container||!weekLabel)return;
 
 const week=
 scoreboard&&scoreboard.week
 ?scoreboard.week
 :"";
 
-
 weekLabel.textContent=
 week
 ?"NFL WEEK "+week
 :"NFL";
 
-
 const games=
-scoreboard&&
-Array.isArray(scoreboard.games)
+scoreboard&&Array.isArray(scoreboard.games)
 ?scoreboard.games
 :[];
 
-
-if(
-!scoreboard.success||
-!games.length
-){
+if(!scoreboard.success||!games.length){
 
 container.innerHTML=`
 <div class="nfl-ticker-message">
@@ -3361,123 +2083,57 @@ NFL scoreboard temporarily unavailable.
 `;
 
 return;
-
 }
-
 
 container.innerHTML=
 games.map(function(game){
 
-const hasScore=
-game.hasScore===true;
+const hasScore=game.hasScore===true;
+const completed=game.completed===true;
+const live=game.live===true;
 
-const completed=
-game.completed===true;
-
-const live=
-game.live===true;
-
-const awayScore=
-hasScore
-?safeText(game.awayScore)
-:"";
-
-const homeScore=
-hasScore
-?safeText(game.homeScore)
-:"";
-
+const awayScore=hasScore?safeText(game.awayScore):"";
+const homeScore=hasScore?safeText(game.homeScore):"";
 
 let meta="";
 
-
-const statusText=
-String(
-game.statusText||""
-).trim();
-
-const statusIsDate=
-/^\d{1,2}\/\d{1,2}$/.test(
-statusText
-);
-
+const statusText=String(game.statusText||"").trim();
+const statusIsDate=/^\d{1,2}\/\d{1,2}$/.test(statusText);
 
 if(completed){
 
-meta=
-game.overtime
+meta=game.overtime
 ?"FINAL/OT"
 :"FINAL";
 
-}
+}else if(live){
 
-
-else if(live){
-
-meta=
-statusText&&!statusIsDate
+meta=statusText&&!statusIsDate
 ?safeText(statusText)
 :"LIVE";
 
-}
+}else if(hasScore){
 
-
-else if(hasScore){
-
-meta=
-game.overtime
+meta=game.overtime
 ?"SCORE • OT"
 :"SCORE";
 
-}
-
-
-else{
+}else{
 
 meta="SCHEDULED";
 
-
-const gameDate=
-formatNFLDate(
-game.date
-);
-
+const gameDate=formatNFLDate(game.date);
 
 if(gameDate){
-
-meta+=
-" • "+
-gameDate;
-
+meta+=" • "+gameDate;
 }
-
 
 if(game.time){
-
-meta+=
-" • "+
-safeText(
-game.time
-);
-
+meta+=" • "+safeText(game.time);
+}
 }
 
-}
-
-
-/*
- NFL.COM GAME LINK
-
- The scoreboard data source remains exactly the same.
- Only the click destination is NFL.com.
-*/
-
-const gameUrl=
-nflGameUrl(
-game,
-week
-);
-
+const gameUrl=nflGameUrl(game,week);
 
 const openTag=
 gameUrl
@@ -3493,41 +2149,20 @@ aria-label="Open ${safeText(game.awayTeam)} at ${safeText(game.homeTeam)} on NFL
 <div class="nfl-game">
 `;
 
-
-const closeTag=
-gameUrl
-?"</a>"
-:"</div>";
-
+const closeTag=gameUrl?"</a>":"</div>";
 
 return `
 ${openTag}
 
 <div class="nfl-team-row">
-
-<span>
-${safeText(game.awayTeam)}
-</span>
-
-<span class="nfl-team-score">
-${awayScore}
-</span>
-
+<span>${safeText(game.awayTeam)}</span>
+<span class="nfl-team-score">${awayScore}</span>
 </div>
-
 
 <div class="nfl-team-row">
-
-<span>
-${safeText(game.homeTeam)}
-</span>
-
-<span class="nfl-team-score">
-${homeScore}
-</span>
-
+<span>${safeText(game.homeTeam)}</span>
+<span class="nfl-team-score">${homeScore}</span>
 </div>
-
 
 <div class="nfl-game-meta ${hasScore?"has-score":""}">
 ${meta}
@@ -3537,57 +2172,36 @@ ${closeTag}
 `;
 
 }).join("");
-
 }
-
 
 /**************************************************************
  FORMAT NFL DATE
 **************************************************************/
 
-
 function formatNFLDate(value){
 
-if(!value){
+if(!value)return "";
 
-return "";
-
-}
-
-
-const parts=
-String(value)
-.split("-");
-
+const parts=String(value).split("-");
 
 if(parts.length!==3){
-
 return safeText(value);
-
 }
-
 
 return (
 String(parts[1]).padStart(2,"0")+
 "/"+
 String(parts[2]).padStart(2,"0")
 );
-
 }
-
 
 /**************************************************************
  FAMILY SCOREBOARD
 **************************************************************/
 
-
 function renderScoreboard(teams){
 
-const container=
-document.getElementById(
-"scoreboard-data"
-);
-
+const container=document.getElementById("scoreboard-data");
 
 if(!teams.length){
 
@@ -3595,21 +2209,14 @@ container.innerHTML=
 '<div class="loading">No scores available.</div>';
 
 return;
-
 }
 
-
 container.className="";
-
 
 container.innerHTML=
 teams.map(function(team){
 
-const color=
-teamColor(
-team.name
-);
-
+const color=teamColor(team.name);
 
 return `
 <div class="score-row">
@@ -3633,25 +2240,15 @@ ${points(team.currentWeek)}
 `;
 
 }).join("");
-
 }
-
 
 /**************************************************************
  DYNAMIC STANDINGS
 **************************************************************/
 
+function renderStandings(standings,weekColumns){
 
-function renderStandings(
-standings,
-weekColumns
-){
-
-const container=
-document.getElementById(
-"standings-data"
-);
-
+const container=document.getElementById("standings-data");
 
 if(!standings.length){
 
@@ -3659,145 +2256,87 @@ container.innerHTML=
 '<div class="loading">No standings available.</div>';
 
 return;
-
 }
-
 
 const weeks=
 Array.isArray(weekColumns)
 ?[...weekColumns].sort(function(a,b){
-
 return Number(a.week)-Number(b.week);
-
 })
 :[];
-
 
 if(!weeks.length){
 
 const foundWeeks={};
 
-
 standings.forEach(function(team){
 
-const scores=
-team.weeklyScores||{};
+const scores=team.weeklyScores||{};
 
+Object.keys(scores).forEach(function(week){
 
-Object.keys(scores)
-.forEach(function(week){
-
-const weekNumber=
-Number(week);
-
+const weekNumber=Number(week);
 
 if(Number.isFinite(weekNumber)){
-
 foundWeeks[weekNumber]=true;
-
 }
-
 });
-
 });
-
 
 Object.keys(foundWeeks)
 .sort(function(a,b){
-
 return Number(a)-Number(b);
-
 })
 .forEach(function(week){
 
 weeks.push({
-
 week:Number(week),
-
 label:"Week "+week
-
 });
-
 });
-
 }
 
-
 let html=`
-
 <table class="standings-table">
 
 <thead>
-
 <tr>
-
-<th>
-Team
-</th>
+<th>Team</th>
 
 ${weeks.map(function(info){
-
 return `
 <th>
-${safeText(
-info.label||
-("Week "+info.week)
-)}
+${safeText(info.label||("Week "+info.week))}
 </th>
 `;
-
 }).join("")}
 
-<th>
-Season
-</th>
-
+<th>Season</th>
 </tr>
-
 </thead>
 
 <tbody>
 `;
 
+standings.forEach(function(team,index){
 
-standings.forEach(
-function(team,index){
-
-const place=
-index+1;
-
-const weeklyScores=
-team.weeklyScores||{};
-
+const place=index+1;
+const weeklyScores=team.weeklyScores||{};
 
 html+=`
 <tr class="${place===1?"first-place":""}">
 
 <td>
-
-<span class="rank">
-${place}
-</span>
-
-<strong>
-${safeText(
-displayTeamName(team.name)
-)}
-</strong>
-
+<span class="rank">${place}</span>
+<strong>${safeText(displayTeamName(team.name))}</strong>
 </td>
 
 ${weeks.map(function(info){
 
-const value=
-weeklyScores[
-String(info.week)
-]??0;
+const value=weeklyScores[String(info.week)]??0;
 
 return `
-<td>
-${points(value)}
-</td>
+<td>${points(value)}</td>
 `;
 
 }).join("")}
@@ -3808,34 +2347,23 @@ ${points(team.seasonTotal)}
 
 </tr>
 `;
-
 });
-
 
 html+=`
 </tbody>
 </table>
 `;
 
-
-container.innerHTML=
-html;
-
+container.innerHTML=html;
 }
-
 
 /**************************************************************
  LINEUPS
 **************************************************************/
 
-
 function renderLineups(teams){
 
-const container=
-document.getElementById(
-"lineup-data"
-);
-
+const container=document.getElementById("lineup-data");
 
 if(!teams.length){
 
@@ -3843,63 +2371,33 @@ container.innerHTML=
 '<div class="loading">No lineups available.</div>';
 
 return;
-
 }
-
 
 container.innerHTML=
 teams.map(function(team){
 
-const color=
-teamColor(
-team.name
-);
-
+const color=teamColor(team.name);
 
 let players="";
 
+(team.lineup||[]).forEach(function(player){
 
-(team.lineup||[])
-.forEach(function(player){
-
-const nflTeam=
-String(
-player.nflTeam||""
-).trim();
-
-const statLine=
-String(
-player.statLine||""
-).trim();
-
+const nflTeam=String(player.nflTeam||"").trim();
+const statLine=String(player.statLine||"").trim();
 
 const isDefense=
-String(
-player.position||""
-)
-.toUpperCase()==="D/ST"||
-
-String(
-player.nflPosition||""
-)
-.toUpperCase()==="DEF";
-
+String(player.position||"").toUpperCase()==="D/ST"||
+String(player.nflPosition||"").toUpperCase()==="DEF";
 
 const playerSlug=
 isDefense
 ?""
-:nflPlayerSlug(
-player.player
-);
-
+:nflPlayerSlug(player.player);
 
 const playerUrl=
 playerSlug
-?"https://www.nfl.com/players/"+
-playerSlug+
-"/"
+?"https://www.nfl.com/players/"+playerSlug+"/"
 :"";
-
 
 const playerNameMarkup=
 playerUrl
@@ -3912,10 +2410,7 @@ aria-label="Open ${safeText(player.player)} on NFL.com">
 ${safeText(player.player)}
 </a>
 `
-:safeText(
-player.player
-);
-
+:safeText(player.player);
 
 const teamMarkup=
 nflTeam
@@ -3926,7 +2421,6 @@ nflTeam
 `
 :"";
 
-
 const statMarkup=
 statLine
 ?`
@@ -3935,7 +2429,6 @@ ${safeText(statLine)}
 </div>
 `
 :"";
-
 
 players+=`
 <div class="lineup-player">
@@ -3947,11 +2440,8 @@ ${safeText(player.position)}
 <div class="player-info">
 
 <div class="player-name">
-
 ${playerNameMarkup}
-
 ${teamMarkup}
-
 </div>
 
 ${statMarkup}
@@ -3970,9 +2460,7 @@ PTS
 
 </div>
 `;
-
 });
-
 
 return `
 <div class="lineup-card">
@@ -3981,9 +2469,7 @@ return `
 class="lineup-title"
 style="border-left-color:${color}">
 
-${safeText(
-displayTeamName(team.name)
-)}
+${safeText(displayTeamName(team.name))}
 
 </div>
 
@@ -3993,28 +2479,20 @@ ${players}
 `;
 
 }).join("");
-
 }
- /**************************************************************
+
+/**************************************************************
  DATA ERROR
 **************************************************************/
-
 
 function showDataError(){
 
 document
-.getElementById(
-"last-updated"
-)
+.getElementById("last-updated")
 .textContent=
 "LIVE DATA UNAVAILABLE";
 
-
-const nflContainer=
-document.getElementById(
-"nfl-games"
-);
-
+const nflContainer=document.getElementById("nfl-games");
 
 if(nflContainer){
 
@@ -4023,9 +2501,7 @@ nflContainer.innerHTML=`
 NFL scoreboard temporarily unavailable.
 </div>
 `;
-
 }
-
 
 [
 "scoreboard-data",
@@ -4034,9 +2510,7 @@ NFL scoreboard temporarily unavailable.
 ]
 .forEach(function(id){
 
-const element=
-document.getElementById(id);
-
+const element=document.getElementById(id);
 
 if(element){
 
@@ -4046,24 +2520,17 @@ Live league data is temporarily unavailable.
 Please refresh the page in a moment.
 </div>
 `;
-
 }
-
 });
-
 }
-
 
 /**************************************************************
  START WEBSITE
 **************************************************************/
 
-
 drawLeagueWheels();
 
-
 loadFantasyData();
-
 
 /*
  Refresh the live website data once per minute.
@@ -4083,9 +2550,7 @@ loadFantasyData,
 60000
 );
 
-
 </script>
-
 
 </body>
 </html>
