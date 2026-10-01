@@ -517,7 +517,7 @@ font-weight:bold;
 line-height:1.25
 }
 
-/* ESPN PLAYER LINKS */
+/* NFL.COM PLAYER LINKS */
 
 .player-name a{
 color:inherit;
@@ -848,162 +848,83 @@ cursor:default
 position:absolute;
 bottom:7px;
 left:50%;
-transform:translateX(-50%);
+ transform:translateX(-50%);
 z-index:4;
-color:#8d9bad;
+background:rgba(8,11,18,.82);
+border:1px solid #334155;
+border-radius:999px;
+padding:7px 12px;
+color:#9eacbd;
 font-size:10px;
 font-weight:900;
 letter-spacing:.8px;
 text-transform:uppercase;
-background:rgba(8,11,18,.76);
-padding:7px 11px;
-border-radius:999px;
 white-space:nowrap
-}
-
-.archive{
-margin-top:28px;
-border-top:1px solid var(--border);
-padding:22px 28px 28px
-}
-
-.archive summary{
-cursor:pointer;
-font-weight:900;
-color:#aeb9c6;
-letter-spacing:1px;
-text-transform:uppercase
-}
-
-.archive .video-wrap{
-margin-top:18px
-}
-
-.archive-note{
-color:#8290a3;
-font-size:12px;
-line-height:1.6;
-margin-top:12px
 }
 
 
 /* HALL OF SHAME */
 
 .shame-card{
-background:linear-gradient(135deg,#111827,#182437);
-border-radius:12px;
-border:1px solid var(--border);
-box-shadow:0 8px 25px rgba(0,0,0,.35);
+background:linear-gradient(145deg,#151b26,#0c1119);
+border:1px solid #303c4d;
+border-radius:14px;
+padding:34px;
 text-align:center;
-padding:40px 25px
+box-shadow:0 10px 30px rgba(0,0,0,.35)
 }
 
 .shame-icon{
-font-size:44px;
-margin-bottom:10px
+font-size:45px;
+margin-bottom:12px
 }
 
 .shame-card h3{
-font-size:24px;
-margin:5px 0 8px
+font-size:25px;
+margin:8px 0
 }
 
 .shame-card p{
-max-width:650px;
-margin:auto;
-color:#aeb9c6;
-line-height:1.7
+color:#9eacbd;
+max-width:620px;
+margin:10px auto 0;
+line-height:1.6
 }
 
 
-/* LOADING */
+/* WHEELS */
 
-.loading{
-padding:28px;
-text-align:center;
-color:#8290a3;
-background:var(--panel);
-border:1px solid var(--border);
-border-radius:12px
-}
-
-.error-message{
-padding:20px;
-background:rgba(255,75,75,.08);
-border:1px solid rgba(255,75,75,.35);
-border-radius:10px;
-color:#ff8b8b
-}
-
-
-/* FOOTER */
-
-footer{
-text-align:center;
-padding:34px 20px;
-background:#05070b;
-color:#687587;
-border-top:1px solid #182437;
-font-size:12px;
-letter-spacing:1px;
-text-transform:uppercase
-}
-
-footer strong{
-color:var(--yellow)
-}
-
-
-/* THE WHEELS */
-
-.wheel-grid{
+.wheels-grid{
 display:grid;
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:repeat(2,minmax(0,1fr));
 gap:22px
 }
 
 .wheel-card{
-background:linear-gradient(145deg,#111827,#0d1420);
+background:linear-gradient(145deg,#111827,#0b1018);
 border:1px solid var(--border);
 border-radius:14px;
-overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,.4)
+padding:24px;
+box-shadow:0 10px 30px rgba(0,0,0,.35);
+text-align:center
 }
 
-.wheel-head{
-text-align:center;
-padding:18px;
-border-bottom:3px solid var(--yellow)
+.wheel-card h3{
+margin:0 0 8px;
+font-size:23px
 }
 
-.wheel-head h3{
-margin:0;
-font-size:24px
-}
-
-.wheel-head p{
-margin:6px 0 0;
-color:#93a1b3;
-font-size:11px;
-font-weight:900;
-letter-spacing:1px;
-text-transform:uppercase
-}
-
-.loser-wheel .wheel-head{
-border-bottom-color:var(--red)
-}
-
-.wheel-stage{
-padding:22px 14px 8px;
-display:flex;
-justify-content:center
+.wheel-card p{
+color:#9eacbd;
+line-height:1.5;
+margin:0 0 20px
 }
 
 .wheel-wrap{
+position:relative;
 width:min(100%,430px);
 aspect-ratio:1;
-position:relative
+margin:0 auto 20px
 }
 
 .wheel-canvas{
@@ -1011,132 +932,110 @@ display:block;
 width:100%;
 height:100%;
 border-radius:50%;
-filter:drop-shadow(0 8px 14px rgba(0,0,0,.5))
+filter:drop-shadow(0 12px 25px rgba(0,0,0,.5))
 }
 
 .wheel-pointer{
 position:absolute;
-z-index:5;
 left:50%;
-top:-2px;
+top:-3px;
 transform:translateX(-50%);
 width:0;
 height:0;
-border-left:18px solid transparent;
-border-right:18px solid transparent;
-border-top:34px solid var(--yellow);
-filter:drop-shadow(0 3px 3px rgba(0,0,0,.5))
+border-left:17px solid transparent;
+border-right:17px solid transparent;
+border-top:34px solid white;
+filter:drop-shadow(0 4px 5px rgba(0,0,0,.55));
+z-index:2
 }
 
-.loser-wheel .wheel-pointer{
-border-top-color:var(--red)
-}
-
-.wheel-hub{
-position:absolute;
-z-index:4;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%);
-width:72px;
-height:72px;
-border-radius:50%;
-background:#080b12;
-border:5px solid var(--yellow);
-display:flex;
-align-items:center;
-justify-content:center;
-color:var(--yellow);
-font-weight:900;
-pointer-events:none
-}
-
-.loser-wheel .wheel-hub{
-border-color:var(--red);
-color:var(--red)
-}
-
-.wheel-controls{
-text-align:center;
-padding:12px 20px 22px
-}
-
-.spin-btn{
-border:0;
+.wheel-spin{
+border:1px solid var(--blue);
+background:#10263a;
+color:white;
 border-radius:9px;
-background:var(--yellow);
-color:#111;
-font-size:16px;
+padding:13px 25px;
+font-size:14px;
 font-weight:900;
-padding:14px 25px;
+letter-spacing:.6px;
 cursor:pointer;
-box-shadow:0 5px 0 #a16207
+text-transform:uppercase
 }
 
-.spin-btn:disabled{
-opacity:.55;
+.wheel-spin:hover{
+background:#173a58
+}
+
+.wheel-spin:disabled{
+opacity:.5;
 cursor:not-allowed
 }
 
-.loser-wheel .spin-btn{
-background:var(--red);
-color:#fff;
-box-shadow:0 5px 0 #991b1b
-}
-
 .wheel-result{
-min-height:92px;
-margin-top:20px;
-padding:15px;
-border:1px solid var(--border);
+margin-top:18px;
+min-height:82px;
+background:#080c13;
+border:1px solid #273447;
 border-radius:10px;
-background:#080d15;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center
+padding:16px
 }
 
 .wheel-result-label{
-color:#8290a3;
+color:#8391a4;
 font-size:10px;
 font-weight:900;
-letter-spacing:1.5px;
-text-transform:uppercase;
-margin-bottom:6px
+letter-spacing:1px;
+text-transform:uppercase
 }
 
 .wheel-result-value{
 color:var(--yellow);
 font-size:19px;
 font-weight:900;
-line-height:1.3
-}
-
-.loser-wheel .wheel-result-value{
-color:var(--red)
+margin-top:6px
 }
 
 .wheel-result-note{
-color:#b7c1ce;
+color:#c1cad6;
 font-size:12px;
-line-height:1.45;
-margin-top:7px
+line-height:1.5;
+margin-top:6px
 }
 
-.wheel-note{
-color:#93a1b3;
+
+/* GENERAL */
+
+.loading{
+padding:25px;
 text-align:center;
-line-height:1.55;
-margin:-8px 0 24px
+color:#8d9bad
 }
 
+.error-message{
+padding:25px;
+text-align:center;
+color:#ff7777
+}
+
+footer{
+border-top:1px solid #263244;
+background:#05070b;
+color:#718096;
+text-align:center;
+padding:25px 15px;
+font-size:11px;
+letter-spacing:1px;
+line-height:1.8
+}
+
+footer strong{
+color:var(--yellow)
+}
+
+
+/* RESPONSIVE */
 
 @media(max-width:900px){
-
-.wheel-grid{
-grid-template-columns:1fr
-}
 
 .teams{
 grid-template-columns:repeat(2,1fr)
@@ -1146,51 +1045,33 @@ grid-template-columns:repeat(2,1fr)
 grid-template-columns:1fr
 }
 
+.wheels-grid{
+grid-template-columns:1fr
+}
+
+.nfl-strip-label{
+flex-basis:105px
+}
+
+}
+
+
+@media(max-width:650px){
+
+.network-bar{
+flex-wrap:wrap;
+gap:7px 14px;
+font-size:10px
+}
+
 nav{
-white-space:nowrap;
-overflow-x:auto;
-padding:12px 8px
+padding:11px 6px
 }
 
 nav a{
 display:inline-block;
-margin:4px 8px
-}
-
-}
-
-
-@media(max-width:600px){
-
-.nfl-strip{
-min-height:80px
-}
-
-.nfl-strip-label{
-flex-basis:88px;
-padding:10px
-}
-
-.nfl-strip-label strong{
-font-size:12px
-}
-
-.nfl-strip-label span{
-font-size:9px
-}
-
-.nfl-game{
-flex-basis:158px;
-min-height:78px;
-padding:9px 12px
-}
-
-.nfl-team-row{
-font-size:13px
-}
-
-.nfl-team-score{
-font-size:15px
+margin:5px 6px;
+font-size:11px
 }
 
 main{
@@ -1198,38 +1079,32 @@ width:94%;
 padding-top:28px
 }
 
-.network-bar{
-flex-direction:column;
-gap:4px
+.section-title{
+font-size:23px
 }
 
 .teams{
 grid-template-columns:1fr
 }
 
-.section-title{
-font-size:23px
-}
-
 .score-row{
 grid-template-columns:1fr 100px;
-padding:16px
+padding:15px
 }
 
-.score{
-font-size:21px
+.standings-table{
+font-size:12px
 }
 
 .standings-table th,
 .standings-table td{
-padding:13px 8px;
-font-size:12px
+padding:12px 8px
 }
 
 .rank{
-margin-right:5px;
-width:24px;
-height:24px
+width:23px;
+height:23px;
+margin-right:5px
 }
 
 .lineup-player{
@@ -1239,50 +1114,65 @@ padding:11px 10px
 }
 
 .player-name{
-font-size:13px
-}
-
-.player-team{
-font-size:9px;
-margin-left:3px
-}
-
-.player-stat-line{
-font-size:9px;
-line-height:1.35
-}
-
-.player-points{
 font-size:12px
 }
 
-.comics-launch,
-.cancelled-banner,
-.archive{
-padding:20px
+.player-team{
+font-size:9px
 }
 
-.comics-launch h3{
-font-size:26px
+.player-stat-line{
+font-size:9px
 }
 
-.comic-reader{
-max-width:310px
+.player-points{
+font-size:13px
 }
 
-.comic-modal{
+.nfl-strip{
+min-height:78px
+}
+
+.nfl-strip-label{
+flex-basis:84px;
 padding:8px
 }
 
+.nfl-strip-label strong{
+font-size:12px
+}
+
+.nfl-strip-label span{
+font-size:8px
+}
+
+.nfl-game{
+flex-basis:155px;
+min-height:76px;
+padding:8px 11px
+}
+
+.nfl-team-row{
+font-size:12px
+}
+
+.nfl-team-score{
+font-size:14px
+}
+
+.comic-modal{
+padding:6px
+}
+
 .comic-modal-image{
-max-width:96vw;
-max-height:86vh
+max-width:98vw;
+max-height:90vh
 }
 
 .comic-side-arrow{
 width:38px;
 height:54px;
-font-size:25px
+font-size:24px
 }
 
 .comic-side-arrow.left{
@@ -1475,7 +1365,7 @@ Your playoff hopes are in critical condition.
 <h2
 class="section-title"
 id="scoreboard-title">
-Week 3 Scoreboard
+Week 4 Scoreboard
 </h2>
 
 
@@ -1519,7 +1409,7 @@ The race for family bragging rights and the season championship.
 <div id="standings-data">
 
 <div class="loading">
-Loading season standings...
+Loading standings...
 </div>
 
 </div>
@@ -1532,11 +1422,11 @@ Loading season standings...
 <h2
 class="section-title"
 id="lineup-title">
-Week 3 Lineups
+Week 4 Lineups
 </h2>
 
 <p class="section-subtitle">
-The decisions that will either look brilliant or be denied later.
+Click an NFL player’s name to open their NFL.com player profile.
 </p>
 
 
@@ -1559,31 +1449,23 @@ Loading lineups...
 The Wheels
 </h2>
 
-<p class="wheel-note">
-Weekly glory or weekly humiliation. Every wedge has equal odds.
-Once the wheel starts, The Oracle accepts no complaints.
+<p class="section-subtitle">
+Victory has rewards. Defeat has consequences. The Oracle accepts no appeals.
 </p>
 
 
-<div class="wheel-grid">
+<div class="wheels-grid">
 
 
 <div class="wheel-card">
 
-<div class="wheel-head">
-
 <h3>
-🏆 WINNER'S WHEEL
+🏆 Winner’s Wheel
 </h3>
 
 <p>
-Victory has its rewards
+Weekly champion spins for glory, prizes, and possibly an unreasonable amount of power.
 </p>
-
-</div>
-
-
-<div class="wheel-stage">
 
 <div class="wheel-wrap">
 
@@ -1596,23 +1478,14 @@ width="700"
 height="700">
 </canvas>
 
-<div class="wheel-hub">
-F4
 </div>
-
-</div>
-
-</div>
-
-
-<div class="wheel-controls">
 
 <button
 id="winner-spin"
-class="spin-btn"
+class="wheel-spin"
 type="button"
 onclick="spinLeagueWheel('winner')">
-SPIN TO WIN
+SPIN WINNER’S WHEEL
 </button>
 
 <div
@@ -1624,32 +1497,23 @@ THE ORACLE AWAITS
 </div>
 
 <div class="wheel-result-value">
-Spin the wheel.
+WHO WILL CLAIM THE PRIZE?
 </div>
 
 </div>
 
 </div>
 
-</div>
 
-
-<div class="wheel-card loser-wheel">
-
-<div class="wheel-head">
+<div class="wheel-card">
 
 <h3>
-💀 LOSER'S WHEEL
+💀 Loser’s Wheel
 </h3>
 
 <p>
-Defeat has consequences
+Last place spins for punishment. League management recommends losing with dignity. Nobody listens.
 </p>
-
-</div>
-
-
-<div class="wheel-stage">
 
 <div class="wheel-wrap">
 
@@ -1662,23 +1526,14 @@ width="700"
 height="700">
 </canvas>
 
-<div class="wheel-hub">
-RIP
 </div>
-
-</div>
-
-</div>
-
-
-<div class="wheel-controls">
 
 <button
 id="loser-spin"
-class="spin-btn"
+class="wheel-spin"
 type="button"
 onclick="spinLeagueWheel('loser')">
-FACE YOUR FATE
+SPIN LOSER’S WHEEL
 </button>
 
 <div
@@ -1686,13 +1541,11 @@ id="loser-result"
 class="wheel-result">
 
 <div class="wheel-result-label">
-JUDGMENT AWAITS
+YOUR FATE AWAITS
 </div>
 
 <div class="wheel-result-value">
-Spin if you dare.
-</div>
-
+THE WHEEL SHOWS NO MERCY
 </div>
 
 </div>
@@ -1711,10 +1564,6 @@ Spin if you dare.
 F4SN Comics
 </h2>
 
-<p class="section-subtitle">
-The network has pivoted. Mostly because pictures were cheaper.
-</p>
-
 
 <div class="comics-shell">
 
@@ -1722,48 +1571,29 @@ The network has pivoted. Mostly because pictures were cheaper.
 <div class="cancelled-banner">
 
 <div class="cancelled-stamp">
-F4SN TV — CANCELLED
+CANCELLED
 </div>
 
-
 <h3>
-An Official Statement From Network Management
+The F4SN Animated Series Has Been Sent to the Shadow Realm
 </h3>
 
-
 <p>
-Following one historic episode, F4SN TV has ceased production due to
-extreme budget constraints, questionable financial decisions, and the
-discovery that television apparently requires more than YouTube and blind confidence.
+After one glorious experiment in questionable television,
+league management has officially cancelled the F4SN animated series.
 </p>
 
+<p>
+The production department has been reassigned to a far more dangerous format:
+<strong>weekly comic books.</strong>
+</p>
 
 <ul>
-
-<li>
-Ratings were described as “information we have chosen not to make public.”
-</li>
-
-<li>
-The production department has been dissolved and the studio lights returned.
-</li>
-
-<li>
-Network executives deny ever approving the project.
-</li>
-
-<li>
-F4SN CFO [NAME REDACTED], when asked about the budget, responded: “Define ‘money.’”
-</li>
-
+<li>More trash talk.</li>
+<li>More ridiculous storylines.</li>
+<li>More opportunities for public humiliation.</li>
+<li>Far fewer rendering headaches.</li>
 </ul>
-
-
-<p>
-After an exhaustive search for a replacement medium requiring fewer cameras,
-microphones, animators, actors, editors, production assistants, lawyers and
-functioning financial controls, the network is proud to announce its latest pivot.
-</p>
 
 </div>
 
@@ -1771,171 +1601,53 @@ functioning financial controls, the network is proud to announce its latest pivo
 <div class="comics-launch">
 
 <div class="eyebrow">
-F4SN PRESENTS • ISSUE #1 • WEEK 3
+THE NEW ERA OF F4SN
 </div>
 
 <h3>
-MACK AROUND &amp; FIND OUT
+F4SN COMICS
 </h3>
 
 <div class="comics-tagline">
-F4SN COMICS — Because pictures were cheaper.
+Fantasy football was a mistake. We made it a comic book.
 </div>
 
 
 <div class="comic-reader">
 
-
 <div
 class="comic-preview"
-onclick="openComicReader()"
+onclick="openComicReader(0)"
 role="button"
 tabindex="0"
-onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openComicReader();}">
-
+onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openComicReader(0);}">
 
 <img
-src="comics/issue-1/cover.png"
-alt="The Fant4sy Four F4SN Comics Issue 1 cover">
-
-
-<div class="comic-preview-note">
-Issue #1 • Week 3 • 8 story pages
-</div>
+id="comic-preview-image"
+src="F4SN-Comic-Week3-01.png"
+alt="F4SN Comics Week 3 cover">
 
 </div>
 
+<p class="comic-preview-note">
+Click the comic to open the full-screen reader.
+</p>
 
 <button
 class="comic-open-button"
 type="button"
-onclick="openComicReader()">
-READ ISSUE #1
+onclick="openComicReader(0)">
+OPEN WEEK 3 COMIC
 </button>
 
-
-</div>
-
 </div>
 
 
-<details class="archive">
-
-<summary>
-F4SN Archives • The TV Experiment We Would Prefer You Forget
-</summary>
-
-
-<div class="video-wrap">
-
-<iframe
-src="https://www.youtube-nocookie.com/embed/f4O8AezuBrQ"
-title="F4SN SportsCenter - The Pilot"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-allowfullscreen>
-</iframe>
-
 </div>
-
-
-<div class="archive-note">
-
-<strong>
-F4SN SportsCenter — The Pilot.
-</strong>
-
-One episode. One dream. Several accounting questions.
-Preserved here strictly for historical and evidentiary purposes.
-
-</div>
-
-</details>
-
 
 </div>
 
 </section>
-
-<!-- FULL SCREEN COMIC READER -->
-
-<div
-id="comic-modal"
-class="comic-modal"
-aria-hidden="true">
-
-
-<div class="comic-modal-inner">
-
-
-<button
-class="comic-close"
-type="button"
-onclick="closeComicReader()"
-aria-label="Close comic">
-×
-</button>
-
-
-<div
-id="comic-modal-counter"
-class="comic-modal-counter">
-COVER • 1 / 9
-</div>
-
-
-<img
-id="comic-modal-image"
-class="comic-modal-image"
-src="comics/issue-1/cover.png"
-alt="The Fant4sy Four F4SN Comics Issue 1 cover">
-
-
-<button
-id="comic-hit-left"
-class="comic-hit comic-hit-left"
-type="button"
-onclick="changeComicPage(-1)"
-aria-label="Previous page">
-</button>
-
-
-<button
-id="comic-hit-right"
-class="comic-hit comic-hit-right"
-type="button"
-onclick="changeComicPage(1)"
-aria-label="Next page">
-</button>
-
-
-<button
-id="comic-side-left"
-class="comic-side-arrow left"
-type="button"
-onclick="changeComicPage(-1)"
-aria-label="Previous page">
-‹
-</button>
-
-
-<button
-id="comic-side-right"
-class="comic-side-arrow right"
-type="button"
-onclick="changeComicPage(1)"
-aria-label="Next page">
-›
-</button>
-
-
-<div class="comic-modal-hint">
-Click left/right side • Arrow keys turn pages • Esc closes
-</div>
-
-
-</div>
-
-</div>
 
 
 <section id="hall-of-shame">
@@ -1953,14 +1665,14 @@ Hall of Shame
 
 
 <h3>
-No Inductees... Yet.
+Fantasy Oracle — Inaugural Inductee
 </h3>
 
 
 <p>
-The Fant4sy Four Hall of Shame is currently empty.
-League officials remain confident that this situation
-will not last long.
+Inducted for repeatedly making the Commissioner explain that the entire
+index.html belongs directly in the chat. League officials described the
+offense as “completely avoidable” and “honestly kind of impressive.”
 </p>
 
 
@@ -1982,6 +1694,85 @@ F4SN
 • QUESTIONABLE ANALYSIS SINCE 2026
 
 </footer>
+
+
+<!-- FULL SCREEN COMIC READER -->
+
+<div
+id="comic-modal"
+class="comic-modal"
+aria-hidden="true">
+
+<div class="comic-modal-inner">
+
+<button
+class="comic-close"
+type="button"
+onclick="closeComicReader()"
+aria-label="Close comic reader">
+×
+</button>
+
+<div
+id="comic-modal-counter"
+class="comic-modal-counter">
+PAGE 1
+</div>
+
+
+<button
+id="comic-left-hit"
+class="comic-hit comic-hit-left"
+type="button"
+onclick="previousComicPage()"
+aria-label="Previous comic page">
+</button>
+
+
+<button
+id="comic-right-hit"
+class="comic-hit comic-hit-right"
+type="button"
+onclick="nextComicPage()"
+aria-label="Next comic page">
+</button>
+
+
+<button
+id="comic-left-arrow"
+class="comic-side-arrow left"
+type="button"
+onclick="previousComicPage()"
+aria-label="Previous comic page">
+‹
+</button>
+
+
+<img
+id="comic-modal-image"
+class="comic-modal-image"
+src="F4SN-Comic-Week3-01.png"
+alt="F4SN comic page">
+
+
+<button
+id="comic-right-arrow"
+class="comic-side-arrow right"
+type="button"
+onclick="nextComicPage()"
+aria-label="Next comic page">
+›
+</button>
+
+
+<div class="comic-modal-hint">
+Click left/right side • Arrow keys turn pages • Esc closes
+</div>
+
+
+</div>
+
+</div>
 
 
 <script>
@@ -2028,7 +1819,9 @@ mackenzie:"Mack Around & Find Out",
 madison:"Maddie’s Anatomy"
 
 };
- /**************************************************************
+
+
+/**************************************************************
  THE WHEELS
 **************************************************************/
 
@@ -2116,9 +1909,7 @@ const LOSER_WHEEL_ITEMS = [
 label:"Selfie",
 result:"LOSER SELFIE",
 note:"Winner chooses the pose."
-},
-
-{
+},{
 label:"Chore",
 result:"CHORE OF SHAME",
 note:"The loser gets assigned a household chore."
@@ -2818,181 +2609,75 @@ ${safeText(item.note)}
 `;
 
 }
-
-
-/**************************************************************
- COMIC READER
+ /**************************************************************
+ F4SN COMIC READER
 **************************************************************/
 
 
 const COMIC_PAGES = [
 
-{
-src:"comics/issue-1/cover.png",
-label:"Cover"
-},
+"F4SN-Comic-Week3-01.png",
 
-{
-src:"comics/issue-1/page-01.png",
-label:"Page 1"
-},
+"F4SN-Comic-Week3-02.png",
 
-{
-src:"comics/issue-1/page-02.png",
-label:"Page 2"
-},
+"F4SN-Comic-Week3-03.png",
 
-{
-src:"comics/issue-1/page-03.png",
-label:"Page 3"
-},
+"F4SN-Comic-Week3-04.png",
 
-{
-src:"comics/issue-1/page-04.png",
-label:"Page 4"
-},
+"F4SN-Comic-Week3-05.png",
 
-{
-src:"comics/issue-1/page-05.png",
-label:"Page 5"
-},
+"F4SN-Comic-Week3-06.png",
 
-{
-src:"comics/issue-1/page-06.png",
-label:"Page 6"
-},
+"F4SN-Comic-Week3-07.png",
 
-{
-src:"comics/issue-1/page-07.png",
-label:"Page 7"
-},
-
-{
-src:"comics/issue-1/page-08.png",
-label:"Page 8 • The Oracle Speaks"
-}
+"F4SN-Comic-Week3-08.png"
 
 ];
 
 
-let comicPageIndex=0;
+let currentComicPage=0;
 
 
-function renderComicReader(){
+function openComicReader(index){
 
-const image=
-document.getElementById(
-"comic-modal-image"
-);
+currentComicPage=
+Number(index)||0;
 
-const counter=
-document.getElementById(
-"comic-modal-counter"
-);
 
-const left=
-document.getElementById(
-"comic-side-left"
-);
+if(currentComicPage<0){
 
-const right=
-document.getElementById(
-"comic-side-right"
-);
+currentComicPage=0;
 
-const hitLeft=
-document.getElementById(
-"comic-hit-left"
-);
-
-const hitRight=
-document.getElementById(
-"comic-hit-right"
-);
+}
 
 
 if(
-!image||
-!counter
+currentComicPage>=
+COMIC_PAGES.length
 ){
 
-return;
-
-}
-
-
-const page=
-COMIC_PAGES[
-comicPageIndex
-];
-
-
-image.src=
-page.src;
-
-image.alt=
-"The Fant4sy Four F4SN Comics "+
-page.label;
-
-
-counter.textContent=
-page.label.toUpperCase()+
-" • "+
-(comicPageIndex+1)+
-" / "+
-COMIC_PAGES.length;
-
-
-const first=
-comicPageIndex===0;
-
-const last=
-comicPageIndex===
+currentComicPage=
 COMIC_PAGES.length-1;
 
-
-if(left){
-left.disabled=first;
 }
 
-if(right){
-right.disabled=last;
-}
-
-if(hitLeft){
-hitLeft.disabled=first;
-}
-
-if(hitRight){
-hitRight.disabled=last;
-}
-
-}
-
-
-function openComicReader(){
 
 const modal=
 document.getElementById(
 "comic-modal"
 );
 
+
 if(!modal){
+
 return;
+
 }
 
 
-/*
- Always open a fresh read at the cover.
-*/
-
-comicPageIndex=0;
-
-renderComicReader();
-
-modal
-.classList
-.add("open");
+modal.classList.add(
+"open"
+);
 
 modal.setAttribute(
 "aria-hidden",
@@ -3000,12 +2685,11 @@ modal.setAttribute(
 );
 
 
-/*
- Stop the website behind the comic from scrolling.
-*/
-
 document.body.style.overflow=
 "hidden";
+
+
+renderComicPage();
 
 }
 
@@ -3017,18 +2701,23 @@ document.getElementById(
 "comic-modal"
 );
 
+
 if(!modal){
+
 return;
+
 }
 
-modal
-.classList
-.remove("open");
+
+modal.classList.remove(
+"open"
+);
 
 modal.setAttribute(
 "aria-hidden",
 "true"
 );
+
 
 document.body.style.overflow=
 "";
@@ -3036,35 +2725,161 @@ document.body.style.overflow=
 }
 
 
-function changeComicPage(amount){
+function renderComicPage(){
 
-const next=
-comicPageIndex+
-amount;
+const image=
+document.getElementById(
+"comic-modal-image"
+);
+
+const preview=
+document.getElementById(
+"comic-preview-image"
+);
+
+const counter=
+document.getElementById(
+"comic-modal-counter"
+);
+
+const leftArrow=
+document.getElementById(
+"comic-left-arrow"
+);
+
+const rightArrow=
+document.getElementById(
+"comic-right-arrow"
+);
+
+const leftHit=
+document.getElementById(
+"comic-left-hit"
+);
+
+const rightHit=
+document.getElementById(
+"comic-right-hit"
+);
+
+
+const source=
+COMIC_PAGES[
+currentComicPage
+];
+
+
+if(image){
+
+image.src=
+source;
+
+image.alt=
+"F4SN comic page "+
+(currentComicPage+1);
+
+}
+
+
+if(preview){
+
+preview.src=
+source;
+
+preview.alt=
+"F4SN comic page "+
+(currentComicPage+1);
+
+}
+
+
+if(counter){
+
+counter.textContent=
+"PAGE "+
+(currentComicPage+1)+
+" OF "+
+COMIC_PAGES.length;
+
+}
+
+
+const atStart=
+currentComicPage===0;
+
+const atEnd=
+currentComicPage===
+COMIC_PAGES.length-1;
+
+
+if(leftArrow){
+
+leftArrow.disabled=
+atStart;
+
+}
+
+
+if(rightArrow){
+
+rightArrow.disabled=
+atEnd;
+
+}
+
+
+if(leftHit){
+
+leftHit.disabled=
+atStart;
+
+}
+
+
+if(rightHit){
+
+rightHit.disabled=
+atEnd;
+
+}
+
+}
+
+
+function previousComicPage(){
+
+if(currentComicPage<=0){
+
+return;
+
+}
+
+
+currentComicPage--;
+
+renderComicPage();
+
+}
+
+
+function nextComicPage(){
 
 if(
-next<0||
-next>=COMIC_PAGES.length
+currentComicPage>=
+COMIC_PAGES.length-1
 ){
 
 return;
 
 }
 
-comicPageIndex=
-next;
 
-renderComicReader();
+currentComicPage++;
+
+renderComicPage();
 
 }
 
-
-/*
- Keyboard controls:
- Right arrow = next
- Left arrow = previous
- Escape = close
-*/
 
 document.addEventListener(
 "keydown",
@@ -3075,10 +2890,31 @@ document.getElementById(
 "comic-modal"
 );
 
+
 if(
 !modal||
-!modal.classList.contains("open")
+!modal.classList.contains(
+"open"
+)
 ){
+
+return;
+
+}
+
+
+if(event.key==="Escape"){
+
+closeComicReader();
+
+return;
+
+}
+
+
+if(event.key==="ArrowLeft"){
+
+previousComicPage();
 
 return;
 
@@ -3087,37 +2923,13 @@ return;
 
 if(event.key==="ArrowRight"){
 
-event.preventDefault();
-
-changeComicPage(1);
-
-}
-
-
-if(event.key==="ArrowLeft"){
-
-event.preventDefault();
-
-changeComicPage(-1);
-
-}
-
-
-if(event.key==="Escape"){
-
-event.preventDefault();
-
-closeComicReader();
+nextComicPage();
 
 }
 
 }
 );
 
-
-/*
- Clicking the dark area outside the reader closes it.
-*/
 
 document.addEventListener(
 "click",
@@ -3127,6 +2939,7 @@ const modal=
 document.getElementById(
 "comic-modal"
 );
+
 
 if(
 modal&&
@@ -3223,6 +3036,182 @@ bIndex===-1
 return safeA-safeB;
 
 });
+
+}
+
+
+/**************************************************************
+ NFL.COM PLAYER SLUG
+**************************************************************/
+
+
+function nflPlayerSlug(name){
+
+let value=
+String(name||"")
+.normalize("NFD")
+.replace(
+/[\u0300-\u036f]/g,
+""
+)
+.trim();
+
+
+/*
+ NFL.com writes consecutive initials separately.
+
+ Examples:
+
+ DK Metcalf -> d-k-metcalf
+ TJ Hockenson -> t-j-hockenson
+
+ Names already containing punctuation such as
+ T.J. Hockenson naturally normalize the same way.
+*/
+
+value=
+value.replace(
+/^([A-Za-z])([A-Za-z])(?=\s)/,
+"$1-$2"
+);
+
+
+return value
+.toLowerCase()
+.replace(
+/[^a-z0-9]+/g,
+"-"
+)
+.replace(
+/^-+|-+$/g,
+""
+);
+
+}
+
+
+/**************************************************************
+ NFL.COM TEAM SLUG
+**************************************************************/
+
+
+function nflTeamSlug(team){
+
+const key=
+String(team||"")
+.trim()
+.toUpperCase();
+
+
+const slugs={
+
+ARI:"cardinals",
+ATL:"falcons",
+BAL:"ravens",
+BUF:"bills",
+CAR:"panthers",
+CHI:"bears",
+CIN:"bengals",
+CLE:"browns",
+DAL:"cowboys",
+DEN:"broncos",
+DET:"lions",
+GB:"packers",
+HOU:"texans",
+IND:"colts",
+
+JAC:"jaguars",
+JAX:"jaguars",
+
+KC:"chiefs",
+LV:"raiders",
+LAC:"chargers",
+
+LA:"rams",
+LAR:"rams",
+
+MIA:"dolphins",
+MIN:"vikings",
+NE:"patriots",
+NO:"saints",
+NYG:"giants",
+NYJ:"jets",
+PHI:"eagles",
+PIT:"steelers",
+SEA:"seahawks",
+SF:"49ers",
+TB:"buccaneers",
+TEN:"titans",
+
+WAS:"commanders",
+WSH:"commanders"
+
+};
+
+
+return slugs[key]||"";
+
+}
+
+
+/**************************************************************
+ NFL.COM GAME URL
+**************************************************************/
+
+
+function nflGameUrl(
+game,
+week
+){
+
+const away=
+nflTeamSlug(
+game.awayTeam
+);
+
+const home=
+nflTeamSlug(
+game.homeTeam
+);
+
+const weekNumber=
+Number(
+week||
+game.week||
+0
+);
+
+
+if(
+!away||
+!home||
+!Number.isFinite(weekNumber)||
+weekNumber<1
+){
+
+return "";
+
+}
+
+
+/*
+ NFL.com regular-season Game Center URLs follow:
+
+ /games/<away>-at-<home>-<season>-reg-<week>
+
+ Example:
+
+ /games/steelers-at-browns-2026-reg-4
+*/
+
+return (
+"https://www.nfl.com/games/"+
+away+
+"-at-"+
+home+
+"-2026-reg-"+
+weekNumber
+);
 
 }
 
@@ -3508,24 +3497,21 @@ game.time
 
 
 /*
- ESPN GAME LINK
+ NFL.COM GAME LINK
 
- Only digits are allowed through from the ESPN game ID.
- If there is no ESPN ID, the ticker card remains a normal
- non-clickable div.
+ The scoreboard data source remains exactly the same.
+
+ Only the click destination changes.
+
+ NFL.com regular-season Game Center links are generated
+ from the away team, home team, season and NFL week.
 */
 
-const espnGameId=
-String(
-game.espnGameId||""
-)
-.replace(/\D/g,"");
-
-
 const gameUrl=
-espnGameId
-?"https://www.espn.com/nfl/boxscore/_/gameId/"+espnGameId
-:"";
+nflGameUrl(
+game,
+week
+);
 
 
 const openTag=
@@ -3536,7 +3522,7 @@ class="nfl-game"
 href="${gameUrl}"
 target="_blank"
 rel="noopener noreferrer"
-aria-label="Open ${safeText(game.awayTeam)} at ${safeText(game.homeTeam)} box score on ESPN">
+aria-label="Open ${safeText(game.awayTeam)} at ${safeText(game.homeTeam)} on NFL.com">
 `
 :`
 <div class="nfl-game">
@@ -3598,7 +3584,9 @@ ${closeTag}
 function formatNFLDate(value){
 
 if(!value){
+
 return "";
+
 }
 
 
@@ -3608,7 +3596,9 @@ String(value)
 
 
 if(parts.length!==3){
+
 return safeText(value);
+
 }
 
 
@@ -3737,7 +3727,9 @@ Number(week);
 
 
 if(Number.isFinite(weekNumber)){
+
 foundWeeks[weekNumber]=true;
+
 }
 
 });
@@ -3746,15 +3738,19 @@ foundWeeks[weekNumber]=true;
 
 
 Object.keys(foundWeeks)
-.map(Number)
 .sort(function(a,b){
-return a-b;
+
+return Number(a)-Number(b);
+
 })
 .forEach(function(week){
 
 weeks.push({
-week:week,
+
+week:Number(week),
+
 label:"Week "+week
+
 });
 
 });
@@ -3763,6 +3759,7 @@ label:"Week "+week
 
 
 let html=`
+
 <table class="standings-table">
 
 <thead>
@@ -3770,7 +3767,7 @@ let html=`
 <tr>
 
 <th>
-Manager
+Team
 </th>
 
 ${weeks.map(function(info){
@@ -3860,7 +3857,9 @@ container.innerHTML=
 html;
 
 }
- /**************************************************************
+
+
+/**************************************************************
  LINEUPS
 **************************************************************/
 
@@ -3910,28 +3909,42 @@ player.statLine||""
 
 
 /*
- ESPN PLAYER LINK
+ NFL.COM PLAYER LINK
 
- Website.gs supplies espnAthleteId when a matching
- ESPN player ID exists.
+ D/ST remains normal text.
 
- Only digits are allowed through before the ESPN URL
- is constructed.
+ Every actual player — including the weekly SLEEPER —
+ gets an NFL.com profile URL generated directly from
+ the player's name.
 
- If there is no ESPN ID, the player name remains
- normal non-clickable text.
+ This does NOT depend on ESPN IDs.
 */
 
-const espnAthleteId=
+const isDefense=
 String(
-player.espnAthleteId||""
+player.position||""
 )
-.replace(/\D/g,"");
+.toUpperCase()==="D/ST"||
+
+String(
+player.nflPosition||""
+)
+.toUpperCase()==="DEF";
+
+
+const playerSlug=
+isDefense
+?""
+:nflPlayerSlug(
+player.player
+);
 
 
 const playerUrl=
-espnAthleteId
-?"https://www.espn.com/nfl/player/_/id/"+espnAthleteId
+playerSlug
+?"https://www.nfl.com/players/"+
+playerSlug+
+"/"
 :"";
 
 
@@ -3942,11 +3955,13 @@ playerUrl
 href="${playerUrl}"
 target="_blank"
 rel="noopener noreferrer"
-aria-label="Open ${safeText(player.player)} on ESPN">
+aria-label="Open ${safeText(player.player)} on NFL.com">
 ${safeText(player.player)}
 </a>
 `
-:safeText(player.player);
+:safeText(
+player.player
+);
 
 
 const teamMarkup=
@@ -4027,9 +4042,7 @@ ${players}
 }).join("");
 
 }
-
-
-/**************************************************************
+ /**************************************************************
  DATA ERROR
 **************************************************************/
 
@@ -4061,44 +4074,55 @@ NFL scoreboard temporarily unavailable.
 }
 
 
-document
-.getElementById(
-"scoreboard-data"
-)
-.innerHTML=
-'<div class="error-message">Live scores are temporarily unavailable.</div>';
-
-
-document
-.getElementById(
-"standings-data"
-)
-.innerHTML=
-'<div class="error-message">Standings are temporarily unavailable.</div>';
-
-
-document
-.getElementById(
+[
+"scoreboard-data",
+"standings-data",
 "lineup-data"
-)
-.innerHTML=
-'<div class="error-message">Lineups are temporarily unavailable.</div>';
+]
+.forEach(function(id){
+
+const element=
+document.getElementById(id);
+
+
+if(element){
+
+element.innerHTML=`
+<div class="error-message">
+Live league data is temporarily unavailable.
+Please refresh the page in a moment.
+</div>
+`;
+
+}
+
+});
 
 }
 
 
 /**************************************************************
- INITIAL LOAD
+ START WEBSITE
 **************************************************************/
 
 
 drawLeagueWheels();
 
+
 loadFantasyData();
 
 
 /*
- Refresh live league data once per minute.
+ Refresh the live website data once per minute.
+
+ This keeps:
+
+ - Fantasy scores
+ - Standings
+ - Player stat lines
+ - NFL scoreboard
+
+ current during games without requiring a manual refresh.
 */
 
 setInterval(
@@ -4108,6 +4132,7 @@ loadFantasyData,
 
 
 </script>
+
 
 </body>
 </html>
