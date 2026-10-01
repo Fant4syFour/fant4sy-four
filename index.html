@@ -324,21 +324,10 @@ text-transform:uppercase;
 letter-spacing:1px
 }
 
-.brad{
-border-top-color:var(--brad)
-}
-
-.maria{
-border-top-color:var(--maria)
-}
-
-.mackenzie{
-border-top-color:var(--mackenzie)
-}
-
-.madison{
-border-top-color:var(--madison)
-}
+.brad{border-top-color:var(--brad)}
+.maria{border-top-color:var(--maria)}
+.mackenzie{border-top-color:var(--mackenzie)}
+.madison{border-top-color:var(--madison)}
 
 
 /* FAMILY SCOREBOARD */
@@ -847,8 +836,7 @@ cursor:default
 .comic-modal-hint{
 position:absolute;
 bottom:7px;
-left:50%;
- transform:translateX(-50%);
+left:50%;transform:translateX(-50%);
 z-index:4;
 background:rgba(8,11,18,.82);
 border:1px solid #334155;
@@ -1624,7 +1612,7 @@ onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openC
 
 <img
 id="comic-preview-image"
-src="F4SN-Comic-Week3-01.png"
+src="cover.png"
 alt="F4SN Comics Week 3 cover">
 
 </div>
@@ -1751,8 +1739,8 @@ aria-label="Previous comic page">
 <img
 id="comic-modal-image"
 class="comic-modal-image"
-src="F4SN-Comic-Week3-01.png"
-alt="F4SN comic page">
+src="cover.png"
+alt="F4SN comic cover">
 
 
 <button
@@ -2423,15 +2411,6 @@ state.rotation
 );
 
 
-/*
- Wedge zero is centered at 12 o'clock
- when rotation is zero.
-
- Therefore the selected wedge lands under
- the fixed pointer when the final normalized
- rotation equals -selectedIndex * slice.
-*/
-
 const desired=
 normalizeWheelAngle(
 -selectedIndex*
@@ -2496,10 +2475,6 @@ elapsed/duration,
 1
 );
 
-
-/*
- Fast launch with a dramatic slowdown.
-*/
 
 const eased=
 1-
@@ -2609,28 +2584,32 @@ ${safeText(item.note)}
 `;
 
 }
- /**************************************************************
+
+
+/**************************************************************
  F4SN COMIC READER
 **************************************************************/
 
 
 const COMIC_PAGES = [
 
-"F4SN-Comic-Week3-01.png",
+"cover.png",
 
-"F4SN-Comic-Week3-02.png",
+"page-01.png",
 
-"F4SN-Comic-Week3-03.png",
+"page-02.png",
 
-"F4SN-Comic-Week3-04.png",
+"page-03.png",
 
-"F4SN-Comic-Week3-05.png",
+"page-04.png",
 
-"F4SN-Comic-Week3-06.png",
+"page-05.png",
 
-"F4SN-Comic-Week3-07.png",
+"page-06.png",
 
-"F4SN-Comic-Week3-08.png"
+"page-07.png",
+
+"page-08.png"
 
 ];
 
@@ -2775,8 +2754,9 @@ image.src=
 source;
 
 image.alt=
-"F4SN comic page "+
-(currentComicPage+1);
+currentComicPage===0
+?"F4SN comic cover"
+:"F4SN comic page "+currentComicPage;
 
 }
 
@@ -2787,8 +2767,9 @@ preview.src=
 source;
 
 preview.alt=
-"F4SN comic page "+
-(currentComicPage+1);
+currentComicPage===0
+?"F4SN Comics Week 3 cover"
+:"F4SN comic page "+currentComicPage;
 
 }
 
@@ -2844,9 +2825,7 @@ atEnd;
 }
 
 }
-
-
-function previousComicPage(){
+ function previousComicPage(){
 
 if(currentComicPage<=0){
 
@@ -3194,16 +3173,6 @@ return "";
 }
 
 
-/*
- NFL.com regular-season Game Center URLs follow:
-
- /games/<away>-at-<home>-<season>-reg-<week>
-
- Example:
-
- /games/steelers-at-browns-2026-reg-4
-*/
-
 return (
 "https://www.nfl.com/games/"+
 away+
@@ -3500,11 +3469,7 @@ game.time
  NFL.COM GAME LINK
 
  The scoreboard data source remains exactly the same.
-
- Only the click destination changes.
-
- NFL.com regular-season Game Center links are generated
- from the away team, home team, season and NFL week.
+ Only the click destination is NFL.com.
 */
 
 const gameUrl=
@@ -3907,18 +3872,6 @@ String(
 player.statLine||""
 ).trim();
 
-
-/*
- NFL.COM PLAYER LINK
-
- D/ST remains normal text.
-
- Every actual player — including the weekly SLEEPER —
- gets an NFL.com profile URL generated directly from
- the player's name.
-
- This does NOT depend on ESPN IDs.
-*/
 
 const isDefense=
 String(
