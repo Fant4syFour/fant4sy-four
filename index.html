@@ -531,10 +531,22 @@ margin-top:4px
 
 .player-points{
 text-align:right;
-color:var(--yellow);
+color:white;
 font-size:15px;
 font-weight:900;
 white-space:nowrap
+}
+
+.player-points.game-scheduled{
+color:var(--yellow)
+}
+
+.player-points.game-live{
+color:#22c55e
+}
+
+.player-points.game-final{
+color:white
 }
 
 .player-points-label{
@@ -636,7 +648,7 @@ border-color:var(--blue)
 
 .comic-preview img{
 display:block;
-width:100%;
+ width:100%;
 height:auto;
 border-radius:6px
 }
@@ -1036,30 +1048,6 @@ class="hero-banner">
 src="Fant4syFour-Team-Banner.png"
 alt="The Fant4sy Four franchise teams"
 class="franchise-banner">
-
-<div class="teams">
-
-<div class="team brad">
-<h2>BREAKING BRAD</h2>
-<p>We cook on Sundays.</p>
-</div>
-
-<div class="team maria">
-<h2>THE REAL HOUSEWIVES OF THE RED ZONE</h2>
-<p>The drama starts at kickoff.</p>
-</div>
-
-<div class="team mackenzie">
-<h2>MACK AROUND &amp; FIND OUT</h2>
-<p>Results may vary. Injuries won’t.</p>
-</div>
-
-<div class="team madison">
-<h2>MADDIE’S ANATOMY</h2>
-<p>Your playoff hopes are in critical condition.</p>
-</div>
-
-</div>
 </section>
 
 <section id="scoreboard">
@@ -1485,8 +1473,7 @@ function drawLeagueWheels(){
 drawLeagueWheel("winner",WINNER_WHEEL_ITEMS,WINNER_WHEEL_COLORS);
 drawLeagueWheel("loser",LOSER_WHEEL_ITEMS,LOSER_WHEEL_COLORS);
 }
-
-function drawLeagueWheel(type,items,colors){
+ function drawLeagueWheel(type,items,colors){
 
 const canvas=document.getElementById(type+"-wheel");
 if(!canvas)return;
@@ -1880,6 +1867,70 @@ return safeA-safeB;
 }
 
 /**************************************************************
+ NFL TEAM NORMALIZATION
+**************************************************************/
+
+function normalizeNFLTeam(team){
+
+const key=String(team||"").trim().toUpperCase();
+
+const aliases={
+JAX:"JAC",
+WSH:"WAS",
+LAR:"LA"
+};
+
+return aliases[key]||key;
+}
+
+/**************************************************************
+ PLAYER GAME STATUS
+**************************************************************/
+
+function playerGameStatus(nflTeam,scoreboard){
+
+const team=normalizeNFLTeam(nflTeam);
+
+if(!team){
+return "final";
+}
+
+const games=
+scoreboard&&Array.isArray(scoreboard.games)
+?scoreboard.games
+:[];
+
+const game=games.find(function(item){
+
+return (
+normalizeNFLTeam(item.awayTeam)===team||
+normalizeNFLTeam(item.homeTeam)===team
+);
+});
+
+if(!game){
+
+/*
+ If a player's NFL team cannot be matched to the scoreboard,
+ keep the points neutral rather than falsely claiming the
+ player's game is scheduled or live.
+*/
+
+return "final";
+}
+
+if(game.completed===true){
+return "final";
+}
+
+if(game.live===true){
+return "live";
+}
+
+return "scheduled";
+}
+
+/**************************************************************
  NFL.COM PLAYER SLUG
 **************************************************************/
 
@@ -2026,6 +2077,7 @@ showDataError();
 function renderWebsite(data){
 
 const orderedTeams=orderManagers(data.teams||[]);
+const nflScoreboard=data.nflScoreboard||{};
 
 document
 .getElementById("last-updated")
@@ -2042,10 +2094,10 @@ document
 .textContent=
 "Week "+data.week+" Lineups";
 
-renderNFLScoreboard(data.nflScoreboard||{});
+renderNFLScoreboard(nflScoreboard);
 renderScoreboard(orderedTeams);
 renderStandings(data.standings||[],data.weekColumns||[]);
-renderLineups(orderedTeams);
+renderLineups(orderedTeams,nflScoreboard);
 }
 
 /**************************************************************
@@ -2173,8 +2225,7 @@ ${closeTag}
 
 }).join("");
 }
-
-/**************************************************************
+ /**************************************************************
  FORMAT NFL DATE
 **************************************************************/
 
@@ -2361,7 +2412,7 @@ container.innerHTML=html;
  LINEUPS
 **************************************************************/
 
-function renderLineups(teams){
+function renderLineups(teams,scoreboard){
 
 const container=document.getElementById("lineup-data");
 
@@ -2384,6 +2435,16 @@ let players="";
 
 const nflTeam=String(player.nflTeam||"").trim();
 const statLine=String(player.statLine||"").trim();
+
+const gameStatus=
+playerGameStatus(nflTeam,scoreboard);
+
+const pointsClass=
+gameStatus==="live"
+?"game-live"
+:gameStatus==="scheduled"
+?"game-scheduled"
+:"game-final";
 
 const isDefense=
 String(player.position||"").toUpperCase()==="D/ST"||
@@ -2448,7 +2509,7 @@ ${statMarkup}
 
 </div>
 
-<div class="player-points">
+<div class="player-points ${pointsClass}">
 
 ${points(player.points)}
 
