@@ -1,529 +1,457 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1.0"
->
-
-<title>
-The Fant4sy Four | F4SN Winner's Wheel Arena
-</title>
-
+<title>The Fant4sy Four | F4SN Winner's Wheel Arena</title>
 
 <style>
 
 /**************************************************************
- F4SN WINNER'S WHEEL ARENA — V4.1
+ THE FANT4SY FOUR
+ F4SN WINNER'S WHEEL ARENA
+ V4.2 — MEGA ARENA
 
- DESIGN RULE:
+ STARTING PAGE:
+ F4SN WEBSITE
 
- 1. LOOK LIKE THE REAL F4SN WEBSITE FIRST.
- 2. THEN TRANSFORM INTO THE ARENA.
- 3. THEN LOSE ALL SENSE OF FINANCIAL PERSPECTIVE.
+ ARENA:
+ FULL-SCALE F4SN TELEVISION SPECTACLE
 **************************************************************/
 
 *{
-  box-sizing:border-box;
+box-sizing:border-box;
 }
 
 :root{
 
-  --bg:#080b12;
-  --panel:#111827;
-  --panel2:#182437;
-  --border:#263244;
+--bg:#080b12;
+--panel:#111827;
+--panel2:#182437;
+--border:#263244;
 
-  --blue:#18a8ff;
-  --yellow:#facc15;
-  --red:#ff4b4b;
-  --green:#22c55e;
+--blue:#18a8ff;
+--yellow:#facc15;
+--red:#ff4b4b;
+--green:#22c55e;
+--muted:#aeb9c6;
 
-  --muted:#aeb9c6;
+--brad:#1687ff;
+--maria:#ff3b30;
+--mackenzie:#16d5d1;
+--madison:#9c4dff;
 
-  --brad:#1687ff;
-  --maria:#ff3b30;
-  --mackenzie:#16d5d1;
-  --madison:#9c4dff;
+--gold:#ffd54a;
+--gold2:#ff9f00;
 
-  --gold:#ffd54a;
-  --gold2:#ff9f00;
-
-  --team:#18a8ff;
+--team:#18a8ff;
 
 }
-
 
 html{
-  scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
-
 
 html,
 body{
 
-  margin:0;
+margin:0;
+min-height:100%;
 
-  min-height:100%;
+background:
+radial-gradient(
+circle at 50% 0%,
+rgba(24,168,255,.08),
+transparent 32%
+),
+var(--bg);
 
-  background:
-    radial-gradient(
-      circle at 50% 0%,
-      rgba(24,168,255,.08),
-      transparent 32%
-    ),
-    var(--bg);
+color:white;
 
-  color:white;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+font-family:
+Arial,
+Helvetica,
+sans-serif;
 
 }
 
-
 body{
-
-  overflow-x:hidden;
-
+overflow-x:hidden;
 }
 
 
 /**************************************************************
- GLOBAL EFFECT LAYER
+ GLOBAL FX
 **************************************************************/
 
 #fx{
 
-  position:fixed;
+position:fixed;
+inset:0;
 
-  inset:0;
+z-index:20000;
 
-  z-index:10000;
+pointer-events:none;
 
-  pointer-events:none;
-
-  overflow:hidden;
+overflow:hidden;
 
 }
-
 
 .camera-flash{
 
-  position:absolute;
+position:absolute;
 
-  width:10px;
+width:10px;
+height:10px;
 
-  height:10px;
+border-radius:50%;
 
-  border-radius:50%;
+background:white;
 
-  background:white;
+opacity:0;
 
-  opacity:0;
+box-shadow:
+0 0 30px 10px white;
 
-  box-shadow:
-    0 0 30px 10px white;
-
-  animation:
-    cameraFlash .55s ease-out forwards;
+animation:
+cameraFlash .55s ease-out forwards;
 
 }
-
 
 @keyframes cameraFlash{
 
-  0%{
-    opacity:0;
-    transform:scale(.2);
-  }
-
-  15%{
-    opacity:1;
-    transform:scale(1.6);
-  }
-
-  100%{
-    opacity:0;
-    transform:scale(5);
-  }
-
+0%{
+opacity:0;
+transform:scale(.2);
 }
 
+15%{
+opacity:1;
+transform:scale(1.6);
+}
+
+100%{
+opacity:0;
+transform:scale(5);
+}
+
+}
 
 .confetti{
 
-  position:fixed;
+position:fixed;
 
-  top:-30px;
+top:-30px;
 
-  width:11px;
+width:11px;
+height:22px;
 
-  height:22px;
+z-index:21000;
 
-  z-index:10050;
-
-  animation:
-    confettiFall linear forwards;
+animation:
+confettiFall linear forwards;
 
 }
-
 
 @keyframes confettiFall{
 
-  to{
+to{
 
-    transform:
-      translateY(115vh)
-      rotate(1200deg);
-
-  }
+transform:
+translateY(115vh)
+rotate(1200deg);
 
 }
 
+}
 
 body.shake{
 
-  animation:
-    screenShake .07s linear 15;
+animation:
+screenShake .07s linear 16;
 
 }
 
-
 @keyframes screenShake{
 
-  0%{
-    transform:translate(0);
-  }
-
-  20%{
-    transform:translate(7px,-4px);
-  }
-
-  40%{
-    transform:translate(-7px,5px);
-  }
-
-  60%{
-    transform:translate(6px,4px);
-  }
-
-  80%{
-    transform:translate(-5px,-4px);
-  }
-
-  100%{
-    transform:translate(0);
-  }
+0%{transform:translate(0);}
+20%{transform:translate(7px,-4px);}
+40%{transform:translate(-7px,5px);}
+60%{transform:translate(6px,4px);}
+80%{transform:translate(-5px,-4px);}
+100%{transform:translate(0);}
 
 }
 
 
 /**************************************************************
- REAL F4SN HERO
+ F4SN WEBSITE HERO
 **************************************************************/
 
 .hero{
 
-  width:100%;
+width:100%;
 
-  background:#05070b;
+background:#05070b;
 
-  border-bottom:
-    1px solid var(--border);
+border-bottom:
+1px solid var(--border);
 
-  text-align:center;
+text-align:center;
 
-  overflow:hidden;
+overflow:hidden;
 
 }
 
-
 .hero-banner{
 
-  display:block;
+display:block;
 
-  width:100%;
+width:100%;
 
-  max-height:340px;
+max-height:340px;
 
-  object-fit:cover;
-
-  object-position:center;
+object-fit:cover;
+object-position:center;
 
 }
 
 
 /**************************************************************
- SPECIAL EVENT SCORE STRIP
-
- THIS REPLACES THE NFL TICKER ON THIS PAGE WHILE KEEPING
- THE SAME "F4SN BROADCAST STRIP" FEEL.
+ SPECIAL EVENT TICKER
 **************************************************************/
 
 .event-strip{
 
-  display:flex;
+display:flex;
 
-  align-items:stretch;
+align-items:stretch;
 
-  width:100%;
+width:100%;
 
-  min-height:57px;
+min-height:57px;
 
-  background:#0b1018;
+background:#0b1018;
 
-  border-bottom:
-    1px solid #344154;
+border-bottom:
+1px solid #344154;
 
 }
-
 
 .event-strip-label{
 
-  min-width:160px;
+min-width:160px;
 
-  display:flex;
+display:flex;
 
-  flex-direction:column;
+flex-direction:column;
 
-  justify-content:center;
+justify-content:center;
 
-  padding:
-    9px
-    17px;
+padding:9px 17px;
 
-  background:#111827;
+background:#111827;
 
-  border-right:
-    1px solid #344154;
+border-right:
+1px solid #344154;
 
 }
-
 
 .event-strip-label strong{
 
-  color:var(--blue);
+color:var(--blue);
 
-  font-size:15px;
+font-size:15px;
 
-  font-weight:1000;
+font-weight:1000;
 
 }
-
 
 .event-strip-label span{
 
-  margin-top:2px;
+margin-top:2px;
 
-  color:#8d9aac;
+color:#8d9aac;
 
-  font-size:9px;
+font-size:9px;
 
-  font-weight:900;
+font-weight:900;
 
-  letter-spacing:1px;
+letter-spacing:1px;
 
-  text-transform:uppercase;
+text-transform:uppercase;
 
 }
-
 
 .event-strip-track{
 
-  flex:1;
+flex:1;
 
-  display:flex;
+display:flex;
 
-  align-items:center;
+align-items:center;
 
-  overflow:hidden;
+overflow:hidden;
 
-  position:relative;
+position:relative;
 
 }
-
 
 .event-strip-message{
 
-  white-space:nowrap;
+white-space:nowrap;
 
-  color:#d6dee8;
+color:#d6dee8;
 
-  font-size:11px;
+font-size:11px;
 
-  font-weight:900;
+font-weight:900;
 
-  letter-spacing:.8px;
+letter-spacing:.8px;
 
-  animation:
-    eventTicker 26s linear infinite;
+animation:
+eventTicker 26s linear infinite;
 
 }
-
 
 .event-strip-message strong{
-
-  color:var(--yellow);
-
+color:var(--yellow);
 }
-
 
 @keyframes eventTicker{
 
-  from{
-    transform:translateX(100vw);
-  }
+from{
+transform:translateX(100vw);
+}
 
-  to{
-    transform:translateX(-100%);
-  }
+to{
+transform:translateX(-100%);
+}
 
 }
 
 
 /**************************************************************
- REAL F4SN NETWORK BAR
+ NETWORK BAR
 **************************************************************/
 
 .network-bar{
 
-  display:flex;
+display:flex;
 
-  align-items:center;
+align-items:center;
 
-  justify-content:center;
+justify-content:center;
 
-  gap:22px;
+gap:22px;
 
-  padding:
-    9px
-    14px;
+padding:9px 14px;
 
-  background:#05070b;
+background:#05070b;
 
-  border-bottom:
-    1px solid var(--border);
+border-bottom:
+1px solid var(--border);
 
-  color:#d6dee8;
+color:#d6dee8;
 
-  font-size:10px;
+font-size:10px;
 
-  font-weight:900;
+font-weight:900;
 
-  letter-spacing:1px;
+letter-spacing:1px;
 
 }
-
 
 .network-name{
-
-  color:var(--blue);
-
+color:var(--blue);
 }
-
 
 .live-dot{
 
-  display:inline-block;
+display:inline-block;
 
-  width:8px;
+width:8px;
+height:8px;
 
-  height:8px;
+margin-right:6px;
 
-  margin-right:6px;
+border-radius:50%;
 
-  border-radius:50%;
+background:#ff3b30;
 
-  background:#ff3b30;
+box-shadow:
+0 0 11px #ff3b30;
 
-  box-shadow:
-    0 0 11px #ff3b30;
-
-  animation:
-    livePulse 1.1s infinite;
+animation:
+livePulse 1.1s infinite;
 
 }
-
 
 @keyframes livePulse{
 
-  50%{
-    opacity:.25;
-  }
+50%{
+opacity:.25;
+}
 
 }
 
-
 .update-status{
-
-  color:#8fa0b4;
-
+color:#8fa0b4;
 }
 
 
 /**************************************************************
- REAL F4SN NAV
+ NAV
 **************************************************************/
 
 nav{
 
-  display:flex;
+display:flex;
 
-  flex-wrap:wrap;
+flex-wrap:wrap;
 
-  align-items:center;
+align-items:center;
 
-  justify-content:center;
+justify-content:center;
 
-  gap:3px;
+gap:3px;
 
-  padding:
-    12px
-    10px;
+padding:12px 10px;
 
-  background:#111827;
+background:#111827;
 
-  border-bottom:
-    2px solid var(--blue);
+border-bottom:
+2px solid var(--blue);
 
 }
-
 
 nav a{
 
-  padding:
-    8px
-    10px;
+padding:8px 10px;
 
-  color:#dbe4ef;
+color:#dbe4ef;
 
-  text-decoration:none;
+text-decoration:none;
 
-  font-size:10px;
+font-size:10px;
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:.6px;
+letter-spacing:.6px;
 
-  transition:
-    color .2s,
-    background .2s;
+transition:
+color .2s,
+background .2s;
 
 }
 
-
 nav a:hover{
 
-  color:white;
+color:white;
 
-  background:#182437;
+background:#182437;
 
 }
 
@@ -534,362 +462,333 @@ nav a:hover{
 
 main{
 
-  width:min(1180px,94%);
+width:min(1180px,94%);
 
-  margin:auto;
+margin:auto;
 
-  padding:
-    34px
-    0
-    80px;
+padding:
+34px
+0
+80px;
 
 }
-
 
 .section-title{
 
-  position:relative;
+position:relative;
 
-  margin:
-    0
-    0
-    20px;
+margin:
+0
+0
+20px;
 
-  padding-left:14px;
+padding-left:14px;
 
-  font-size:
-    clamp(
-      25px,
-      4vw,
-      35px
-    );
+font-size:
+clamp(
+25px,
+4vw,
+35px
+);
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:-.7px;
+letter-spacing:-.7px;
 
 }
-
 
 .section-title::before{
 
-  content:"";
+content:"";
 
-  position:absolute;
+position:absolute;
 
-  left:0;
+left:0;
+top:3px;
+bottom:3px;
 
-  top:3px;
+width:5px;
 
-  bottom:3px;
+border-radius:3px;
 
-  width:5px;
-
-  border-radius:3px;
-
-  background:var(--blue);
+background:var(--blue);
 
 }
 
-
 .section-subtitle{
 
-  margin:
-    -10px
-    0
-    25px
-    14px;
+margin:
+-10px
+0
+25px
+14px;
 
-  color:var(--muted);
+color:var(--muted);
 
-  font-size:13px;
+font-size:13px;
 
-  line-height:1.55;
+line-height:1.55;
 
 }
 
 
 /**************************************************************
- F4SN SPECIAL EVENT CARD
+ SPECIAL EVENT CARD
 **************************************************************/
 
 .broadcast-card{
 
-  position:relative;
+position:relative;
 
-  overflow:hidden;
+overflow:hidden;
 
-  border:
-    1px solid var(--border);
+border:
+1px solid var(--border);
 
-  border-radius:8px;
+border-radius:8px;
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(24,168,255,.07),
-      transparent 45%
-    ),
-    var(--panel);
+background:
+linear-gradient(
+135deg,
+rgba(24,168,255,.07),
+transparent 45%
+),
+var(--panel);
 
-  box-shadow:
-    0 18px 45px rgba(0,0,0,.25);
+box-shadow:
+0 18px 45px rgba(0,0,0,.25);
 
 }
-
 
 .broadcast-header{
 
-  display:flex;
+display:flex;
 
-  align-items:center;
+align-items:center;
 
-  justify-content:space-between;
+justify-content:space-between;
 
-  gap:10px;
+gap:10px;
 
-  padding:
-    12px
-    16px;
+padding:
+12px
+16px;
 
-  background:#0b111a;
+background:#0b111a;
 
-  border-bottom:
-    1px solid var(--border);
+border-bottom:
+1px solid var(--border);
 
-  font-size:10px;
+font-size:10px;
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:1.2px;
+letter-spacing:1.2px;
 
 }
-
 
 .broadcast-header span:first-child{
-
-  color:var(--blue);
-
+color:var(--blue);
 }
-
 
 .live-label{
-
-  color:#ff4b4b;
-
+color:#ff4b4b;
 }
-
 
 .special-event-body{
 
-  position:relative;
+position:relative;
 
-  min-height:440px;
+min-height:440px;
 
-  display:flex;
+display:flex;
 
-  align-items:center;
+align-items:center;
 
-  justify-content:center;
+justify-content:center;
 
-  padding:
-    45px
-    25px;
+padding:
+45px
+25px;
 
-  text-align:center;
+text-align:center;
 
-  overflow:hidden;
+overflow:hidden;
 
 }
-
 
 .special-event-body::before{
 
-  content:"";
+content:"";
 
-  position:absolute;
+position:absolute;
 
-  width:620px;
+width:620px;
+height:620px;
 
-  height:620px;
+left:50%;
+top:50%;
 
-  left:50%;
+transform:
+translate(-50%,-50%);
 
-  top:50%;
+border-radius:50%;
 
-  transform:
-    translate(-50%,-50%);
+background:
+radial-gradient(
+circle,
+rgba(24,168,255,.13),
+transparent 65%
+);
 
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(24,168,255,.13),
-      transparent 65%
-    );
-
-  pointer-events:none;
+pointer-events:none;
 
 }
-
 
 .special-event-content{
 
-  position:relative;
+position:relative;
 
-  z-index:2;
+z-index:2;
 
-  max-width:820px;
+max-width:820px;
 
 }
-
 
 .event-kicker{
 
-  color:var(--red);
+color:var(--red);
 
-  font-size:10px;
+font-size:10px;
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:4px;
+letter-spacing:4px;
 
 }
-
 
 .event-logo{
 
-  margin-top:12px;
+margin-top:12px;
 
-  color:var(--blue);
+color:var(--blue);
 
-  font-size:
-    clamp(
-      44px,
-      9vw,
-      90px
-    );
+font-size:
+clamp(
+44px,
+9vw,
+90px
+);
 
-  line-height:.85;
+line-height:.85;
 
-  font-weight:1000;
+font-weight:1000;
 
-  text-shadow:
-    0 0 25px rgba(24,168,255,.25);
+text-shadow:
+0 0 25px rgba(24,168,255,.25);
 
 }
-
 
 .event-title{
 
-  margin:
-    15px
-    0
-    10px;
+margin:
+15px
+0
+10px;
 
-  font-size:
-    clamp(
-      31px,
-      6vw,
-      63px
-    );
+font-size:
+clamp(
+31px,
+6vw,
+63px
+);
 
-  line-height:.95;
+line-height:.95;
 
-  font-weight:1000;
+font-weight:1000;
 
-  text-transform:uppercase;
+text-transform:uppercase;
 
 }
-
 
 .event-title span{
-
-  color:var(--yellow);
-
+color:var(--yellow);
 }
-
 
 .event-description{
 
-  max-width:680px;
+max-width:680px;
 
-  margin:
-    18px
-    auto;
+margin:
+18px
+auto;
 
-  color:#aeb9c6;
+color:#aeb9c6;
 
-  font-size:14px;
+font-size:14px;
 
-  line-height:1.65;
+line-height:1.65;
 
 }
-
 
 .f4sn-button{
 
-  margin-top:18px;
+margin-top:18px;
 
-  padding:
-    15px
-    28px;
+padding:
+15px
+28px;
 
-  border:
-    1px solid #31b2ff;
+border:
+1px solid #31b2ff;
 
-  border-radius:6px;
+border-radius:6px;
 
-  background:
-    linear-gradient(
-      180deg,
-      #20aaf8,
-      #0873b5
-    );
+background:
+linear-gradient(
+180deg,
+#20aaf8,
+#0873b5
+);
 
-  color:white;
+color:white;
 
-  font-size:13px;
+font-size:13px;
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:.8px;
+letter-spacing:.8px;
 
-  cursor:pointer;
+cursor:pointer;
 
-  box-shadow:
-    0 6px 0 #034c7b,
-    0 12px 25px rgba(0,0,0,.4);
+box-shadow:
+0 6px 0 #034c7b,
+0 12px 25px rgba(0,0,0,.4);
 
 }
-
 
 .f4sn-button:hover{
-
-  filter:brightness(1.12);
-
+filter:brightness(1.12);
 }
-
 
 .f4sn-button.gold{
 
-  border-color:#fff0a2;
+border-color:#fff0a2;
 
-  background:
-    linear-gradient(
-      180deg,
-      #fff2a5,
-      #ffd54a 50%,
-      #c78300
-    );
+background:
+linear-gradient(
+180deg,
+#fff2a5,
+#ffd54a 50%,
+#c78300
+);
 
-  color:#111;
+color:#111;
 
-  box-shadow:
-    0 6px 0 #6f4900,
-    0 12px 25px rgba(0,0,0,.5),
-    0 0 25px rgba(255,213,74,.15);
+box-shadow:
+0 6px 0 #6f4900,
+0 12px 25px rgba(0,0,0,.5),
+0 0 25px rgba(255,213,74,.15);
 
 }
 
@@ -899,1759 +798,1466 @@ main{
 **************************************************************/
 
 #champion-select{
-
-  margin-top:32px;
-
+margin-top:32px;
 }
-
 
 .team-grid{
 
-  display:grid;
+display:grid;
 
-  grid-template-columns:
-    repeat(2,1fr);
+grid-template-columns:
+repeat(2,1fr);
 
-  gap:16px;
+gap:16px;
 
 }
-
 
 .team-card{
 
-  position:relative;
+position:relative;
 
-  overflow:hidden;
+overflow:hidden;
 
-  min-height:125px;
+min-height:125px;
 
-  padding:23px;
+padding:23px;
 
-  border:
-    1px solid var(--border);
+border:
+1px solid var(--border);
 
-  border-left:
-    6px solid var(--card);
+border-left:
+6px solid var(--card);
 
-  border-radius:7px;
+border-radius:7px;
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.035),
-      transparent 55%
-    ),
-    var(--panel);
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,.035),
+transparent 55%
+),
+var(--panel);
 
-  color:white;
+color:white;
 
-  cursor:pointer;
+cursor:pointer;
 
-  text-align:left;
+text-align:left;
 
-  transition:
-    transform .2s,
-    border-color .2s,
-    box-shadow .2s;
+transition:
+transform .2s,
+border-color .2s,
+box-shadow .2s;
 
 }
-
 
 .team-card::after{
 
-  content:"";
+content:"";
 
-  position:absolute;
+position:absolute;
 
-  inset:0;
+inset:0;
 
-  background:
-    linear-gradient(
-      90deg,
-      var(--card),
-      transparent 60%
-    );
+background:
+linear-gradient(
+90deg,
+var(--card),
+transparent 60%
+);
 
-  opacity:.055;
+opacity:.055;
 
 }
-
 
 .team-card:hover{
 
-  transform:
-    translateY(-4px);
+transform:
+translateY(-4px);
 
-  border-color:
-    var(--card);
+border-color:
+var(--card);
 
-  box-shadow:
-    0 12px 30px rgba(0,0,0,.35);
+box-shadow:
+0 12px 30px rgba(0,0,0,.35);
 
 }
-
 
 .team-manager{
 
-  position:relative;
+position:relative;
 
-  z-index:2;
+z-index:2;
 
-  color:var(--card);
+color:var(--card);
 
-  font-size:11px;
+font-size:11px;
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:2px;
+letter-spacing:2px;
 
-  text-transform:uppercase;
+text-transform:uppercase;
 
 }
-
 
 .team-name{
 
-  position:relative;
+position:relative;
 
-  z-index:2;
+z-index:2;
 
-  margin-top:8px;
+margin-top:8px;
 
-  color:white;
+color:white;
 
-  font-size:21px;
+font-size:21px;
 
-  line-height:1.1;
+line-height:1.1;
 
-  font-weight:1000;
+font-weight:1000;
 
 }
 
-
 .team-status{
 
-  position:relative;
+position:relative;
 
-  z-index:2;
+z-index:2;
 
-  margin-top:8px;
+margin-top:8px;
 
-  color:#8e9bad;
+color:#8e9bad;
 
-  font-size:10px;
+font-size:10px;
 
-  font-weight:900;
+font-weight:900;
 
 }
 
 
 /**************************************************************
- TRANSFORMATION OVERLAY
-
- THIS IS THE BRIDGE BETWEEN:
- "NORMAL F4SN WEBSITE"
- AND
- "WHAT THE FUCK DID YOU DO?"
+ F4SN → ARENA TRANSITION
 **************************************************************/
 
 #arena-transition{
 
-  position:fixed;
+position:fixed;
 
-  inset:0;
+inset:0;
 
-  z-index:7000;
+z-index:15000;
 
-  display:none;
+display:none;
 
-  align-items:center;
+align-items:center;
 
-  justify-content:center;
+justify-content:center;
 
-  overflow:hidden;
+overflow:hidden;
 
-  background:#020305;
+background:#020305;
 
 }
-
 
 #arena-transition.show{
-
-  display:flex;
-
+display:flex;
 }
-
 
 .transition-grid{
 
-  position:absolute;
+position:absolute;
 
-  inset:0;
+inset:0;
 
-  background:
-    linear-gradient(
-      rgba(24,168,255,.06) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(24,168,255,.06) 1px,
-      transparent 1px
-    );
+background:
+linear-gradient(
+rgba(24,168,255,.06) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(24,168,255,.06) 1px,
+transparent 1px
+);
 
-  background-size:
-    45px 45px;
+background-size:
+45px 45px;
 
 }
-
 
 .transition-beam{
 
-  position:absolute;
+position:absolute;
 
-  top:-35%;
+top:-35%;
 
-  width:30%;
+width:30%;
+height:130%;
 
-  height:130%;
+background:
+linear-gradient(
+180deg,
+rgba(24,168,255,.28),
+transparent 75%
+);
 
-  background:
-    linear-gradient(
-      180deg,
-      rgba(24,168,255,.28),
-      transparent 75%
-    );
+filter:blur(25px);
 
-  filter:blur(25px);
-
-  transform-origin:top center;
+transform-origin:
+top center;
 
 }
-
 
 .transition-beam.one{
 
-  left:10%;
+left:10%;
 
-  transform:rotate(25deg);
+transform:
+rotate(25deg);
 
 }
-
 
 .transition-beam.two{
 
-  right:10%;
+right:10%;
 
-  transform:rotate(-25deg);
+transform:
+rotate(-25deg);
 
 }
-
 
 .transition-content{
 
-  position:relative;
+position:relative;
 
-  z-index:2;
+z-index:2;
 
-  width:min(900px,92vw);
+width:min(900px,92vw);
 
-  text-align:center;
+text-align:center;
 
 }
-
 
 .transition-network{
 
-  color:var(--blue);
+color:var(--blue);
 
-  font-size:12px;
+font-size:12px;
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:4px;
+letter-spacing:4px;
 
 }
-
 
 .transition-manager{
 
-  margin-top:17px;
+margin-top:17px;
 
-  color:var(--team);
+color:var(--team);
 
-  font-size:
-    clamp(
-      40px,
-      9vw,
-      90px
-    );
+font-size:
+clamp(
+40px,
+9vw,
+90px
+);
 
-  line-height:.9;
+line-height:.9;
 
-  font-weight:1000;
+font-weight:1000;
 
-  text-transform:uppercase;
+text-transform:uppercase;
 
-  text-shadow:
-    0 0 35px var(--team);
+text-shadow:
+0 0 35px var(--team);
 
 }
-
 
 .transition-team{
 
-  margin-top:13px;
+margin-top:13px;
 
-  color:white;
+color:white;
 
-  font-size:
-    clamp(
-      18px,
-      4vw,
-      36px
-    );
+font-size:
+clamp(
+18px,
+4vw,
+36px
+);
 
-  font-weight:1000;
+font-weight:1000;
 
 }
-
 
 .transition-status{
 
-  margin-top:25px;
+margin-top:25px;
 
-  color:var(--yellow);
+color:var(--yellow);
 
-  font-size:12px;
+font-size:12px;
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:3px;
+letter-spacing:3px;
 
 }
-
 
 .transition-progress{
 
-  width:min(600px,80vw);
+width:min(600px,80vw);
 
-  height:6px;
+height:6px;
 
-  margin:
-    18px
-    auto
-    0;
+margin:
+18px
+auto
+0;
 
-  overflow:hidden;
+overflow:hidden;
 
-  border-radius:10px;
+border-radius:10px;
 
-  background:#182437;
+background:#182437;
 
 }
-
 
 .transition-progress span{
 
-  display:block;
+display:block;
 
-  width:0;
+width:0;
+height:100%;
 
-  height:100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--blue),
-      var(--team),
-      var(--gold)
-    );
+background:
+linear-gradient(
+90deg,
+var(--blue),
+var(--team),
+var(--gold)
+);
 
 }
-
 
 #arena-transition.show
 .transition-progress span{
 
-  animation:
-    loadArena 3.1s ease forwards;
+animation:
+loadArena 3.1s ease forwards;
 
 }
 
-
 @keyframes loadArena{
 
-  to{
-    width:100%;
-  }
+to{
+width:100%;
+}
 
 }
 
 
 /**************************************************************
- FULL-SCREEN ARENA
-
- THE MAIN F4SN SITE VISUALLY DISAPPEARS BEHIND THIS.
+ ARENA ROOT
 **************************************************************/
 
 #arena{
 
-  position:fixed;
+position:fixed;
 
-  inset:0;
+inset:0;
 
-  z-index:6000;
+z-index:12000;
 
-  display:none;
+display:none;
 
-  overflow-y:auto;
+overflow:hidden;
 
-  background:
-    radial-gradient(
-      ellipse at 50% 20%,
-      rgba(24,168,255,.10),
-      transparent 40%
-    ),
-    linear-gradient(
-      180deg,
-      #0b111b,
-      #020305 72%
-    );
+background:#000;
 
 }
-
 
 #arena.active{
 
-  display:block;
+display:block;
 
-  animation:
-    arenaAppear .8s ease;
+animation:
+arenaAppear .9s ease;
 
 }
 
-
 @keyframes arenaAppear{
 
-  from{
-    opacity:0;
-  }
+from{
+opacity:0;
+}
 
-  to{
-    opacity:1;
-  }
+to{
+opacity:1;
+}
 
 }
 
 
 /**************************************************************
- ARENA F4SN TOP BAR
+ ARENA BACKDROP
+
+ THIS IS THE ACTUAL ARTWORK.
+**************************************************************/
+
+.arena-backdrop{
+
+position:absolute;
+
+inset:0;
+
+background-image:
+url("f4sn-winners-arena.png");
+
+background-size:cover;
+
+background-position:
+center center;
+
+background-repeat:no-repeat;
+
+transform:scale(1.01);
+
+transition:
+filter 1s,
+transform 2s;
+
+}
+
+.arena-backdrop::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+linear-gradient(
+180deg,
+rgba(0,0,0,.03) 0%,
+rgba(0,0,0,.02) 52%,
+rgba(0,0,0,.38) 100%
+);
+
+pointer-events:none;
+
+}
+
+#arena.spin-mode
+.arena-backdrop{
+
+filter:
+brightness(.58)
+saturate(1.25);
+
+transform:scale(1.045);
+
+}
+
+#arena.final-mode
+.arena-backdrop{
+
+filter:
+brightness(.22)
+saturate(.8);
+
+}
+
+
+/**************************************************************
+ TEAM COLOR WASH
+**************************************************************/
+
+.team-wash{
+
+position:absolute;
+
+inset:0;
+
+z-index:2;
+
+pointer-events:none;
+
+opacity:0;
+
+background:
+radial-gradient(
+ellipse at 50% 58%,
+transparent 0 20%,
+var(--team) 80%
+);
+
+mix-blend-mode:screen;
+
+transition:
+opacity .8s;
+
+}
+
+#arena.entrance-mode
+.team-wash{
+
+opacity:.18;
+
+animation:
+teamWashPulse 1.1s infinite alternate;
+
+}
+
+@keyframes teamWashPulse{
+
+from{
+opacity:.10;
+}
+
+to{
+opacity:.27;
+}
+
+}
+
+
+/**************************************************************
+ MOVING LIGHTS OVER ARTWORK
+**************************************************************/
+
+.arena-light{
+
+position:absolute;
+
+z-index:3;
+
+top:-20%;
+
+width:17%;
+height:115%;
+
+pointer-events:none;
+
+opacity:.5;
+
+filter:blur(18px);
+
+transform-origin:
+top center;
+
+background:
+linear-gradient(
+180deg,
+rgba(255,255,255,.42),
+rgba(24,168,255,.12) 45%,
+transparent 80%
+);
+
+}
+
+.arena-light.l1{
+
+left:8%;
+
+transform:
+rotate(25deg);
+
+animation:
+megaLight1 5s ease-in-out infinite alternate;
+
+}
+
+.arena-light.l2{
+
+left:30%;
+
+transform:
+rotate(10deg);
+
+animation:
+megaLight2 6s ease-in-out infinite alternate;
+
+}
+
+.arena-light.l3{
+
+right:30%;
+
+transform:
+rotate(-10deg);
+
+animation:
+megaLight3 6.5s ease-in-out infinite alternate;
+
+}
+
+.arena-light.l4{
+
+right:8%;
+
+transform:
+rotate(-25deg);
+
+animation:
+megaLight4 5.5s ease-in-out infinite alternate;
+
+}
+
+@keyframes megaLight1{
+
+to{
+transform:rotate(-5deg);
+}
+
+}
+
+@keyframes megaLight2{
+
+to{
+transform:rotate(-18deg);
+}
+
+}
+
+@keyframes megaLight3{
+
+to{
+transform:rotate(18deg);
+}
+
+}
+
+@keyframes megaLight4{
+
+to{
+transform:rotate(5deg);
+}
+
+}
+
+#arena.spin-mode
+.arena-light{
+
+animation-duration:.9s;
+
+opacity:.72;
+
+}
+
+#arena.final-mode
+.arena-light{
+
+opacity:.06;
+
+}
+
+
+/**************************************************************
+ TEAM ENTRANCE SPOTLIGHT
+**************************************************************/
+
+.team-spotlight{
+
+position:absolute;
+
+z-index:4;
+
+left:50%;
+top:-20%;
+
+width:48%;
+height:120%;
+
+transform:
+translateX(-50%);
+
+pointer-events:none;
+
+opacity:0;
+
+background:
+linear-gradient(
+180deg,
+var(--team),
+transparent 75%
+);
+
+filter:blur(42px);
+
+transition:
+opacity .6s;
+
+}
+
+#arena.entrance-mode
+.team-spotlight{
+
+opacity:.17;
+
+}
+
+
+/**************************************************************
+ ARENA TOP BROADCAST BAR
 **************************************************************/
 
 .arena-network{
 
-  position:sticky;
+position:absolute;
 
-  top:0;
+left:0;
+right:0;
+top:0;
 
-  z-index:50;
+z-index:50;
 
-  display:flex;
+display:flex;
 
-  align-items:center;
+align-items:center;
 
-  justify-content:space-between;
+justify-content:space-between;
 
-  gap:15px;
+gap:15px;
 
-  padding:
-    9px
-    16px;
+padding:
+9px
+16px;
 
-  background:
-    rgba(5,7,11,.97);
+background:
+rgba(5,7,11,.91);
 
-  border-bottom:
-    1px solid #263244;
+border-bottom:
+1px solid rgba(255,255,255,.18);
 
-  font-size:10px;
+backdrop-filter:
+blur(8px);
 
-  font-weight:1000;
+font-size:10px;
 
-  letter-spacing:1px;
+font-weight:1000;
+
+letter-spacing:1px;
 
 }
-
 
 .arena-network strong{
-
-  color:var(--blue);
-
+color:var(--blue);
 }
-
 
 .arena-network .special{
-
-  color:var(--gold);
-
+color:var(--gold);
 }
-
 
 .exit-arena{
 
-  padding:
-    6px
-    10px;
+padding:
+6px
+10px;
 
-  border:
-    1px solid #344154;
+border:
+1px solid #344154;
 
-  border-radius:4px;
+border-radius:4px;
 
-  background:#111827;
+background:#111827;
 
-  color:#aeb9c6;
+color:#aeb9c6;
 
-  font-size:9px;
+font-size:9px;
 
-  font-weight:1000;
+font-weight:1000;
 
-  cursor:pointer;
+cursor:pointer;
 
 }
 
 
 /**************************************************************
- ARENA BACKGROUND STRUCTURE
+ ARENA HUD
 **************************************************************/
 
-.arena-space{
+.arena-hud{
 
-  position:relative;
+position:absolute;
 
-  min-height:calc(100vh - 36px);
+left:50%;
+top:48px;
 
-  overflow:hidden;
+z-index:45;
 
-  padding-bottom:150px;
+transform:
+translateX(-50%);
 
-}
+width:min(720px,78vw);
 
+text-align:center;
 
-.arena-space::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-  background:
-    linear-gradient(
-      rgba(255,255,255,.018) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.018) 1px,
-      transparent 1px
-    );
-
-  background-size:
-    50px 50px;
-
-  opacity:.5;
+pointer-events:none;
 
 }
 
+.arena-hud-main{
 
-.arena-truss{
+display:inline-block;
 
-  position:absolute;
+padding:
+7px 18px;
 
-  left:0;
+border:
+1px solid rgba(255,255,255,.25);
 
-  right:0;
+border-radius:4px;
 
-  top:0;
+background:
+rgba(5,7,11,.72);
 
-  height:55px;
+backdrop-filter:
+blur(8px);
 
-  border-top:
-    6px solid #1e293b;
+color:white;
 
-  border-bottom:
-    6px solid #1e293b;
+font-size:
+clamp(
+13px,
+2vw,
+20px
+);
 
-  background:
-    repeating-linear-gradient(
-      135deg,
-      transparent 0 34px,
-      #1e293b 35px 42px,
-      transparent 43px 76px
-    );
+font-weight:1000;
 
-  opacity:.75;
+letter-spacing:1.4px;
 
-}
+text-transform:uppercase;
 
-
-.stage-light{
-
-  position:absolute;
-
-  top:-80px;
-
-  width:27%;
-
-  height:100vh;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(24,168,255,.24),
-      transparent 78%
-    );
-
-  filter:blur(25px);
-
-  transform-origin:top center;
-
-  pointer-events:none;
-
-  transition:
-    opacity .8s,
-    background .8s;
+box-shadow:
+0 7px 20px rgba(0,0,0,.45);
 
 }
 
+.arena-hud-sub{
 
-.stage-light.one{
+margin-top:6px;
 
-  left:1%;
+color:#dbeafe;
 
-  transform:rotate(27deg);
+font-size:9px;
 
-  animation:
-    lightOne 7s ease-in-out infinite alternate;
+font-weight:1000;
 
-}
+letter-spacing:2px;
 
-
-.stage-light.two{
-
-  left:27%;
-
-  transform:rotate(10deg);
-
-  animation:
-    lightTwo 8s ease-in-out infinite alternate;
-
-}
-
-
-.stage-light.three{
-
-  right:27%;
-
-  transform:rotate(-10deg);
-
-  animation:
-    lightThree 8.5s ease-in-out infinite alternate;
-
-}
-
-
-.stage-light.four{
-
-  right:1%;
-
-  transform:rotate(-27deg);
-
-  animation:
-    lightFour 7.5s ease-in-out infinite alternate;
-
-}
-
-
-@keyframes lightOne{
-
-  to{
-    transform:rotate(-3deg);
-  }
-
-}
-
-
-@keyframes lightTwo{
-
-  to{
-    transform:rotate(-17deg);
-  }
-
-}
-
-
-@keyframes lightThree{
-
-  to{
-    transform:rotate(17deg);
-  }
-
-}
-
-
-@keyframes lightFour{
-
-  to{
-    transform:rotate(3deg);
-  }
-
-}
-
-
-.arena-space.spin-mode
-.stage-light{
-
-  opacity:.25;
-
-}
-
-
-.arena-space.final-mode
-.stage-light{
-
-  opacity:.035;
+text-shadow:
+0 2px 4px black;
 
 }
 
 
 /**************************************************************
- F4SN ARENA JUMBOTRON
+ ARENA SCENES
 **************************************************************/
 
-.jumbotron-wrap{
+.arena-scene{
 
-  position:relative;
+position:absolute;
 
-  z-index:10;
+inset:0;
 
-  width:min(950px,94%);
+z-index:20;
 
-  margin:auto;
-
-  padding-top:48px;
+display:none;
 
 }
 
+.arena-scene.active{
 
-.jumbotron{
+display:block;
 
-  overflow:hidden;
-
-  border:
-    5px solid #263244;
-
-  border-top-color:
-    var(--blue);
-
-  border-radius:8px;
-
-  background:#05070b;
-
-  box-shadow:
-    0 15px 35px rgba(0,0,0,.7),
-    0 0 30px rgba(24,168,255,.10);
+animation:
+sceneIn .6s ease;
 
 }
 
+@keyframes sceneIn{
 
-.jumbo-network{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  padding:
-    7px
-    13px;
-
-  background:#111827;
-
-  border-bottom:
-    1px solid #263244;
-
-  color:#8796aa;
-
-  font-size:9px;
-
-  font-weight:1000;
-
-  letter-spacing:2px;
-
+from{
+opacity:0;
 }
 
-
-.jumbo-network strong{
-
-  color:var(--blue);
-
+to{
+opacity:1;
 }
-
-
-#jumbo-main{
-
-  padding:
-    17px
-    15px
-    4px;
-
-  color:white;
-
-  text-align:center;
-
-  font-size:
-    clamp(
-      27px,
-      5vw,
-      52px
-    );
-
-  line-height:1;
-
-  font-weight:1000;
-
-  text-transform:uppercase;
-
-}
-
-
-#jumbo-sub{
-
-  padding:
-    8px
-    15px
-    16px;
-
-  color:var(--muted);
-
-  text-align:center;
-
-  font-size:11px;
-
-  font-weight:900;
-
-  letter-spacing:1px;
-
-}
-
-
-.jumbotron.danger{
-
-  border-color:
-    var(--red);
-
-  animation:
-    dangerBoard .45s infinite alternate;
-
-}
-
-
-@keyframes dangerBoard{
-
-  from{
-
-    box-shadow:
-      0 0 25px rgba(255,75,75,.2);
-
-  }
-
-  to{
-
-    box-shadow:
-      0 0 65px rgba(255,75,75,.65);
-
-  }
-
-}
-
-
-.jumbotron.jackpot{
-
-  border-color:
-    var(--gold);
-
-  animation:
-    jackpotBoard .16s infinite alternate;
-
-}
-
-
-@keyframes jackpotBoard{
-
-  from{
-    filter:brightness(1);
-  }
-
-  to{
-    filter:brightness(1.65);
-  }
 
 }
 
 
 /**************************************************************
- ARENA SCREENS
+ ENTRANCE BROADCAST GRAPHIC
 **************************************************************/
 
-.arena-screen{
+.entrance-overlay{
 
-  position:relative;
+position:absolute;
 
-  z-index:12;
+left:50%;
+top:50%;
 
-  display:none;
+transform:
+translate(-50%,-50%);
 
-  width:min(1150px,94%);
+width:min(920px,90vw);
 
-  margin:auto;
+padding:
+30px 25px;
 
-  padding:
-    34px
-    0
-    40px;
+text-align:center;
 
-}
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(3,7,15,.82) 15%,
+rgba(3,7,15,.88) 50%,
+rgba(3,7,15,.82) 85%,
+transparent
+);
 
+border-top:
+2px solid var(--team);
 
-.arena-screen.active{
+border-bottom:
+2px solid var(--team);
 
-  display:block;
-
-  animation:
-    screenIn .55s ease;
-
-}
-
-
-@keyframes screenIn{
-
-  from{
-
-    opacity:0;
-
-    transform:
-      translateY(20px);
-
-  }
-
-  to{
-
-    opacity:1;
-
-    transform:
-      translateY(0);
-
-  }
+box-shadow:
+0 0 55px rgba(0,0,0,.8);
 
 }
-
-
-/**************************************************************
- ENTRANCE STAGE
-**************************************************************/
-
-.entrance-stage{
-
-  position:relative;
-
-  min-height:430px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  overflow:hidden;
-
-  border:
-    1px solid #263244;
-
-  border-top:
-    3px solid var(--team);
-
-  border-radius:9px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #111827,
-      #05070b
-    );
-
-  box-shadow:
-    0 25px 60px rgba(0,0,0,.55);
-
-}
-
-
-.entrance-stage::before{
-
-  content:"";
-
-  position:absolute;
-
-  width:700px;
-
-  height:700px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      var(--team),
-      transparent 67%
-    );
-
-  opacity:.17;
-
-  filter:blur(35px);
-
-}
-
-
-.entrance-stage::after{
-
-  content:"F4SN";
-
-  position:absolute;
-
-  color:rgba(255,255,255,.025);
-
-  font-size:
-    clamp(
-      130px,
-      27vw,
-      350px
-    );
-
-  font-weight:1000;
-
-}
-
-
-.entrance-content{
-
-  position:relative;
-
-  z-index:4;
-
-  padding:35px;
-
-  text-align:center;
-
-}
-
 
 .entrance-kicker{
 
-  color:var(--blue);
+color:var(--blue);
 
-  font-size:10px;
+font-size:10px;
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:4px;
+letter-spacing:4px;
 
 }
-
 
 #entrance-manager{
 
-  margin-top:13px;
+margin-top:13px;
 
-  color:#c4cedb;
+color:white;
 
-  font-size:
-    clamp(
-      18px,
-      3vw,
-      28px
-    );
+font-size:
+clamp(
+19px,
+3vw,
+31px
+);
 
-  font-weight:1000;
+font-weight:1000;
 
 }
-
 
 #entrance-team{
 
-  max-width:950px;
+max-width:950px;
 
-  margin:
-    10px
-    auto;
+margin:
+10px
+auto;
 
-  color:var(--team);
+color:var(--team);
 
-  font-size:
-    clamp(
-      38px,
-      8vw,
-      86px
-    );
+font-size:
+clamp(
+39px,
+8vw,
+87px
+);
 
-  line-height:.9;
+line-height:.9;
 
-  font-weight:1000;
+font-weight:1000;
 
-  text-transform:uppercase;
+text-transform:uppercase;
 
-  text-shadow:
-    0 0 30px var(--team);
+text-shadow:
+0 0 30px var(--team);
 
 }
-
 
 #entrance-line{
 
-  margin:
-    24px
-    auto
-    0;
+margin:
+22px
+auto
+0;
 
-  color:var(--yellow);
+color:var(--yellow);
 
-  font-size:12px;
+font-size:12px;
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:1px;
+letter-spacing:1px;
 
 }
-
 
 .access-stamp{
 
-  display:inline-block;
+display:inline-block;
 
-  margin-top:25px;
+margin-top:22px;
 
-  padding:
-    8px
-    17px;
+padding:
+8px
+17px;
 
-  border:
-    3px solid #22c55e;
+border:
+3px solid #22c55e;
 
-  color:#4ade80;
+background:
+rgba(0,0,0,.55);
 
-  font-size:20px;
+color:#4ade80;
 
-  font-weight:1000;
+font-size:20px;
 
-  letter-spacing:2px;
+font-weight:1000;
 
-  transform:
-    rotate(-2deg);
+letter-spacing:2px;
+
+transform:
+rotate(-2deg);
 
 }
 
 
 /**************************************************************
- ARENA DOORS
+ ARENA DOOR REVEAL
 **************************************************************/
 
-.door-shell{
+#door-scene{
 
-  position:relative;
-
-  max-width:1000px;
-
-  height:510px;
-
-  margin:
-    5px
-    auto
-    25px;
-
-  overflow:hidden;
-
-  border:
-    7px solid #263244;
-
-  background:
-    radial-gradient(
-      circle at center,
-      #d9f3ff 0,
-      #18a8ff 10%,
-      #073d62 35%,
-      #020305 70%
-    );
-
-  box-shadow:
-    0 25px 70px rgba(0,0,0,.75);
+background:#020305;
 
 }
 
+.door-arena-preview{
 
-.door{
+position:absolute;
 
-  position:absolute;
+inset:0;
 
-  top:0;
+background-image:
+url("f4sn-winners-arena.png");
 
-  bottom:0;
+background-size:cover;
 
-  z-index:5;
+background-position:center;
 
-  width:50.2%;
-
-  background:
-    linear-gradient(
-      90deg,
-      #0b1018,
-      #263244,
-      #111827
-    );
-
-  border:
-    3px solid #344154;
-
-  transition:
-    transform 1.8s
-    cubic-bezier(.2,.8,.2,1);
+filter:
+brightness(.85);
 
 }
 
+.mega-door{
 
-.door::after{
+position:absolute;
 
-  content:"";
+top:0;
+bottom:0;
 
-  position:absolute;
+z-index:6;
 
-  top:0;
+width:50.2%;
 
-  bottom:0;
+background:
+linear-gradient(
+90deg,
+#05070b,
+#182437 50%,
+#05070b
+);
 
-  width:4px;
+border:
+4px solid #263244;
 
-  background:
-    var(--blue);
-
-  box-shadow:
-    0 0 15px var(--blue);
-
-}
-
-
-.door.left{
-
-  left:0;
-
-}
-
-
-.door.left::after{
-
-  right:0;
+transition:
+transform 1.9s
+cubic-bezier(.18,.8,.2,1);
 
 }
 
+.mega-door::before{
 
-.door.right{
+content:"";
 
-  right:0;
+position:absolute;
 
-}
+inset:0;
 
-
-.door.right::after{
-
-  left:0;
-
-}
-
-
-.door-logo{
-
-  position:absolute;
-
-  top:50%;
-
-  z-index:8;
-
-  transform:
-    translateY(-50%);
-
-  color:#536276;
-
-  font-size:
-    clamp(
-      42px,
-      8vw,
-      78px
-    );
-
-  font-weight:1000;
-
-  text-shadow:
-    0 3px 0 #020305;
+background:
+repeating-linear-gradient(
+135deg,
+transparent 0 60px,
+rgba(255,255,255,.025) 61px 65px
+);
 
 }
 
+.mega-door.left{
+left:0;
+}
 
-.door-logo.left{
+.mega-door.right{
+right:0;
+}
 
-  right:25px;
+.mega-door.left::after,
+.mega-door.right::after{
+
+content:"";
+
+position:absolute;
+
+top:0;
+bottom:0;
+
+width:6px;
+
+background:var(--blue);
+
+box-shadow:
+0 0 25px var(--blue);
 
 }
 
+.mega-door.left::after{
+right:0;
+}
 
-.door-logo.right{
+.mega-door.right::after{
+left:0;
+}
 
-  left:25px;
+.mega-door-logo{
+
+position:absolute;
+
+top:50%;
+
+z-index:8;
+
+transform:
+translateY(-50%);
+
+color:#536276;
+
+font-size:
+clamp(
+55px,
+12vw,
+140px
+);
+
+font-weight:1000;
+
+text-shadow:
+0 5px 0 black;
 
 }
 
+.mega-door-logo.left{
+right:25px;
+}
 
-.door-shell.open
-.door.left{
+.mega-door-logo.right{
+left:25px;
+}
 
-  transform:
-    translateX(-102%);
+#door-scene.open
+.mega-door.left{
+
+transform:
+translateX(-102%);
 
 }
 
+#door-scene.open
+.mega-door.right{
 
-.door-shell.open
-.door.right{
-
-  transform:
-    translateX(102%);
+transform:
+translateX(102%);
 
 }
 
+.door-control{
 
-.door-reveal{
+position:absolute;
 
-  position:absolute;
+z-index:10;
 
-  inset:0;
+left:50%;
+bottom:7%;
 
-  display:flex;
+transform:
+translateX(-50%);
 
-  align-items:center;
-
-  justify-content:center;
-
-  color:white;
-
-  text-align:center;
-
-  font-size:
-    clamp(
-      32px,
-      7vw,
-      72px
-    );
-
-  line-height:.9;
-
-  font-weight:1000;
-
-  text-shadow:
-    0 0 25px #18a8ff;
+text-align:center;
 
 }
 
 
 /**************************************************************
- ORACLE BOOTH
+ WHEEL STAGE PLACEMENT
+
+ POSITIONED ON THE EMPTY CENTER STAGE IN THE ARTWORK.
 **************************************************************/
 
-.oracle-booth{
+.wheel-stage-zone{
 
-  display:grid;
+position:absolute;
 
-  grid-template-columns:
-    105px
-    1fr;
+z-index:25;
 
-  max-width:900px;
+left:50%;
 
-  margin:
-    0
-    auto
-    25px;
+top:58%;
 
-  overflow:hidden;
+transform:
+translate(-50%,-50%);
 
-  border:
-    1px solid #263244;
+width:
+min(
+49vw,
+650px
+);
 
-  border-left:
-    5px solid var(--blue);
+aspect-ratio:1;
 
-  border-radius:7px;
-
-  background:#111827;
+transition:
+transform .5s,
+filter .5s;
 
 }
 
+#arena.spin-mode
+.wheel-stage-zone{
 
-.oracle-icon{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  background:#080b12;
-
-  border-right:
-    1px solid #263244;
-
-  font-size:42px;
+filter:
+drop-shadow(
+0 0 38px rgba(255,213,74,.5)
+);
 
 }
 
+.wheel-shadow{
 
-.oracle-copy{
+position:absolute;
 
-  padding:
-    14px
-    17px;
+left:12%;
+right:12%;
+bottom:-7%;
 
-}
+height:20%;
 
+border-radius:50%;
 
-.oracle-label{
+background:
+rgba(0,0,0,.68);
 
-  color:var(--blue);
+filter:blur(20px);
 
-  font-size:9px;
-
-  font-weight:1000;
-
-  letter-spacing:2px;
-
-}
-
-
-#oracle-message{
-
-  margin-top:6px;
-
-  color:#e3e8ef;
-
-  font-size:13px;
-
-  font-weight:900;
-
-  line-height:1.5;
+transform:
+perspective(400px)
+rotateX(65deg);
 
 }
 
 
 /**************************************************************
- WHEEL STAGE
-**************************************************************/
-
-.wheel-stage{
-
-  position:relative;
-
-  overflow:hidden;
-
-  padding:
-    30px
-    20px
-    45px;
-
-  border:
-    1px solid #263244;
-
-  border-radius:10px;
-
-  background:
-    radial-gradient(
-      circle at 50% 35%,
-      rgba(255,213,74,.09),
-      transparent 40%
-    ),
-    linear-gradient(
-      180deg,
-      #111827,
-      #05070b
-    );
-
-  box-shadow:
-    0 30px 75px rgba(0,0,0,.6);
-
-}
-
-
-.wheel-stage::before{
-
-  content:"F4SN";
-
-  position:absolute;
-
-  left:50%;
-
-  bottom:-25px;
-
-  transform:
-    translateX(-50%);
-
-  color:rgba(255,255,255,.025);
-
-  font-size:
-    clamp(
-      110px,
-      25vw,
-      290px
-    );
-
-  font-weight:1000;
-
-}
-
-
-.stage-floor{
-
-  position:absolute;
-
-  left:5%;
-
-  right:5%;
-
-  bottom:-15px;
-
-  height:150px;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(255,213,74,.18),
-      transparent 65%
-    );
-
-  transform:
-    perspective(450px)
-    rotateX(68deg);
-
-  transform-origin:bottom;
-
-}
-
-
-/**************************************************************
- PHYSICAL WHEEL MACHINE
+ WHEEL MACHINE
 **************************************************************/
 
 .wheel-machine{
 
-  position:relative;
+position:absolute;
 
-  z-index:5;
+inset:0;
 
-  width:
-    min(
-      720px,
-      86vw
-    );
+padding:7.5%;
 
-  aspect-ratio:1;
+border-radius:50%;
 
-  margin:
-    30px
-    auto
-    28px;
+background:
+linear-gradient(
+135deg,
+#fff6c5 0%,
+#d69b00 11%,
+#6d4600 27%,
+#ffd54a 42%,
+#fff2a0 51%,
+#976100 67%,
+#ffd54a 84%,
+#694300 100%
+);
 
-  padding:50px;
-
-  border-radius:50%;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fff6c5 0%,
-      #d69b00 11%,
-      #6d4600 27%,
-      #ffd54a 42%,
-      #fff2a0 51%,
-      #976100 67%,
-      #ffd54a 84%,
-      #694300 100%
-    );
-
-  box-shadow:
-    0 0 0 8px #2b1c00,
-    0 0 0 15px #111827,
-    0 0 0 18px #263244,
-    inset 0 0 28px rgba(255,255,255,.35),
-    0 0 60px rgba(255,213,74,.23),
-    0 38px 60px rgba(0,0,0,.75);
+box-shadow:
+0 0 0 7px #2b1c00,
+0 0 0 13px #111827,
+0 0 0 16px #263244,
+inset 0 0 28px rgba(255,255,255,.35),
+0 0 55px rgba(255,213,74,.40),
+0 30px 45px rgba(0,0,0,.85);
 
 }
-
 
 .wheel-machine::before{
 
-  content:"";
+content:"";
 
-  position:absolute;
+position:absolute;
 
-  inset:20px;
+inset:3%;
 
-  border-radius:50%;
+border-radius:50%;
 
-  border:
-    4px solid rgba(255,255,255,.27);
+border:
+3px solid rgba(255,255,255,.28);
 
-  pointer-events:none;
+pointer-events:none;
 
 }
-
 
 .wheel-machine::after{
 
-  content:"";
+content:"";
 
-  position:absolute;
+position:absolute;
 
-  inset:38px;
+inset:6%;
 
-  z-index:6;
+z-index:6;
 
-  border-radius:50%;
+border-radius:50%;
 
-  box-shadow:
-    inset 16px 18px 24px rgba(255,255,255,.10),
-    inset -20px -20px 30px rgba(0,0,0,.55);
+box-shadow:
+inset 16px 18px 24px rgba(255,255,255,.10),
+inset -20px -20px 30px rgba(0,0,0,.55);
 
-  pointer-events:none;
+pointer-events:none;
 
 }
 
-
 #wheel{
 
-  display:block;
+display:block;
 
-  width:100%;
+width:100%;
+height:100%;
 
-  height:100%;
+border-radius:50%;
 
-  border-radius:50%;
+background:#111827;
 
-  background:#111827;
-
-  box-shadow:
-    inset 0 0 30px rgba(0,0,0,.9),
-    0 0 0 4px #5d3d00;
+box-shadow:
+inset 0 0 30px rgba(0,0,0,.9),
+0 0 0 4px #5d3d00;
 
 }
 
 
 /**************************************************************
- MARQUEE BULBS
+ BULBS
 **************************************************************/
 
 #bulbs{
 
-  position:absolute;
+position:absolute;
 
-  inset:0;
+inset:0;
 
-  z-index:8;
+z-index:8;
 
-  border-radius:50%;
+border-radius:50%;
 
-  pointer-events:none;
+pointer-events:none;
 
 }
-
 
 .bulb{
 
-  position:absolute;
+position:absolute;
 
-  width:17px;
+width:15px;
+height:15px;
 
-  height:17px;
+margin:-7.5px;
 
-  margin:
-    -8.5px;
+border:
+2px solid #987000;
 
-  border:
-    2px solid #987000;
+border-radius:50%;
 
-  border-radius:50%;
+background:#5a4300;
 
-  background:#5a4300;
+box-shadow:
+inset 0 0 4px black;
 
-  box-shadow:
-    inset 0 0 4px black;
-
-  transition:
-    background .07s,
-    box-shadow .07s,
-    transform .07s;
+transition:
+background .07s,
+box-shadow .07s,
+transform .07s;
 
 }
-
 
 .bulb.on{
 
-  transform:
-    scale(1.2);
+transform:
+scale(1.2);
 
-  background:#fff9cf;
+background:#fff9cf;
 
-  box-shadow:
-    0 0 7px white,
-    0 0 18px #ffd54a,
-    0 0 29px #ff9f00;
+box-shadow:
+0 0 7px white,
+0 0 18px #ffd54a,
+0 0 29px #ff9f00;
 
 }
-
 
 .bulb.blue{
 
-  transform:
-    scale(1.18);
+transform:
+scale(1.18);
 
-  background:white;
+background:white;
 
-  box-shadow:
-    0 0 7px white,
-    0 0 18px #18a8ff,
-    0 0 28px #18a8ff;
+box-shadow:
+0 0 7px white,
+0 0 18px #18a8ff,
+0 0 28px #18a8ff;
 
 }
 
-
 .bulb.red{
 
-  transform:
-    scale(1.18);
+transform:
+scale(1.18);
 
-  background:white;
+background:white;
 
-  box-shadow:
-    0 0 7px white,
-    0 0 18px #ff4b4b,
-    0 0 28px #ff4b4b;
+box-shadow:
+0 0 7px white,
+0 0 18px #ff4b4b,
+0 0 28px #ff4b4b;
 
 }
 
@@ -2662,112 +2268,102 @@ main{
 
 .pointer-housing{
 
-  position:absolute;
+position:absolute;
 
-  left:50%;
+left:50%;
+top:-8%;
 
-  top:-47px;
+z-index:16;
 
-  z-index:16;
+width:15%;
+height:19%;
 
-  width:100px;
-
-  height:110px;
-
-  transform:
-    translateX(-50%);
+transform:
+translateX(-50%);
 
 }
-
 
 .pointer-bolt{
 
-  position:absolute;
+position:absolute;
 
-  left:50%;
+left:50%;
+top:0;
 
-  top:0;
+width:60%;
+aspect-ratio:1;
 
-  width:61px;
+transform:
+translateX(-50%);
 
-  height:61px;
+border:
+4px solid var(--blue);
 
-  transform:
-    translateX(-50%);
+border-radius:50%;
 
-  border:
-    5px solid var(--blue);
+background:
+radial-gradient(
+circle at 35% 30%,
+white,
+#bdc8d5 20%,
+#566273 58%,
+#111827
+);
 
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      white,
-      #bdc8d5 20%,
-      #566273 58%,
-      #111827
-    );
-
-  box-shadow:
-    0 5px 12px rgba(0,0,0,.8),
-    0 0 18px rgba(24,168,255,.45);
+box-shadow:
+0 5px 12px rgba(0,0,0,.8),
+0 0 18px rgba(24,168,255,.45);
 
 }
-
 
 #pointer{
 
-  position:absolute;
+position:absolute;
 
-  left:50%;
+left:50%;
+top:43%;
 
-  top:45px;
+width:0;
+height:0;
 
-  width:0;
+transform:
+translateX(-50%);
 
-  height:0;
+transform-origin:
+50% 0;
 
-  transform:
-    translateX(-50%);
+border-left:
+18px solid transparent;
 
-  transform-origin:
-    50% 0;
+border-right:
+18px solid transparent;
 
-  border-left:
-    28px solid transparent;
+border-top:
+52px solid #f8fafc;
 
-  border-right:
-    28px solid transparent;
-
-  border-top:
-    70px solid #f8fafc;
-
-  filter:
-    drop-shadow(
-      0 6px 5px rgba(0,0,0,.9)
-    );
+filter:
+drop-shadow(
+0 6px 5px rgba(0,0,0,.9)
+);
 
 }
-
 
 #pointer.hit{
 
-  animation:
-    pointerHit .09s ease;
+animation:
+pointerHit .09s ease;
 
 }
 
-
 @keyframes pointerHit{
 
-  50%{
+50%{
 
-    transform:
-      translateX(-50%)
-      rotate(10deg);
+transform:
+translateX(-50%)
+rotate(10deg);
 
-  }
+}
 
 }
 
@@ -2778,312 +2374,293 @@ main{
 
 .center-hub{
 
-  position:absolute;
+position:absolute;
 
-  left:50%;
+left:50%;
+top:50%;
 
-  top:50%;
+z-index:13;
 
-  z-index:13;
+width:25%;
+aspect-ratio:1;
 
-  width:25%;
+transform:
+translate(-50%,-50%);
 
-  aspect-ratio:1;
+display:flex;
 
-  transform:
-    translate(-50%,-50%);
+flex-direction:column;
 
-  display:flex;
+align-items:center;
 
-  flex-direction:column;
+justify-content:center;
 
-  align-items:center;
+border:
+6px solid var(--blue);
 
-  justify-content:center;
+border-radius:50%;
 
-  border:
-    7px solid var(--blue);
+background:
+radial-gradient(
+circle at 35% 30%,
+#344154,
+#111827 42%,
+#020305 78%
+);
 
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #344154,
-      #111827 42%,
-      #020305 78%
-    );
-
-  box-shadow:
-    0 0 0 6px #073e62,
-    inset 0 0 20px rgba(255,255,255,.12),
-    0 8px 25px rgba(0,0,0,.8);
+box-shadow:
+0 0 0 5px #073e62,
+inset 0 0 20px rgba(255,255,255,.12),
+0 8px 25px rgba(0,0,0,.8);
 
 }
-
 
 .center-hub strong{
 
-  color:var(--blue);
+color:var(--blue);
 
-  font-size:
-    clamp(
-      20px,
-      4vw,
-      39px
-    );
+font-size:
+clamp(
+15px,
+2.7vw,
+34px
+);
 
-  font-weight:1000;
+font-weight:1000;
 
 }
-
 
 .center-hub span{
 
-  color:white;
+color:white;
 
-  font-size:8px;
+font-size:
+clamp(
+5px,
+.7vw,
+9px
+);
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:2px;
+letter-spacing:2px;
 
 }
 
 
 /**************************************************************
- LEVER
+ LIVE CONTROL DECK
 **************************************************************/
 
-.lever-area{
+.control-deck{
 
-  position:relative;
+position:absolute;
 
-  z-index:10;
+z-index:40;
 
-  text-align:center;
+left:50%;
+bottom:2.3%;
+
+transform:
+translateX(-50%);
+
+width:min(760px,92vw);
+
+display:grid;
+
+grid-template-columns:
+1fr auto;
+
+align-items:center;
+
+gap:14px;
+
+padding:
+11px 13px;
+
+border:
+1px solid rgba(255,255,255,.28);
+
+border-top:
+3px solid var(--blue);
+
+border-radius:8px;
+
+background:
+rgba(5,7,11,.86);
+
+backdrop-filter:
+blur(10px);
+
+box-shadow:
+0 12px 35px rgba(0,0,0,.7);
 
 }
 
+.oracle-control{
+
+min-width:0;
+
+}
+
+.oracle-label{
+
+color:var(--blue);
+
+font-size:8px;
+
+font-weight:1000;
+
+letter-spacing:2px;
+
+}
+
+#oracle-message{
+
+margin-top:4px;
+
+overflow:hidden;
+
+color:#e3e8ef;
+
+font-size:11px;
+
+font-weight:900;
+
+line-height:1.35;
+
+white-space:nowrap;
+
+text-overflow:ellipsis;
+
+}
 
 #spin-button{
 
-  min-width:
-    min(
-      430px,
-      92%
-    );
+min-width:250px;
 
-  padding:
-    18px
-    28px;
+padding:
+14px
+20px;
 
-  border:
-    2px solid #fff0a0;
+border:
+2px solid #fff0a0;
 
-  border-radius:8px;
+border-radius:7px;
 
-  background:
-    linear-gradient(
-      180deg,
-      #fff5b8,
-      #ffd54a 50%,
-      #ba7800
-    );
+background:
+linear-gradient(
+180deg,
+#fff5b8,
+#ffd54a 50%,
+#ba7800
+);
 
-  color:#111;
+color:#111;
 
-  font-size:16px;
+font-size:13px;
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:.8px;
+letter-spacing:.8px;
 
-  cursor:pointer;
+cursor:pointer;
 
-  box-shadow:
-    0 7px 0 #684300,
-    0 14px 25px rgba(0,0,0,.55),
-    0 0 28px rgba(255,213,74,.16);
+box-shadow:
+0 5px 0 #684300,
+0 9px 20px rgba(0,0,0,.55),
+0 0 24px rgba(255,213,74,.20);
 
 }
-
 
 #spin-button:disabled{
 
-  opacity:.45;
+opacity:.45;
 
-  cursor:not-allowed;
-
-}
-
-
-/**************************************************************
- RESULT PANEL
-**************************************************************/
-
-.result-panel{
-
-  position:relative;
-
-  z-index:10;
-
-  max-width:720px;
-
-  margin:
-    30px
-    auto
-    0;
-
-  padding:20px;
-
-  border:
-    1px solid #263244;
-
-  border-left:
-    5px solid var(--blue);
-
-  border-radius:7px;
-
-  background:#111827;
-
-  text-align:center;
-
-}
-
-
-.result-label{
-
-  color:var(--blue);
-
-  font-size:9px;
-
-  font-weight:1000;
-
-  letter-spacing:2px;
-
-}
-
-
-.result-title{
-
-  margin-top:7px;
-
-  color:white;
-
-  font-size:
-    clamp(
-      23px,
-      4vw,
-      37px
-    );
-
-  font-weight:1000;
-
-}
-
-
-.result-note{
-
-  margin-top:8px;
-
-  color:var(--muted);
-
-  font-size:13px;
-
-  line-height:1.55;
+cursor:not-allowed;
 
 }
 
 
 /**************************************************************
- CROWD
+ BROADCAST SIDE GRAPHICS
 **************************************************************/
 
-.crowd{
+.side-result{
 
-  position:absolute;
+position:absolute;
 
-  left:0;
+z-index:35;
 
-  right:0;
+top:50%;
 
-  bottom:0;
+width:min(220px,18vw);
 
-  z-index:4;
+padding:
+10px;
 
-  height:145px;
+border:
+1px solid rgba(255,255,255,.24);
 
-  opacity:.85;
+background:
+rgba(5,7,11,.78);
 
-  background:
+backdrop-filter:
+blur(7px);
 
-    radial-gradient(
-      ellipse at 4% 100%,
-      #080808 0 27px,
-      transparent 28px
-    ),
+text-align:center;
 
-    radial-gradient(
-      ellipse at 12% 100%,
-      #101010 0 36px,
-      transparent 37px
-    ),
+box-shadow:
+0 10px 25px rgba(0,0,0,.6);
 
-    radial-gradient(
-      ellipse at 21% 100%,
-      #050505 0 29px,
-      transparent 30px
-    ),
+}
 
-    radial-gradient(
-      ellipse at 31% 100%,
-      #101010 0 38px,
-      transparent 39px
-    ),
+.side-result.left{
 
-    radial-gradient(
-      ellipse at 42% 100%,
-      #070707 0 30px,
-      transparent 31px
-    ),
+left:2%;
 
-    radial-gradient(
-      ellipse at 52% 100%,
-      #111 0 40px,
-      transparent 41px
-    ),
+border-left:
+4px solid var(--team);
 
-    radial-gradient(
-      ellipse at 64% 100%,
-      #060606 0 31px,
-      transparent 32px
-    ),
+}
 
-    radial-gradient(
-      ellipse at 74% 100%,
-      #111 0 37px,
-      transparent 38px
-    ),
+.side-result.right{
 
-    radial-gradient(
-      ellipse at 86% 100%,
-      #050505 0 29px,
-      transparent 30px
-    ),
+right:2%;
 
-    radial-gradient(
-      ellipse at 96% 100%,
-      #111 0 38px,
-      transparent 39px
-    ),
+border-right:
+4px solid var(--gold);
 
-    linear-gradient(
-      transparent,
-      #000 70%
-    );
+}
 
-  pointer-events:none;
+.side-label{
+
+color:#9ba9bb;
+
+font-size:7px;
+
+font-weight:1000;
+
+letter-spacing:1.5px;
+
+}
+
+.side-value{
+
+margin-top:5px;
+
+color:white;
+
+font-size:
+clamp(
+10px,
+1.5vw,
+17px
+);
+
+font-weight:1000;
+
+line-height:1.15;
 
 }
 
@@ -3094,80 +2671,75 @@ main{
 
 #countdown{
 
-  position:fixed;
+position:fixed;
 
-  inset:0;
+inset:0;
 
-  z-index:8000;
+z-index:17000;
 
-  display:none;
+display:none;
 
-  align-items:center;
+align-items:center;
 
-  justify-content:center;
+justify-content:center;
 
-  background:
-    rgba(2,3,5,.90);
+background:
+rgba(2,3,5,.78);
+
+backdrop-filter:
+blur(2px);
 
 }
-
 
 #countdown.show{
-
-  display:flex;
-
+display:flex;
 }
-
 
 #countdown-number{
 
-  color:var(--blue);
+color:var(--blue);
 
-  font-size:
-    clamp(
-      130px,
-      30vw,
-      350px
-    );
+font-size:
+clamp(
+130px,
+30vw,
+350px
+);
 
-  font-weight:1000;
+font-weight:1000;
 
-  text-shadow:
-    0 0 30px #18a8ff,
-    0 0 85px rgba(24,168,255,.5);
+text-shadow:
+0 0 30px #18a8ff,
+0 0 85px rgba(24,168,255,.5);
 
-  animation:
-    countPop .65s ease;
+animation:
+countPop .65s ease;
 
 }
 
-
 @keyframes countPop{
 
-  from{
+from{
 
-    opacity:0;
+opacity:0;
 
-    transform:
-      scale(.25);
+transform:
+scale(.25);
 
-  }
+}
 
-  55%{
+55%{
 
-    opacity:1;
+opacity:1;
 
-    transform:
-      scale(1.15);
+transform:
+scale(1.15);
 
-  }
+}
 
-  to{
-
-    transform:
-      scale(1);
-
-  }
+to{
+transform:scale(1);
+}
 
 }
 
@@ -3178,48 +2750,44 @@ main{
 
 #blackout{
 
-  position:fixed;
+position:fixed;
 
-  inset:0;
+inset:0;
 
-  z-index:8500;
+z-index:18000;
 
-  display:none;
+display:none;
 
-  align-items:center;
+align-items:center;
 
-  justify-content:center;
+justify-content:center;
 
-  background:black;
+background:black;
 
 }
-
 
 #blackout.show{
-
-  display:flex;
-
+display:flex;
 }
-
 
 #blackout-text{
 
-  padding:25px;
+padding:25px;
 
-  color:white;
+color:white;
 
-  text-align:center;
+text-align:center;
 
-  font-size:
-    clamp(
-      25px,
-      5vw,
-      60px
-    );
+font-size:
+clamp(
+25px,
+5vw,
+60px
+);
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:3px;
+letter-spacing:3px;
 
 }
 
@@ -3230,218 +2798,210 @@ main{
 
 #takeover{
 
-  position:fixed;
+position:fixed;
 
-  inset:0;
+inset:0;
 
-  z-index:9000;
+z-index:19000;
 
-  display:none;
+display:none;
 
-  align-items:center;
+align-items:center;
 
-  justify-content:center;
+justify-content:center;
 
-  padding:20px;
+padding:20px;
 
-  background:
-    radial-gradient(
-      circle,
-      var(
-        --take-glow,
-        rgba(24,168,255,.18)
-      ),
-      transparent 55%
-    ),
-    rgba(2,3,5,.97);
+background:
+radial-gradient(
+circle,
+var(
+--take-glow,
+rgba(24,168,255,.18)
+),
+transparent 55%
+),
+rgba(2,3,5,.91);
+
+backdrop-filter:
+blur(5px);
 
 }
-
 
 #takeover.show{
 
-  display:flex;
+display:flex;
 
-  animation:
-    takeoverIn .4s ease;
+animation:
+takeoverIn .4s ease;
 
 }
-
 
 @keyframes takeoverIn{
 
-  from{
-    opacity:0;
-  }
-
-  to{
-    opacity:1;
-  }
-
+from{
+opacity:0;
 }
 
+to{
+opacity:1;
+}
+
+}
 
 .take-card{
 
-  width:min(900px,96vw);
+width:min(900px,96vw);
 
-  padding:
-    42px
-    25px;
+padding:
+42px
+25px;
 
-  border:
-    3px solid var(--take-color);
+border:
+3px solid var(--take-color);
 
-  border-top-width:7px;
+border-top-width:7px;
 
-  border-radius:10px;
+border-radius:10px;
 
-  background:
-    radial-gradient(
-      circle at 50% 10%,
-      var(--take-glow),
-      transparent 55%
-    ),
-    #111827;
+background:
+radial-gradient(
+circle at 50% 10%,
+var(--take-glow),
+transparent 55%
+),
+rgba(17,24,39,.96);
 
-  text-align:center;
+text-align:center;
 
-  box-shadow:
-    0 0 70px var(--take-glow);
+box-shadow:
+0 0 70px var(--take-glow);
 
-  animation:
-    resultSlam .55s
-    cubic-bezier(.2,.9,.25,1.35);
+animation:
+resultSlam .55s
+cubic-bezier(.2,.9,.25,1.35);
 
 }
-
 
 @keyframes resultSlam{
 
-  from{
+from{
 
-    opacity:0;
+opacity:0;
 
-    transform:
-      scale(.3)
-      rotate(-3deg);
-
-  }
+transform:
+scale(.3)
+rotate(-3deg);
 
 }
 
+}
 
 .take-network{
 
-  color:var(--blue);
+color:var(--blue);
 
-  font-size:10px;
+font-size:10px;
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:3px;
+letter-spacing:3px;
 
 }
-
 
 .take-alert{
 
-  margin-top:8px;
+margin-top:8px;
 
-  color:var(--take-color);
+color:var(--take-color);
 
-  font-size:11px;
+font-size:11px;
 
-  font-weight:1000;
+font-weight:1000;
 
-  letter-spacing:5px;
+letter-spacing:5px;
 
 }
-
 
 .take-icon{
 
-  margin:
-    12px
-    0;
+margin:
+12px
+0;
 
-  font-size:75px;
+font-size:75px;
 
 }
-
 
 .take-title{
 
-  color:var(--take-color);
+color:var(--take-color);
 
-  font-size:
-    clamp(
-      43px,
-      10vw,
-      95px
-    );
+font-size:
+clamp(
+43px,
+10vw,
+95px
+);
 
-  line-height:.9;
+line-height:.9;
 
-  font-weight:1000;
+font-weight:1000;
 
-  text-transform:uppercase;
+text-transform:uppercase;
 
-  text-shadow:
-    0 0 30px var(--take-glow);
+text-shadow:
+0 0 30px var(--take-glow);
 
 }
-
 
 .take-description{
 
-  max-width:680px;
+max-width:680px;
 
-  margin:
-    22px
-    auto
-    0;
+margin:
+22px
+auto
+0;
 
-  color:#d3dae4;
+color:#d3dae4;
 
-  line-height:1.6;
+line-height:1.6;
 
 }
-
 
 .take-manager{
 
-  margin-top:20px;
+margin-top:20px;
 
-  color:#96a3b4;
+color:#96a3b4;
 
-  font-size:12px;
+font-size:12px;
 
-  font-weight:900;
+font-weight:900;
 
 }
 
-
 .take-button{
 
-  margin-top:27px;
+margin-top:27px;
 
-  padding:
-    13px
-    23px;
+padding:
+13px
+23px;
 
-  border:
-    1px solid var(--blue);
+border:
+1px solid var(--blue);
 
-  border-radius:6px;
+border-radius:6px;
 
-  background:#0a1018;
+background:#0a1018;
 
-  color:white;
+color:white;
 
-  font-weight:1000;
+font-weight:1000;
 
-  cursor:pointer;
+cursor:pointer;
 
 }
 
@@ -3452,58 +3012,105 @@ main{
 
 #takeover.jackpot{
 
-  background:
-    radial-gradient(
-      circle,
-      #9a6b00 0,
-      #281a00 32%,
-      #000 73%
-    );
+background:
+radial-gradient(
+circle,
+rgba(154,107,0,.88) 0,
+rgba(40,26,0,.93) 32%,
+rgba(0,0,0,.97) 73%
+);
 
-  animation:
-    jackpotBackground .22s linear infinite alternate;
+animation:
+jackpotBackground .22s linear infinite alternate;
 
 }
-
 
 @keyframes jackpotBackground{
 
-  from{
-    filter:brightness(.85);
-  }
-
-  to{
-    filter:brightness(1.55);
-  }
-
+from{
+filter:brightness(.85);
 }
 
+to{
+filter:brightness(1.55);
+}
+
+}
 
 #takeover.jackpot
 .take-card{
 
-  border-width:6px;
+border-width:6px;
 
-  background:
-    radial-gradient(
-      circle at 50% 10%,
-      rgba(255,213,74,.35),
-      transparent 52%
-    ),
-    #111006;
+background:
+radial-gradient(
+circle at 50% 10%,
+rgba(255,213,74,.35),
+transparent 52%
+),
+#111006;
 
 }
-
 
 #takeover.jackpot
 .take-title{
 
-  font-size:
-    clamp(
-      70px,
-      15vw,
-      145px
-    );
+font-size:
+clamp(
+70px,
+15vw,
+145px
+);
+
+}
+
+
+/**************************************************************
+ JACKPOT ARENA WASH
+**************************************************************/
+
+.jackpot-wash{
+
+position:absolute;
+
+inset:0;
+
+z-index:10;
+
+display:none;
+
+pointer-events:none;
+
+background:
+radial-gradient(
+circle at 50% 55%,
+rgba(255,244,160,.15),
+rgba(255,213,74,.28) 40%,
+rgba(255,130,0,.13) 70%,
+transparent
+);
+
+mix-blend-mode:screen;
+
+animation:
+jackpotWash .18s infinite alternate;
+
+}
+
+#arena.jackpot-mode
+.jackpot-wash{
+display:block;
+}
+
+@keyframes jackpotWash{
+
+from{
+opacity:.45;
+}
+
+to{
+opacity:1;
+}
 
 }
 
@@ -3514,32 +3121,29 @@ main{
 
 footer{
 
-  padding:
-    24px
-    20px;
+padding:
+24px
+20px;
 
-  border-top:
-    1px solid var(--border);
+border-top:
+1px solid var(--border);
 
-  background:#05070b;
+background:#05070b;
 
-  color:#748297;
+color:#748297;
 
-  text-align:center;
+text-align:center;
 
-  font-size:9px;
+font-size:9px;
 
-  font-weight:900;
+font-weight:900;
 
-  letter-spacing:1px;
+letter-spacing:1px;
 
 }
 
-
 footer strong{
-
-  color:var(--blue);
-
+color:var(--blue);
 }
 
 
@@ -3547,144 +3151,193 @@ footer strong{
  MOBILE
 **************************************************************/
 
-@media(
-  max-width:720px
-){
+@media(max-width:800px){
 
-  .hero-banner{
+.hero-banner{
 
-    min-height:130px;
+min-height:130px;
 
-    object-fit:cover;
+object-fit:cover;
 
-  }
+}
 
+.event-strip-label{
 
-  .event-strip-label{
+min-width:105px;
 
-    min-width:105px;
+padding:8px;
 
-    padding:8px;
+}
 
-  }
+.event-strip-label strong{
+font-size:12px;
+}
 
+.network-bar{
 
-  .event-strip-label strong{
+flex-direction:column;
 
-    font-size:12px;
+gap:4px;
 
-  }
+}
 
+nav{
+padding:8px;
+}
 
-  .network-bar{
+nav a{
 
-    flex-direction:column;
+padding:6px;
 
-    gap:4px;
+font-size:9px;
 
-  }
+}
 
+main{
 
-  nav{
+width:94%;
 
-    padding:8px;
+padding-top:25px;
 
-  }
+}
 
+.team-grid{
+grid-template-columns:1fr;
+}
 
-  nav a{
+.special-event-body{
 
-    padding:6px;
+min-height:380px;
 
-    font-size:9px;
+padding:
+35px
+18px;
 
-  }
+}
 
+.arena-backdrop{
 
-  main{
+background-size:cover;
 
-    width:94%;
+background-position:center;
 
-    padding-top:25px;
+}
 
-  }
+.wheel-stage-zone{
 
+top:58%;
 
-  .team-grid{
+width:min(65vw,520px);
 
-    grid-template-columns:1fr;
+}
 
-  }
+.side-result{
 
+display:none;
 
-  .special-event-body{
+}
 
-    min-height:380px;
+.control-deck{
 
-    padding:
-      35px
-      18px;
+grid-template-columns:1fr;
 
-  }
+bottom:1%;
 
+width:94vw;
 
-  .oracle-booth{
+}
 
-    grid-template-columns:
-      68px
-      1fr;
+#oracle-message{
 
-  }
+white-space:normal;
 
+font-size:9px;
 
-  .oracle-icon{
+}
 
-    font-size:29px;
+#spin-button{
 
-  }
+min-width:0;
 
+width:100%;
 
-  .wheel-machine{
+padding:11px;
 
-    padding:31px;
+}
 
-  }
+.arena-hud{
 
+top:43px;
 
-  .bulb{
+width:88vw;
 
-    width:12px;
+}
 
-    height:12px;
+.arena-network{
 
-    margin:-6px;
+font-size:8px;
 
-  }
+}
 
+.pointer-housing{
 
-  .pointer-housing{
+top:-7%;
 
-    top:-36px;
+}
 
-    transform:
-      translateX(-50%)
-      scale(.75);
+#pointer{
 
-  }
+border-left-width:12px;
 
+border-right-width:12px;
 
-  .arena-network{
+border-top-width:36px;
 
-    flex-wrap:wrap;
+}
 
-  }
+.bulb{
+
+width:10px;
+height:10px;
+
+margin:-5px;
+
+}
+
+}
+
+
+/**************************************************************
+ SHORT SCREEN
+**************************************************************/
+
+@media(max-height:720px){
+
+.wheel-stage-zone{
+
+top:55%;
+
+width:min(43vw,520px);
+
+}
+
+.control-deck{
+
+bottom:1%;
+
+}
+
+.arena-hud{
+
+top:39px;
+
+}
 
 }
 
 </style>
 
 </head>
-
 
 <body>
 
@@ -3693,448 +3346,329 @@ footer strong{
 
 
 <!-- =========================================================
-     REAL F4SN HERO
+ F4SN WEBSITE OPENING
 ========================================================= -->
 
 <header class="hero">
 
-  <img
-    src="fant4sy-four-banner.png"
-    alt="The Fant4sy Four"
-    class="hero-banner"
-  >
+<img
+src="fant4sy-four-banner.png"
+alt="The Fant4sy Four"
+class="hero-banner"
+>
 
 </header>
 
 
-<!-- =========================================================
-     F4SN SPECIAL EVENT STRIP
-========================================================= -->
-
 <div class="event-strip">
 
-  <div class="event-strip-label">
+<div class="event-strip-label">
 
-    <strong>
-      F4SN
-    </strong>
+<strong>F4SN</strong>
 
-    <span>
-      Special Event
-    </span>
-
-  </div>
-
-
-  <div class="event-strip-track">
-
-    <div class="event-strip-message">
-
-      <strong>
-        WINNER'S WHEEL ARENA
-      </strong>
-
-      &nbsp; • &nbsp;
-
-      ONE WEEKLY CHAMPION
-
-      &nbsp; • &nbsp;
-
-      ONE SPIN
-
-      &nbsp; • &nbsp;
-
-      ONE ADVANTAGE FOR NEXT WEEK
-
-      &nbsp; • &nbsp;
-
-      GRAND PRIZE ODDS REMAIN COMPLETELY UNREASONABLE
-
-      &nbsp; • &nbsp;
-
-      <strong>
-        F4SN SPECIAL EVENT COVERAGE
-      </strong>
-
-    </div>
-
-  </div>
+<span>Special Event</span>
 
 </div>
 
+<div class="event-strip-track">
 
-<!-- =========================================================
-     REAL F4SN NETWORK BAR
-========================================================= -->
+<div class="event-strip-message">
+
+<strong>
+WINNER'S WHEEL ARENA
+</strong>
+
+&nbsp; • &nbsp;
+
+ONE WEEKLY CHAMPION
+
+&nbsp; • &nbsp;
+
+ONE SPIN
+
+&nbsp; • &nbsp;
+
+ONE ADVANTAGE FOR NEXT WEEK
+
+&nbsp; • &nbsp;
+
+GRAND PRIZE ODDS REMAIN COMPLETELY UNREASONABLE
+
+&nbsp; • &nbsp;
+
+<strong>
+F4SN SPECIAL EVENT COVERAGE
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="network-bar">
 
-  <span class="network-name">
+<span class="network-name">
+F4SN • FANT4SY FOUR SPORTS NETWORK
+</span>
 
-    F4SN • FANT4SY FOUR SPORTS NETWORK
+<span>
 
-  </span>
+<span class="live-dot"></span>
 
+LIVE SPECIAL EVENT
 
-  <span>
+</span>
 
-    <span class="live-dot"></span>
-
-    LIVE SPECIAL EVENT
-
-  </span>
-
-
-  <span class="update-status">
-
-    WINNER'S WHEEL ARENA
-
-  </span>
+<span class="update-status">
+WINNER'S WHEEL ARENA
+</span>
 
 </div>
 
 
-<!-- =========================================================
-     REAL F4SN NAVIGATION
-========================================================= -->
-
 <nav>
 
-  <a href="index.html">
-    HOME
-  </a>
+<a href="index.html">
+HOME
+</a>
 
-  <a href="index.html#scoreboard">
-    SCOREBOARD
-  </a>
+<a href="index.html#scoreboard">
+SCOREBOARD
+</a>
 
-  <a href="index.html#standings">
-    STANDINGS
-  </a>
+<a href="index.html#standings">
+STANDINGS
+</a>
 
-  <a href="index.html#lineups">
-    LINEUPS
-  </a>
+<a href="index.html#lineups">
+LINEUPS
+</a>
 
-  <a href="index.html#wheels">
-    THE WHEELS
-  </a>
+<a href="index.html#wheels">
+THE WHEELS
+</a>
 
-  <a href="index.html#comics">
-    COMICS
-  </a>
+<a href="index.html#comics">
+COMICS
+</a>
 
-  <a href="index.html#hall-of-shame">
-    HALL OF SHAME
-  </a>
+<a href="index.html#hall-of-shame">
+HALL OF SHAME
+</a>
 
 </nav>
 
 
-<!-- =========================================================
-     NORMAL F4SN PAGE
-========================================================= -->
-
 <main>
 
 
-  <section>
+<section>
 
+<h1 class="section-title">
+Winner's Wheel Arena
+</h1>
 
-    <h1 class="section-title">
+<p class="section-subtitle">
 
-      Winner's Wheel Arena
+F4SN presents the completely unnecessary
+primetime ceremony awarded to each week's
+Fant4sy Four champion.
 
-    </h1>
+</p>
 
 
-    <p class="section-subtitle">
+<div class="broadcast-card">
 
-      F4SN presents the completely unnecessary
-      primetime ceremony awarded to each week's
-      Fant4sy Four champion.
 
-    </p>
+<div class="broadcast-header">
 
+<span>
+F4SN • SPECIAL EVENT PRESENTATION
+</span>
 
-    <div class="broadcast-card">
+<span class="live-label">
+● LIVE
+</span>
 
+</div>
 
-      <div class="broadcast-header">
 
-        <span>
+<div class="special-event-body">
 
-          F4SN • SPECIAL EVENT PRESENTATION
+<div class="special-event-content">
 
-        </span>
+<div class="event-kicker">
+TONIGHT ON F4SN
+</div>
 
+<div class="event-logo">
+F4SN
+</div>
 
-        <span class="live-label">
+<div class="event-title">
 
-          ● LIVE
+THE
 
-        </span>
+<span>
+WINNER'S WHEEL
+</span>
 
-      </div>
+ARENA
 
+</div>
 
-      <div class="special-event-body">
+<div class="event-description">
 
+One manager has already won the week.
 
-        <div class="special-event-content">
+Apparently that was not enough.
 
+The weekly champion will now enter the
+F4SN Winner's Wheel Arena for one shot
+at a competitive advantage for next week —
+or one of two absurdly overproduced
+$25 grand prizes.
 
-          <div class="event-kicker">
+</div>
 
-            TONIGHT ON F4SN
+<button
+class="f4sn-button"
+onclick="scrollToChampion()"
+>
 
-          </div>
+ENTER F4SN SPECIAL EVENT
 
+</button>
 
-          <div class="event-logo">
+</div>
 
-            F4SN
+</div>
 
-          </div>
+</div>
 
+</section>
 
-          <div class="event-title">
 
-            THE
+<section id="champion-select">
 
-            <span>
-              WINNER'S WHEEL
-            </span>
+<h2 class="section-title">
+Champion Check-In
+</h2>
 
-            ARENA
+<p class="section-subtitle">
 
-          </div>
+Construction mode is active.
+All four franchises are authorized for testing.
+No result is recorded and no Week 5 advantage
+is actually applied.
 
+</p>
 
-          <div class="event-description">
 
-            One manager has already won the week.
+<div class="team-grid">
 
-            Apparently that was not enough.
 
-            The weekly champion will now enter the
-            F4SN Winner's Wheel Arena for one shot
-            at a competitive advantage for next week —
-            or one of two absurdly overproduced
-            $25 grand prizes.
+<button
+class="team-card"
+style="--card:#1687ff"
+data-manager="Brad"
+data-team="Breaking Brad"
+data-color="#1687ff"
+onclick="chooseChampion(this)"
+>
 
-          </div>
+<div class="team-manager">
+BRAD
+</div>
 
+<div class="team-name">
+Breaking Brad
+</div>
 
-          <button
-            class="f4sn-button"
-            onclick="scrollToChampion()"
-          >
+<div class="team-status">
+AUTHORIZED FOR ARENA TESTING
+</div>
 
-            ENTER F4SN SPECIAL EVENT
+</button>
 
-          </button>
 
+<button
+class="team-card"
+style="--card:#ff3b30"
+data-manager="Maria"
+data-team="The Real Housewives of the Red Zone"
+data-color="#ff3b30"
+onclick="chooseChampion(this)"
+>
 
-        </div>
+<div class="team-manager">
+MARIA
+</div>
 
+<div class="team-name">
+The Real Housewives of the Red Zone
+</div>
 
-      </div>
+<div class="team-status">
+AUTHORIZED FOR ARENA TESTING
+</div>
 
+</button>
 
-    </div>
 
+<button
+class="team-card"
+style="--card:#16d5d1"
+data-manager="Mackenzie"
+data-team="Mack Around & Find Out"
+data-color="#16d5d1"
+onclick="chooseChampion(this)"
+>
 
-  </section>
+<div class="team-manager">
+MACKENZIE
+</div>
 
+<div class="team-name">
+Mack Around & Find Out
+</div>
 
-  <!-- =======================================================
-       CHAMPION CHECK-IN
-  ======================================================== -->
+<div class="team-status">
+AUTHORIZED FOR ARENA TESTING
+</div>
 
-  <section id="champion-select">
+</button>
 
 
-    <h2 class="section-title">
+<button
+class="team-card"
+style="--card:#9c4dff"
+data-manager="Madison"
+data-team="Maddie's Anatomy"
+data-color="#9c4dff"
+onclick="chooseChampion(this)"
+>
 
-      Champion Check-In
+<div class="team-manager">
+MADISON
+</div>
 
-    </h2>
+<div class="team-name">
+Maddie's Anatomy
+</div>
 
+<div class="team-status">
+AUTHORIZED FOR ARENA TESTING
+</div>
 
-    <p class="section-subtitle">
+</button>
 
-      Construction mode is active.
-      All four franchises are authorized for testing.
-      No result is recorded and no Week 5 advantage
-      is actually applied.
 
-    </p>
+</div>
 
-
-    <div class="team-grid">
-
-
-      <button
-
-        class="team-card"
-
-        style="--card:#1687ff"
-
-        data-manager="Brad"
-
-        data-team="Breaking Brad"
-
-        data-color="#1687ff"
-
-        onclick="chooseChampion(this)"
-
-      >
-
-        <div class="team-manager">
-
-          BRAD
-
-        </div>
-
-
-        <div class="team-name">
-
-          Breaking Brad
-
-        </div>
-
-
-        <div class="team-status">
-
-          AUTHORIZED FOR ARENA TESTING
-
-        </div>
-
-      </button>
-
-
-      <button
-
-        class="team-card"
-
-        style="--card:#ff3b30"
-
-        data-manager="Maria"
-
-        data-team="The Real Housewives of the Red Zone"
-
-        data-color="#ff3b30"
-
-        onclick="chooseChampion(this)"
-
-      >
-
-        <div class="team-manager">
-
-          MARIA
-
-        </div>
-
-
-        <div class="team-name">
-
-          The Real Housewives of the Red Zone
-
-        </div>
-
-
-        <div class="team-status">
-
-          AUTHORIZED FOR ARENA TESTING
-
-        </div>
-
-      </button>
-
-
-      <button
-
-        class="team-card"
-
-        style="--card:#16d5d1"
-
-        data-manager="Mackenzie"
-
-        data-team="Mack Around & Find Out"
-
-        data-color="#16d5d1"
-
-        onclick="chooseChampion(this)"
-
-      >
-
-        <div class="team-manager">
-
-          MACKENZIE
-
-        </div>
-
-
-        <div class="team-name">
-
-          Mack Around & Find Out
-
-        </div>
-
-
-        <div class="team-status">
-
-          AUTHORIZED FOR ARENA TESTING
-
-        </div>
-
-      </button>
-
-
-      <button
-
-        class="team-card"
-
-        style="--card:#9c4dff"
-
-        data-manager="Madison"
-
-        data-team="Maddie's Anatomy"
-
-        data-color="#9c4dff"
-
-        onclick="chooseChampion(this)"
-
-      >
-
-        <div class="team-manager">
-
-          MADISON
-
-        </div>
-
-
-        <div class="team-name">
-
-          Maddie's Anatomy
-
-        </div>
-
-
-        <div class="team-status">
-
-          AUTHORIZED FOR ARENA TESTING
-
-        </div>
-
-      </button>
-
-
-    </div>
-
-
-  </section>
+</section>
 
 
 </main>
@@ -4142,564 +3676,439 @@ footer strong{
 
 <footer>
 
-  <strong>
-    F4SN
-  </strong>
+<strong>
+F4SN
+</strong>
 
-  • FANT4SY FOUR SPORTS NETWORK
+• FANT4SY FOUR SPORTS NETWORK
 
-  • QUESTIONABLE LEAGUE GOVERNANCE SINCE 2026
+• QUESTIONABLE LEAGUE GOVERNANCE SINCE 2026
 
 </footer>
 
 
 <!-- =========================================================
-     F4SN → ARENA TRANSFORMATION
+ TRANSITION
 ========================================================= -->
 
 <div id="arena-transition">
 
+<div class="transition-grid"></div>
 
-  <div class="transition-grid"></div>
+<div class="transition-beam one"></div>
 
-
-  <div class="transition-beam one"></div>
-
-  <div class="transition-beam two"></div>
+<div class="transition-beam two"></div>
 
 
-  <div class="transition-content">
+<div class="transition-content">
 
+<div class="transition-network">
+F4SN SPECIAL EVENT CONTROL
+</div>
 
-    <div class="transition-network">
+<div
+id="transition-manager"
+class="transition-manager"
+></div>
 
-      F4SN SPECIAL EVENT CONTROL
+<div
+id="transition-team"
+class="transition-team"
+></div>
 
-    </div>
+<div
+id="transition-status"
+class="transition-status"
+>
 
+VERIFYING WEEKLY CHAMPION...
 
-    <div
-      id="transition-manager"
-      class="transition-manager"
-    ></div>
+</div>
 
+<div class="transition-progress">
 
-    <div
-      id="transition-team"
-      class="transition-team"
-    ></div>
+<span></span>
 
+</div>
 
-    <div
-      id="transition-status"
-      class="transition-status"
-    >
-
-      VERIFYING WEEKLY CHAMPION...
-
-    </div>
-
-
-    <div class="transition-progress">
-
-      <span></span>
-
-    </div>
-
-
-  </div>
-
+</div>
 
 </div>
 
 
 <!-- =========================================================
-     FULL-SCREEN F4SN ARENA
+ MEGA ARENA
 ========================================================= -->
 
 <div id="arena">
 
 
-  <div class="arena-network">
+<div class="arena-backdrop"></div>
 
+<div class="team-wash"></div>
 
-    <span>
+<div class="team-spotlight"></div>
 
-      <strong>
-        F4SN
-      </strong>
+<div class="jackpot-wash"></div>
 
-      • FANT4SY FOUR SPORTS NETWORK
 
-    </span>
+<div class="arena-light l1"></div>
+<div class="arena-light l2"></div>
+<div class="arena-light l3"></div>
+<div class="arena-light l4"></div>
 
 
-    <span class="special">
+<div class="arena-network">
 
-      ● LIVE • WINNER'S WHEEL ARENA
+<span>
 
-    </span>
+<strong>
+F4SN
+</strong>
 
+• FANT4SY FOUR SPORTS NETWORK
 
-    <button
-      class="exit-arena"
-      onclick="exitArena()"
-    >
+</span>
 
-      EXIT ARENA
+<span class="special">
 
-    </button>
+● LIVE • WINNER'S WHEEL ARENA
 
+</span>
 
-  </div>
+<button
+class="exit-arena"
+onclick="exitArena()"
+>
 
+EXIT ARENA
 
-  <div
-    id="arena-space"
-    class="arena-space"
-  >
+</button>
 
+</div>
 
-    <div class="arena-truss"></div>
 
+<div class="arena-hud">
 
-    <div class="stage-light one"></div>
+<div
+id="arena-hud-main"
+class="arena-hud-main"
+>
 
-    <div class="stage-light two"></div>
+F4SN WINNER'S WHEEL ARENA
 
-    <div class="stage-light three"></div>
+</div>
 
-    <div class="stage-light four"></div>
+<div
+id="arena-hud-sub"
+class="arena-hud-sub"
+>
 
+SPECIAL EVENT COVERAGE
 
-    <!-- =====================================================
-         JUMBOTRON
-    ====================================================== -->
+</div>
 
-    <div class="jumbotron-wrap">
+</div>
 
 
-      <div
-        id="jumbotron"
-        class="jumbotron"
-      >
+<!-- =======================================================
+ ENTRANCE SCENE
+======================================================== -->
 
+<section
+id="entrance-scene"
+class="arena-scene active"
+>
 
-        <div class="jumbo-network">
+<div class="entrance-overlay">
 
+<div class="entrance-kicker">
 
-          <strong>
+F4SN PRESENTS THE WEEKLY CHAMPION
 
-            F4SN ARENA VIDEO BOARD
+</div>
 
-          </strong>
+<div id="entrance-manager"></div>
 
+<div id="entrance-team"></div>
 
-          <span>
+<div id="entrance-line"></div>
 
-            LIVE
+<div class="access-stamp">
+ACCESS GRANTED
+</div>
 
-          </span>
+<br>
 
+<button
+class="f4sn-button gold"
+onclick="showDoors()"
+>
 
-        </div>
+PROCEED TO THE ARENA
 
+</button>
 
-        <div id="jumbo-main">
+</div>
 
-          THE WINNER'S WHEEL
+</section>
 
-        </div>
 
+<!-- =======================================================
+ DOOR SCENE
+======================================================== -->
 
-        <div id="jumbo-sub">
+<section
+id="door-scene"
+class="arena-scene"
+>
 
-          WEEKLY CHAMPION VERIFIED
+<div class="door-arena-preview"></div>
 
-        </div>
 
+<div class="mega-door left">
 
-      </div>
+<div class="mega-door-logo left">
+F4
+</div>
 
+</div>
 
-    </div>
 
+<div class="mega-door right">
 
-    <!-- =====================================================
-         CHAMPION ENTRANCE
-    ====================================================== -->
+<div class="mega-door-logo right">
+SN
+</div>
 
-    <section
-      id="entrance-screen"
-      class="arena-screen active"
-    >
+</div>
 
 
-      <div class="entrance-stage">
+<div class="door-control">
 
+<button
+id="door-button"
+class="f4sn-button gold"
+onclick="openDoors()"
+>
 
-        <div class="entrance-content">
+OPEN THE DAMN DOORS
 
+</button>
 
-          <div class="entrance-kicker">
+</div>
 
-            F4SN PRESENTS THE WEEKLY CHAMPION
+</section>
 
-          </div>
 
+<!-- =======================================================
+ WHEEL SCENE
+======================================================== -->
 
-          <div id="entrance-manager"></div>
+<section
+id="wheel-scene"
+class="arena-scene"
+>
 
 
-          <div id="entrance-team"></div>
+<div class="side-result left">
 
+<div class="side-label">
+F4SN CHAMPION
+</div>
 
-          <div id="entrance-line"></div>
+<div
+id="side-manager"
+class="side-value"
+>
+—
+</div>
 
+</div>
 
-          <div class="access-stamp">
 
-            ACCESS GRANTED
+<div class="side-result right">
 
-          </div>
+<div class="side-label">
+WHEEL STATUS
+</div>
 
+<div
+id="side-status"
+class="side-value"
+>
+READY
+</div>
 
-          <br>
+</div>
 
 
-          <button
-            class="f4sn-button gold"
-            onclick="showDoors()"
-          >
+<div class="wheel-stage-zone">
 
-            PROCEED TO THE ARENA
 
-          </button>
+<div class="wheel-shadow"></div>
 
 
-        </div>
+<div class="wheel-machine">
 
 
-      </div>
+<div id="bulbs"></div>
 
 
-    </section>
+<div class="pointer-housing">
 
+<div class="pointer-bolt"></div>
 
-    <!-- =====================================================
-         ARENA DOORS
-    ====================================================== -->
+<div id="pointer"></div>
 
-    <section
-      id="door-screen"
-      class="arena-screen"
-    >
+</div>
 
 
-      <div
-        id="door-shell"
-        class="door-shell"
-      >
+<canvas
+id="wheel"
+width="1000"
+height="1000"
+></canvas>
 
 
-        <div class="door-reveal">
+<div class="center-hub">
 
-          THE
-          <br>
-          WINNER'S WHEEL
+<strong>
+F4SN
+</strong>
 
-        </div>
+<span>
+WINNER
+</span>
 
+</div>
 
-        <div class="door left">
 
-          <div class="door-logo left">
+</div>
 
-            F4
 
-          </div>
+</div>
 
-        </div>
 
+<div class="control-deck">
 
-        <div class="door right">
 
-          <div class="door-logo right">
+<div class="oracle-control">
 
-            SN
+<div class="oracle-label">
+🔮 LIVE • THE ORACLE CONTROL BOOTH
+</div>
 
-          </div>
+<div id="oracle-message">
 
-        </div>
+The wheel is being prepared.
 
+</div>
 
-      </div>
+</div>
 
 
-      <div style="text-align:center">
+<button
+id="spin-button"
+onclick="beginSpin()"
+>
 
+PULL THE DAMN LEVER
 
-        <button
-          id="door-button"
-          class="f4sn-button gold"
-          onclick="openDoors()"
-        >
+</button>
 
-          OPEN THE DAMN DOORS
 
-        </button>
+</div>
 
 
-      </div>
-
-
-    </section>
-
-
-    <!-- =====================================================
-         WHEEL ARENA
-    ====================================================== -->
-
-    <section
-      id="wheel-screen"
-      class="arena-screen"
-    >
-
-
-      <div class="oracle-booth">
-
-
-        <div class="oracle-icon">
-
-          🔮
-
-        </div>
-
-
-        <div class="oracle-copy">
-
-
-          <div class="oracle-label">
-
-            LIVE • THE ORACLE CONTROL BOOTH
-
-          </div>
-
-
-          <div id="oracle-message">
-
-            The wheel is being prepared.
-
-          </div>
-
-
-        </div>
-
-
-      </div>
-
-
-      <div class="wheel-stage">
-
-
-        <div class="stage-floor"></div>
-
-
-        <div class="wheel-machine">
-
-
-          <div id="bulbs"></div>
-
-
-          <div class="pointer-housing">
-
-
-            <div class="pointer-bolt"></div>
-
-
-            <div id="pointer"></div>
-
-
-          </div>
-
-
-          <canvas
-            id="wheel"
-            width="1000"
-            height="1000"
-          ></canvas>
-
-
-          <div class="center-hub">
-
-
-            <strong>
-
-              F4SN
-
-            </strong>
-
-
-            <span>
-
-              WINNER
-
-            </span>
-
-
-          </div>
-
-
-        </div>
-
-
-        <div class="lever-area">
-
-
-          <button
-            id="spin-button"
-            onclick="beginSpin()"
-          >
-
-            PULL THE DAMN LEVER
-
-          </button>
-
-
-        </div>
-
-
-        <div
-          id="result-panel"
-          class="result-panel"
-        >
-
-
-          <div class="result-label">
-
-            F4SN WHEEL CONTROL
-
-          </div>
-
-
-          <div class="result-title">
-
-            AWAITING CHAMPION
-
-          </div>
-
-
-          <div class="result-note">
-
-            Twelve possibilities.
-            Two rare grand prizes.
-            An absolutely indefensible amount of production.
-
-          </div>
-
-
-        </div>
-
-
-      </div>
-
-
-    </section>
-
-
-    <div class="crowd"></div>
-
-
-  </div>
+</section>
 
 
 </div>
 
 
 <!-- =========================================================
-     COUNTDOWN
+ COUNTDOWN
 ========================================================= -->
 
 <div id="countdown">
 
-  <div id="countdown-number">
-
-    3
-
-  </div>
+<div id="countdown-number">
+3
+</div>
 
 </div>
 
 
 <!-- =========================================================
-     BLACKOUT
+ BLACKOUT
 ========================================================= -->
 
 <div id="blackout">
 
-  <div id="blackout-text"></div>
+<div id="blackout-text"></div>
 
 </div>
 
 
 <!-- =========================================================
-     RESULT TAKEOVER
+ RESULT TAKEOVER
 ========================================================= -->
 
 <div id="takeover">
 
 
-  <div class="take-card">
+<div class="take-card">
 
 
-    <div class="take-network">
+<div class="take-network">
 
-      F4SN • OFFICIAL WINNER'S WHEEL RESULT
+F4SN • OFFICIAL WINNER'S WHEEL RESULT
 
-    </div>
-
-
-    <div
-      id="take-alert"
-      class="take-alert"
-    ></div>
+</div>
 
 
-    <div
-      id="take-icon"
-      class="take-icon"
-    ></div>
+<div
+id="take-alert"
+class="take-alert"
+></div>
 
 
-    <div
-      id="take-title"
-      class="take-title"
-    ></div>
+<div
+id="take-icon"
+class="take-icon"
+></div>
 
 
-    <div
-      id="take-description"
-      class="take-description"
-    ></div>
+<div
+id="take-title"
+class="take-title"
+></div>
 
 
-    <div
-      id="take-manager"
-      class="take-manager"
-    ></div>
+<div
+id="take-description"
+class="take-description"
+></div>
 
 
-    <button
-      class="take-button"
-      onclick="closeTakeover()"
-    >
-
-      RETURN TO THE ARENA
-
-    </button>
+<div
+id="take-manager"
+class="take-manager"
+></div>
 
 
-  </div>
+<button
+class="take-button"
+onclick="closeTakeover()"
+>
+
+RETURN TO THE ARENA
+
+</button>
+
+
+</div>
 
 
 </div>
@@ -4708,331 +4117,294 @@ footer strong{
 <script>
 
 /**************************************************************
- F4SN WINNER'S WHEEL ARENA — V4.1
+ F4SN WINNER'S WHEEL ARENA
+ V4.2
 
- CONSTRUCTION MODE ONLY.
+ CONSTRUCTION MODE.
 
- NO APPS SCRIPT.
- NO SCORING CHANGES.
- NO WEEK 5 EFFECT IS APPLIED.
- NO RESULT IS SAVED.
-
- GRAND PRIZES:
- INDEX 0
- INDEX 6
-
- THEY ARE EXACTLY OPPOSITE EACH OTHER.
+ NO BACKEND.
+ NO SCORING CHANGE.
+ NO RESULT SAVED.
+ NO WEEK 5 EFFECT APPLIED.
 **************************************************************/
 
 
 let selectedManager="";
-
 let selectedTeam="";
-
 let selectedColor="#18a8ff";
 
-
 let wheelRotation=0;
-
 let spinning=false;
 
-
 let audioCtx=null;
-
 let master=null;
-
 let ambience=null;
 
-
 let bulbTimer=null;
-
 let bulbStep=0;
 
-
 let lastPointerIndex=null;
-
 let lastJackpotTease=null;
 
 
 /**************************************************************
  WHEEL ITEMS
+
+ GRAND PRIZES ARE INDEX 0 AND INDEX 6.
+ EXACTLY OPPOSITE.
 **************************************************************/
 
 const ITEMS=[
 
+{
 
-  {
+label:"$25 B&N",
 
-    label:"$25 B&N",
+result:"$25 BARNES & NOBLE",
 
-    result:"$25 BARNES & NOBLE",
+note:
+"Fantasy football has somehow been converted into actual bookstore money.",
 
-    note:
-      "Fantasy football has somehow been converted into actual bookstore money.",
+weight:2,
 
-    weight:2,
+grand:true,
 
-    grand:true,
+sound:"jackpot",
 
-    sound:"jackpot",
+icon:"📚",
 
-    icon:"📚",
+accent:"#ffd54a"
 
-    accent:"#ffd54a"
+},
 
-  },
+{
 
+label:"Double Flex",
 
-  {
+result:"DOUBLE FLEX",
 
-    label:"Double Flex",
+note:
+"Start a second FLEX next week under the final approved Week 5 rules.",
 
-    result:"DOUBLE FLEX",
+weight:10,
 
-    note:
-      "Start a second FLEX next week under the final approved Week 5 rules.",
+sound:"double",
 
-    weight:10,
+icon:"⚡",
 
-    sound:"double",
+accent:"#18a8ff"
 
-    icon:"⚡",
+},
 
-    accent:"#18a8ff"
+{
 
-  },
+label:"Bench Boost",
 
+result:"BENCH BOOST",
 
-  {
+note:
+"One eligible bench player's points may count next week under the final league rules.",
 
-    label:"Bench Boost",
+weight:10,
 
-    result:"BENCH BOOST",
+sound:"boost",
 
-    note:
-      "One eligible bench player's points may count next week under the final league rules.",
+icon:"🚀",
 
-    weight:10,
+accent:"#22c55e"
 
-    sound:"boost",
+},
 
-    icon:"🚀",
+{
 
-    accent:"#22c55e"
+label:"Oracle Swap",
 
-  },
+result:"ORACLE SWAP",
 
+note:
+"The Oracle receives authority to optimize one legal starter/bench decision before kickoff.",
 
-  {
+weight:10,
 
-    label:"Oracle Swap",
+sound:"oracle",
 
-    result:"ORACLE SWAP",
+icon:"🔮",
 
-    note:
-      "The Oracle receives authority to optimize one legal starter/bench decision before kickoff.",
+accent:"#9c4dff"
 
-    weight:10,
+},
 
-    sound:"oracle",
+{
 
-    icon:"🔮",
+label:"Viking Raid",
 
-    accent:"#9c4dff"
+result:"VIKING RAID",
 
-  },
+note:
+"A special Vikings roster advantage is awarded. Valhalla has joined the rules committee.",
 
+weight:9,
 
-  {
+sound:"viking",
 
-    label:"Viking Raid",
+icon:"⚔️",
 
-    result:"VIKING RAID",
+accent:"#9c4dff"
 
-    note:
-      "A special Vikings roster advantage is awarded. Valhalla has joined the rules committee.",
+},
 
-    weight:9,
+{
 
-    sound:"viking",
+label:"First Pick",
 
-    icon:"⚔️",
+result:"FIRST PICK",
 
-    accent:"#9c4dff"
+note:
+"Move to the front of the line whenever next week's roster-selection priority matters.",
 
-  },
+weight:10,
 
+sound:"first",
 
-  {
+icon:"☝️",
 
-    label:"First Pick",
+accent:"#18a8ff"
 
-    result:"FIRST PICK",
+},
 
-    note:
-      "Move to the front of the line whenever next week's roster-selection priority matters.",
+{
 
-    weight:10,
+label:"$25 7 Brew",
 
-    sound:"first",
+result:"$25 7 BREW",
 
-    icon:"☝️",
+note:
+"The caffeine department has been notified. Victory now has a beverage budget.",
 
-    accent:"#18a8ff"
+weight:2,
 
-  },
+grand:true,
 
+sound:"jackpot",
 
-  {
+icon:"🏆",
 
-    label:"$25 7 Brew",
+accent:"#ffd54a"
 
-    result:"$25 7 BREW",
+},
 
-    note:
-      "The caffeine department has been notified. Victory now has a beverage budget.",
+{
 
-    weight:2,
+label:"Insurance",
 
-    grand:true,
+result:"INSURANCE POLICY",
 
-    sound:"jackpot",
+note:
+"Receive the approved injury-protection advantage for next week's games.",
 
-    icon:"🏆",
+weight:10,
 
-    accent:"#ffd54a"
+sound:"shield",
 
-  },
+icon:"🛡️",
 
+accent:"#22c55e"
 
-  {
+},
 
-    label:"Insurance",
+{
 
-    result:"INSURANCE POLICY",
+label:"Captain",
 
-    note:
-      "Receive the approved injury-protection advantage for next week's games.",
+result:"CAPTAIN BONUS",
 
-    weight:10,
+note:
+"Designate one eligible starter for the approved Captain scoring bonus.",
 
-    sound:"shield",
+weight:9,
 
-    icon:"🛡️",
+sound:"captain",
 
-    accent:"#22c55e"
+icon:"⭐",
 
-  },
+accent:"#facc15"
 
+},
 
-  {
+{
 
-    label:"Captain",
+label:"Shield",
 
-    result:"CAPTAIN BONUS",
+result:"PENALTY SHIELD",
 
-    note:
-      "Designate one eligible starter for the approved Captain scoring bonus.",
+note:
+"Protection against a future Loser's Wheel consequence under the final rules.",
 
-    weight:9,
+weight:9,
 
-    sound:"captain",
+sound:"shield",
 
-    icon:"⭐",
+icon:"🛡️",
 
-    accent:"#facc15"
+accent:"#16d5d1"
 
-  },
+},
 
+{
 
-  {
+label:"Roster Raid",
 
-    label:"Shield",
+result:"ROSTER RAID",
 
-    result:"PENALTY SHIELD",
+note:
+"Raid one eligible rival bench player under next week's final roster rules.",
 
-    note:
-      "Protection against a future Loser's Wheel consequence under the final rules.",
+weight:9,
 
-    weight:9,
+sound:"raid",
 
-    sound:"shield",
+icon:"🚨",
 
-    icon:"🛡️",
+accent:"#ff4b4b"
 
-    accent:"#16d5d1"
+},
 
-  },
+{
 
+label:"FA Upgrade",
 
-  {
+result:"FREE AGENT UPGRADE",
 
-    label:"Roster Raid",
+note:
+"Replace one eligible player on your generated roster before the week begins.",
 
-    result:"ROSTER RAID",
+weight:10,
 
-    note:
-      "Raid one eligible rival bench player under next week's final roster rules.",
+sound:"upgrade",
 
-    weight:9,
+icon:"⬆️",
 
-    sound:"raid",
+accent:"#16d5d1"
 
-    icon:"🚨",
-
-    accent:"#ff4b4b"
-
-  },
-
-
-  {
-
-    label:"FA Upgrade",
-
-    result:"FREE AGENT UPGRADE",
-
-    note:
-      "Replace one eligible player on your generated roster before the week begins.",
-
-    weight:10,
-
-    sound:"upgrade",
-
-    icon:"⬆️",
-
-    accent:"#16d5d1"
-
-  }
-
+}
 
 ];
 
 
 const WHEEL_COLORS=[
 
-  "#d5a400",
-
-  "#075985",
-
-  "#166534",
-
-  "#581c87",
-
-  "#4c1d95",
-
-  "#0369a1",
-
-  "#d5a400",
-
-  "#15803d",
-
-  "#a16207",
-
-  "#0f766e",
-
-  "#b91c1c",
-
-  "#0e7490"
+"#d5a400",
+"#075985",
+"#166534",
+"#581c87",
+"#4c1d95",
+"#0369a1",
+"#d5a400",
+"#15803d",
+"#a16207",
+"#0f766e",
+"#b91c1c",
+"#0e7490"
 
 ];
 
@@ -5043,67 +4415,65 @@ const WHEEL_COLORS=[
 
 function randomUnit(){
 
-  if(
-    window.crypto &&
-    window.crypto.getRandomValues
-  ){
+if(
+window.crypto &&
+window.crypto.getRandomValues
+){
 
-    const value=
-      new Uint32Array(1);
+const value=
+new Uint32Array(1);
 
-    window.crypto.getRandomValues(
-      value
-    );
+window.crypto.getRandomValues(
+value
+);
 
-    return value[0]/
-      4294967296;
+return value[0]/
+4294967296;
 
-  }
+}
 
-  return Math.random();
+return Math.random();
 
 }
 
 
 function weightedIndex(){
 
-  const total=
-    ITEMS.reduce(
-      function(sum,item){
+const total=
+ITEMS.reduce(
+function(sum,item){
 
-        return sum+
-          item.weight;
+return sum+
+item.weight;
 
-      },
-      0
-    );
-
-
-  let roll=
-    randomUnit()*
-    total;
+},
+0
+);
 
 
-  for(
-    let i=0;
-    i<ITEMS.length;
-    i++
-  ){
-
-    roll-=
-      ITEMS[i].weight;
+let roll=
+randomUnit()*
+total;
 
 
-    if(roll<0){
+for(
+let i=0;
+i<ITEMS.length;
+i++
+){
 
-      return i;
+roll-=
+ITEMS[i].weight;
 
-    }
+if(roll<0){
 
-  }
+return i;
 
+}
 
-  return ITEMS.length-1;
+}
+
+return ITEMS.length-1;
 
 }
 
@@ -5114,50 +4484,50 @@ function weightedIndex(){
 
 function initAudio(){
 
-  if(audioCtx){
+if(audioCtx){
 
-    if(
-      audioCtx.state===
-      "suspended"
-    ){
+if(
+audioCtx.state===
+"suspended"
+){
 
-      audioCtx.resume();
+audioCtx.resume();
 
-    }
+}
 
-    return;
+return;
 
-  }
-
-
-  const AudioContextClass=
-
-    window.AudioContext ||
-
-    window.webkitAudioContext;
+}
 
 
-  if(!AudioContextClass){
+const AudioContextClass=
 
-    return;
+window.AudioContext ||
 
-  }
-
-
-  audioCtx=
-    new AudioContextClass();
+window.webkitAudioContext;
 
 
-  master=
-    audioCtx.createGain();
+if(!AudioContextClass){
+
+return;
+
+}
 
 
-  master.gain.value=.75;
+audioCtx=
+new AudioContextClass();
 
 
-  master.connect(
-    audioCtx.destination
-  );
+master=
+audioCtx.createGain();
+
+
+master.gain.value=.75;
+
+
+master.connect(
+audioCtx.destination
+);
 
 }
 
@@ -5167,132 +4537,108 @@ function initAudio(){
 **************************************************************/
 
 function tone(
-
-  frequency,
-
-  duration,
-
-  type="sine",
-
-  volume=.05,
-
-  delay=0,
-
-  endFrequency=null
-
+frequency,
+duration,
+type="sine",
+volume=.05,
+delay=0,
+endFrequency=null
 ){
 
-  if(!audioCtx){
-
-    return;
-
-  }
+if(!audioCtx){
+return;
+}
 
 
-  const start=
-    audioCtx.currentTime+
-    delay;
+const start=
+audioCtx.currentTime+
+delay;
 
 
-  const oscillator=
-    audioCtx.createOscillator();
+const oscillator=
+audioCtx.createOscillator();
 
 
-  const gain=
-    audioCtx.createGain();
+const gain=
+audioCtx.createGain();
 
 
-  oscillator.type=
-    type;
+oscillator.type=
+type;
 
 
-  oscillator.frequency
-    .setValueAtTime(
-
-      Math.max(
-        20,
-        frequency
-      ),
-
-      start
-
-    );
+oscillator.frequency
+.setValueAtTime(
+Math.max(
+20,
+frequency
+),
+start
+);
 
 
-  if(
-    endFrequency!==null
-  ){
+if(
+endFrequency!==null
+){
 
-    oscillator.frequency
-      .exponentialRampToValueAtTime(
+oscillator.frequency
+.exponentialRampToValueAtTime(
+Math.max(
+20,
+endFrequency
+),
+start+
+duration
+);
 
-        Math.max(
-          20,
-          endFrequency
-        ),
-
-        start+
-        duration
-
-      );
-
-  }
+}
 
 
-  gain.gain
-    .setValueAtTime(
-
-      .0001,
-
-      start
-
-    );
+gain.gain
+.setValueAtTime(
+.0001,
+start
+);
 
 
-  gain.gain
-    .exponentialRampToValueAtTime(
-
-      Math.max(
-        .0002,
-        volume
-      ),
-
-      start+.01
-
-    );
+gain.gain
+.exponentialRampToValueAtTime(
+Math.max(
+.0002,
+volume
+),
+start+.01
+);
 
 
-  gain.gain
-    .exponentialRampToValueAtTime(
-
-      .0001,
-
-      start+
-      duration
-
-    );
+gain.gain
+.exponentialRampToValueAtTime(
+.0001,
+start+
+duration
+);
 
 
-  oscillator.connect(
-    gain
-  );
+oscillator.connect(
+gain
+);
 
 
-  gain.connect(
-    master
-  );
+gain.connect(
+master
+);
 
 
-  oscillator.start(
-    start
-  );
+oscillator.start(
+start
+);
 
 
-  oscillator.stop(
-    start+
-    duration+
-    .05
-  );
+oscillator.stop(
+start+
+duration+
+.05
+);
 
 }
 
@@ -5302,384 +4648,334 @@ function tone(
 **************************************************************/
 
 function noise(
-
-  duration=.2,
-
-  volume=.04,
-
-  delay=0,
-
-  frequency=1200
-
+duration=.2,
+volume=.04,
+delay=0,
+frequency=1200
 ){
 
-  if(!audioCtx){
-
-    return;
-
-  }
+if(!audioCtx){
+return;
+}
 
 
-  const rate=
-    audioCtx.sampleRate;
+const rate=
+audioCtx.sampleRate;
 
 
-  const buffer=
-    audioCtx.createBuffer(
-
-      1,
-
-      Math.ceil(
-        rate*
-        duration
-      ),
-
-      rate
-
-    );
+const buffer=
+audioCtx.createBuffer(
+1,
+Math.ceil(
+rate*
+duration
+),
+rate
+);
 
 
-  const data=
-    buffer.getChannelData(0);
+const data=
+buffer.getChannelData(0);
 
 
-  for(
-    let i=0;
-    i<data.length;
-    i++
-  ){
+for(
+let i=0;
+i<data.length;
+i++
+){
 
-    data[i]=
+data[i]=
+(
+Math.random()*2-1
+)*
+(
+1-
+i/data.length
+);
 
-      (
-        Math.random()*2-1
-      )*
-
-      (
-        1-
-        i/data.length
-      );
-
-  }
+}
 
 
-  const source=
-    audioCtx.createBufferSource();
+const source=
+audioCtx.createBufferSource();
 
 
-  const filter=
-    audioCtx.createBiquadFilter();
+const filter=
+audioCtx.createBiquadFilter();
 
 
-  const gain=
-    audioCtx.createGain();
+const gain=
+audioCtx.createGain();
 
 
-  source.buffer=
-    buffer;
+source.buffer=
+buffer;
 
 
-  filter.type=
-    "lowpass";
+filter.type=
+"lowpass";
 
 
-  filter.frequency.value=
-    frequency;
+filter.frequency.value=
+frequency;
 
 
-  const start=
-    audioCtx.currentTime+
-    delay;
+const start=
+audioCtx.currentTime+
+delay;
 
 
-  gain.gain
-    .setValueAtTime(
-      .0001,
-      start
-    );
+gain.gain
+.setValueAtTime(
+.0001,
+start
+);
 
 
-  gain.gain
-    .exponentialRampToValueAtTime(
-
-      volume,
-
-      start+.01
-
-    );
+gain.gain
+.exponentialRampToValueAtTime(
+volume,
+start+.01
+);
 
 
-  gain.gain
-    .exponentialRampToValueAtTime(
-
-      .0001,
-
-      start+
-      duration
-
-    );
+gain.gain
+.exponentialRampToValueAtTime(
+.0001,
+start+
+duration
+);
 
 
-  source.connect(
-    filter
-  );
+source.connect(
+filter
+);
 
 
-  filter.connect(
-    gain
-  );
+filter.connect(
+gain
+);
 
 
-  gain.connect(
-    master
-  );
+gain.connect(
+master
+);
 
 
-  source.start(
-    start
-  );
+source.start(
+start
+);
 
 }
 
 
 /**************************************************************
- AMBIENCE
+ AMBIENT ARENA RUMBLE
 **************************************************************/
 
 function startAmbience(){
 
-  if(
-    !audioCtx ||
-    ambience
-  ){
+if(
+!audioCtx ||
+ambience
+){
 
-    return;
+return;
 
-  }
-
-
-  ambience=
-    audioCtx.createGain();
+}
 
 
-  ambience.gain.value=
-    .0001;
+ambience=
+audioCtx.createGain();
 
 
-  ambience.connect(
-    master
-  );
+ambience.gain.value=
+.0001;
 
 
-  const bass1=
-    audioCtx.createOscillator();
+ambience.connect(
+master
+);
 
 
-  const bass2=
-    audioCtx.createOscillator();
+const bass1=
+audioCtx.createOscillator();
 
 
-  const g1=
-    audioCtx.createGain();
+const bass2=
+audioCtx.createOscillator();
 
 
-  const g2=
-    audioCtx.createGain();
+const g1=
+audioCtx.createGain();
 
 
-  bass1.type=
-    "sine";
+const g2=
+audioCtx.createGain();
 
 
-  bass2.type=
-    "sine";
+bass1.type=
+"sine";
 
 
-  bass1.frequency.value=
-    43;
+bass2.type=
+"sine";
 
 
-  bass2.frequency.value=
-    67;
+bass1.frequency.value=
+43;
 
 
-  g1.gain.value=
-    .03;
+bass2.frequency.value=
+67;
 
 
-  g2.gain.value=
-    .014;
+g1.gain.value=
+.03;
 
 
-  bass1.connect(
-    g1
-  );
+g2.gain.value=
+.014;
 
 
-  bass2.connect(
-    g2
-  );
+bass1.connect(
+g1
+);
 
 
-  g1.connect(
-    ambience
-  );
+bass2.connect(
+g2
+);
 
 
-  g2.connect(
-    ambience
-  );
+g1.connect(
+ambience
+);
 
 
-  bass1.start();
+g2.connect(
+ambience
+);
 
-  bass2.start();
+
+bass1.start();
+
+bass2.start();
 
 
-  ambience.gain
-    .exponentialRampToValueAtTime(
-
-      .16,
-
-      audioCtx.currentTime+
-      2
-
-    );
+ambience.gain
+.exponentialRampToValueAtTime(
+.16,
+audioCtx.currentTime+
+2
+);
 
 }
 
 
 function ambienceLevel(
-
-  value,
-
-  time=.3
-
+value,
+time=.3
 ){
 
-  if(
-    !audioCtx ||
-    !ambience
-  ){
+if(
+!audioCtx ||
+!ambience
+){
 
-    return;
+return;
 
-  }
-
-
-  ambience.gain
-    .cancelScheduledValues(
-      audioCtx.currentTime
-    );
+}
 
 
-  ambience.gain
-    .setTargetAtTime(
+ambience.gain
+.cancelScheduledValues(
+audioCtx.currentTime
+);
 
-      value,
 
-      audioCtx.currentTime,
-
-      time
-
-    );
+ambience.gain
+.setTargetAtTime(
+value,
+audioCtx.currentTime,
+time
+);
 
 }
 
 
 /**************************************************************
- BROADCAST AUDIO
+ BROADCAST HIT
 **************************************************************/
 
 function broadcastHit(){
 
-  tone(
-    45,
-    .55,
-    "sine",
-    .18,
-    0,
-    30
-  );
+tone(
+45,
+.55,
+"sine",
+.18,
+0,
+30
+);
 
+tone(
+90,
+.35,
+"square",
+.035
+);
 
-  tone(
-    90,
-    .35,
-    "square",
-    .035
-  );
-
-
-  noise(
-    .35,
-    .07,
-    0,
-    800
-  );
+noise(
+.35,
+.07,
+0,
+800
+);
 
 }
 
 
 function broadcastTheme(){
 
-  broadcastHit();
+broadcastHit();
 
 
-  const notes=[
-
-    196,
-
-    261.6,
-
-    329.6,
-
-    392,
-
-    523.3
-
-  ];
+const notes=[
+196,
+261.6,
+329.6,
+392,
+523.3
+];
 
 
-  notes.forEach(
-    function(
-      note,
-      index
-    ){
+notes.forEach(
+function(
+note,
+index
+){
 
-      tone(
+tone(
+note,
+.32,
+"sawtooth",
+.035,
+.35+
+index*.13
+);
 
-        note,
+tone(
+note/2,
+.35,
+"sine",
+.04,
+.35+
+index*.13
+);
 
-        .32,
-
-        "sawtooth",
-
-        .035,
-
-        .35+
-        index*.13
-
-      );
-
-
-      tone(
-
-        note/2,
-
-        .35,
-
-        "sine",
-
-        .04,
-
-        .35+
-        index*.13
-
-      );
-
-    }
-  );
+}
+);
 
 }
 
@@ -5689,273 +4985,239 @@ function broadcastTheme(){
 **************************************************************/
 
 function crowd(
-  level=1
+level=1
 ){
 
-  if(!audioCtx){
-
-    return;
-
-  }
+if(!audioCtx){
+return;
+}
 
 
-  noise(
-
-    .9,
-
-    .026*
-    level,
-
-    0,
-
-    1800
-
-  );
+noise(
+.9,
+.026*
+level,
+0,
+1800
+);
 
 
-  for(
-    let i=0;
-    i<32;
-    i++
-  ){
+for(
+let i=0;
+i<32;
+i++
+){
 
-    tone(
+tone(
+120+
+randomUnit()*650,
+.18+
+randomUnit()*.55,
+"sawtooth",
+.0022*
+level,
+randomUnit()*.7
+);
 
-      120+
-      randomUnit()*650,
-
-      .18+
-      randomUnit()*.55,
-
-      "sawtooth",
-
-      .0022*
-      level,
-
-      randomUnit()*.7
-
-    );
-
-  }
+}
 
 }
 
 
 function crowdOh(){
 
-  if(!audioCtx){
-
-    return;
-
-  }
+if(!audioCtx){
+return;
+}
 
 
-  for(
-    let i=0;
-    i<25;
-    i++
-  ){
+for(
+let i=0;
+i<25;
+i++
+){
 
-    tone(
+tone(
+180+
+randomUnit()*160,
+.45,
+"sine",
+.0035,
+randomUnit()*.08,
+110
+);
 
-      180+
-      randomUnit()*160,
-
-      .45,
-
-      "sine",
-
-      .0035,
-
-      randomUnit()*.08,
-
-      110
-
-    );
-
-  }
+}
 
 
-  noise(
-
-    .45,
-
-    .035,
-
-    0,
-
-    1000
-
-  );
+noise(
+.45,
+.035,
+0,
+1000
+);
 
 }
 
 
 /**************************************************************
- TEAM ENTRANCE SOUND
+ TEAM ENTRANCE
 **************************************************************/
 
 function teamEntrance(
-  manager
+manager
 ){
 
-  broadcastHit();
+broadcastHit();
 
 
-  if(
-    manager==="Brad"
-  ){
+if(
+manager==="Brad"
+){
 
-    tone(
-      110,
-      .18,
-      "square",
-      .07,
-      .2
-    );
+tone(
+110,
+.18,
+"square",
+.07,
+.2
+);
 
-    tone(
-      165,
-      .18,
-      "square",
-      .07,
-      .35
-    );
+tone(
+165,
+.18,
+"square",
+.07,
+.35
+);
 
-    tone(
-      220,
-      .5,
-      "square",
-      .075,
-      .5
-    );
+tone(
+220,
+.5,
+"square",
+.075,
+.5
+);
 
-  }
-
-
-  else if(
-    manager==="Maria"
-  ){
-
-    tone(
-      523,
-      .2,
-      "triangle",
-      .06,
-      .2
-    );
-
-    tone(
-      659,
-      .2,
-      "triangle",
-      .06,
-      .4
-    );
-
-    tone(
-      784,
-      .2,
-      "triangle",
-      .06,
-      .6
-    );
-
-    tone(
-      1047,
-      .6,
-      "triangle",
-      .07,
-      .8
-    );
-
-  }
+}
 
 
-  else if(
-    manager==="Mackenzie"
-  ){
+else if(
+manager==="Maria"
+){
 
-    for(
-      let i=0;
-      i<6;
-      i++
-    ){
+tone(
+523,
+.2,
+"triangle",
+.06,
+.2
+);
 
-      tone(
+tone(
+659,
+.2,
+"triangle",
+.06,
+.4
+);
 
-        350+
-        i*90,
+tone(
+784,
+.2,
+"triangle",
+.06,
+.6
+);
 
-        .18,
+tone(
+1047,
+.6,
+"triangle",
+.07,
+.8
+);
 
-        "sawtooth",
-
-        .045,
-
-        .18+
-        i*.1,
-
-        650+
-        i*80
-
-      );
-
-    }
-
-  }
-
-
-  else if(
-    manager==="Madison"
-  ){
-
-    tone(
-      880,
-      .08,
-      "sine",
-      .06,
-      .2
-    );
-
-    tone(
-      880,
-      .08,
-      "sine",
-      .06,
-      .43
-    );
-
-    tone(
-      880,
-      .08,
-      "sine",
-      .06,
-      .66
-    );
-
-    tone(
-      95,
-      .55,
-      "sine",
-      .16,
-      .88,
-      42
-    );
-
-  }
+}
 
 
-  setTimeout(
-    function(){
+else if(
+manager==="Mackenzie"
+){
 
-      crowd(
-        1.3
-      );
+for(
+let i=0;
+i<6;
+i++
+){
 
-    },
-    700
-  );
+tone(
+350+
+i*90,
+.18,
+"sawtooth",
+.045,
+.18+
+i*.1,
+650+
+i*80
+);
+
+}
+
+}
+
+
+else if(
+manager==="Madison"
+){
+
+tone(
+880,
+.08,
+"sine",
+.06,
+.2
+);
+
+tone(
+880,
+.08,
+"sine",
+.06,
+.43
+);
+
+tone(
+880,
+.08,
+"sine",
+.06,
+.66
+);
+
+tone(
+95,
+.55,
+"sine",
+.16,
+.88,
+42
+);
+
+}
+
+
+setTimeout(
+function(){
+
+crowd(
+1.4
+);
+
+},
+700
+);
 
 }
 
@@ -5966,52 +5228,47 @@ function teamEntrance(
 
 function doorSound(){
 
-  tone(
-    180,
-    .07,
-    "square",
-    .07
-  );
+tone(
+180,
+.07,
+"square",
+.07
+);
 
+tone(
+110,
+.09,
+"square",
+.08,
+.1
+);
 
-  tone(
-    110,
-    .09,
-    "square",
-    .08,
-    .1
-  );
+tone(
+58,
+1.6,
+"sine",
+.17,
+.22,
+30
+);
 
+tone(
+115,
+1.45,
+"sawtooth",
+.025,
+.22,
+48
+);
 
-  tone(
-    58,
-    1.6,
-    "sine",
-    .17,
-    .22,
-    30
-  );
+noise(
+1.5,
+.065,
+.22,
+450
+);
 
-
-  tone(
-    115,
-    1.45,
-    "sawtooth",
-    .025,
-    .22,
-    48
-  );
-
-
-  noise(
-    1.5,
-    .065,
-    .22,
-    450
-  );
-
-
-  broadcastHit();
+broadcastHit();
 
 }
 
@@ -6021,90 +5278,87 @@ function doorSound(){
 **************************************************************/
 
 function countdownSound(
-  number
+number
 ){
 
-  if(number===3){
+if(number===3){
 
-    tone(
-      280,
-      .18,
-      "square",
-      .07
-    );
+tone(
+280,
+.18,
+"square",
+.07
+);
 
-    tone(
-      70,
-      .22,
-      "sine",
-      .1
-    );
+tone(
+70,
+.22,
+"sine",
+.1
+);
 
-  }
+}
 
+else if(
+number===2
+){
 
-  else if(
-    number===2
-  ){
+tone(
+235,
+.2,
+"square",
+.075
+);
 
-    tone(
-      235,
-      .2,
-      "square",
-      .075
-    );
+tone(
+58,
+.25,
+"sine",
+.11
+);
 
-    tone(
-      58,
-      .25,
-      "sine",
-      .11
-    );
+}
 
-  }
+else if(
+number===1
+){
 
+tone(
+190,
+.23,
+"square",
+.085
+);
 
-  else if(
-    number===1
-  ){
+tone(
+47,
+.3,
+"sine",
+.14
+);
 
-    tone(
-      190,
-      .23,
-      "square",
-      .085
-    );
+}
 
-    tone(
-      47,
-      .3,
-      "sine",
-      .14
-    );
+else{
 
-  }
+tone(
+650,
+.2,
+"square",
+.08
+);
 
+tone(
+980,
+.25,
+"square",
+.06,
+.08
+);
 
-  else{
+broadcastHit();
 
-    tone(
-      650,
-      .2,
-      "square",
-      .08
-    );
-
-    tone(
-      980,
-      .25,
-      "square",
-      .06,
-      .08
-    );
-
-    broadcastHit();
-
-  }
+}
 
 }
 
@@ -6115,71 +5369,66 @@ function countdownSound(
 
 function leverSound(){
 
-  tone(
-    190,
-    .055,
-    "square",
-    .08
-  );
+tone(
+190,
+.055,
+"square",
+.08
+);
 
+tone(
+115,
+.1,
+"square",
+.1,
+.06
+);
 
-  tone(
-    115,
-    .1,
-    "square",
-    .1,
-    .06
-  );
+tone(
+48,
+.32,
+"sine",
+.18,
+.12,
+30
+);
 
-
-  tone(
-    48,
-    .32,
-    "sine",
-    .18,
-    .12,
-    30
-  );
-
-
-  noise(
-    .18,
-    .09,
-    .03,
-    950
-  );
+noise(
+.18,
+.09,
+.03,
+950
+);
 
 }
 
 
 function launchSound(){
 
-  noise(
-    .7,
-    .1,
-    0,
-    2500
-  );
+noise(
+.7,
+.1,
+0,
+2500
+);
 
+tone(
+90,
+.75,
+"sawtooth",
+.035,
+0,
+850
+);
 
-  tone(
-    90,
-    .75,
-    "sawtooth",
-    .035,
-    0,
-    850
-  );
-
-
-  tone(
-    45,
-    .7,
-    "sine",
-    .15,
-    0,
-    120
-  );
+tone(
+45,
+.7,
+"sine",
+.15,
+0,
+120
+);
 
 }
 
@@ -6189,74 +5438,72 @@ function launchSound(){
 **************************************************************/
 
 function pointerClack(
-  progress
+progress
 ){
 
-  const late=
+const late=
 
-    Math.max(
-      0,
-      progress-.55
-    )/.45;
-
-
-  const pitch=
-
-    980-
-
-    late*480+
-
-    randomUnit()*60;
+Math.max(
+0,
+progress-.55
+)/.45;
 
 
-  const volume=
+const pitch=
 
-    .025+
+980-
 
-    late*.055;
+late*480+
 
-
-  tone(
-    pitch,
-    .025,
-    "square",
-    volume
-  );
+randomUnit()*60;
 
 
-  tone(
-    pitch*.43,
-    .04,
-    "sine",
-    volume*.7
-  );
+const volume=
+
+.025+
+
+late*.055;
 
 
-  noise(
-    .025,
-    volume*.7,
-    0,
-    2800
-  );
+tone(
+pitch,
+.025,
+"square",
+volume
+);
+
+tone(
+pitch*.43,
+.04,
+"sine",
+volume*.7
+);
+
+noise(
+.025,
+volume*.7,
+0,
+2800
+);
 
 
-  const pointer=
-    document.getElementById(
-      "pointer"
-    );
+const pointer=
+document.getElementById(
+"pointer"
+);
 
 
-  pointer.classList.remove(
-    "hit"
-  );
+pointer.classList.remove(
+"hit"
+);
 
 
-  void pointer.offsetWidth;
+void pointer.offsetWidth;
 
 
-  pointer.classList.add(
-    "hit"
-  );
+pointer.classList.add(
+"hit"
+);
 
 }
 
@@ -6267,21 +5514,20 @@ function pointerClack(
 
 function jackpotApproach(){
 
-  tone(
-    1047,
-    .16,
-    "sine",
-    .075
-  );
+tone(
+1047,
+.16,
+"sine",
+.075
+);
 
-
-  tone(
-    1568,
-    .24,
-    "sine",
-    .055,
-    .08
-  );
+tone(
+1568,
+.24,
+"sine",
+.055,
+.08
+);
 
 }
 
@@ -6292,21 +5538,20 @@ function jackpotApproach(){
 
 function heartbeat(){
 
-  tone(
-    52,
-    .12,
-    "sine",
-    .17
-  );
+tone(
+52,
+.12,
+"sine",
+.17
+);
 
-
-  tone(
-    45,
-    .16,
-    "sine",
-    .14,
-    .16
-  );
+tone(
+45,
+.16,
+"sine",
+.14,
+.16
+);
 
 }
 
@@ -6317,708 +5562,598 @@ function heartbeat(){
 
 function victoryFanfare(){
 
-  broadcastHit();
+broadcastHit();
 
 
-  const notes=[
-
-    392,
-
-    523,
-
-    659,
-
-    784
-
-  ];
+const notes=[
+392,
+523,
+659,
+784
+];
 
 
-  notes.forEach(
-    function(
-      note,
-      index
-    ){
+notes.forEach(
+function(
+note,
+index
+){
 
-      tone(
+tone(
+note,
+index===3
+?.7
+:.22,
+"square",
+.055,
+.15+
+index*.15
+);
 
-        note,
-
-        index===3
-        ?.7
-        :.22,
-
-        "square",
-
-        .055,
-
-        .15+
-        index*.15
-
-      );
-
-    }
-  );
+}
+);
 
 
-  crowd(
-    1.5
-  );
+crowd(
+1.5
+);
 
 }
 
 
 function doubleFlexSound(){
 
-  broadcastHit();
+broadcastHit();
 
-  setTimeout(
-    broadcastHit,
-    330
-  );
+setTimeout(
+broadcastHit,
+330
+);
 
 }
 
 
 function boostSound(){
 
-  tone(
-    180,
-    .65,
-    "sawtooth",
-    .04,
-    0,
-    950
-  );
+tone(
+180,
+.65,
+"sawtooth",
+.04,
+0,
+950
+);
 
-
-  victoryFanfare();
+victoryFanfare();
 
 }
 
 
 function oracleSound(){
 
-  tone(
-    95,
-    1.4,
-    "sine",
-    .1,
-    0,
-    190
-  );
+tone(
+95,
+1.4,
+"sine",
+.1,
+0,
+190
+);
+
+tone(
+190,
+1.5,
+"sine",
+.045,
+.1,
+420
+);
 
 
-  tone(
-    190,
-    1.5,
-    "sine",
-    .045,
-    .1,
-    420
-  );
+for(
+let i=0;
+i<9;
+i++
+){
 
+tone(
+650+
+i*85,
+.3,
+"sine",
+.022,
+.3+
+i*.1
+);
 
-  for(
-    let i=0;
-    i<9;
-    i++
-  ){
-
-    tone(
-
-      650+
-      i*85,
-
-      .3,
-
-      "sine",
-
-      .022,
-
-      .3+
-      i*.1
-
-    );
-
-  }
+}
 
 }
 
 
 function vikingHorn(){
 
-  tone(
-    105,
-    1.6,
-    "sawtooth",
-    .085,
-    0,
-    75
-  );
+tone(
+105,
+1.6,
+"sawtooth",
+.085,
+0,
+75
+);
+
+tone(
+158,
+1.6,
+"sawtooth",
+.045,
+.03,
+105
+);
+
+tone(
+52,
+1.7,
+"sine",
+.16,
+0,
+38
+);
 
 
-  tone(
-    158,
-    1.6,
-    "sawtooth",
-    .045,
-    .03,
-    105
-  );
+setTimeout(
+function(){
 
+crowd(
+1.7
+);
 
-  tone(
-    52,
-    1.7,
-    "sine",
-    .16,
-    0,
-    38
-  );
-
-
-  setTimeout(
-    function(){
-
-      crowd(
-        1.7
-      );
-
-    },
-    800
-  );
+},
+800
+);
 
 }
 
 
 function firstPickSound(){
 
-  tone(
-    392,
-    .16,
-    "square",
-    .05
-  );
+tone(
+392,
+.16,
+"square",
+.05
+);
 
+tone(
+523,
+.16,
+"square",
+.055,
+.14
+);
 
-  tone(
-    523,
-    .16,
-    "square",
-    .055,
-    .14
-  );
+tone(
+659,
+.16,
+"square",
+.06,
+.28
+);
 
-
-  tone(
-    659,
-    .16,
-    "square",
-    .06,
-    .28
-  );
-
-
-  tone(
-    1047,
-    .5,
-    "square",
-    .07,
-    .43
-  );
+tone(
+1047,
+.5,
+"square",
+.07,
+.43
+);
 
 }
 
 
 function shieldSound(){
 
-  tone(
-    90,
-    .35,
-    "sine",
-    .17,
-    0,
-    42
-  );
+tone(
+90,
+.35,
+"sine",
+.17,
+0,
+42
+);
 
+noise(
+.17,
+.12,
+0,
+3800
+);
 
-  noise(
-    .17,
-    .12,
-    0,
-    3800
-  );
-
-
-  tone(
-    1400,
-    .08,
-    "square",
-    .04,
-    .02
-  );
+tone(
+1400,
+.08,
+"square",
+.04,
+.02
+);
 
 }
 
 
 function captainSound(){
 
-  const notes=[
-
-    261.6,
-
-    329.6,
-
-    392,
-
-    523.3
-
-  ];
+const notes=[
+261.6,
+329.6,
+392,
+523.3
+];
 
 
-  notes.forEach(
-    function(
-      note,
-      index
-    ){
+notes.forEach(
+function(
+note,
+index
+){
 
-      tone(
+tone(
+note,
+.45,
+"sawtooth",
+.04,
+index*.16
+);
 
-        note,
+tone(
+note/2,
+.45,
+"sine",
+.04,
+index*.16
+);
 
-        .45,
-
-        "sawtooth",
-
-        .04,
-
-        index*.16
-
-      );
-
-
-      tone(
-
-        note/2,
-
-        .45,
-
-        "sine",
-
-        .04,
-
-        index*.16
-
-      );
-
-    }
-  );
+}
+);
 
 }
 
 
 function raidSound(){
 
-  for(
-    let i=0;
-    i<8;
-    i++
-  ){
+for(
+let i=0;
+i<8;
+i++
+){
 
-    tone(
+tone(
+i%2===0
+?760
+:520,
+.19,
+"square",
+.06,
+i*.2
+);
 
-      i%2===0
-      ?760
-      :520,
-
-      .19,
-
-      "square",
-
-      .06,
-
-      i*.2
-
-    );
-
-  }
+}
 
 
-  noise(
-    1.5,
-    .03,
-    0,
-    1300
-  );
+noise(
+1.5,
+.03,
+0,
+1300
+);
 
 }
 
 
 function upgradeSound(){
 
-  tone(
-    200,
-    .8,
-    "sawtooth",
-    .035,
-    0,
-    1000
-  );
+tone(
+200,
+.8,
+"sawtooth",
+.035,
+0,
+1000
+);
 
+tone(
+440,
+.16,
+"square",
+.045,
+.35
+);
 
-  tone(
-    440,
-    .16,
-    "square",
-    .045,
-    .35
-  );
+tone(
+660,
+.16,
+"square",
+.05,
+.52
+);
 
-
-  tone(
-    660,
-    .16,
-    "square",
-    .05,
-    .52
-  );
-
-
-  tone(
-    880,
-    .45,
-    "square",
-    .06,
-    .7
-  );
+tone(
+880,
+.45,
+"square",
+.06,
+.7
+);
 
 }
 
 
 /**************************************************************
- JACKPOT
-
- THIS IS INTENTIONALLY RIDICULOUS.
+ JACKPOT SOUND
 **************************************************************/
 
 function jackpotSound(){
 
-  /*
-   First lonely casino bell.
-  */
+tone(
+1047,
+.25,
+"sine",
+.065
+);
 
-  tone(
-    1047,
-    .25,
-    "sine",
-    .065
-  );
-
-
-  /*
-   Second bell.
-  */
-
-  tone(
-    1568,
-    .3,
-    "sine",
-    .07,
-    .55
-  );
+tone(
+1568,
+.3,
+"sine",
+.07,
+.55
+);
 
 
-  /*
-   Rising jackpot cascade.
-  */
-
-  const cascade=[
-
-    523,
-
-    659,
-
-    784,
-
-    1047,
-
-    1319,
-
-    1568,
-
-    2093
-
-  ];
+const cascade=[
+523,
+659,
+784,
+1047,
+1319,
+1568,
+2093
+];
 
 
-  cascade.forEach(
-    function(
-      note,
-      index
-    ){
+cascade.forEach(
+function(
+note,
+index
+){
 
-      tone(
+tone(
+note,
+.32,
+"sine",
+.06,
+1.05+
+index*.12
+);
 
-        note,
-
-        .32,
-
-        "sine",
-
-        .06,
-
-        1.05+
-        index*.12
-
-      );
-
-    }
-  );
+}
+);
 
 
-  /*
-   Alarm sequence.
-  */
+for(
+let i=0;
+i<12;
+i++
+){
 
-  for(
-    let i=0;
-    i<12;
-    i++
-  ){
+tone(
+i%2===0
+?880
+:620,
+.18,
+"square",
+.055,
+1.25+
+i*.18
+);
 
-    tone(
-
-      i%2===0
-      ?880
-      :620,
-
-      .18,
-
-      "square",
-
-      .055,
-
-      1.25+
-      i*.18
-
-    );
-
-  }
+}
 
 
-  setTimeout(
-    broadcastHit,
-    1450
-  );
+setTimeout(
+broadcastHit,
+1450
+);
+
+setTimeout(
+broadcastHit,
+1950
+);
+
+setTimeout(
+broadcastHit,
+2450
+);
 
 
-  setTimeout(
-    broadcastHit,
-    1950
-  );
+setTimeout(
+function(){
+
+crowd(
+2.3
+);
+
+},
+1500
+);
 
 
-  setTimeout(
-    broadcastHit,
-    2450
-  );
+tone(
+261.6,
+1,
+"sawtooth",
+.045,
+2.5
+);
 
+tone(
+329.6,
+1,
+"sawtooth",
+.045,
+2.5
+);
 
-  setTimeout(
-    function(){
+tone(
+392,
+1,
+"sawtooth",
+.045,
+2.5
+);
 
-      crowd(
-        2.2
-      );
-
-    },
-    1500
-  );
-
-
-  /*
-   Giant victory chord.
-  */
-
-  tone(
-    261.6,
-    1,
-    "sawtooth",
-    .045,
-    2.5
-  );
-
-
-  tone(
-    329.6,
-    1,
-    "sawtooth",
-    .045,
-    2.5
-  );
-
-
-  tone(
-    392,
-    1,
-    "sawtooth",
-    .045,
-    2.5
-  );
-
-
-  tone(
-    523.3,
-    1,
-    "sawtooth",
-    .05,
-    2.5
-  );
+tone(
+523.3,
+1,
+"sawtooth",
+.05,
+2.5
+);
 
 }
 
 
 /**************************************************************
- PAGE → CHAMPION SELECT
+ PAGE SCROLL
 **************************************************************/
 
 function scrollToChampion(){
 
-  document
-    .getElementById(
-      "champion-select"
-    )
-    .scrollIntoView({
+document
+.getElementById(
+"champion-select"
+)
+.scrollIntoView({
 
-      behavior:"smooth",
+behavior:"smooth",
 
-      block:"start"
+block:"start"
 
-    });
+});
 
 }
 
 
 /**************************************************************
  CHOOSE CHAMPION
-
- THIS IS WHERE NORMAL F4SN BECOMES THE ARENA.
 **************************************************************/
 
 function chooseChampion(
-  button
+button
 ){
 
-  initAudio();
+initAudio();
 
 
-  selectedManager=
-    button.dataset.manager;
+selectedManager=
+button.dataset.manager;
 
 
-  selectedTeam=
-    button.dataset.team;
+selectedTeam=
+button.dataset.team;
 
 
-  selectedColor=
-    button.dataset.color;
+selectedColor=
+button.dataset.color;
 
 
-  document
-    .documentElement
-    .style
-    .setProperty(
-
-      "--team",
-
-      selectedColor
-
-    );
+document
+.documentElement
+.style
+.setProperty(
+"--team",
+selectedColor
+);
 
 
-  document
-    .getElementById(
-      "transition-manager"
-    )
-    .textContent=
-
-      selectedManager;
-
-
-  document
-    .getElementById(
-      "transition-team"
-    )
-    .textContent=
-
-      selectedTeam;
+document
+.getElementById(
+"transition-manager"
+)
+.textContent=
+selectedManager;
 
 
-  const transition=
-    document.getElementById(
-      "arena-transition"
-    );
+document
+.getElementById(
+"transition-team"
+)
+.textContent=
+selectedTeam;
 
 
-  transition.classList.add(
-    "show"
-  );
+const transition=
+document.getElementById(
+"arena-transition"
+);
 
 
-  broadcastTheme();
+transition.classList.add(
+"show"
+);
 
 
-  flashes(
-    6
-  );
+broadcastTheme();
 
 
-  setTimeout(
-    function(){
-
-      document
-        .getElementById(
-          "transition-status"
-        )
-        .textContent=
-
-          "CHAMPION VERIFIED";
-
-      broadcastHit();
-
-    },
-    1000
-  );
+flashes(
+7
+);
 
 
-  setTimeout(
-    function(){
+setTimeout(
+function(){
 
-      document
-        .getElementById(
-          "transition-status"
-        )
-        .textContent=
+document
+.getElementById(
+"transition-status"
+)
+.textContent=
+"CHAMPION VERIFIED";
 
-          "F4SN ARENA ACCESS AUTHORIZED";
+broadcastHit();
 
-      flashes(
-        7
-      );
-
-    },
-    1900
-  );
+},
+1000
+);
 
 
-  setTimeout(
-    function(){
+setTimeout(
+function(){
 
-      enterArena();
+document
+.getElementById(
+"transition-status"
+)
+.textContent=
+"F4SN MEGA-ARENA ACCESS AUTHORIZED";
 
-    },
-    3200
-  );
+flashes(
+8
+);
+
+},
+1900
+);
+
+
+setTimeout(
+function(){
+
+enterArena();
+
+},
+3200
+);
 
 }
 
@@ -7029,69 +6164,65 @@ function chooseChampion(
 
 function enterArena(){
 
-  const transition=
-    document.getElementById(
-      "arena-transition"
-    );
+const transition=
+document.getElementById(
+"arena-transition"
+);
 
 
-  const arena=
-    document.getElementById(
-      "arena"
-    );
+const arena=
+document.getElementById(
+"arena"
+);
 
 
-  arena.classList.add(
-    "active"
-  );
+arena.className=
+"active entrance-mode";
 
 
-  document.body.style.overflow=
-    "hidden";
+document.body.style.overflow=
+"hidden";
 
 
-  setupEntrance();
+setupEntrance();
 
 
-  showArenaScreen(
-    "entrance-screen"
-  );
+showArenaScene(
+"entrance-scene"
+);
 
 
-  setJumbo(
-
-    selectedTeam,
-
-    "THE WEEKLY CHAMPION HAS ARRIVED"
-
-  );
+setArenaHud(
+selectedTeam,
+"THE WEEKLY CHAMPION HAS ARRIVED"
+);
 
 
-  startAmbience();
+startAmbience();
 
 
-  teamEntrance(
-    selectedManager
-  );
+teamEntrance(
+selectedManager
+);
 
 
-  flashes(
-    18
-  );
+flashes(
+20
+);
 
 
-  setTimeout(
-    function(){
+setTimeout(
+function(){
 
-      transition
-        .classList
-        .remove(
-          "show"
-        );
+transition
+.classList
+.remove(
+"show"
+);
 
-    },
-    700
-  );
+},
+700
+);
 
 }
 
@@ -7102,161 +6233,121 @@ function enterArena(){
 
 function setupEntrance(){
 
-  document
-    .getElementById(
-      "entrance-manager"
-    )
-    .textContent=
+document
+.getElementById(
+"entrance-manager"
+)
+.textContent=
 
-      selectedManager+
-      " HAS ENTERED THE BUILDING";
-
-
-  document
-    .getElementById(
-      "entrance-team"
-    )
-    .textContent=
-
-      selectedTeam;
+selectedManager+
+" HAS ENTERED THE BUILDING";
 
 
-  const lines={
+document
+.getElementById(
+"entrance-team"
+)
+.textContent=
+selectedTeam;
 
 
-    Brad:
-
-      "BREAKING NEWS: BREAKING BRAD HAS BEEN CLEARED FOR MAXIMUM NONSENSE.",
-
-
-    Maria:
-
-      "THE HOUSEWIVES HAVE ARRIVED. LEAGUE SECURITY HAS BEEN WARNED.",
+document
+.getElementById(
+"side-manager"
+)
+.textContent=
+selectedManager;
 
 
-    Mackenzie:
+const lines={
 
-      "MACK AROUND & FIND OUT HAS ENTERED. FINDING OUT MAY BEGIN IMMEDIATELY.",
+Brad:
+"BREAKING NEWS: BREAKING BRAD HAS BEEN CLEARED FOR MAXIMUM NONSENSE.",
+
+Maria:
+"THE HOUSEWIVES HAVE ARRIVED. LEAGUE SECURITY HAS BEEN WARNED.",
+
+Mackenzie:
+"MACK AROUND & FIND OUT HAS ENTERED. FINDING OUT MAY BEGIN IMMEDIATELY.",
+
+Madison:
+"MADDIE'S ANATOMY HAS ENTERED THE ARENA. PROGNOSIS: CHAOS."
+
+};
 
 
-    Madison:
-
-      "MADDIE'S ANATOMY HAS ENTERED THE ARENA. PROGNOSIS: CHAOS."
-
-
-  };
-
-
-  document
-    .getElementById(
-      "entrance-line"
-    )
-    .textContent=
-
-      lines[
-        selectedManager
-      ];
+document
+.getElementById(
+"entrance-line"
+)
+.textContent=
+lines[
+selectedManager
+];
 
 }
 
 
 /**************************************************************
- ARENA SCREEN CONTROL
+ ARENA SCENE CONTROL
 **************************************************************/
 
-function showArenaScreen(
-  id
+function showArenaScene(
+id
 ){
 
-  document
-    .querySelectorAll(
-      ".arena-screen"
-    )
-    .forEach(
-      function(screen){
+document
+.querySelectorAll(
+".arena-scene"
+)
+.forEach(
+function(scene){
 
-        screen
-          .classList
-          .remove(
-            "active"
-          );
+scene
+.classList
+.remove(
+"active"
+);
 
-      }
-    );
-
-
-  document
-    .getElementById(
-      id
-    )
-    .classList
-    .add(
-      "active"
-    );
+}
+);
 
 
-  document
-    .getElementById(
-      "arena"
-    )
-    .scrollTo({
-
-      top:0,
-
-      behavior:"smooth"
-
-    });
+document
+.getElementById(
+id
+)
+.classList
+.add(
+"active"
+);
 
 }
 
 
 /**************************************************************
- JUMBOTRON
+ HUD
 **************************************************************/
 
-function setJumbo(
-
-  main,
-
-  sub,
-
-  mode=""
-
+function setArenaHud(
+main,
+sub
 ){
 
-  const jumbo=
-    document.getElementById(
-      "jumbotron"
-    );
+document
+.getElementById(
+"arena-hud-main"
+)
+.textContent=
+main;
 
 
-  jumbo.className=
-
-    "jumbotron"+
-
-    (
-      mode
-      ?" "+mode
-      :""
-    );
-
-
-  document
-    .getElementById(
-      "jumbo-main"
-    )
-    .textContent=
-
-      main;
-
-
-  document
-    .getElementById(
-      "jumbo-sub"
-    )
-    .textContent=
-
-      sub;
+document
+.getElementById(
+"arena-hud-sub"
+)
+.textContent=
+sub;
 
 }
 
@@ -7267,22 +6358,30 @@ function setJumbo(
 
 function showDoors(){
 
-  setJumbo(
-
-    "CHAMPION VERIFIED",
-
-    selectedManager+
-    " • WINNER'S WHEEL ACCESS AUTHORIZED"
-
-  );
+const arena=
+document.getElementById(
+"arena"
+);
 
 
-  showArenaScreen(
-    "door-screen"
-  );
+arena.classList.remove(
+"entrance-mode"
+);
 
 
-  broadcastHit();
+showArenaScene(
+"door-scene"
+);
+
+
+setArenaHud(
+"CHAMPION VERIFIED",
+selectedManager+
+" • WINNER'S WHEEL ACCESS AUTHORIZED"
+);
+
+
+broadcastHit();
 
 }
 
@@ -7293,81 +6392,90 @@ function showDoors(){
 
 function openDoors(){
 
-  const shell=
-    document.getElementById(
-      "door-shell"
-    );
+const doorScene=
+document.getElementById(
+"door-scene"
+);
 
 
-  const button=
-    document.getElementById(
-      "door-button"
-    );
+const button=
+document.getElementById(
+"door-button"
+);
 
 
-  button.disabled=
-    true;
+button.disabled=
+true;
 
 
-  shell.classList.add(
-    "open"
-  );
+doorScene.classList.add(
+"open"
+);
 
 
-  ambienceLevel(
-    .025
-  );
+ambienceLevel(
+.025
+);
 
 
-  doorSound();
+doorSound();
 
 
-  flashes(
-    15
-  );
+flashes(
+20
+);
 
 
-  setJumbo(
-
-    "THE WINNER'S WHEEL",
-
-    "WELCOME TO THE F4SN ARENA"
-
-  );
+setArenaHud(
+"THE WINNER'S WHEEL",
+"WELCOME TO THE F4SN MEGA-ARENA"
+);
 
 
-  setTimeout(
-    function(){
+setTimeout(
+function(){
 
-      showArenaScreen(
-        "wheel-screen"
-      );
-
-
-      document
-        .getElementById(
-          "oracle-message"
-        )
-        .textContent=
-
-          oracleWelcome();
+showArenaScene(
+"wheel-scene"
+);
 
 
-      startBulbIdle();
+document
+.getElementById(
+"oracle-message"
+)
+.textContent=
+oracleWelcome();
 
 
-      ambienceLevel(
-        .16
-      );
+document
+.getElementById(
+"side-status"
+)
+.textContent=
+"READY TO SPIN";
 
 
-      flashes(
-        10
-      );
+startBulbIdle();
 
-    },
-    1900
-  );
+
+ambienceLevel(
+.16
+);
+
+
+crowd(
+1.6
+);
+
+
+flashes(
+18
+);
+
+},
+1900
+);
 
 }
 
@@ -7378,75 +6486,56 @@ function openDoors(){
 
 function oracleWelcome(){
 
-  const lines=[
+const lines=[
+
+selectedManager+
+", congratulations. Please try not to abuse whatever stupid power this wheel gives you.",
+
+"League management has asked me to remind "+
+selectedManager+
+" that screaming at the wheel does not improve the odds.",
+
+selectedTeam+
+" has officially reached the part of fantasy football where basic rules were apparently no longer enough.",
+
+"The wheel has been inspected by absolutely nobody qualified to inspect a wheel."
+
+];
 
 
-    selectedManager+
-    ", congratulations. Please try not to abuse whatever stupid power this wheel gives you.",
-
-
-    "League management has asked me to remind "+
-    selectedManager+
-    " that screaming at the wheel does not improve the odds.",
-
-
-    selectedTeam+
-    " has officially reached the part of fantasy football where basic rules were apparently no longer enough.",
-
-
-    "The wheel has been inspected by absolutely nobody qualified to inspect a wheel."
-
-
-  ];
-
-
-  return lines[
-
-    Math.floor(
-
-      randomUnit()*
-      lines.length
-
-    )
-
-  ];
+return lines[
+Math.floor(
+randomUnit()*
+lines.length
+)
+];
 
 }
 
 
 function oracleSpin(){
 
-  const lines=[
+const lines=[
+
+"The Oracle has lost control of the situation.",
+
+"This is exactly why normal families just play fantasy football.",
+
+"Somewhere, a commissioner is regretting every decision that led here.",
+
+"The grand prizes are rare. Screaming will not alter mathematics.",
+
+"F4SN legal would like to clarify that F4SN does not have a legal department."
+
+];
 
 
-    "The Oracle has lost control of the situation.",
-
-
-    "This is exactly why normal families just play fantasy football.",
-
-
-    "Somewhere, a commissioner is regretting every decision that led here.",
-
-
-    "The grand prizes are rare. Screaming will not alter mathematics.",
-
-
-    "F4SN legal would like to clarify that F4SN does not have a legal department."
-
-
-  ];
-
-
-  return lines[
-
-    Math.floor(
-
-      randomUnit()*
-      lines.length
-
-    )
-
-  ];
+return lines[
+Math.floor(
+randomUnit()*
+lines.length
+)
+];
 
 }
 
@@ -7457,300 +6546,297 @@ function oracleSpin(){
 
 function createBulbs(){
 
-  const holder=
-    document.getElementById(
-      "bulbs"
-    );
+const holder=
+document.getElementById(
+"bulbs"
+);
 
 
-  holder.innerHTML=
-    "";
+holder.innerHTML=
+"";
 
 
-  const count=
-    32;
+const count=
+32;
 
 
-  for(
-    let i=0;
-    i<count;
-    i++
-  ){
+for(
+let i=0;
+i<count;
+i++
+){
 
-    const bulb=
-      document.createElement(
-        "div"
-      );
-
-
-    bulb.className=
-      "bulb";
+const bulb=
+document.createElement(
+"div"
+);
 
 
-    const angle=
-
-      (
-        Math.PI*
-        2*
-        i/
-        count
-      )-
-
-      Math.PI/2;
+bulb.className=
+"bulb";
 
 
-    const radius=
-      47.2;
+const angle=
+
+(
+Math.PI*
+2*
+i/
+count
+)-
+
+Math.PI/2;
 
 
-    bulb.style.left=
-
-      50+
-
-      Math.cos(
-        angle
-      )*
-
-      radius+
-
-      "%";
+const radius=
+47.2;
 
 
-    bulb.style.top=
+bulb.style.left=
 
-      50+
+50+
 
-      Math.sin(
-        angle
-      )*
+Math.cos(
+angle
+)*
 
-      radius+
+radius+
 
-      "%";
+"%";
 
 
-    holder.appendChild(
-      bulb
-    );
+bulb.style.top=
 
-  }
+50+
+
+Math.sin(
+angle
+)*
+
+radius+
+
+"%";
+
+
+holder.appendChild(
+bulb
+);
+
+}
 
 }
 
 
 function bulbs(){
 
-  return Array.from(
-
-    document
-      .querySelectorAll(
-        ".bulb"
-      )
-
-  );
+return Array.from(
+document
+.querySelectorAll(
+".bulb"
+)
+);
 
 }
 
 
 function clearBulbs(){
 
-  bulbs().forEach(
-    function(bulb){
+bulbs().forEach(
+function(bulb){
 
-      bulb.className=
-        "bulb";
+bulb.className=
+"bulb";
 
-    }
-  );
+}
+);
 
 }
 
 
 function startBulbIdle(){
 
-  stopBulbs();
+stopBulbs();
 
 
-  bulbTimer=
-    setInterval(
-      function(){
+bulbTimer=
+setInterval(
+function(){
 
-        const list=
-          bulbs();
-
-
-        list.forEach(
-          function(
-            bulb,
-            index
-          ){
-
-            const distance=
-
-              (
-                index-
-                bulbStep+
-                list.length
-              )%
-
-              list.length;
+const list=
+bulbs();
 
 
-            bulb.className=
+list.forEach(
+function(
+bulb,
+index
+){
 
-              distance<5
+const distance=
 
-              ?"bulb blue"
+(
+index-
+bulbStep+
+list.length
+)%
 
-              :"bulb";
-
-          }
-        );
+list.length;
 
 
-        bulbStep=
+bulb.className=
 
-          (
-            bulbStep+
-            1
-          )%
+distance<5
 
-          list.length;
+?"bulb blue"
 
-      },
-      90
-    );
+:"bulb";
+
+}
+);
+
+
+bulbStep=
+
+(
+bulbStep+
+1
+)%
+
+list.length;
+
+},
+90
+);
 
 }
 
 
 function startBulbSpin(){
 
-  stopBulbs();
+stopBulbs();
 
 
-  bulbTimer=
-    setInterval(
-      function(){
+bulbTimer=
+setInterval(
+function(){
 
-        const list=
-          bulbs();
-
-
-        list.forEach(
-          function(
-            bulb,
-            index
-          ){
-
-            const distance=
-
-              (
-                index-
-                bulbStep+
-                list.length
-              )%
-
-              list.length;
+const list=
+bulbs();
 
 
-            bulb.className=
+list.forEach(
+function(
+bulb,
+index
+){
 
-              (
-                distance===0 ||
-                distance===1 ||
-                distance===2
-              )
+const distance=
 
-              ?"bulb on"
+(
+index-
+bulbStep+
+list.length
+)%
 
-              :"bulb";
-
-          }
-        );
+list.length;
 
 
-        bulbStep=
+bulb.className=
 
-          (
-            bulbStep+
-            2
-          )%
+(
+distance===0 ||
+distance===1 ||
+distance===2
+)
 
-          list.length;
+?"bulb on"
 
-      },
-      45
-    );
+:"bulb";
+
+}
+);
+
+
+bulbStep=
+
+(
+bulbStep+
+2
+)%
+
+list.length;
+
+},
+45
+);
 
 }
 
 
 function jackpotBulbs(){
 
-  stopBulbs();
+stopBulbs();
 
 
-  let state=false;
+let state=false;
 
 
-  bulbTimer=
-    setInterval(
-      function(){
+bulbTimer=
+setInterval(
+function(){
 
-        state=
-          !state;
+state=
+!state;
 
 
-        bulbs().forEach(
-          function(
-            bulb,
-            index
-          ){
+bulbs().forEach(
+function(
+bulb,
+index
+){
 
-            bulb.className=
+bulb.className=
 
-              state
+state
 
-              ?(
-                index%2===0
+?(
+index%2===0
 
-                ?"bulb on"
+?"bulb on"
 
-                :"bulb red"
-              )
+:"bulb red"
+)
 
-              :(
-                index%2===0
+:(
+index%2===0
 
-                ?"bulb red"
+?"bulb red"
 
-                :"bulb on"
-              );
+:"bulb on"
+);
 
-          }
-        );
+}
+);
 
-      },
-      110
-    );
+},
+110
+);
 
 }
 
 
 function stopBulbs(){
 
-  if(bulbTimer){
+if(bulbTimer){
 
-    clearInterval(
-      bulbTimer
-    );
+clearInterval(
+bulbTimer
+);
 
+bulbTimer=
+null;
 
-    bulbTimer=
-      null;
-
-  }
+}
 
 }
 
@@ -7761,515 +6847,441 @@ function stopBulbs(){
 
 function drawWheel(){
 
-  const canvas=
-    document.getElementById(
-      "wheel"
-    );
+const canvas=
+document.getElementById(
+"wheel"
+);
 
 
-  const ctx=
-    canvas.getContext(
-      "2d"
-    );
+const ctx=
+canvas.getContext(
+"2d"
+);
 
 
-  const size=
-    canvas.width;
+const size=
+canvas.width;
 
 
-  const center=
-    size/2;
+const center=
+size/2;
 
 
-  const radius=
-    center-18;
+const radius=
+center-18;
 
 
-  const slice=
+const slice=
 
-    Math.PI*
-    2/
-    ITEMS.length;
+Math.PI*
+2/
+ITEMS.length;
 
 
-  ctx.clearRect(
-    0,
-    0,
-    size,
-    size
-  );
+ctx.clearRect(
+0,
+0,
+size,
+size
+);
 
 
-  ctx.save();
+ctx.save();
 
 
-  ctx.translate(
-    center,
-    center
-  );
+ctx.translate(
+center,
+center
+);
 
 
-  ctx.rotate(
-    wheelRotation
-  );
+ctx.rotate(
+wheelRotation
+);
 
 
-  ITEMS.forEach(
-    function(
-      item,
-      index
-    ){
+ITEMS.forEach(
+function(
+item,
+index
+){
 
-      const start=
+const start=
 
-        index*
-        slice-
+index*
+slice-
 
-        Math.PI/2-
+Math.PI/2-
 
-        slice/2;
+slice/2;
 
 
-      const end=
-        start+
-        slice;
+const end=
+start+
+slice;
 
 
-      const gradient=
-        ctx.createRadialGradient(
+const gradient=
+ctx.createRadialGradient(
+0,
+0,
+70,
+0,
+0,
+radius
+);
 
-          0,
-          0,
-          70,
 
-          0,
-          0,
-          radius
+if(
+item.grand
+){
 
-        );
+gradient.addColorStop(
+0,
+"#fff6b0"
+);
 
+gradient.addColorStop(
+.45,
+"#ffd54a"
+);
 
-      if(
-        item.grand
-      ){
+gradient.addColorStop(
+1,
+"#9a6500"
+);
 
-        gradient.addColorStop(
-          0,
-          "#fff6b0"
-        );
+}
 
+else{
 
-        gradient.addColorStop(
-          .45,
-          "#ffd54a"
-        );
+gradient.addColorStop(
+0,
+lighten(
+WHEEL_COLORS[index],
+30
+)
+);
 
+gradient.addColorStop(
+.58,
+WHEEL_COLORS[index]
+);
 
-        gradient.addColorStop(
-          1,
-          "#9a6500"
-        );
+gradient.addColorStop(
+1,
+darken(
+WHEEL_COLORS[index],
+32
+)
+);
 
-      }
+}
 
 
-      else{
+ctx.beginPath();
 
-        gradient.addColorStop(
 
-          0,
+ctx.moveTo(
+0,
+0
+);
 
-          lighten(
-            WHEEL_COLORS[index],
-            30
-          )
 
-        );
+ctx.arc(
+0,
+0,
+radius,
+start,
+end
+);
 
 
-        gradient.addColorStop(
+ctx.closePath();
 
-          .58,
 
-          WHEEL_COLORS[index]
+ctx.fillStyle=
+gradient;
 
-        );
 
+ctx.fill();
 
-        gradient.addColorStop(
 
-          1,
+ctx.lineWidth=
 
-          darken(
-            WHEEL_COLORS[index],
-            32
-          )
+item.grand
+?10
+:7;
 
-        );
 
-      }
+ctx.strokeStyle=
 
+item.grand
 
-      ctx.beginPath();
+?"#fff4a3"
 
+:"#05070a";
 
-      ctx.moveTo(
-        0,
-        0
-      );
 
+ctx.stroke();
 
-      ctx.arc(
 
-        0,
-        0,
-        radius,
+ctx.beginPath();
 
-        start,
-        end
 
-      );
+ctx.arc(
+0,
+0,
+radius*.96,
+start,
+end
+);
 
 
-      ctx.closePath();
+ctx.lineWidth=
+3;
 
 
-      ctx.fillStyle=
-        gradient;
+ctx.strokeStyle=
+"rgba(255,255,255,.28)";
 
 
-      ctx.fill();
+ctx.stroke();
 
 
-      ctx.lineWidth=
+ctx.save();
 
-        item.grand
-        ?10
-        :7;
 
+const middle=
 
-      ctx.strokeStyle=
+start+
+slice/2;
 
-        item.grand
 
-        ?"#fff4a3"
+ctx.rotate(
+middle
+);
 
-        :"#05070a";
 
+ctx.translate(
+radius*.67,
+0
+);
 
-      ctx.stroke();
 
+ctx.rotate(
+Math.PI/2
+);
 
-      /*
-       Inner bevel.
-      */
 
-      ctx.beginPath();
+ctx.textAlign=
+"center";
 
 
-      ctx.arc(
+ctx.textBaseline=
+"middle";
 
-        0,
-        0,
 
-        radius*.96,
+ctx.shadowColor=
+"rgba(0,0,0,.85)";
 
-        start,
-        end
 
-      );
+ctx.shadowBlur=
+10;
 
 
-      ctx.lineWidth=
-        3;
+if(
+item.grand
+){
 
+ctx.fillStyle=
+"#111";
 
-      ctx.strokeStyle=
-        "rgba(255,255,255,.28)";
+ctx.font=
+"1000 31px Arial";
 
+}
 
-      ctx.stroke();
+else{
 
+ctx.fillStyle=
+"#fff";
 
-      /*
-       Label.
-      */
+ctx.font=
+"1000 27px Arial";
 
-      ctx.save();
+}
 
 
-      const middle=
+wrapText(
+ctx,
+item.label,
+0,
+0,
+190,
+31
+);
 
-        start+
-        slice/2;
 
+ctx.restore();
 
-      ctx.rotate(
-        middle
-      );
+}
+);
 
 
-      ctx.translate(
-        radius*.67,
-        0
-      );
+ctx.beginPath();
 
 
-      ctx.rotate(
-        Math.PI/2
-      );
+ctx.arc(
+0,
+0,
+radius,
+0,
+Math.PI*2
+);
 
 
-      ctx.textAlign=
-        "center";
+ctx.lineWidth=
+16;
 
 
-      ctx.textBaseline=
-        "middle";
+ctx.strokeStyle=
+"#ffd54a";
 
 
-      ctx.shadowColor=
-        "rgba(0,0,0,.85)";
+ctx.stroke();
 
 
-      ctx.shadowBlur=
-        10;
+ctx.beginPath();
 
 
-      if(
-        item.grand
-      ){
+ctx.arc(
+0,
+0,
+radius*.25,
+0,
+Math.PI*2
+);
 
-        ctx.fillStyle=
-          "#111";
 
+ctx.lineWidth=
+8;
 
-        ctx.font=
-          "1000 31px Arial";
 
-      }
+ctx.strokeStyle=
+"rgba(255,255,255,.2)";
 
 
-      else{
+ctx.stroke();
 
-        ctx.fillStyle=
-          "#fff";
 
-
-        ctx.font=
-          "1000 27px Arial";
-
-      }
-
-
-      wrapText(
-
-        ctx,
-
-        item.label,
-
-        0,
-
-        0,
-
-        190,
-
-        31
-
-      );
-
-
-      ctx.restore();
-
-    }
-  );
-
-
-  /*
-   Gold outer wheel ring.
-  */
-
-  ctx.beginPath();
-
-
-  ctx.arc(
-
-    0,
-    0,
-
-    radius,
-
-    0,
-    Math.PI*2
-
-  );
-
-
-  ctx.lineWidth=
-    16;
-
-
-  ctx.strokeStyle=
-    "#ffd54a";
-
-
-  ctx.stroke();
-
-
-  /*
-   Inner ring.
-  */
-
-  ctx.beginPath();
-
-
-  ctx.arc(
-
-    0,
-    0,
-
-    radius*.25,
-
-    0,
-    Math.PI*2
-
-  );
-
-
-  ctx.lineWidth=
-    8;
-
-
-  ctx.strokeStyle=
-    "rgba(255,255,255,.2)";
-
-
-  ctx.stroke();
-
-
-  ctx.restore();
+ctx.restore();
 
 }
 
 
 /**************************************************************
- WRAP CANVAS TEXT
+ CANVAS TEXT
 **************************************************************/
 
 function wrapText(
-
-  ctx,
-
-  text,
-
-  x,
-
-  y,
-
-  maxWidth,
-
-  lineHeight
-
+ctx,
+text,
+x,
+y,
+maxWidth,
+lineHeight
 ){
 
-  const words=
-    String(text)
-      .split(" ");
+const words=
+String(text)
+.split(" ");
 
 
-  const lines=[];
+const lines=[];
 
 
-  let line="";
+let line="";
 
 
-  words.forEach(
-    function(word){
+words.forEach(
+function(word){
 
-      const test=
+const test=
 
-        line
+line
 
-        ?line+" "+word
+?line+" "+word
 
-        :word;
-
-
-      if(
-
-        ctx.measureText(
-          test
-        ).width>
-
-        maxWidth &&
-
-        line
-
-      ){
-
-        lines.push(
-          line
-        );
+:word;
 
 
-        line=
-          word;
+if(
+ctx.measureText(
+test
+).width>
 
-      }
+maxWidth &&
 
+line
+){
 
-      else{
+lines.push(
+line
+);
 
-        line=
-          test;
+line=
+word;
 
-      }
+}
 
-    }
-  );
+else{
 
+line=
+test;
 
-  if(line){
+}
 
-    lines.push(
-      line
-    );
-
-  }
-
-
-  const total=
-
-    (
-      lines.length-
-      1
-    )*
-
-    lineHeight;
+}
+);
 
 
-  lines.forEach(
-    function(
-      value,
-      index
-    ){
+if(line){
 
-      ctx.fillText(
+lines.push(
+line
+);
 
-        value,
+}
 
-        x,
 
-        y-
-        total/2+
+const total=
 
-        index*
-        lineHeight
+(
+lines.length-
+1
+)*
 
-      );
+lineHeight;
 
-    }
-  );
+
+lines.forEach(
+function(
+value,
+index
+){
+
+ctx.fillText(
+value,
+x,
+y-
+total/2+
+index*
+lineHeight
+);
+
+}
+);
 
 }
 
@@ -8280,109 +7292,109 @@ function wrapText(
 
 function beginSpin(){
 
-  if(spinning){
-
-    return;
-
-  }
+if(spinning){
+return;
+}
 
 
-  spinning=
-    true;
+spinning=
+true;
 
 
-  initAudio();
+initAudio();
 
 
-  ambienceLevel(
-    .015
-  );
+const arena=
+document.getElementById(
+"arena"
+);
 
 
-  leverSound();
+arena.classList.add(
+"spin-mode"
+);
 
 
-  startBulbSpin();
+ambienceLevel(
+.015
+);
 
 
-  document
-    .getElementById(
-      "spin-button"
-    )
-    .disabled=
-      true;
+leverSound();
 
 
-  document
-    .getElementById(
-      "oracle-message"
-    )
-    .textContent=
-
-      oracleSpin();
+startBulbSpin();
 
 
-  setResult(
-
-    "F4SN WHEEL CONTROL",
-
-    "CHAMPION LOCKED IN",
-
-    "The lever has been pulled. League management can no longer help you."
-
-  );
+document
+.getElementById(
+"spin-button"
+)
+.disabled=
+true;
 
 
-  setJumbo(
-
-    "PREPARE TO SPIN",
-
-    selectedManager+
-    " • "+
-    selectedTeam,
-
-    "danger"
-
-  );
+document
+.getElementById(
+"oracle-message"
+)
+.textContent=
+oracleSpin();
 
 
-  setTimeout(
-    function(){
-
-      runCountdown(
-
-        3,
-
-        function(){
-
-          launchSound();
+document
+.getElementById(
+"side-status"
+)
+.textContent=
+"LEVER PULLED";
 
 
-          setJumbo(
-
-            "WHEEL IN MOTION",
-
-            "THE F4SN ARENA IS NOW COMPLETELY OUT OF CONTROL",
-
-            "danger"
-
-          );
+setArenaHud(
+"PREPARE TO SPIN",
+selectedManager+
+" • "+
+selectedTeam
+);
 
 
-          flashes(
-            14
-          );
+setTimeout(
+function(){
+
+runCountdown(
+3,
+function(){
+
+launchSound();
 
 
-          spinWheel();
+document
+.getElementById(
+"side-status"
+)
+.textContent=
+"WHEEL IN MOTION";
 
-        }
 
-      );
+setArenaHud(
+"WHEEL IN MOTION",
+"THE F4SN ARENA IS NOW COMPLETELY OUT OF CONTROL"
+);
 
-    },
-    450
-  );
+
+flashes(
+18
+);
+
+
+spinWheel();
+
+}
+);
+
+},
+450
+);
 
 }
 
@@ -8392,512 +7404,434 @@ function beginSpin(){
 **************************************************************/
 
 function runCountdown(
-
-  start,
-
-  done
-
+start,
+done
 ){
 
-  const overlay=
-    document.getElementById(
-      "countdown"
-    );
+const overlay=
+document.getElementById(
+"countdown"
+);
 
 
-  const display=
-    document.getElementById(
-      "countdown-number"
-    );
+const display=
+document.getElementById(
+"countdown-number"
+);
 
 
-  overlay.classList.add(
-    "show"
-  );
+overlay.classList.add(
+"show"
+);
 
 
-  let current=
-    start;
+let current=
+start;
 
 
-  function next(){
+function next(){
 
-    display.style.animation=
-      "none";
-
-
-    void display.offsetWidth;
+display.style.animation=
+"none";
 
 
-    display.style.animation=
-      "countPop .65s ease";
+void display.offsetWidth;
 
 
-    if(
-      current===0
-    ){
-
-      display.textContent=
-        "SPIN!";
+display.style.animation=
+"countPop .65s ease";
 
 
-      countdownSound(
-        0
-      );
+if(
+current===0
+){
+
+display.textContent=
+"SPIN!";
 
 
-      setTimeout(
-        function(){
-
-          overlay
-            .classList
-            .remove(
-              "show"
-            );
+countdownSound(
+0
+);
 
 
-          done();
+setTimeout(
+function(){
 
-        },
-        650
-      );
-
-
-      return;
-
-    }
+overlay
+.classList
+.remove(
+"show"
+);
 
 
-    display.textContent=
-      current;
+done();
+
+},
+650
+);
 
 
-    countdownSound(
-      current
-    );
+return;
+
+}
 
 
-    current--;
+display.textContent=
+current;
 
 
-    setTimeout(
-      next,
-      720
-    );
-
-  }
+countdownSound(
+current
+);
 
 
-  next();
+current--;
+
+
+setTimeout(
+next,
+720
+);
+
+}
+
+
+next();
 
 }
 
 
 /**************************************************************
- SPIN
+ SPIN WHEEL
 **************************************************************/
 
 function spinWheel(){
 
-  const selected=
-    weightedIndex();
+const selected=
+weightedIndex();
 
 
-  const item=
-    ITEMS[selected];
+const item=
+ITEMS[selected];
 
 
-  const slice=
+const slice=
 
-    Math.PI*
-    2/
-    ITEMS.length;
+Math.PI*
+2/
+ITEMS.length;
 
 
-  const current=
-    normalizeAngle(
-      wheelRotation
-    );
+const current=
+normalizeAngle(
+wheelRotation
+);
 
 
-  const desired=
-    normalizeAngle(
+const desired=
+normalizeAngle(
+-selected*
+slice
+);
 
-      -selected*
-      slice
 
-    );
+let delta=
+desired-
+current;
 
 
-  let delta=
-    desired-
-    current;
+if(delta<0){
 
+delta+=
+Math.PI*2;
 
-  if(delta<0){
+}
 
-    delta+=
-      Math.PI*2;
 
-  }
+const fullSpins=
 
+10+
 
-  const fullSpins=
+Math.floor(
+randomUnit()*3
+);
 
-    10+
 
-    Math.floor(
-      randomUnit()*3
-    );
+const total=
 
+fullSpins*
+Math.PI*2+
 
-  const total=
+delta;
 
-    fullSpins*
-    Math.PI*2+
 
-    delta;
+const start=
+wheelRotation;
 
 
-  const start=
-    wheelRotation;
+const finish=
+start+
+total;
 
 
-  const finish=
-    start+
-    total;
+const duration=
+9800;
 
 
-  const duration=
-    9800;
+const startTime=
+performance.now();
 
 
-  const startTime=
-    performance.now();
+lastPointerIndex=
+null;
 
 
-  lastPointerIndex=
-    null;
+lastJackpotTease=
+null;
 
 
-  lastJackpotTease=
-    null;
+let heartbeatOne=false;
+let heartbeatTwo=false;
+let heartbeatThree=false;
 
 
-  let heartbeatOne=
-    false;
+const arena=
+document.getElementById(
+"arena"
+);
 
 
-  let heartbeatTwo=
-    false;
+function frame(
+now
+){
 
+const elapsed=
+now-
+startTime;
 
-  let heartbeatThree=
-    false;
 
+const progress=
 
-  const arenaSpace=
-    document.getElementById(
-      "arena-space"
-    );
+Math.min(
+elapsed/
+duration,
+1
+);
 
 
-  arenaSpace.classList.add(
-    "spin-mode"
-  );
+const eased=
 
+1-
 
-  function frame(
-    now
-  ){
+Math.pow(
+1-
+progress,
+5.4
+);
 
-    const elapsed=
-      now-
-      startTime;
 
+wheelRotation=
 
-    const progress=
+start+
 
-      Math.min(
+total*
+eased;
 
-        elapsed/
-        duration,
 
-        1
+drawWheel();
 
-      );
 
+const pointerIndex=
+getPointerIndex(
+wheelRotation
+);
 
-    const eased=
 
-      1-
+if(
+pointerIndex!==
+lastPointerIndex
+){
 
-      Math.pow(
+lastPointerIndex=
+pointerIndex;
 
-        1-
-        progress,
 
-        5.4
+pointerClack(
+progress
+);
 
-      );
 
+if(
+progress>.72 &&
 
-    wheelRotation=
+ITEMS[
+pointerIndex
+] &&
 
-      start+
+ITEMS[
+pointerIndex
+].grand &&
 
-      total*
-      eased;
+pointerIndex!==
+lastJackpotTease
+){
 
+lastJackpotTease=
+pointerIndex;
 
-    drawWheel();
 
+jackpotApproach();
 
-    const pointerIndex=
-      getPointerIndex(
-        wheelRotation
-      );
 
+crowdOh();
 
-    if(
-      pointerIndex!==
-      lastPointerIndex
-    ){
 
-      lastPointerIndex=
-        pointerIndex;
+flashes(
+5
+);
 
 
-      pointerClack(
-        progress
-      );
+setArenaHud(
+"🚨 JACKPOT DANGER 🚨",
+"OH COME ON..."
+);
 
 
-      /*
-       Jackpot near miss.
-      */
+document
+.getElementById(
+"side-status"
+)
+.textContent=
+"JACKPOT DANGER";
 
-      if(
+}
 
-        progress>.72 &&
+}
 
-        ITEMS[
-          pointerIndex
-        ] &&
 
-        ITEMS[
-          pointerIndex
-        ].grand &&
+if(
+progress>.70
+){
 
-        pointerIndex!==
-        lastJackpotTease
+arena.classList.add(
+"final-mode"
+);
 
-      ){
+}
 
-        lastJackpotTease=
-          pointerIndex;
 
+if(
+progress>.76 &&
+!heartbeatOne
+){
 
-        jackpotApproach();
+heartbeatOne=true;
 
+heartbeat();
 
-        crowdOh();
+}
 
 
-        flashes(
-          4
-        );
+if(
+progress>.84 &&
+!heartbeatTwo
+){
 
+heartbeatTwo=true;
 
-        setJumbo(
+heartbeat();
 
-          "JACKPOT DANGER",
+}
 
-          "OH COME ON...",
 
-          "jackpot"
+if(
+progress>.91 &&
+!heartbeatThree
+){
 
-        );
+heartbeatThree=true;
 
+heartbeat();
 
-        setTimeout(
-          function(){
+}
 
-            if(spinning){
 
-              setJumbo(
+if(
+progress>.1 &&
+progress<.5 &&
+randomUnit()<.015
+){
 
-                "WHEEL IN MOTION",
+flashes(
+1
+);
 
-                "WHAT WILL THE ORACLE DECIDE?",
+}
 
-                "danger"
 
-              );
+if(
+progress<1
+){
 
-            }
+requestAnimationFrame(
+frame
+);
 
-          },
-          700
-        );
+return;
 
-      }
+}
 
-    }
 
+wheelRotation=
+finish;
 
-    /*
-     Darken the arena.
-    */
 
-    if(
-      progress>.7
-    ){
+drawWheel();
 
-      arenaSpace
-        .classList
-        .add(
-          "final-mode"
-        );
 
-    }
+stopBulbs();
 
+clearBulbs();
 
-    /*
-     Heartbeat progression.
-    */
 
-    if(
+ambienceLevel(
+.0001,
+.05
+);
 
-      progress>.76 &&
 
-      !heartbeatOne
+document
+.getElementById(
+"side-status"
+)
+.textContent=
+"RESULT LOCKED";
 
-    ){
 
-      heartbeatOne=
-        true;
+setArenaHud(
+"RESULT LOCKED",
+"F4SN OFFICIAL REVIEW"
+);
 
 
-      heartbeat();
+setTimeout(
+function(){
 
-    }
+finalReveal(
+item
+);
 
+},
+650
+);
 
-    if(
+}
 
-      progress>.84 &&
 
-      !heartbeatTwo
-
-    ){
-
-      heartbeatTwo=
-        true;
-
-
-      heartbeat();
-
-    }
-
-
-    if(
-
-      progress>.91 &&
-
-      !heartbeatThree
-
-    ){
-
-      heartbeatThree=
-        true;
-
-
-      heartbeat();
-
-    }
-
-
-    if(
-
-      progress>.1 &&
-
-      progress<.5 &&
-
-      randomUnit()<.012
-
-    ){
-
-      flashes(
-        1
-      );
-
-    }
-
-
-    if(
-      progress<1
-    ){
-
-      requestAnimationFrame(
-        frame
-      );
-
-
-      return;
-
-    }
-
-
-    wheelRotation=
-      finish;
-
-
-    drawWheel();
-
-
-    /*
-     Kill the room.
-    */
-
-    stopBulbs();
-
-
-    clearBulbs();
-
-
-    ambienceLevel(
-      .0001,
-      .05
-    );
-
-
-    setJumbo(
-
-      "RESULT LOCKED",
-
-      "F4SN OFFICIAL REVIEW"
-
-    );
-
-
-    setTimeout(
-      function(){
-
-        finalReveal(
-          item
-        );
-
-      },
-      650
-    );
-
-  }
-
-
-  requestAnimationFrame(
-    frame
-  );
+requestAnimationFrame(
+frame
+);
 
 }
 
@@ -8907,35 +7841,33 @@ function spinWheel(){
 **************************************************************/
 
 function getPointerIndex(
-  rotation
+rotation
 ){
 
-  const slice=
+const slice=
 
-    Math.PI*
-    2/
-    ITEMS.length;
-
-
-  const angle=
-    normalizeAngle(
-
-      -rotation+
-      slice/2
-
-    );
+Math.PI*
+2/
+ITEMS.length;
 
 
-  return (
+const angle=
+normalizeAngle(
+-rotation+
+slice/2
+);
 
-    Math.floor(
-      angle/
-      slice
-    )%
 
-    ITEMS.length
+return (
 
-  );
+Math.floor(
+angle/
+slice
+)%
+
+ITEMS.length
+
+);
 
 }
 
@@ -8945,104 +7877,103 @@ function getPointerIndex(
 **************************************************************/
 
 function finalReveal(
-  item
+item
 ){
 
-  const blackout=
-    document.getElementById(
-      "blackout"
-    );
+const blackout=
+document.getElementById(
+"blackout"
+);
 
 
-  const text=
-    document.getElementById(
-      "blackout-text"
-    );
+const text=
+document.getElementById(
+"blackout-text"
+);
 
 
-  blackout.classList.add(
-    "show"
-  );
+blackout.classList.add(
+"show"
+);
 
 
-  text.textContent=
-    "";
+text.textContent=
+"";
 
 
-  pointerClack(
-    1
-  );
+pointerClack(
+1
+);
 
 
-  setTimeout(
-    function(){
+setTimeout(
+function(){
 
-      if(
-        item.grand
-      ){
+if(
+item.grand
+){
 
-        text.textContent=
-          "...";
-
-
-        tone(
-          1047,
-          .2,
-          "sine",
-          .055
-        );
+text.textContent=
+"...";
 
 
-        setTimeout(
-          function(){
-
-            text.textContent=
-              "WAIT.";
-
-          },
-          650
-        );
+tone(
+1047,
+.2,
+"sine",
+.055
+);
 
 
-        setTimeout(
-          function(){
+setTimeout(
+function(){
 
-            blackout
-              .classList
-              .remove(
-                "show"
-              );
+text.textContent=
+"WAIT.";
 
-
-            revealJackpot(
-              item
-            );
-
-          },
-          1450
-        );
-
-      }
+},
+650
+);
 
 
-      else{
+setTimeout(
+function(){
 
-        blackout
-          .classList
-          .remove(
-            "show"
-          );
+blackout
+.classList
+.remove(
+"show"
+);
 
 
-        revealNormal(
-          item
-        );
+revealJackpot(
+item
+);
 
-      }
+},
+1450
+);
 
-    },
-    450
-  );
+}
+
+else{
+
+blackout
+.classList
+.remove(
+"show"
+);
+
+
+revealNormal(
+item
+);
+
+}
+
+},
+450
+);
 
 }
 
@@ -9052,96 +7983,82 @@ function finalReveal(
 **************************************************************/
 
 function revealNormal(
-  item
+item
 ){
 
-  const arenaSpace=
-    document.getElementById(
-      "arena-space"
-    );
+const arena=
+document.getElementById(
+"arena"
+);
 
 
-  arenaSpace
-    .classList
-    .remove(
-
-      "spin-mode",
-
-      "final-mode"
-
-    );
+arena.classList.remove(
+"spin-mode",
+"final-mode"
+);
 
 
-  playOutcome(
-    item.sound
-  );
+playOutcome(
+item.sound
+);
 
 
-  flashes(
-    17
-  );
+flashes(
+22
+);
 
 
-  confetti(
-    125
-  );
+confetti(
+150
+);
 
 
-  setJumbo(
-
-    selectedTeam+
-    " WINS "+
-    item.result,
-
-    "F4SN OFFICIAL WINNER'S WHEEL RESULT"
-
-  );
+setArenaHud(
+selectedTeam+
+" WINS "+
+item.result,
+"F4SN OFFICIAL WINNER'S WHEEL RESULT"
+);
 
 
-  setResult(
-
-    "WINNER'S ADVANTAGE",
-
-    item.result,
-
-    item.note
-
-  );
+document
+.getElementById(
+"side-status"
+)
+.textContent=
+item.result;
 
 
-  showTakeover(
-
-    item,
-
-    false
-
-  );
+showTakeover(
+item,
+false
+);
 
 
-  startBulbIdle();
+startBulbIdle();
 
 
-  ambienceLevel(
-    .16
-  );
+ambienceLevel(
+.16
+);
 
 
-  spinning=
-    false;
+spinning=
+false;
 
 
-  const button=
-    document.getElementById(
-      "spin-button"
-    );
+const button=
+document.getElementById(
+"spin-button"
+);
 
 
-  button.disabled=
-    false;
+button.disabled=
+false;
 
 
-  button.textContent=
-    "TEST SPIN AGAIN";
+button.textContent=
+"TEST SPIN AGAIN";
 
 }
 
@@ -9151,248 +8068,187 @@ function revealNormal(
 **************************************************************/
 
 function revealJackpot(
-  item
+item
 ){
 
-  const arenaSpace=
-    document.getElementById(
-      "arena-space"
-    );
+const arena=
+document.getElementById(
+"arena"
+);
 
 
-  arenaSpace
-    .classList
-    .remove(
-
-      "spin-mode",
-
-      "final-mode"
-
-    );
+arena.classList.remove(
+"spin-mode",
+"final-mode"
+);
 
 
-  document.body
-    .classList
-    .add(
-      "shake"
-    );
+arena.classList.add(
+"jackpot-mode"
+);
 
 
-  setTimeout(
-    function(){
-
-      document.body
-        .classList
-        .remove(
-          "shake"
-        );
-
-    },
-    1200
-  );
+document.body
+.classList
+.add(
+"shake"
+);
 
 
-  jackpotBulbs();
+setTimeout(
+function(){
+
+document.body
+.classList
+.remove(
+"shake"
+);
+
+},
+1200
+);
 
 
-  flashes(
-    45
-  );
+jackpotBulbs();
 
 
-  confetti(
-    400
-  );
+flashes(
+55
+);
 
 
-  jackpotSound();
+confetti(
+450
+);
 
 
-  setJumbo(
-
-    "🚨 F4SN JACKPOT ALERT 🚨",
-
-    selectedManager+
-    " HAS BROKEN THE BANK",
-
-    "jackpot"
-
-  );
+jackpotSound();
 
 
-  setResult(
-
-    "🚨 GRAND PRIZE 🚨",
-
-    item.result,
-
-    item.note
-
-  );
+setArenaHud(
+"🚨 F4SN JACKPOT ALERT 🚨",
+selectedManager+
+" HAS BROKEN THE BANK"
+);
 
 
-  showTakeover(
-
-    item,
-
-    true
-
-  );
-
-
-  ambienceLevel(
-    .12
-  );
+document
+.getElementById(
+"side-status"
+)
+.textContent=
+"🚨 JACKPOT 🚨";
 
 
-  spinning=
-    false;
+showTakeover(
+item,
+true
+);
 
 
-  const button=
-    document.getElementById(
-      "spin-button"
-    );
+ambienceLevel(
+.12
+);
 
 
-  button.disabled=
-    false;
+spinning=
+false;
 
 
-  button.textContent=
-    "TEST SPIN AGAIN";
+const button=
+document.getElementById(
+"spin-button"
+);
+
+
+button.disabled=
+false;
+
+
+button.textContent=
+"TEST SPIN AGAIN";
 
 }
 
 
 /**************************************************************
- PLAY OUTCOME
+ PLAY OUTCOME SOUND
 **************************************************************/
 
 function playOutcome(
-  sound
+sound
 ){
 
-  switch(sound){
+switch(sound){
+
+case "double":
+
+doubleFlexSound();
+
+break;
 
 
-    case "double":
+case "boost":
 
-      doubleFlexSound();
+boostSound();
 
-      break;
-
-
-    case "boost":
-
-      boostSound();
-
-      break;
+break;
 
 
-    case "oracle":
+case "oracle":
 
-      oracleSound();
+oracleSound();
 
-      break;
-
-
-    case "viking":
-
-      vikingHorn();
-
-      break;
+break;
 
 
-    case "first":
+case "viking":
 
-      firstPickSound();
+vikingHorn();
 
-      break;
-
-
-    case "shield":
-
-      shieldSound();
-
-      break;
+break;
 
 
-    case "captain":
+case "first":
 
-      captainSound();
+firstPickSound();
 
-      break;
-
-
-    case "raid":
-
-      raidSound();
-
-      break;
+break;
 
 
-    case "upgrade":
+case "shield":
 
-      upgradeSound();
+shieldSound();
 
-      break;
+break;
 
 
-    default:
+case "captain":
 
-      victoryFanfare();
+captainSound();
 
-  }
+break;
+
+
+case "raid":
+
+raidSound();
+
+break;
+
+
+case "upgrade":
+
+upgradeSound();
+
+break;
+
+
+default:
+
+victoryFanfare();
 
 }
-
-
-/**************************************************************
- RESULT PANEL
-**************************************************************/
-
-function setResult(
-
-  label,
-
-  title,
-
-  note
-
-){
-
-  const panel=
-    document.getElementById(
-      "result-panel"
-    );
-
-
-  panel.innerHTML=
-
-    '<div class="result-label">'+
-
-      safe(
-        label
-      )+
-
-    '</div>'+
-
-    '<div class="result-title">'+
-
-      safe(
-        title
-      )+
-
-    '</div>'+
-
-    '<div class="result-note">'+
-
-      safe(
-        note
-      )+
-
-    '</div>';
 
 }
 
@@ -9402,131 +8258,108 @@ function setResult(
 **************************************************************/
 
 function showTakeover(
-
-  item,
-
-  jackpot
-
+item,
+jackpot
 ){
 
-  const takeover=
-    document.getElementById(
-      "takeover"
-    );
+const takeover=
+document.getElementById(
+"takeover"
+);
 
 
-  takeover.className=
+takeover.className=
 
-    jackpot
+jackpot
 
-    ?"show jackpot"
+?"show jackpot"
 
-    :"show";
-
-
-  takeover.style
-    .setProperty(
-
-      "--take-color",
-
-      item.accent
-
-    );
+:"show";
 
 
-  takeover.style
-    .setProperty(
-
-      "--take-glow",
-
-      hexAlpha(
-
-        item.accent,
-
-        jackpot
-        ?.62
-        :.35
-
-      )
-
-    );
+takeover.style
+.setProperty(
+"--take-color",
+item.accent
+);
 
 
-  document
-    .getElementById(
-      "take-alert"
-    )
-    .textContent=
-
-      jackpot
-
-      ?"🚨 F4SN MEGA-JACKPOT 🚨"
-
-      :"F4SN WINNER'S ADVANTAGE";
-
-
-  document
-    .getElementById(
-      "take-icon"
-    )
-    .textContent=
-
-      item.icon;
+takeover.style
+.setProperty(
+"--take-glow",
+hexAlpha(
+item.accent,
+jackpot
+?.62
+:.35
+)
+);
 
 
-  document
-    .getElementById(
-      "take-title"
-    )
-    .textContent=
+document
+.getElementById(
+"take-alert"
+)
+.textContent=
 
-      jackpot
+jackpot
 
-      ?"JACKPOT"
+?"🚨 F4SN MEGA-JACKPOT 🚨"
 
-      :item.result;
-
-
-  document
-    .getElementById(
-      "take-description"
-    )
-    .textContent=
-
-      jackpot
-
-      ?(
-
-        item.result+
-
-        " — "+
-
-        item.note+
-
-        " F4SN is treating this $25 transaction like the largest payout in televised sports history."
-
-      )
-
-      :(
-
-        item.note+
-
-        " This remains a construction-mode test and is not actually applied to Week 5."
-
-      );
+:"F4SN WINNER'S ADVANTAGE";
 
 
-  document
-    .getElementById(
-      "take-manager"
-    )
-    .textContent=
+document
+.getElementById(
+"take-icon"
+)
+.textContent=
+item.icon;
 
-      selectedManager+
 
-      " • "+
+document
+.getElementById(
+"take-title"
+)
+.textContent=
 
-      selectedTeam;
+jackpot
+
+?"JACKPOT"
+
+:item.result;
+
+
+document
+.getElementById(
+"take-description"
+)
+.textContent=
+
+jackpot
+
+?(
+item.result+
+" — "+
+item.note+
+" F4SN is treating this $25 transaction like the largest payout in televised sports history."
+)
+
+:(
+item.note+
+" This remains a construction-mode test and is not actually applied to Week 5."
+);
+
+
+document
+.getElementById(
+"take-manager"
+)
+.textContent=
+
+selectedManager+
+" • "+
+selectedTeam;
 
 }
 
@@ -9537,29 +8370,36 @@ function showTakeover(
 
 function closeTakeover(){
 
-  const takeover=
-    document.getElementById(
-      "takeover"
-    );
+const takeover=
+document.getElementById(
+"takeover"
+);
 
 
-  takeover.className=
-    "";
+takeover.className=
+"";
 
 
-  stopBulbs();
+const arena=
+document.getElementById(
+"arena"
+);
 
 
-  startBulbIdle();
+arena.classList.remove(
+"jackpot-mode"
+);
 
 
-  setJumbo(
+stopBulbs();
 
-    "THE WINNER'S WHEEL",
+startBulbIdle();
 
-    "CONSTRUCTION MODE • TEST SPINS AUTHORIZED"
 
-  );
+setArenaHud(
+"THE WINNER'S WHEEL",
+"CONSTRUCTION MODE • TEST SPINS AUTHORIZED"
+);
 
 }
 
@@ -9570,68 +8410,65 @@ function closeTakeover(){
 
 function exitArena(){
 
-  if(spinning){
-
-    return;
-
-  }
+if(spinning){
+return;
+}
 
 
-  stopBulbs();
+stopBulbs();
 
 
-  const arena=
-    document.getElementById(
-      "arena"
-    );
+const arena=
+document.getElementById(
+"arena"
+);
 
 
-  arena.classList.remove(
-    "active"
-  );
+arena.className=
+"";
 
 
-  document.body.style.overflow=
-    "";
+document.body.style.overflow=
+"";
 
 
-  const door=
-    document.getElementById(
-      "door-shell"
-    );
+const door=
+document.getElementById(
+"door-scene"
+);
 
 
-  door.classList.remove(
-    "open"
-  );
+door.classList.remove(
+"open"
+);
 
 
-  document
-    .getElementById(
-      "door-button"
-    )
-    .disabled=
-      false;
+document
+.getElementById(
+"door-button"
+)
+.disabled=
+false;
 
 
-  showArenaScreen(
-    "entrance-screen"
-  );
+showArenaScene(
+"entrance-scene"
+);
 
 
-  window.scrollTo({
+window.scrollTo({
 
-    top:
-      document
-        .getElementById(
-          "champion-select"
-        )
-        .offsetTop-
-      20,
+top:
+document
+.getElementById(
+"champion-select"
+)
+.offsetTop-
+20,
 
-    behavior:"smooth"
+behavior:"smooth"
 
-  });
+});
 
 }
 
@@ -9641,76 +8478,72 @@ function exitArena(){
 **************************************************************/
 
 function flashes(
-  amount
+amount
 ){
 
-  const layer=
-    document.getElementById(
-      "fx"
-    );
+const layer=
+document.getElementById(
+"fx"
+);
 
 
-  for(
-    let i=0;
-    i<amount;
-    i++
-  ){
+for(
+let i=0;
+i<amount;
+i++
+){
 
-    setTimeout(
-      function(){
+setTimeout(
+function(){
 
-        const flash=
-          document.createElement(
-            "div"
-          );
-
-
-        flash.className=
-          "camera-flash";
+const flash=
+document.createElement(
+"div"
+);
 
 
-        flash.style.left=
-
-          (
-            4+
-            randomUnit()*92
-          )+
-
-          "%";
+flash.className=
+"camera-flash";
 
 
-        flash.style.top=
+flash.style.left=
 
-          (
-            5+
-            randomUnit()*70
-          )+
-
-          "%";
-
-
-        layer.appendChild(
-          flash
-        );
+(
+4+
+randomUnit()*92
+)+
+"%";
 
 
-        setTimeout(
-          function(){
+flash.style.top=
 
-            flash.remove();
+(
+5+
+randomUnit()*70
+)+
+"%";
 
-          },
-          650
-        );
 
-      },
+layer.appendChild(
+flash
+);
 
-      i*70+
-      randomUnit()*250
 
-    );
+setTimeout(
+function(){
 
-  }
+flash.remove();
+
+},
+650
+);
+
+},
+i*70+
+randomUnit()*250
+);
+
+}
 
 }
 
@@ -9720,100 +8553,87 @@ function flashes(
 **************************************************************/
 
 function confetti(
-  amount
+amount
 ){
 
-  const colors=[
+const colors=[
 
-    "#ffd54a",
+"#ffd54a",
+"#ffffff",
+"#18a8ff",
+"#ff3b30",
+"#16d5d1",
+"#9c4dff",
+"#ff9f00"
 
-    "#ffffff",
-
-    "#18a8ff",
-
-    "#ff3b30",
-
-    "#16d5d1",
-
-    "#9c4dff",
-
-    "#ff9f00"
-
-  ];
+];
 
 
-  for(
-    let i=0;
-    i<amount;
-    i++
-  ){
+for(
+let i=0;
+i<amount;
+i++
+){
 
-    const piece=
-      document.createElement(
-        "div"
-      );
-
-
-    piece.className=
-      "confetti";
+const piece=
+document.createElement(
+"div"
+);
 
 
-    piece.style.left=
-
-      randomUnit()*
-      100+
-
-      "vw";
+piece.className=
+"confetti";
 
 
-    piece.style.background=
+piece.style.left=
 
-      colors[
-
-        Math.floor(
-
-          randomUnit()*
-          colors.length
-
-        )
-
-      ];
+randomUnit()*
+100+
+"vw";
 
 
-    piece.style.animationDuration=
+piece.style.background=
 
-      (
-        2.5+
-        randomUnit()*3.8
-      )+
-
-      "s";
-
-
-    piece.style.animationDelay=
-
-      (
-        randomUnit()*.8
-      )+
-
-      "s";
+colors[
+Math.floor(
+randomUnit()*
+colors.length
+)
+];
 
 
-    document.body.appendChild(
-      piece
-    );
+piece.style.animationDuration=
+
+(
+2.5+
+randomUnit()*3.8
+)+
+"s";
 
 
-    setTimeout(
-      function(){
+piece.style.animationDelay=
 
-        piece.remove();
+(
+randomUnit()*.8
+)+
+"s";
 
-      },
-      7500
-    );
 
-  }
+document.body.appendChild(
+piece
+);
+
+
+setTimeout(
+function(){
+
+piece.remove();
+
+},
+7500
+);
+
+}
 
 }
 
@@ -9823,286 +8643,211 @@ function confetti(
 **************************************************************/
 
 function normalizeAngle(
-  angle
+angle
 ){
 
-  const full=
-    Math.PI*2;
+const full=
+Math.PI*2;
 
 
-  return (
-
-    (
-      angle%
-      full
-    )+
-
-    full
-
-  )%
-
-  full;
-
-}
-
-
-function safe(
-  value
-){
-
-  return String(
-    value??""
-  )
-
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-
-  .replace(
-    /</g,
-    "&lt;"
-  )
-
-  .replace(
-    />/g,
-    "&gt;"
-  )
-
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-
-  .replace(
-    /'/g,
-    "&#039;"
-  );
+return (
+(
+angle%
+full
+)+
+full
+)%
+full;
 
 }
 
 
 function hexToRgb(
-  hex
+hex
 ){
 
-  const clean=
-
-    String(hex)
-      .replace(
-        "#",
-        ""
-      );
-
-
-  const value=
-
-    parseInt(
-      clean,
-      16
-    );
+const clean=
+String(hex)
+.replace(
+"#",
+""
+);
 
 
-  return{
+const value=
+parseInt(
+clean,
+16
+);
 
-    r:
-      (
-        value>>
-        16
-      )&
-      255,
 
-    g:
-      (
-        value>>
-        8
-      )&
-      255,
+return{
 
-    b:
-      value&
-      255
+r:
+(
+value>>
+16
+)&
+255,
 
-  };
+g:
+(
+value>>
+8
+)&
+255,
+
+b:
+value&
+255
+
+};
 
 }
 
 
 function hexAlpha(
-
-  hex,
-
-  alpha
-
+hex,
+alpha
 ){
 
-  const rgb=
-    hexToRgb(
-      hex
-    );
+const rgb=
+hexToRgb(
+hex
+);
 
 
-  return (
-
-    "rgba("+
-
-    rgb.r+
-    ","+
-
-    rgb.g+
-    ","+
-
-    rgb.b+
-    ","+
-
-    alpha+
-
-    ")"
-
-  );
+return (
+"rgba("+
+rgb.r+
+","+
+rgb.g+
+","+
+rgb.b+
+","+
+alpha+
+")"
+);
 
 }
 
 
 function rgbToHex(
-
-  r,
-
-  g,
-
-  b
-
+r,
+g,
+b
 ){
 
-  return (
+return (
+"#"+
+[
+r,
+g,
+b
+]
+.map(
+function(value){
 
-    "#"+
+return Math.max(
+0,
+Math.min(
+255,
+Math.round(
+value
+)
+)
+)
+.toString(16)
+.padStart(
+2,
+"0"
+);
 
-    [
-      r,
-      g,
-      b
-    ]
-
-    .map(
-      function(value){
-
-        return Math.max(
-
-          0,
-
-          Math.min(
-
-            255,
-
-            Math.round(
-              value
-            )
-
-          )
-
-        )
-
-        .toString(16)
-
-        .padStart(
-          2,
-          "0"
-        );
-
-      }
-    )
-
-    .join("")
-
-  );
+}
+)
+.join("")
+);
 
 }
 
 
 function lighten(
-
-  hex,
-
-  amount
-
+hex,
+amount
 ){
 
-  const rgb=
-    hexToRgb(
-      hex
-    );
+const rgb=
+hexToRgb(
+hex
+);
 
 
-  return rgbToHex(
+return rgbToHex(
 
-    rgb.r+
-    (
-      255-
-      rgb.r
-    )*
-    amount/
-    100,
+rgb.r+
+(
+255-
+rgb.r
+)*
+amount/
+100,
 
-    rgb.g+
-    (
-      255-
-      rgb.g
-    )*
-    amount/
-    100,
+rgb.g+
+(
+255-
+rgb.g
+)*
+amount/
+100,
 
-    rgb.b+
-    (
-      255-
-      rgb.b
-    )*
-    amount/
-    100
+rgb.b+
+(
+255-
+rgb.b
+)*
+amount/
+100
 
-  );
+);
 
 }
 
 
 function darken(
-
-  hex,
-
-  amount
-
+hex,
+amount
 ){
 
-  const rgb=
-    hexToRgb(
-      hex
-    );
+const rgb=
+hexToRgb(
+hex
+);
 
 
-  return rgbToHex(
+return rgbToHex(
 
-    rgb.r*
-    (
-      1-
-      amount/
-      100
-    ),
+rgb.r*
+(
+1-
+amount/
+100
+),
 
-    rgb.g*
-    (
-      1-
-      amount/
-      100
-    ),
+rgb.g*
+(
+1-
+amount/
+100
+),
 
-    rgb.b*
-    (
-      1-
-      amount/
-      100
-    )
+rgb.b*
+(
+1-
+amount/
+100
+)
 
-  );
+);
 
 }
 
@@ -10117,7 +8862,5 @@ drawWheel();
 
 </script>
 
-
 </body>
-
 </html>
