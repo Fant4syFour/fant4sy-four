@@ -1,2174 +1,1235 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1.0">
-
-<title>Winner's Wheel Arena | F4SN</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>F4SN Winner's Wheel Arena</title>
 
 <style>
-
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 :root{
-
---bg:#05070b;
---panel:#111827;
---panel2:#182437;
+--bg:#030508;
+--panel:#0b1018;
+--panel2:#111827;
 --border:#263244;
-
 --blue:#18a8ff;
 --yellow:#facc15;
 --gold:#ffd700;
---gold2:#ffb800;
---white:#ffffff;
---muted:#aeb9c6;
-
+--gold2:#ff9f00;
+--red:#ff3b30;
+--green:#22c55e;
+--muted:#9aa7b7;
 --brad:#1687ff;
 --maria:#ff3b30;
 --mackenzie:#16d5d1;
 --madison:#9c4dff;
-
 }
 
-html{
+html,body{
+margin:0;
 min-height:100%;
+font-family:Arial,Helvetica,sans-serif;
+background:#030508;
+color:white;
+overflow-x:hidden;
 }
 
 body{
-
-margin:0;
-
-min-height:100vh;
-
-font-family:
-Arial,
-Helvetica,
-sans-serif;
-
-color:white;
-
 background:
-
-radial-gradient(
-circle at 50% 15%,
-rgba(250,204,21,.15),
-transparent 28%
-),
-
-radial-gradient(
-circle at 15% 45%,
-rgba(24,168,255,.09),
-transparent 30%
-),
-
-radial-gradient(
-circle at 85% 55%,
-rgba(250,204,21,.08),
-transparent 30%
-),
-
-linear-gradient(
-180deg,
-#111827 0,
-#080b12 35%,
-#030509 100%
-);
-
-overflow-x:hidden;
-
+radial-gradient(circle at 50% 0%,rgba(250,204,21,.11),transparent 28%),
+radial-gradient(circle at 20% 40%,rgba(24,168,255,.07),transparent 28%),
+linear-gradient(180deg,#0d131e,#030508 60%);
 }
 
-/**************************************************************
- BACKGROUND EFFECTS
-**************************************************************/
+/* ============================================================
+   GLOBAL FX
+============================================================ */
 
-.arena-background{
-
+#fx-layer{
 position:fixed;
-
 inset:0;
-
 pointer-events:none;
-
 overflow:hidden;
-
-z-index:-1;
-
+z-index:500;
 }
 
-.arena-beam{
-
+.flash{
 position:absolute;
-
-top:-20vh;
-
-width:18vw;
-
-height:140vh;
-
-background:
-linear-gradient(
-180deg,
-rgba(250,204,21,.13),
-rgba(250,204,21,0)
-);
-
-filter:blur(20px);
-
-opacity:.35;
-
-transform-origin:top center;
-
-}
-
-.beam-one{
-
-left:5%;
-
-transform:rotate(22deg);
-
-animation:
-beamMoveOne 8s ease-in-out infinite alternate;
-
-}
-
-.beam-two{
-
-right:5%;
-
-transform:rotate(-22deg);
-
-animation:
-beamMoveTwo 9s ease-in-out infinite alternate;
-
-}
-
-@keyframes beamMoveOne{
-
-from{
-transform:rotate(15deg);
-}
-
-to{
-transform:rotate(30deg);
-}
-
-}
-
-@keyframes beamMoveTwo{
-
-from{
-transform:rotate(-15deg);
-}
-
-to{
-transform:rotate(-30deg);
-}
-
-}
-
-.spark{
-
-position:absolute;
-
-width:4px;
-
-height:4px;
-
-border-radius:50%;
-
-background:var(--yellow);
-
-box-shadow:
-0 0 8px var(--yellow),
-0 0 18px rgba(250,204,21,.65);
-
-opacity:.5;
-
-animation:
-floatSpark linear infinite;
-
-}
-
-@keyframes floatSpark{
-
-from{
-
-transform:
-translateY(110vh)
-scale(.5);
-
-opacity:0;
-
-}
-
-15%{
-opacity:.7;
-}
-
-85%{
-opacity:.7;
-}
-
-to{
-
-transform:
-translateY(-15vh)
-scale(1.3);
-
-opacity:0;
-
-}
-
-}
-
-/**************************************************************
- F4SN NETWORK HEADER
-**************************************************************/
-
-.network-top{
-
-background:#05070b;
-
-border-bottom:
-1px solid #263244;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-gap:18px;
-
-padding:9px 16px;
-
-font-size:12px;
-
-font-weight:900;
-
-letter-spacing:1.5px;
-
-text-transform:uppercase;
-
-}
-
-.network-name{
-color:var(--yellow);
-}
-
-.live-dot{
-
-display:inline-block;
-
 width:8px;
-
 height:8px;
-
-background:#ff3b30;
-
 border-radius:50%;
-
-margin-right:6px;
-
-box-shadow:
-0 0 10px rgba(255,59,48,.8);
-
-animation:
-livePulse 1.6s infinite;
-
-}
-
-@keyframes livePulse{
-
-0%,100%{
-opacity:1;
-}
-
-50%{
-opacity:.35;
-}
-
-}
-
-/**************************************************************
- NAVIGATION
-**************************************************************/
-
-nav{
-
-background:
-rgba(17,24,39,.97);
-
-border-bottom:
-1px solid var(--blue);
-
-padding:15px 12px;
-
-text-align:center;
-
-box-shadow:
-0 8px 24px rgba(0,0,0,.35);
-
-backdrop-filter:
-blur(8px);
-
-}
-
-nav a{
-
-color:white;
-
-text-decoration:none;
-
-font-weight:900;
-
-margin:0 12px;
-
-font-size:13px;
-
-letter-spacing:.6px;
-
-transition:
-color .2s ease,
-text-shadow .2s ease;
-
-}
-
-nav a:hover{
-
-color:var(--yellow);
-
-text-shadow:
-0 0 12px rgba(250,204,21,.5);
-
-}
-
-/**************************************************************
- ARENA HEADER
-**************************************************************/
-
-.arena-header{
-
-text-align:center;
-
-padding:
-42px 18px
-22px;
-
-}
-
-.f4sn-badge{
-
-display:inline-block;
-
-color:var(--yellow);
-
-font-size:12px;
-
-font-weight:900;
-
-letter-spacing:3px;
-
-text-transform:uppercase;
-
-border:
-1px solid rgba(250,204,21,.45);
-
-border-radius:999px;
-
-padding:
-8px 15px;
-
-background:
-rgba(250,204,21,.06);
-
-box-shadow:
-0 0 24px rgba(250,204,21,.08);
-
-}
-
-.arena-header h1{
-
-font-size:
-clamp(
-36px,
-7vw,
-76px
-);
-
-line-height:.95;
-
-margin:
-17px 0
-10px;
-
-letter-spacing:
--2px;
-
-text-transform:
-uppercase;
-
-background:
-linear-gradient(
-180deg,
-#ffffff 0,
-#fff7bf 35%,
-#facc15 72%,
-#c88b00 100%
-);
-
--webkit-background-clip:text;
-
-background-clip:text;
-
-color:transparent;
-
-filter:
-drop-shadow(
-0 6px 20px
-rgba(250,204,21,.22)
-);
-
-}
-
-.arena-header h2{
-
-margin:0;
-
-font-size:
-clamp(
-18px,
-3vw,
-28px
-);
-
-letter-spacing:
-4px;
-
-color:#e5e7eb;
-
-text-transform:
-uppercase;
-
-}
-
-.arena-subtitle{
-
-max-width:720px;
-
-margin:
-16px auto 0;
-
-color:#9eacbd;
-
-font-size:14px;
-
-line-height:1.65;
-
-}
-
-/**************************************************************
- MARQUEE
-**************************************************************/
-
-.marquee{
-
-width:
-min(
-980px,
-94%
-);
-
-margin:
-18px auto
-30px;
-
-padding:7px;
-
-border-radius:20px;
-
-background:
-linear-gradient(
-135deg,
-#facc15,
-#9a6700,
-#facc15,
-#fff2a8,
-#d99b00
-);
-
-box-shadow:
-0 0 25px rgba(250,204,21,.25),
-0 15px 50px rgba(0,0,0,.55);
-
-}
-
-.marquee-lights{
-
-border-radius:15px;
-
-padding:9px;
-
-background:
-repeating-linear-gradient(
-90deg,
-#fff6bf 0 8px,
-#ffb800 8px 16px,
-#ffe066 16px 24px
-);
-
-animation:
-marqueeLights .7s linear infinite;
-
-}
-
-@keyframes marqueeLights{
-
-from{
-background-position:0 0;
-}
-
-to{
-background-position:24px 0;
-}
-
-}
-
-.marquee-inner{
-
-background:
-linear-gradient(
-180deg,
-#101722,
-#080b12
-);
-
-border-radius:10px;
-
-padding:
-16px 20px;
-
-text-align:center;
-
-border:
-1px solid rgba(255,255,255,.12);
-
-}
-
-.marquee-inner strong{
-
-color:var(--yellow);
-
-font-size:
-clamp(
-15px,
-2.5vw,
-22px
-);
-
-letter-spacing:
-2px;
-
-text-transform:
-uppercase;
-
-}
-
-/**************************************************************
- MAIN ARENA
-**************************************************************/
-
-main{
-
-width:
-min(
-1180px,
-94%
-);
-
-margin:auto;
-
-padding-bottom:80px;
-
-}
-
-.arena-grid{
-
-display:grid;
-
-grid-template-columns:
-minmax(260px,.72fr)
-minmax(420px,1.28fr);
-
-gap:28px;
-
-align-items:start;
-
-}
-
-/**************************************************************
- TEAM CHECK-IN
-**************************************************************/
-
-.check-in{
-
-background:
-linear-gradient(
-145deg,
-rgba(17,24,39,.96),
-rgba(8,12,19,.96)
-);
-
-border:
-1px solid var(--border);
-
-border-radius:18px;
-
-overflow:hidden;
-
-box-shadow:
-0 18px 50px rgba(0,0,0,.42);
-
-}
-
-.panel-header{
-
-padding:
-20px 22px;
-
-background:#0b1018;
-
-border-bottom:
-1px solid var(--border);
-
-}
-
-.panel-eyebrow{
-
-color:var(--yellow);
-
-font-size:10px;
-
-font-weight:900;
-
-letter-spacing:2px;
-
-text-transform:uppercase;
-
-}
-
-.panel-header h3{
-
-margin:
-5px 0
-0;
-
-font-size:22px;
-
-}
-
-.panel-body{
-
-padding:20px;
-
-}
-
-.check-in-copy{
-
-color:#9eacbd;
-
-font-size:13px;
-
-line-height:1.55;
-
-margin:
-0 0
-18px;
-
-}
-
-.team-choice{
-
-width:100%;
-
-border:
-1px solid #2c394d;
-
-border-left:
-5px solid var(--team-color);
-
-background:
-linear-gradient(
-90deg,
-rgba(255,255,255,.035),
-rgba(255,255,255,.01)
-);
-
-color:white;
-
-border-radius:10px;
-
-padding:
-15px 14px;
-
-margin-bottom:11px;
-
-text-align:left;
-
-cursor:pointer;
-
-transition:
-transform .18s ease,
-border-color .18s ease,
-background .18s ease,
-box-shadow .18s ease;
-
-}
-
-.team-choice:hover{
-
-transform:
-translateX(4px);
-
-background:
-rgba(255,255,255,.06);
-
-box-shadow:
-0 6px 18px rgba(0,0,0,.3);
-
-}
-
-.team-choice.selected{
-
-border-color:
-var(--team-color);
-
-background:
-linear-gradient(
-90deg,
-color-mix(
-in srgb,
-var(--team-color) 18%,
-transparent
-),
-rgba(255,255,255,.02)
-);
-
-box-shadow:
-0 0 18px
-color-mix(
-in srgb,
-var(--team-color) 20%,
-transparent
-);
-
-}
-
-.manager-name{
-
-display:block;
-
-font-size:16px;
-
-font-weight:900;
-
-}
-
-.franchise-name{
-
-display:block;
-
-color:#9ba8b8;
-
-font-size:11px;
-
-font-weight:900;
-
-letter-spacing:.5px;
-
-margin-top:4px;
-
-text-transform:uppercase;
-
-}
-
-.access-box{
-
-margin-top:18px;
-
-border:
-1px solid #273447;
-
-background:#080c13;
-
-border-radius:10px;
-
-padding:15px;
-
-min-height:94px;
-
-}
-
-.access-label{
-
-font-size:9px;
-
-font-weight:900;
-
-letter-spacing:1.5px;
-
-color:#7f8da0;
-
-text-transform:uppercase;
-
-}
-
-.access-value{
-
-font-size:16px;
-
-font-weight:900;
-
-margin-top:6px;
-
-line-height:1.35;
-
-}
-
-.access-note{
-
-color:#9eacbd;
-
-font-size:11px;
-
-line-height:1.45;
-
-margin-top:6px;
-
-}
-
-.access-box.approved{
-
-border-color:
-rgba(34,197,94,.5);
-
-box-shadow:
-0 0 22px rgba(34,197,94,.08);
-
-}
-
-.access-box.approved
-.access-value{
-
-color:#4ade80;
-
-}
-
-.access-box.denied{
-
-border-color:
-rgba(255,75,75,.5);
-
-box-shadow:
-0 0 22px rgba(255,75,75,.08);
-
-}
-
-.access-box.denied
-.access-value{
-
-color:#ff6868;
-
-}
-
-/**************************************************************
- DEMO NOTICE
-**************************************************************/
-
-.demo-notice{
-
-margin-top:18px;
-
-padding:14px;
-
-border:
-1px solid rgba(24,168,255,.35);
-
-border-radius:10px;
-
-background:
-rgba(24,168,255,.06);
-
-color:#9fcff0;
-
-font-size:11px;
-
-line-height:1.5;
-
-}
-
-.demo-notice strong{
-color:#67c7ff;
-}
-
-/**************************************************************
- WHEEL STAGE
-**************************************************************/
-
-.wheel-stage{
-
-position:relative;
-
-background:
-
-radial-gradient(
-circle at center,
-rgba(250,204,21,.09),
-transparent 52%
-),
-
-linear-gradient(
-145deg,
-rgba(17,24,39,.98),
-rgba(5,7,11,.98)
-);
-
-border:
-1px solid #3b3420;
-
-border-radius:20px;
-
-padding:
-28px 20px
-24px;
-
-text-align:center;
-
-box-shadow:
-0 20px 65px rgba(0,0,0,.52);
-
-overflow:hidden;
-
-}
-
-.stage-label{
-
-color:#8d99aa;
-
-font-size:10px;
-
-font-weight:900;
-
-letter-spacing:2px;
-
-text-transform:uppercase;
-
-}
-
-.stage-title{
-
-font-size:
-clamp(
-23px,
-4vw,
-34px
-);
-
-font-weight:900;
-
-margin:
-6px 0
-20px;
-
-text-transform:uppercase;
-
-}
-
-/**************************************************************
- WHEEL
-**************************************************************/
-
-.wheel-shell{
-
-position:relative;
-
-width:
-min(
-100%,
-600px
-);
-
-aspect-ratio:1;
-
-margin:
-0 auto;
-
-border-radius:50%;
-
-padding:24px;
-
-background:
-linear-gradient(
-135deg,
-#fff2a8,
-#facc15,
-#9a6700,
-#facc15,
-#fff4b8
-);
-
-box-shadow:
-
-0 0 0 6px #4d3500,
-
-0 0 0 10px #17120a,
-
-0 0 35px rgba(250,204,21,.35),
-
-0 25px 50px rgba(0,0,0,.7);
-
-}
-
-.wheel-bulbs{
-
-position:absolute;
-
-inset:5px;
-
-border-radius:50%;
-
-pointer-events:none;
-
-background:
-
-radial-gradient(
-circle at 50% 2%,
-#fff 0 4px,
-#ffd700 5px 8px,
-transparent 9px
-),
-
-radial-gradient(
-circle at 75% 9%,
-#fff 0 4px,
-#ffd700 5px 8px,
-transparent 9px
-),
-
-radial-gradient(
-circle at 91% 25%,
-#fff 0 4px,
-#ffd700 5px 8px,
-transparent 9px
-),
-
-radial-gradient(
-circle at 98% 50%,
-#fff 0 4px,
-#ffd700 5px 8px,
-transparent 9px
-),
-
-radial-gradient(
-circle at 91% 75%,
-#fff 0 4px,
-#ffd700 5px 8px,
-transparent 9px
-),
-
-radial-gradient(
-circle at 75% 91%,
-#fff 0 4px,
-#ffd700 5px 8px,
-transparent 9px
-),
-
-radial-gradient(
-circle at 50% 98%,
-#fff 0 4px,
-#ffd700 5px 8px,
-transparent 9px
-),
-
-radial-gradient(
-circle at 25% 91%,
-#fff 0 4px,
-#ffd700 5px 8px,
-transparent 9px
-),
-
-radial-gradient(
-circle at 9% 75%,
-#fff 0 4px,
-#ffd700 5px 8px,
-transparent 9px
-),
-
-radial-gradient(
-circle at 2% 50%,
-#fff 0 4px,
-#ffd700 5px 8px,
-transparent 9px
-),
-
-radial-gradient(
-circle at 9% 25%,
-#fff 0 4px,
-#ffd700 5px 8px,
-transparent 9px
-),
-
-radial-gradient(
-circle at 25% 9%,
-#fff 0 4px,
-#ffd700 5px 8px,
-transparent 9px
-);
-
-filter:
-drop-shadow(
-0 0 7px
-#ffd700
-);
-
-animation:
-bulbPulse 1s ease-in-out infinite alternate;
-
-}
-
-@keyframes bulbPulse{
-
-from{
-opacity:.65;
-}
-
-to{
-opacity:1;
-}
-
-}
-
-.wheel-pointer{
-
-position:absolute;
-
-left:50%;
-
-top:-17px;
-
-transform:
-translateX(-50%);
-
-width:0;
-
-height:0;
-
-border-left:
-25px solid transparent;
-
-border-right:
-25px solid transparent;
-
-border-top:
-58px solid white;
-
-filter:
-drop-shadow(
-0 5px 7px
-rgba(0,0,0,.75)
-);
-
-z-index:8;
-
-}
-
-.wheel-pointer::after{
-
-content:"";
-
-position:absolute;
-
-left:-13px;
-
-top:-56px;
-
-width:26px;
-
-height:26px;
-
-border-radius:50%;
-
-background:var(--yellow);
-
-box-shadow:
-0 0 15px rgba(250,204,21,.7);
-
-}
-
-#winner-wheel{
-
-display:block;
-
-width:100%;
-
-height:100%;
-
-border-radius:50%;
-
-background:#111827;
-
-}
-
-.wheel-center{
-
-position:absolute;
-
-left:50%;
-
-top:50%;
-
-transform:
-translate(-50%,-50%);
-
-width:25%;
-
-aspect-ratio:1;
-
-border-radius:50%;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-justify-content:center;
-
-background:
-radial-gradient(
-circle at 35% 30%,
-#27364a,
-#0a0e15 65%
-);
-
-border:
-5px solid #facc15;
-
-box-shadow:
-0 0 0 5px #5c4300,
-0 0 30px rgba(0,0,0,.75);
-
-z-index:5;
-
-pointer-events:none;
-
-}
-
-.wheel-center strong{
-
-font-size:
-clamp(
-16px,
-3vw,
-28px
-);
-
-color:var(--yellow);
-
-letter-spacing:1px;
-
-}
-
-.wheel-center span{
-
-font-size:
-clamp(
-7px,
-1.2vw,
-10px
-);
-
-font-weight:900;
-
-letter-spacing:1.5px;
-
-color:#c8d0da;
-
-margin-top:3px;
-
-}
-
-/**************************************************************
- SPIN BUTTON
-**************************************************************/
-
-.spin-button{
-
-margin-top:30px;
-
-border:0;
-
-border-radius:12px;
-
-padding:
-17px 34px;
-
-min-width:
-min(
-340px,
-90%
-);
-
-font-size:17px;
-
-font-weight:900;
-
-letter-spacing:1px;
-
-text-transform:uppercase;
-
-color:#111;
-
-cursor:pointer;
-
-background:
-linear-gradient(
-180deg,
-#fff4ad,
-#facc15 55%,
-#d99b00
-);
-
-box-shadow:
-0 7px 0 #805b00,
-0 12px 25px rgba(0,0,0,.5),
-0 0 25px rgba(250,204,21,.18);
-
-transition:
-transform .12s ease,
-filter .2s ease;
-
-}
-
-.spin-button:hover:not(:disabled){
-
-filter:brightness(1.08);
-
-transform:
-translateY(-2px);
-
-}
-
-.spin-button:active:not(:disabled){
-
-transform:
-translateY(4px);
-
-box-shadow:
-0 3px 0 #805b00,
-0 7px 15px rgba(0,0,0,.5);
-
-}
-
-.spin-button:disabled{
-
-opacity:.35;
-
-cursor:not-allowed;
-
-filter:grayscale(.5);
-
-}
-
-/**************************************************************
- RESULT PANEL
-**************************************************************/
-
-.result-panel{
-
-margin:
-25px auto 0;
-
-max-width:620px;
-
-min-height:115px;
-
-border:
-1px solid #343d4b;
-
-border-radius:12px;
-
-padding:
-18px;
-
-background:
-rgba(5,7,11,.85);
-
-}
-
-.result-eyebrow{
-
-color:#8c99aa;
-
-font-size:10px;
-
-font-weight:900;
-
-letter-spacing:1.5px;
-
-text-transform:uppercase;
-
-}
-
-.result-value{
-
-font-size:
-clamp(
-20px,
-4vw,
-30px
-);
-
-font-weight:900;
-
-color:var(--yellow);
-
-margin-top:7px;
-
-}
-
-.result-note{
-
-color:#c4ccd7;
-
-font-size:12px;
-
-line-height:1.55;
-
-margin-top:7px;
-
-}
-
-/**************************************************************
- JACKPOT OVERLAY
-**************************************************************/
-
-.jackpot-overlay{
-
-position:fixed;
-
-inset:0;
-
-z-index:1000;
-
-display:none;
-
-align-items:center;
-
-justify-content:center;
-
-padding:20px;
-
-background:
-rgba(0,0,0,.88);
-
-}
-
-.jackpot-overlay.show{
-
-display:flex;
-
-animation:
-jackpotFlash .45s ease-in-out 4;
-
-}
-
-@keyframes jackpotFlash{
-
-0%,100%{
-background:
-rgba(0,0,0,.88);
-}
-
-50%{
-background:
-rgba(119,84,0,.82);
-}
-
-}
-
-.jackpot-card{
-
-width:
-min(
-760px,
-94vw
-);
-
-padding:
-45px 25px;
-
-text-align:center;
-
-border-radius:24px;
-
-border:
-4px solid var(--yellow);
-
-background:
-
-radial-gradient(
-circle at center,
-rgba(250,204,21,.22),
-transparent 60%
-),
-
-linear-gradient(
-145deg,
-#15100a,
-#05070b
-);
-
-box-shadow:
-0 0 50px rgba(250,204,21,.55),
-0 25px 80px rgba(0,0,0,.8);
-
-animation:
-jackpotPop .6s
-cubic-bezier(.17,.89,.32,1.35);
-
-}
-
-@keyframes jackpotPop{
-
-from{
-
-transform:
-scale(.45)
-rotate(-4deg);
-
+background:white;
 opacity:0;
-
+box-shadow:0 0 18px white;
 }
 
-to{
-
-transform:
-scale(1)
-rotate(0);
-
-opacity:1;
-
+.flash.fire{
+animation:cameraFlash .5s ease-out;
 }
 
+@keyframes cameraFlash{
+0%{opacity:0;transform:scale(.3)}
+20%{opacity:1;transform:scale(2.3)}
+100%{opacity:0;transform:scale(4)}
 }
-
-.jackpot-small{
-
-font-size:13px;
-
-font-weight:900;
-
-letter-spacing:4px;
-
-color:#fff2a8;
-
-text-transform:uppercase;
-
-}
-
-.jackpot-card h2{
-
-font-size:
-clamp(
-45px,
-10vw,
-95px
-);
-
-line-height:.9;
-
-margin:
-14px 0;
-
-color:var(--yellow);
-
-text-shadow:
-0 0 25px rgba(250,204,21,.6);
-
-}
-
-.jackpot-prize{
-
-font-size:
-clamp(
-20px,
-4vw,
-34px
-);
-
-font-weight:900;
-
-}
-
-.jackpot-manager{
-
-margin-top:15px;
-
-color:#d4d9e0;
-
-font-size:15px;
-
-}
-
-.jackpot-close{
-
-margin-top:25px;
-
-border:
-1px solid var(--yellow);
-
-border-radius:9px;
-
-padding:
-12px 24px;
-
-background:#2a2107;
-
-color:white;
-
-font-weight:900;
-
-cursor:pointer;
-
-}
-
-/**************************************************************
- CONFETTI
-**************************************************************/
 
 .confetti{
-
 position:fixed;
-
 top:-30px;
-
 width:10px;
-
 height:18px;
-
-z-index:1100;
-
 pointer-events:none;
-
-animation:
-confettiFall linear forwards;
-
+z-index:3000;
+animation:confettiFall linear forwards;
 }
 
 @keyframes confettiFall{
-
 to{
-
-transform:
-translateY(115vh)
-rotate(900deg);
-
+transform:translateY(115vh) rotate(1080deg);
+}
 }
 
-}
-
-/**************************************************************
- FOOTER
-**************************************************************/
-
-footer{
-
-border-top:
-1px solid #263244;
-
-background:#05070b;
-
-color:#718096;
-
-text-align:center;
-
-padding:
-25px 15px;
-
-font-size:11px;
-
-letter-spacing:1px;
-
-line-height:1.8;
-
-}
-
-footer strong{
-color:var(--yellow);
-}
-
-/**************************************************************
- MOBILE
-**************************************************************/
-
-@media(max-width:900px){
-
-.arena-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.check-in{
-
-max-width:650px;
-
-margin:auto;
-
-width:100%;
-
-}
-
-}
-
-@media(max-width:650px){
-
-.network-top{
-
-flex-wrap:wrap;
-
-gap:6px 12px;
-
-font-size:9px;
-
-}
-
-nav{
-
-padding:
-11px 6px;
-
-}
-
-nav a{
-
-display:inline-block;
-
-margin:
-5px 7px;
-
-font-size:10px;
-
-}
-
-.arena-header{
-
-padding-top:30px;
-
-}
-
-.arena-header h1{
-
-letter-spacing:-1px;
-
-}
-
-.marquee{
-
-margin-bottom:20px;
-
-}
-
-.wheel-stage{
-
-padding:
-22px 8px
-20px;
-
-}
-
-.wheel-shell{
-
-padding:17px;
-
-}
-
-.wheel-pointer{
-
-top:-13px;
-
-border-left-width:19px;
-
-border-right-width:19px;
-
-border-top-width:45px;
-
-}
-
-.wheel-pointer::after{
-
-left:-10px;
-
-top:-44px;
-
-width:20px;
-
-height:20px;
-
-}
-
-.spin-button{
-
-font-size:14px;
-
-padding:
-15px 18px;
-
-}
-
-}
-
-/**************************************************************
- SCREEN SHAKE
-**************************************************************/
-
-body.screen-shake{
-
-animation:
-screenShake .08s linear 7;
-
+body.shake{
+animation:screenShake .075s linear 9;
 }
 
 @keyframes screenShake{
-
-0%{
-transform:translate(0,0);
+0%{transform:translate(0)}
+20%{transform:translate(5px,-3px)}
+40%{transform:translate(-5px,3px)}
+60%{transform:translate(4px,4px)}
+80%{transform:translate(-4px,-2px)}
+100%{transform:translate(0)}
 }
 
-25%{
-transform:translate(4px,-3px);
+/* ============================================================
+   INTRO SCREEN
+============================================================ */
+
+#intro{
+position:fixed;
+inset:0;
+z-index:2000;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#000;
+transition:opacity .8s ease,visibility .8s ease;
 }
 
-50%{
-transform:translate(-4px,3px);
+#intro.hidden{
+opacity:0;
+visibility:hidden;
 }
 
-75%{
-transform:translate(3px,2px);
+.intro-glow{
+position:absolute;
+width:70vw;
+height:70vw;
+max-width:800px;
+max-height:800px;
+border-radius:50%;
+background:radial-gradient(circle,rgba(250,204,21,.16),transparent 65%);
+animation:introGlow 2s ease-in-out infinite alternate;
 }
 
-100%{
-transform:translate(0,0);
+@keyframes introGlow{
+from{transform:scale(.8);opacity:.35}
+to{transform:scale(1.15);opacity:1}
+}
+
+.intro-content{
+position:relative;
+z-index:2;
+text-align:center;
+padding:25px;
+}
+
+.intro-small{
+color:#8b96a6;
+font-size:12px;
+font-weight:900;
+letter-spacing:5px;
+text-transform:uppercase;
+animation:introFade 1s ease forwards;
+}
+
+.intro-logo{
+font-size:clamp(70px,16vw,170px);
+font-weight:1000;
+line-height:.9;
+margin:12px 0;
+color:var(--yellow);
+text-shadow:
+0 0 10px rgba(250,204,21,.4),
+0 0 35px rgba(250,204,21,.35),
+0 0 80px rgba(250,204,21,.18);
+animation:logoPower 1.2s ease-out;
+}
+
+@keyframes logoPower{
+0%{opacity:0;transform:scale(.55);filter:blur(20px)}
+60%{opacity:1;transform:scale(1.08);filter:blur(0)}
+100%{transform:scale(1)}
+}
+
+.intro-title{
+font-size:clamp(25px,5vw,54px);
+font-weight:1000;
+letter-spacing:3px;
+text-transform:uppercase;
+}
+
+.intro-title span{
+color:var(--yellow);
+}
+
+.intro-copy{
+max-width:650px;
+margin:16px auto 0;
+color:#aab4c2;
+line-height:1.6;
+font-size:14px;
+}
+
+.enter-button{
+margin-top:28px;
+padding:17px 34px;
+border:2px solid var(--yellow);
+border-radius:10px;
+background:linear-gradient(180deg,#fff2a8,#facc15 55%,#c98d00);
+color:#111;
+font-size:15px;
+font-weight:1000;
+letter-spacing:1.5px;
+cursor:pointer;
+box-shadow:
+0 7px 0 #6e4d00,
+0 0 35px rgba(250,204,21,.25);
+text-transform:uppercase;
+}
+
+.enter-button:hover{
+filter:brightness(1.1);
+transform:translateY(-2px);
+}
+
+/* ============================================================
+   NETWORK HEADER
+============================================================ */
+
+.network-bar{
+background:#05070b;
+border-bottom:1px solid #263244;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:18px;
+padding:9px 14px;
+font-size:11px;
+font-weight:900;
+letter-spacing:1.4px;
+text-transform:uppercase;
+}
+
+.network-name{color:var(--yellow)}
+
+.live-dot{
+display:inline-block;
+width:8px;
+height:8px;
+border-radius:50%;
+background:var(--red);
+margin-right:6px;
+box-shadow:0 0 10px var(--red);
+animation:pulse 1.3s infinite;
+}
+
+@keyframes pulse{
+0%,100%{opacity:1}
+50%{opacity:.25}
+}
+
+nav{
+background:rgba(17,24,39,.97);
+border-bottom:1px solid var(--blue);
+padding:14px 10px;
+text-align:center;
+box-shadow:0 8px 25px rgba(0,0,0,.4);
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:900;
+font-size:12px;
+letter-spacing:.6px;
+margin:0 11px;
+}
+
+nav a:hover{color:var(--yellow)}
+
+/* ============================================================
+   LED RIBBON
+============================================================ */
+
+.ribbon{
+overflow:hidden;
+background:#080b10;
+border-bottom:1px solid #3a2d06;
+border-top:1px solid #3a2d06;
+white-space:nowrap;
+}
+
+.ribbon-track{
+display:inline-block;
+padding:9px 0;
+min-width:200%;
+font-size:11px;
+font-weight:1000;
+letter-spacing:2px;
+color:var(--yellow);
+animation:ribbonMove 24s linear infinite;
+}
+
+@keyframes ribbonMove{
+from{transform:translateX(0)}
+to{transform:translateX(-50%)}
+}
+
+/* ============================================================
+   STAGE BACKGROUND
+============================================================ */
+
+.stage{
+position:relative;
+min-height:calc(100vh - 100px);
+overflow:hidden;
+}
+
+.spotlight{
+position:absolute;
+top:-25%;
+width:25%;
+height:110%;
+background:linear-gradient(180deg,rgba(255,224,95,.17),transparent 75%);
+filter:blur(18px);
+pointer-events:none;
+transform-origin:top center;
+}
+
+.spotlight.left{
+left:8%;
+transform:rotate(24deg);
+animation:sweepLeft 7s ease-in-out infinite alternate;
+}
+
+.spotlight.right{
+right:8%;
+transform:rotate(-24deg);
+animation:sweepRight 8s ease-in-out infinite alternate;
+}
+
+@keyframes sweepLeft{
+to{transform:rotate(-8deg)}
+}
+
+@keyframes sweepRight{
+to{transform:rotate(8deg)}
+}
+
+.crowd{
+position:absolute;
+left:0;
+right:0;
+bottom:0;
+height:135px;
+opacity:.55;
+background:
+radial-gradient(ellipse at 5% 100%,#111 0 23px,transparent 24px),
+radial-gradient(ellipse at 12% 100%,#080808 0 30px,transparent 31px),
+radial-gradient(ellipse at 21% 100%,#111 0 24px,transparent 25px),
+radial-gradient(ellipse at 31% 100%,#080808 0 34px,transparent 35px),
+radial-gradient(ellipse at 42% 100%,#111 0 25px,transparent 26px),
+radial-gradient(ellipse at 52% 100%,#090909 0 35px,transparent 36px),
+radial-gradient(ellipse at 63% 100%,#111 0 28px,transparent 29px),
+radial-gradient(ellipse at 74% 100%,#080808 0 32px,transparent 33px),
+radial-gradient(ellipse at 85% 100%,#111 0 25px,transparent 26px),
+radial-gradient(ellipse at 95% 100%,#080808 0 34px,transparent 35px),
+linear-gradient(transparent,#050505 70%);
+pointer-events:none;
+}
+
+/* ============================================================
+   COMMON SCREEN
+============================================================ */
+
+.screen{
+display:none;
+position:relative;
+z-index:5;
+width:min(1180px,94%);
+margin:auto;
+padding:45px 0 150px;
+}
+
+.screen.active{
+display:block;
+animation:screenIn .65s ease;
+}
+
+@keyframes screenIn{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.event-label{
+text-align:center;
+color:var(--yellow);
+font-size:11px;
+font-weight:1000;
+letter-spacing:4px;
+text-transform:uppercase;
+}
+
+.screen h1{
+text-align:center;
+font-size:clamp(35px,7vw,72px);
+line-height:.95;
+margin:10px 0;
+text-transform:uppercase;
+}
+
+.screen-sub{
+max-width:700px;
+margin:15px auto 30px;
+text-align:center;
+color:#9ba8b8;
+line-height:1.6;
+}
+
+/* ============================================================
+   TEAM SELECTION
+============================================================ */
+
+.team-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+max-width:900px;
+margin:35px auto;
+}
+
+.team-card{
+position:relative;
+overflow:hidden;
+border:1px solid #2a374a;
+border-top:5px solid var(--team);
+border-radius:15px;
+padding:26px 20px;
+background:linear-gradient(145deg,#111827,#080c13);
+color:white;
+cursor:pointer;
+text-align:left;
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+transition:.2s ease;
+}
+
+.team-card::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(90deg,var(--team),transparent 60%);
+opacity:.07;
+}
+
+.team-card:hover{
+transform:translateY(-5px) scale(1.01);
+border-color:var(--team);
+box-shadow:0 15px 45px rgba(0,0,0,.6);
+}
+
+.team-manager{
+position:relative;
+font-size:25px;
+font-weight:1000;
+}
+
+.team-franchise{
+position:relative;
+margin-top:6px;
+font-size:12px;
+font-weight:900;
+letter-spacing:1px;
+color:#a9b3c1;
+text-transform:uppercase;
+}
+
+/* ============================================================
+   TEAM ENTRANCE
+============================================================ */
+
+#entrance-screen{
+position:relative;
+}
+
+.entrance-box{
+max-width:900px;
+margin:40px auto;
+text-align:center;
+padding:55px 20px;
+border-radius:20px;
+border:1px solid var(--team-color,#facc15);
+background:
+radial-gradient(circle at center,var(--team-glow,rgba(250,204,21,.15)),transparent 65%),
+linear-gradient(145deg,#111827,#05070b);
+box-shadow:0 0 60px var(--team-glow,rgba(250,204,21,.15));
+}
+
+.entrance-manager{
+font-size:clamp(24px,4vw,40px);
+font-weight:1000;
+color:#dce3ec;
+}
+
+.entrance-team{
+font-size:clamp(40px,8vw,88px);
+font-weight:1000;
+line-height:.95;
+margin:10px 0;
+text-transform:uppercase;
+text-shadow:0 8px 30px rgba(0,0,0,.7);
+}
+
+.entrance-message{
+font-size:15px;
+font-weight:900;
+letter-spacing:2px;
+color:var(--yellow);
+margin-top:25px;
+}
+
+.access-stamp{
+display:inline-block;
+margin-top:25px;
+padding:10px 18px;
+border:3px solid var(--green);
+color:#4ade80;
+font-weight:1000;
+font-size:22px;
+letter-spacing:2px;
+transform:rotate(-2deg);
+}
+
+.continue-button{
+display:block;
+margin:35px auto 0;
+border:1px solid var(--yellow);
+background:#241d07;
+color:white;
+padding:15px 27px;
+border-radius:9px;
+font-weight:1000;
+cursor:pointer;
+}
+
+/* ============================================================
+   ORACLE BOOTH
+============================================================ */
+
+.oracle-booth{
+max-width:850px;
+margin:0 auto 25px;
+display:grid;
+grid-template-columns:105px 1fr;
+background:linear-gradient(145deg,#101722,#080c13);
+border:1px solid #344157;
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.oracle-logo{
+display:flex;
+align-items:center;
+justify-content:center;
+background:#05070b;
+border-right:1px solid #344157;
+font-size:42px;
+}
+
+.oracle-copy{
+padding:15px 18px;
+}
+
+.oracle-label{
+color:var(--yellow);
+font-size:9px;
+font-weight:1000;
+letter-spacing:2px;
+text-transform:uppercase;
+}
+
+#oracle-message{
+font-weight:900;
+line-height:1.45;
+margin-top:5px;
+}
+
+/* ============================================================
+   WHEEL ARENA
+============================================================ */
+
+.wheel-arena{
+text-align:center;
+}
+
+.arena-title{
+font-size:clamp(28px,5vw,52px);
+font-weight:1000;
+margin:5px 0 25px;
+text-transform:uppercase;
+}
+
+.wheel-machine{
+position:relative;
+width:min(720px,92vw);
+aspect-ratio:1;
+margin:20px auto;
+padding:35px;
+border-radius:50%;
+background:
+linear-gradient(135deg,#fff5b7,#facc15 20%,#9a6500 45%,#ffe985 65%,#b97b00 85%,#fff4aa);
+box-shadow:
+0 0 0 8px #513700,
+0 0 0 14px #171006,
+0 0 60px rgba(250,204,21,.42),
+0 30px 80px rgba(0,0,0,.8);
+}
+
+.bulb-ring{
+position:absolute;
+inset:7px;
+border-radius:50%;
+pointer-events:none;
+background:
+radial-gradient(circle at 50% 1%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 69% 5%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 85% 15%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 95% 31%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 99% 50%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 95% 69%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 85% 85%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 69% 95%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 50% 99%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 31% 95%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 15% 85%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 5% 69%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 1% 50%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 5% 31%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 15% 15%,white 0 5px,#ffd700 6px 10px,transparent 11px),
+radial-gradient(circle at 31% 5%,white 0 5px,#ffd700 6px 10px,transparent 11px);
+filter:drop-shadow(0 0 7px #ffd700);
+animation:bulbs 1s ease-in-out infinite alternate;
+}
+
+@keyframes bulbs{
+from{opacity:.55}
+to{opacity:1}
+}
+
+#wheel{
+display:block;
+width:100%;
+height:100%;
+border-radius:50%;
+background:#111827;
+}
+
+.pointer{
+position:absolute;
+top:-25px;
+left:50%;
+transform:translateX(-50%);
+z-index:8;
+width:0;
+height:0;
+border-left:30px solid transparent;
+border-right:30px solid transparent;
+border-top:70px solid white;
+filter:drop-shadow(0 8px 8px rgba(0,0,0,.8));
+}
+
+.pointer::after{
+content:"";
+position:absolute;
+top:-69px;
+left:-16px;
+width:32px;
+height:32px;
+border-radius:50%;
+background:var(--yellow);
+box-shadow:0 0 20px var(--yellow);
+}
+
+.center-cap{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+width:24%;
+aspect-ratio:1;
+border-radius:50%;
+z-index:7;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+background:radial-gradient(circle at 35% 30%,#344155,#070a0f 65%);
+border:6px solid var(--yellow);
+box-shadow:
+0 0 0 6px #5d4100,
+0 0 35px rgba(0,0,0,.8);
+pointer-events:none;
+}
+
+.center-cap strong{
+font-size:clamp(20px,4vw,38px);
+color:var(--yellow);
+}
+
+.center-cap span{
+font-size:9px;
+font-weight:1000;
+letter-spacing:2px;
+}
+
+.lever{
+margin-top:35px;
+border:0;
+border-radius:14px;
+padding:20px 42px;
+min-width:min(420px,90%);
+background:linear-gradient(180deg,#fff3a5,#facc15 52%,#c88a00);
+box-shadow:
+0 8px 0 #765200,
+0 14px 30px rgba(0,0,0,.6),
+0 0 35px rgba(250,204,21,.25);
+font-size:18px;
+font-weight:1000;
+letter-spacing:1px;
+color:#111;
+cursor:pointer;
+text-transform:uppercase;
+}
+
+.lever:hover:not(:disabled){
+transform:translateY(-2px);
+filter:brightness(1.08);
+}
+
+.lever:disabled{
+opacity:.45;
+cursor:not-allowed;
+}
+
+.result-box{
+max-width:700px;
+margin:28px auto 0;
+padding:22px;
+border-radius:14px;
+background:#080c13;
+border:1px solid #303d50;
+min-height:125px;
+}
+
+.result-label{
+font-size:10px;
+font-weight:1000;
+letter-spacing:2px;
+color:#8794a6;
+text-transform:uppercase;
+}
+
+.result-value{
+font-size:clamp(23px,5vw,38px);
+font-weight:1000;
+color:var(--yellow);
+margin-top:7px;
+}
+
+.result-note{
+color:#c1cad5;
+font-size:13px;
+line-height:1.55;
+margin-top:8px;
+}
+
+/* ============================================================
+   SPIN COUNTDOWN
+============================================================ */
+
+#countdown{
+position:fixed;
+inset:0;
+display:none;
+align-items:center;
+justify-content:center;
+z-index:1500;
+background:rgba(0,0,0,.72);
+pointer-events:none;
+}
+
+#countdown.show{
+display:flex;
+}
+
+#countdown-number{
+font-size:clamp(120px,30vw,350px);
+font-weight:1000;
+color:var(--yellow);
+text-shadow:0 0 60px rgba(250,204,21,.65);
+animation:countPop .7s ease;
+}
+
+@keyframes countPop{
+from{transform:scale(.2);opacity:0}
+50%{transform:scale(1.2);opacity:1}
+to{transform:scale(1);opacity:1}
+}
+
+/* ============================================================
+   RESULT TAKEOVER
+============================================================ */
+
+#takeover{
+position:fixed;
+inset:0;
+z-index:2500;
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
+background:rgba(0,0,0,.94);
+}
+
+#takeover.show{
+display:flex;
+animation:takeoverIn .4s ease;
+}
+
+@keyframes takeoverIn{
+from{opacity:0}
+to{opacity:1}
+}
+
+.takeover-card{
+width:min(850px,95vw);
+text-align:center;
+padding:45px 25px;
+border:3px solid var(--accent,var(--yellow));
+border-radius:22px;
+background:
+radial-gradient(circle at center,var(--glow,rgba(250,204,21,.14)),transparent 60%),
+linear-gradient(145deg,#121926,#05070b);
+box-shadow:
+0 0 60px var(--glow,rgba(250,204,21,.25));
+animation:resultSlam .55s cubic-bezier(.2,.9,.25,1.35);
+}
+
+@keyframes resultSlam{
+from{transform:scale(.35) rotate(-3deg);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+.takeover-alert{
+color:var(--accent,var(--yellow));
+font-size:12px;
+font-weight:1000;
+letter-spacing:4px;
+text-transform:uppercase;
+}
+
+.takeover-icon{
+font-size:75px;
+margin:12px 0;
+}
+
+.takeover-title{
+font-size:clamp(42px,9vw,90px);
+font-weight:1000;
+line-height:.9;
+text-transform:uppercase;
+color:var(--accent,var(--yellow));
+text-shadow:0 0 30px var(--glow,rgba(250,204,21,.4));
+}
+
+.takeover-description{
+max-width:650px;
+margin:20px auto 0;
+font-size:15px;
+line-height:1.6;
+color:#d2d8e1;
+}
+
+.takeover-manager{
+margin-top:18px;
+color:#9aa7b7;
+font-weight:900;
+}
+
+.takeover-button{
+margin-top:28px;
+border:1px solid var(--accent,var(--yellow));
+background:#151515;
+color:white;
+padding:13px 25px;
+border-radius:9px;
+font-weight:1000;
+cursor:pointer;
+}
+
+/* JACKPOT */
+
+#takeover.jackpot{
+background:
+radial-gradient(circle,#795700 0,#160f00 38%,#000 75%);
+animation:jackpotFlash .35s linear 7;
+}
+
+@keyframes jackpotFlash{
+0%,100%{filter:brightness(1)}
+50%{filter:brightness(1.8)}
+}
+
+#takeover.jackpot .takeover-card{
+--accent:#ffd700;
+--glow:rgba(255,215,0,.65);
+border-width:5px;
+}
+
+#takeover.jackpot .takeover-title{
+font-size:clamp(55px,12vw,120px);
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+footer{
+position:relative;
+z-index:6;
+background:#05070b;
+border-top:1px solid #263244;
+text-align:center;
+padding:24px 15px;
+font-size:10px;
+letter-spacing:1.2px;
+color:#748195;
+}
+
+footer strong{color:var(--yellow)}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media(max-width:700px){
+
+.network-bar{
+flex-wrap:wrap;
+gap:6px 12px;
+font-size:9px;
+}
+
+nav a{
+font-size:10px;
+margin:5px 6px;
+display:inline-block;
+}
+
+.team-grid{
+grid-template-columns:1fr;
+}
+
+.oracle-booth{
+grid-template-columns:70px 1fr;
+}
+
+.oracle-logo{
+font-size:30px;
+}
+
+.wheel-machine{
+padding:22px;
+}
+
+.pointer{
+top:-18px;
+border-left-width:22px;
+border-right-width:22px;
+border-top-width:52px;
+}
+
+.pointer::after{
+top:-51px;
+left:-12px;
+width:24px;
+height:24px;
+}
+
+.lever{
+font-size:14px;
+padding:17px 18px;
 }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div
-id="arena-background"
-class="arena-background">
+<div id="fx-layer"></div>
 
-<div class="arena-beam beam-one"></div>
+<!-- ==========================================================
+     INTRO
+========================================================== -->
 
-<div class="arena-beam beam-two"></div>
+<div id="intro">
 
+<div class="intro-glow"></div>
+
+<div class="intro-content">
+
+<div class="intro-small">
+Fant4sy Four Sports Network
 </div>
 
-<div class="network-top">
+<div class="intro-logo">
+F4SN
+</div>
 
-<span class="network-name">
-F4SN • FANT4SY FOUR SPORTS NETWORK
-</span>
+<div class="intro-title">
+The <span>Winner's Wheel</span> Arena
+</div>
 
-<span>
-<span class="live-dot"></span>
-SPECIAL EVENT
-</span>
+<div class="intro-copy">
+One manager enters as the weekly champion.
+One spin determines the advantage.
+Everyone else gets to live with it.
+</div>
 
-<span>
-WINNER'S WHEEL ARENA
-</span>
+<button class="enter-button" onclick="enterArena()">
+ENTER THE ARENA
+</button>
 
+</div>
+</div>
+
+<!-- ==========================================================
+     HEADER
+========================================================== -->
+
+<div class="network-bar">
+<span class="network-name">F4SN • FANT4SY FOUR SPORTS NETWORK</span>
+<span><span class="live-dot"></span>SPECIAL EVENT COVERAGE</span>
+<span>WINNER'S WHEEL ARENA</span>
 </div>
 
 <nav>
-
-<a href="index.html">
-F4SN HOME
-</a>
-
-<a href="index.html#scoreboard">
-SCOREBOARD
-</a>
-
-<a href="index.html#standings">
-STANDINGS
-</a>
-
-<a href="index.html#lineups">
-LINEUPS
-</a>
-
+<a href="index.html">F4SN HOME</a>
+<a href="index.html#scoreboard">SCOREBOARD</a>
+<a href="index.html#standings">STANDINGS</a>
+<a href="index.html#lineups">LINEUPS</a>
 </nav>
 
-<header class="arena-header">
+<div class="ribbon">
+<div class="ribbon-track">
+NO APPEALS • ORACLE DECISIONS ARE FINAL • CHAMPIONS ONLY • LEAGUE MANAGEMENT ASSUMES NO LIABILITY • NO APPEALS • ORACLE DECISIONS ARE FINAL • CHAMPIONS ONLY • LEAGUE MANAGEMENT ASSUMES NO LIABILITY •
+</div>
+</div>
 
-<div class="f4sn-badge">
-F4SN PRESENTS
+<div class="stage">
+
+<div class="spotlight left"></div>
+<div class="spotlight right"></div>
+<div class="crowd"></div>
+
+<!-- ==========================================================
+     SCREEN 1 — CHECK IN
+========================================================== -->
+
+<section id="checkin-screen" class="screen active">
+
+<div class="event-label">
+F4SN Arena Security
 </div>
 
 <h1>
-Winner's Wheel
+Identify Yourself
 </h1>
 
-<h2>
-Arena
-</h2>
-
-<p class="arena-subtitle">
-Only the weekly champion earns the right to enter.
-Victory has privileges.
-The wheel decides how much trouble everyone else is in next week.
+<p class="screen-sub">
+The Winner's Wheel is not a public attraction.
+Select your franchise so league security can pretend to verify that you actually earned your way in here.
 </p>
 
-</header>
-
-<div class="marquee">
-
-<div class="marquee-lights">
-
-<div class="marquee-inner">
-
-<strong>
-🏆 CHAMPIONS ONLY • ONE SPIN • NO APPEALS • THE ORACLE IS WATCHING 🏆
-</strong>
-
-</div>
-
-</div>
-
-</div>
-
-<main>
-
-<div class="arena-grid">
-
-<!-- ==========================================================
-     TEAM CHECK-IN
-========================================================== -->
-
-<section class="check-in">
-
-<div class="panel-header">
-
-<div class="panel-eyebrow">
-Arena Security
-</div>
-
-<h3>
-Identify Your Franchise
-</h3>
-
-</div>
-
-<div class="panel-body">
-
-<p class="check-in-copy">
-Select your team before approaching the wheel.
-Eventually F4SN will verify this against the official weekly winner.
-Tonight the arena is operating in construction-test mode.
-</p>
+<div class="team-grid">
 
 <button
-class="team-choice"
-style="--team-color:#1687ff"
+class="team-card"
+style="--team:#1687ff"
 data-manager="Brad"
 data-team="Breaking Brad"
-onclick="selectTeam(this)">
-
-<span class="manager-name">
-Brad
-</span>
-
-<span class="franchise-name">
-Breaking Brad
-</span>
-
+data-color="#1687ff"
+onclick="chooseTeam(this)">
+<div class="team-manager">Brad</div>
+<div class="team-franchise">Breaking Brad</div>
 </button>
 
 <button
-class="team-choice"
-style="--team-color:#ff3b30"
+class="team-card"
+style="--team:#ff3b30"
 data-manager="Maria"
 data-team="The Real Housewives of the Red Zone"
-onclick="selectTeam(this)">
-
-<span class="manager-name">
-Maria
-</span>
-
-<span class="franchise-name">
-The Real Housewives of the Red Zone
-</span>
-
+data-color="#ff3b30"
+onclick="chooseTeam(this)">
+<div class="team-manager">Maria</div>
+<div class="team-franchise">The Real Housewives of the Red Zone</div>
 </button>
 
 <button
-class="team-choice"
-style="--team-color:#16d5d1"
+class="team-card"
+style="--team:#16d5d1"
 data-manager="Mackenzie"
 data-team="Mack Around & Find Out"
-onclick="selectTeam(this)">
-
-<span class="manager-name">
-Mackenzie
-</span>
-
-<span class="franchise-name">
-Mack Around & Find Out
-</span>
-
+data-color="#16d5d1"
+onclick="chooseTeam(this)">
+<div class="team-manager">Mackenzie</div>
+<div class="team-franchise">Mack Around & Find Out</div>
 </button>
 
 <button
-class="team-choice"
-style="--team-color:#9c4dff"
+class="team-card"
+style="--team:#9c4dff"
 data-manager="Madison"
 data-team="Maddie's Anatomy"
-onclick="selectTeam(this)">
-
-<span class="manager-name">
-Madison
-</span>
-
-<span class="franchise-name">
-Maddie's Anatomy
-</span>
-
+data-color="#9c4dff"
+onclick="chooseTeam(this)">
+<div class="team-manager">Madison</div>
+<div class="team-franchise">Maddie's Anatomy</div>
 </button>
 
-<div
-id="access-box"
-class="access-box">
-
-<div class="access-label">
-Arena Access
 </div>
 
-<div
-id="access-value"
-class="access-value">
+<p class="screen-sub">
+<strong style="color:#67c7ff">CONSTRUCTION MODE:</strong>
+Tonight all four franchises are authorized for testing.
+No spin is recorded and no Week 5 advantage is actually applied.
+</p>
 
-SELECT YOUR TEAM
+</section>
 
+<!-- ==========================================================
+     SCREEN 2 — TEAM ENTRANCE
+========================================================== -->
+
+<section id="entrance-screen" class="screen">
+
+<div class="event-label">
+F4SN Winner Verification
 </div>
 
-<div
-id="access-note"
-class="access-note">
+<div id="entrance-box" class="entrance-box">
 
-The wheel remains locked until a franchise checks in.
+<div id="entrance-manager" class="entrance-manager"></div>
 
+<div id="entrance-team" class="entrance-team"></div>
+
+<div id="entrance-message" class="entrance-message"></div>
+
+<div class="access-stamp">
+ACCESS GRANTED
 </div>
 
-</div>
-
-<div class="demo-notice">
-
-<strong>
-CONSTRUCTION MODE:
-</strong>
-
-Tonight's page is disconnected from official league scoring.
-Team selection unlocks the wheel for testing only.
-No result is being saved or applied to Week 5.
-
-</div>
+<button class="continue-button" onclick="openWheelArena()">
+OPEN THE ARENA DOORS
+</button>
 
 </div>
 
 </section>
 
 <!-- ==========================================================
-     WINNER'S WHEEL
+     SCREEN 3 — WHEEL
 ========================================================== -->
 
-<section class="wheel-stage">
+<section id="wheel-screen" class="screen">
 
-<div class="stage-label">
+<div class="event-label">
 F4SN Championship Privilege Department
 </div>
 
-<div class="stage-title">
+<div class="arena-title">
 The Wheel of Competitive Advantage
 </div>
 
-<div class="wheel-shell">
+<div class="oracle-booth">
 
-<div class="wheel-bulbs"></div>
+<div class="oracle-logo">
+🔮
+</div>
 
-<div class="wheel-pointer"></div>
+<div class="oracle-copy">
 
-<canvas
-id="winner-wheel"
-width="900"
-height="900">
-</canvas>
+<div class="oracle-label">
+Live From The Oracle Control Booth
+</div>
 
-<div class="wheel-center">
+<div id="oracle-message">
+League management is preparing the wheel. This already feels like a terrible idea.
+</div>
 
-<strong>
-F4SN
-</strong>
+</div>
+</div>
 
-<span>
-WINNER
-</span>
+<div class="wheel-arena">
 
+<div class="wheel-machine">
+
+<div class="bulb-ring"></div>
+
+<div class="pointer"></div>
+
+<canvas id="wheel" width="1000" height="1000"></canvas>
+
+<div class="center-cap">
+<strong>F4SN</strong>
+<span>WINNER</span>
 </div>
 
 </div>
 
-<button
-id="spin-button"
-class="spin-button"
-type="button"
-onclick="spinWinnerWheel()"
-disabled>
-
-🔒 SELECT YOUR TEAM
-
+<button id="spin-button" class="lever" onclick="beginSpin()">
+PULL THE DAMN LEVER
 </button>
 
-<div
-id="result-panel"
-class="result-panel">
+<div id="result-box" class="result-box">
 
-<div class="result-eyebrow">
-The Oracle Awaits
+<div class="result-label">
+F4SN Wheel Control
 </div>
 
 <div class="result-value">
-WHO WILL CLAIM THE ADVANTAGE?
+AWAITING CHAMPION
 </div>
 
 <div class="result-note">
-Select your franchise to unlock the test wheel.
+One spin. Twelve possibilities. Two ridiculously overproduced $25 gift cards.
+</div>
+
 </div>
 
 </div>
@@ -2177,364 +1238,418 @@ Select your franchise to unlock the test wheel.
 
 </div>
 
-</main>
-
 <footer>
-
-<strong>
-F4SN
-</strong>
-
+<strong>F4SN</strong>
 • FANT4SY FOUR SPORTS NETWORK
-
 • WINNER'S WHEEL ARENA
-
 • QUESTIONABLE LEAGUE GOVERNANCE SINCE 2026
-
 </footer>
 
 <!-- ==========================================================
-     JACKPOT OVERLAY
+     COUNTDOWN
 ========================================================== -->
 
-<div
-id="jackpot-overlay"
-class="jackpot-overlay">
-
-<div class="jackpot-card">
-
-<div class="jackpot-small">
-🚨 F4SN JACKPOT ALERT 🚨
+<div id="countdown">
+<div id="countdown-number">3</div>
 </div>
 
-<h2>
-JACKPOT
-</h2>
+<!-- ==========================================================
+     RESULT TAKEOVER
+========================================================== -->
 
-<div
-id="jackpot-prize"
-class="jackpot-prize">
+<div id="takeover">
 
-GRAND PRIZE
+<div id="takeover-card" class="takeover-card">
 
-</div>
+<div id="takeover-alert" class="takeover-alert"></div>
 
-<div
-id="jackpot-manager"
-class="jackpot-manager">
-</div>
+<div id="takeover-icon" class="takeover-icon"></div>
 
-<button
-class="jackpot-close"
-type="button"
-onclick="closeJackpot()">
+<div id="takeover-title" class="takeover-title"></div>
 
+<div id="takeover-description" class="takeover-description"></div>
+
+<div id="takeover-manager" class="takeover-manager"></div>
+
+<button class="takeover-button" onclick="closeTakeover()">
 RETURN TO THE ARENA
-
 </button>
 
 </div>
-
 </div>
 
 <script>
 
-/**************************************************************
- F4SN WINNER'S WHEEL ARENA
+/* ============================================================
+   F4SN WINNER'S WHEEL ARENA — V2
 
- CONSTRUCTION VERSION
+   PROTOTYPE / CONSTRUCTION MODE
 
- IMPORTANT:
- - This page is currently standalone.
- - It does NOT modify league data.
- - It does NOT save a spin.
- - It does NOT verify the actual weekly winner yet.
- - Server-authoritative verification comes later.
-**************************************************************/
-
-/**************************************************************
- TEAM STATE
-**************************************************************/
+   NO BACKEND CALLS.
+   NO SCORING CHANGES.
+   NO SAVED RESULTS.
+   NO LIVE WEEK MODIFICATIONS.
+============================================================ */
 
 let selectedManager="";
 let selectedTeam="";
+let selectedColor="#facc15";
 
-let spinning=false;
 let wheelRotation=0;
+let spinning=false;
+let audioContext=null;
+let tickTimer=null;
 
-/**************************************************************
- WINNER'S WHEEL ITEMS
+/* ============================================================
+   PRIZES / ADVANTAGES
 
- WEIGHTS:
- - Barnes & Noble Grand Prize = 2
- - 7 Brew Grand Prize = 2
- - Remaining advantages = 9 or 10 each
+   Proposed prototype weighting:
+   Grand prizes: 2 each.
+   Competitive advantages: remainder.
 
- These are TEST weights for the prototype.
-**************************************************************/
+   Visual slices remain equal.
+============================================================ */
 
-const WINNER_ITEMS=[
+const ITEMS=[
 
 {
 label:"$25 B&N",
-result:"$25 Barnes & Noble Gift Card",
-note:"GRAND PRIZE! The bookstore budget has officially been breached.",
+result:"$25 BARNES & NOBLE",
+note:"The weekly champion has somehow converted fantasy football into actual bookstore money.",
 weight:2,
-grandPrize:true
+grand:true,
+icon:"📚",
+accent:"#ffd700"
 },
 
 {
 label:"$25 7 Brew",
-result:"$25 7 Brew Gift Card",
-note:"GRAND PRIZE! Caffeine has entered the championship conversation.",
+result:"$25 7 BREW",
+note:"The caffeine department has been notified. This victory now has a beverage budget.",
 weight:2,
-grandPrize:true
+grand:true,
+icon:"🏆",
+accent:"#ffd700"
 },
 
 {
 label:"Double Flex",
 result:"DOUBLE FLEX",
-note:"Start a second FLEX next week. League balance has filed a formal complaint.",
-weight:10
+note:"Start a second FLEX next week. Somewhere, competitive balance just burst into flames.",
+weight:10,
+icon:"⚡",
+accent:"#18a8ff"
 },
 
 {
 label:"Bench Boost",
 result:"BENCH BOOST",
-note:"One eligible bench player's points can count toward next week's score.",
-weight:10
+note:"One eligible bench player's points may count next week under the final league rules.",
+weight:10,
+icon:"🚀",
+accent:"#22c55e"
 },
 
 {
 label:"Oracle Swap",
 result:"ORACLE SWAP",
-note:"The Oracle may optimize one legal starter/bench decision before kickoff.",
-weight:10
+note:"The Oracle receives authority to optimize one legal starter/bench decision before kickoff.",
+weight:10,
+icon:"🔮",
+accent:"#9c4dff"
 },
 
 {
 label:"Viking Raid",
 result:"VIKING RAID",
-note:"Claim a special Vikings roster advantage for next week. Final legal rules will be enforced by league management.",
-weight:9
+note:"The champion earns a special Vikings roster advantage. Valhalla has apparently joined the rules committee.",
+weight:9,
+icon:"⚔️",
+accent:"#9c4dff"
 },
 
 {
 label:"First Pick",
 result:"FIRST PICK",
-note:"You receive first priority when next week's roster-selection order matters.",
-weight:10
+note:"You move to the front of the line whenever next week's roster-selection priority matters.",
+weight:10,
+icon:"☝️",
+accent:"#18a8ff"
 },
 
 {
 label:"Insurance",
 result:"INSURANCE POLICY",
-note:"Receive the league's special injury-protection advantage for next week.",
-weight:10
+note:"You receive the approved injury-protection advantage for next week's games.",
+weight:10,
+icon:"🛡️",
+accent:"#22c55e"
 },
 
 {
 label:"Captain",
 result:"CAPTAIN BONUS",
 note:"Designate one eligible starter for the approved Captain scoring bonus.",
-weight:9
+weight:9,
+icon:"⭐",
+accent:"#facc15"
 },
 
 {
 label:"Shield",
 result:"PENALTY SHIELD",
-note:"Earn protection against a future Loser's Wheel consequence under the final league rules.",
-weight:9
+note:"You earn protection against a future Loser's Wheel consequence under the final rules.",
+weight:9,
+icon:"🛡️",
+accent:"#16d5d1"
 },
 
 {
 label:"Roster Raid",
 result:"ROSTER RAID",
-note:"Gain the right to raid one eligible rival bench player under next week's final roster rules.",
-weight:9
+note:"You earn the right to raid one eligible rival bench player under next week's roster rules.",
+weight:9,
+icon:"🚨",
+accent:"#ff4b4b"
 },
 
 {
 label:"FA Upgrade",
 result:"FREE AGENT UPGRADE",
 note:"Replace one eligible player on your generated roster before the week begins.",
-weight:10
+weight:10,
+icon:"⬆️",
+accent:"#16d5d1"
 }
 
 ];
 
-/**************************************************************
- WHEEL COLORS
-**************************************************************/
-
-const WHEEL_COLORS=[
-
+const COLORS=[
 "#facc15",
 "#ffe066",
 "#1687ff",
 "#16a34a",
+"#7c3aed",
 "#9c4dff",
-"#ea580c",
 "#0891b2",
-"#db2777",
-"#65a30d",
-"#4f46e5",
+"#22c55e",
+"#d97706",
 "#0d9488",
-"#7c3aed"
+"#dc2626",
+"#4f46e5"
+];
+
+/* ============================================================
+   INTRO
+============================================================ */
+
+function enterArena(){
+
+initAudio();
+
+playImpact();
+
+document
+.getElementById("intro")
+.classList.add("hidden");
+
+setTimeout(function(){
+cameraFlashes(5);
+},500);
+
+}
+
+/* ============================================================
+   SCREEN CONTROL
+============================================================ */
+
+function showScreen(id){
+
+document
+.querySelectorAll(".screen")
+.forEach(function(screen){
+screen.classList.remove("active");
+});
+
+document
+.getElementById(id)
+.classList.add("active");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+/* ============================================================
+   TEAM SELECTION
+============================================================ */
+
+function chooseTeam(button){
+
+initAudio();
+
+selectedManager=
+button.dataset.manager;
+
+selectedTeam=
+button.dataset.team;
+
+selectedColor=
+button.dataset.color;
+
+playImpact();
+
+showTeamEntrance();
+
+}
+
+/* ============================================================
+   TEAM ENTRANCE
+============================================================ */
+
+function showTeamEntrance(){
+
+const box=
+document.getElementById("entrance-box");
+
+const manager=
+document.getElementById("entrance-manager");
+
+const team=
+document.getElementById("entrance-team");
+
+const message=
+document.getElementById("entrance-message");
+
+box.style.setProperty(
+"--team-color",
+selectedColor
+);
+
+box.style.setProperty(
+"--team-glow",
+hexAlpha(selectedColor,.24)
+);
+
+manager.textContent=
+selectedManager+" HAS ENTERED THE BUILDING";
+
+team.textContent=
+selectedTeam;
+
+const messages={
+
+Brad:
+"BREAKING NEWS: BREAKING BRAD HAS BEEN CLEARED FOR MAXIMUM NONSENSE.",
+
+Maria:
+"THE HOUSEWIVES HAVE ARRIVED. LEAGUE SECURITY HAS BEEN WARNED.",
+
+Mackenzie:
+"MACK AROUND & FIND OUT HAS ENTERED. FINDING OUT MAY BEGIN IMMEDIATELY.",
+
+Madison:
+"MADDIE'S ANATOMY HAS ENTERED THE ARENA. PROGNOSIS: CHAOS."
+
+};
+
+message.textContent=
+messages[selectedManager]||
+"THE WEEKLY CHAMPION HAS ARRIVED.";
+
+showScreen(
+"entrance-screen"
+);
+
+cameraFlashes(12);
+
+playCrowdBurst();
+
+}
+
+/* ============================================================
+   OPEN WHEEL
+============================================================ */
+
+function openWheelArena(){
+
+playDoorBoom();
+
+showScreen(
+"wheel-screen"
+);
+
+document
+.getElementById("oracle-message")
+.textContent=
+oracleWelcome();
+
+setTimeout(function(){
+cameraFlashes(7);
+},400);
+
+}
+
+/* ============================================================
+   ORACLE
+============================================================ */
+
+function oracleWelcome(){
+
+const lines=[
+
+selectedManager+
+", congratulations. Please try not to abuse whatever stupid power this wheel gives you.",
+
+"League lawyers have asked me to remind "+
+selectedManager+
+" that screaming at the wheel does not improve the odds.",
+
+selectedTeam+
+" has officially reached the part of fantasy football where basic rules were apparently no longer enough.",
+
+"The wheel has been inspected by absolutely nobody qualified to inspect a wheel."
 
 ];
 
-/**************************************************************
- CREATE BACKGROUND SPARKS
-**************************************************************/
-
-function createArenaSparks(){
-
-const background=
-document.getElementById(
-"arena-background"
-);
-
-for(
-let i=0;
-i<34;
-i++
-){
-
-const spark=
-document.createElement(
-"div"
-);
-
-spark.className=
-"spark";
-
-spark.style.left=
-Math.random()*100+"%";
-
-spark.style.animationDuration=
-(
-6+
-Math.random()*8
-)+"s";
-
-spark.style.animationDelay=
-(
-Math.random()*8
-)+"s";
-
-background.appendChild(
-spark
-);
+return lines[
+Math.floor(Math.random()*lines.length)
+];
 
 }
 
-}
+function oracleSpinLine(){
 
-/**************************************************************
- TEAM SELECTION
-**************************************************************/
+const lines=[
+"The Oracle has lost control of the situation.",
+"This is exactly why normal families just play fantasy football.",
+"Somewhere, a league commissioner is regretting every decision that led here.",
+"Remember: the grand prizes are rare. Your screaming will not change mathematics.",
+"F4SN legal would like to clarify that F4SN does not have a legal department."
+];
 
-function selectTeam(button){
-
-if(spinning){
-return;
-}
-
-document
-.querySelectorAll(
-".team-choice"
-)
-.forEach(
-function(choice){
-
-choice.classList.remove(
-"selected"
-);
-
-}
-);
-
-button.classList.add(
-"selected"
-);
-
-selectedManager=
-button.dataset.manager||"";
-
-selectedTeam=
-button.dataset.team||"";
-
-const accessBox=
-document.getElementById(
-"access-box"
-);
-
-const accessValue=
-document.getElementById(
-"access-value"
-);
-
-const accessNote=
-document.getElementById(
-"access-note"
-);
-
-const spinButton=
-document.getElementById(
-"spin-button"
-);
-
-accessBox.className=
-"access-box approved";
-
-accessValue.textContent=
-"ACCESS GRANTED: "+
-selectedManager.toUpperCase();
-
-accessNote.textContent=
-selectedTeam+
-" has entered the Winner's Wheel Arena. Construction mode authorization accepted.";
-
-spinButton.disabled=false;
-
-spinButton.textContent=
-"🏆 SPIN FOR NEXT WEEK'S ADVANTAGE";
-
-setResult(
-
-"ARENA ACCESS GRANTED",
-
-selectedTeam+" IS CLEARED TO SPIN",
-
-"Prototype mode is active. This result will not be recorded or applied to the league."
-
-);
+return lines[
+Math.floor(Math.random()*lines.length)
+];
 
 }
 
-/**************************************************************
- SAFE RANDOM NUMBER
-**************************************************************/
+/* ============================================================
+   RANDOM
+============================================================ */
 
 function randomUnit(){
 
-if(
-window.crypto&&
-window.crypto.getRandomValues
-){
+if(window.crypto&&window.crypto.getRandomValues){
 
 const values=
 new Uint32Array(1);
 
-window.crypto.getRandomValues(
-values
-);
+window.crypto.getRandomValues(values);
 
-return (
-values[0]/
-4294967296
-);
+return values[0]/4294967296;
 
 }
 
@@ -2542,43 +1657,19 @@ return Math.random();
 
 }
 
-/**************************************************************
- WEIGHTED SELECTION
-
- The visible wheel slices stay equal size.
-
- The RESULT is chosen by these weights first,
- then the wheel animation lands on that result.
-**************************************************************/
-
-function weightedWinnerIndex(){
+function weightedIndex(){
 
 const total=
-WINNER_ITEMS.reduce(
-function(sum,item){
-
-return (
-sum+
-Number(item.weight||0)
-);
-
-},
-0
-);
+ITEMS.reduce(function(sum,item){
+return sum+item.weight;
+},0);
 
 let roll=
 randomUnit()*total;
 
-for(
-let i=0;
-i<WINNER_ITEMS.length;
-i++
-){
+for(let i=0;i<ITEMS.length;i++){
 
-roll-=
-Number(
-WINNER_ITEMS[i].weight||0
-);
+roll-=ITEMS[i].weight;
 
 if(roll<0){
 return i;
@@ -2586,48 +1677,21 @@ return i;
 
 }
 
-return (
-WINNER_ITEMS.length-1
-);
+return ITEMS.length-1;
 
 }
 
-/**************************************************************
- ANGLE NORMALIZATION
-**************************************************************/
+/* ============================================================
+   DRAW WHEEL
+============================================================ */
 
-function normalizeAngle(angle){
-
-const full=
-Math.PI*2;
-
-return (
-(
-angle%full
-)+full
-)%full;
-
-}
-
-/**************************************************************
- DRAW WHEEL
-**************************************************************/
-
-function drawWinnerWheel(){
+function drawWheel(){
 
 const canvas=
-document.getElementById(
-"winner-wheel"
-);
+document.getElementById("wheel");
 
-if(!canvas){
-return;
-}
-
-const context=
-canvas.getContext(
-"2d"
-);
+const ctx=
+canvas.getContext("2d");
 
 const size=
 canvas.width;
@@ -2636,107 +1700,67 @@ const center=
 size/2;
 
 const radius=
-center-18;
+center-20;
 
 const slice=
-Math.PI*2/
-WINNER_ITEMS.length;
+Math.PI*2/ITEMS.length;
 
-context.clearRect(
-0,
-0,
-size,
-size
-);
+ctx.clearRect(0,0,size,size);
 
-context.save();
+ctx.save();
 
-context.translate(
-center,
-center
-);
+ctx.translate(center,center);
 
-context.rotate(
-wheelRotation
-);
+ctx.rotate(wheelRotation);
 
-WINNER_ITEMS.forEach(
-function(item,index){
+ITEMS.forEach(function(item,index){
 
 const start=
-index*slice
--Math.PI/2
--slice/2;
+index*slice-
+Math.PI/2-
+slice/2;
 
 const end=
 start+slice;
 
-context.beginPath();
-
-context.moveTo(
-0,
-0
-);
-
-context.arc(
-0,
-0,
-radius,
-start,
-end
-);
-
-context.closePath();
-
 const gradient=
-context.createRadialGradient(
-0,
-0,
-radius*.15,
-0,
-0,
-radius
+ctx.createRadialGradient(
+0,0,80,
+0,0,radius
 );
 
 gradient.addColorStop(
 0,
-lightenColor(
-WHEEL_COLORS[index],
-22
-)
+lighten(COLORS[index],28)
 );
 
 gradient.addColorStop(
 .55,
-WHEEL_COLORS[index]
+COLORS[index]
 );
 
 gradient.addColorStop(
 1,
-darkenColor(
-WHEEL_COLORS[index],
-22
-)
+darken(COLORS[index],28)
 );
 
-context.fillStyle=
-gradient;
+ctx.beginPath();
+ctx.moveTo(0,0);
+ctx.arc(0,0,radius,start,end);
+ctx.closePath();
 
-context.fill();
+ctx.fillStyle=gradient;
+ctx.fill();
 
-context.lineWidth=
-6;
+ctx.lineWidth=7;
+ctx.strokeStyle="#05070b";
+ctx.stroke();
 
-context.strokeStyle=
-"#080b12";
+/* metallic highlight */
 
-context.stroke();
+ctx.beginPath();
 
-/* INNER HIGHLIGHT */
-
-context.beginPath();
-
-context.arc(
+ctx.arc(
 0,
 0,
 radius*.96,
@@ -2744,126 +1768,86 @@ start,
 end
 );
 
-context.lineWidth=
-2;
+ctx.lineWidth=3;
 
-context.strokeStyle=
-"rgba(255,255,255,.22)";
+ctx.strokeStyle=
+"rgba(255,255,255,.25)";
 
-context.stroke();
+ctx.stroke();
 
-/* LABEL */
+/* text */
 
-context.save();
+ctx.save();
 
 const middle=
-start+
-slice/2;
+start+slice/2;
 
-context.rotate(
-middle
-);
+ctx.rotate(middle);
 
-context.translate(
-radius*.67,
+ctx.translate(
+radius*.68,
 0
 );
 
-context.rotate(
+ctx.rotate(
 Math.PI/2
 );
 
-const isGrand=
-item.grandPrize===true;
-
-context.fillStyle=
-isGrand
+ctx.fillStyle=
+item.grand
 ?"#111827"
 :"#ffffff";
 
-context.font=
-isGrand
-?"900 27px Arial"
-:"900 25px Arial";
+ctx.font=
+item.grand
+?"1000 31px Arial"
+:"1000 28px Arial";
 
-context.textAlign=
-"center";
+ctx.textAlign="center";
+ctx.textBaseline="middle";
 
-context.textBaseline=
-"middle";
+ctx.shadowColor=
+"rgba(0,0,0,.75)";
 
-context.shadowColor=
-isGrand
-?"rgba(255,255,255,.35)"
-:"rgba(0,0,0,.75)";
+ctx.shadowBlur=8;
 
-context.shadowBlur=
-6;
-
-wrapWheelText(
-context,
+wrapText(
+ctx,
 item.label,
 0,
 0,
-175,
-29
+195,
+32
 );
 
-context.restore();
+ctx.restore();
 
-}
+});
+
+/* outer ring */
+
+ctx.beginPath();
+
+ctx.arc(
+0,0,radius,0,Math.PI*2
 );
 
-/* OUTER WHEEL RING */
+ctx.lineWidth=16;
 
-context.beginPath();
+ctx.strokeStyle="#facc15";
 
-context.arc(
-0,
-0,
-radius,
-0,
-Math.PI*2
-);
+ctx.stroke();
 
-context.lineWidth=
-13;
-
-context.strokeStyle=
-"#facc15";
-
-context.stroke();
-
-/* INNER RING */
-
-context.beginPath();
-
-context.arc(
-0,
-0,
-radius*.28,
-0,
-Math.PI*2
-);
-
-context.lineWidth=
-7;
-
-context.strokeStyle=
-"#4d3500";
-
-context.stroke();
-
-context.restore();
+ctx.restore();
 
 }
 
-/**************************************************************
- TEXT WRAPPING
-**************************************************************/
+/* ============================================================
+   TEXT WRAP
+============================================================ */
 
-function wrapWheelText(
-context,
+function wrapText(
+ctx,
 text,
 x,
 y,
@@ -2872,15 +1856,13 @@ lineHeight
 ){
 
 const words=
-String(text)
-.split(" ");
+String(text).split(" ");
 
 const lines=[];
 
 let line="";
 
-words.forEach(
-function(word){
+words.forEach(function(word){
 
 const test=
 line
@@ -2888,222 +1870,147 @@ line
 :word;
 
 if(
-context.measureText(
-test
-).width>maxWidth&&
+ctx.measureText(test).width>maxWidth&&
 line
 ){
 
-lines.push(
-line
-);
-
-line=
-word;
+lines.push(line);
+line=word;
 
 }else{
 
-line=
-test;
+line=test;
 
 }
 
-}
-);
+});
 
 if(line){
-
-lines.push(
-line
-);
-
+lines.push(line);
 }
 
-const totalHeight=
-(
-lines.length-1
-)*lineHeight;
+const total=
+(lines.length-1)*lineHeight;
 
-lines.forEach(
-function(value,index){
+lines.forEach(function(value,index){
 
-context.fillText(
-
+ctx.fillText(
 value,
-
 x,
-
-y
--totalHeight/2
-+index*lineHeight
-
+y-total/2+
+index*lineHeight
 );
 
-}
-);
+});
 
 }
 
-/**************************************************************
- COLOR HELPERS
-**************************************************************/
+/* ============================================================
+   SPIN CEREMONY
+============================================================ */
 
-function hexToRgb(hex){
+function beginSpin(){
 
-const value=
-String(hex)
-.replace("#","");
-
-const bigint=
-parseInt(
-value,
-16
-);
-
-return {
-
-r:
-(bigint>>16)&255,
-
-g:
-(bigint>>8)&255,
-
-b:
-bigint&255
-
-};
-
-}
-
-function rgbToHex(
-r,
-g,
-b
-){
-
-return "#"+
-[r,g,b]
-.map(
-function(value){
-
-return Math.max(
-0,
-Math.min(
-255,
-Math.round(value)
-)
-)
-.toString(16)
-.padStart(
-2,
-"0"
-);
-
-}
-)
-.join("");
-
-}
-
-function lightenColor(
-hex,
-amount
-){
-
-const rgb=
-hexToRgb(
-hex
-);
-
-return rgbToHex(
-
-rgb.r+
-(255-rgb.r)*
-amount/100,
-
-rgb.g+
-(255-rgb.g)*
-amount/100,
-
-rgb.b+
-(255-rgb.b)*
-amount/100
-
-);
-
-}
-
-function darkenColor(
-hex,
-amount
-){
-
-const rgb=
-hexToRgb(
-hex
-);
-
-return rgbToHex(
-
-rgb.r*
-(1-amount/100),
-
-rgb.g*
-(1-amount/100),
-
-rgb.b*
-(1-amount/100)
-
-);
-
-}
-
-/**************************************************************
- SPIN
-**************************************************************/
-
-function spinWinnerWheel(){
-
-if(
-spinning||
-!selectedManager
-){
-return;
-}
+if(spinning)return;
 
 spinning=true;
 
+initAudio();
+
 const button=
-document.getElementById(
-"spin-button"
-);
+document.getElementById("spin-button");
 
 button.disabled=true;
 
-button.textContent=
-"THE ORACLE IS DECIDING...";
+document
+.getElementById("oracle-message")
+.textContent=
+oracleSpinLine();
 
 setResult(
-
 "F4SN WHEEL CONTROL",
-
-"SPINNING...",
-
-"The weekly champion's fate is now completely in the hands of questionable league technology."
-
+"LOCKING IN THE CHAMPION...",
+"League management is pretending this is a regulated process."
 );
 
-const selectedIndex=
-weightedWinnerIndex();
+runCountdown(3,function(){
 
-const selectedItem=
-WINNER_ITEMS[
-selectedIndex
-];
+playImpact();
+
+cameraFlashes(8);
+
+startActualSpin();
+
+});
+
+}
+
+/* ============================================================
+   COUNTDOWN
+============================================================ */
+
+function runCountdown(number,done){
+
+const overlay=
+document.getElementById("countdown");
+
+const display=
+document.getElementById("countdown-number");
+
+overlay.classList.add("show");
+
+let current=number;
+
+function next(){
+
+display.style.animation="none";
+void display.offsetWidth;
+display.style.animation="countPop .7s ease";
+
+display.textContent=current;
+
+playCountdownBeep(current);
+
+if(current===0){
+
+display.textContent="SPIN!";
+
+setTimeout(function(){
+
+overlay.classList.remove("show");
+
+done();
+
+},650);
+
+return;
+
+}
+
+current--;
+
+setTimeout(next,750);
+
+}
+
+next();
+
+}
+
+/* ============================================================
+   ACTUAL SPIN
+============================================================ */
+
+function startActualSpin(){
+
+const selected=
+weightedIndex();
+
+const item=
+ITEMS[selected];
 
 const slice=
-Math.PI*2/
-WINNER_ITEMS.length;
+Math.PI*2/ITEMS.length;
 
 const current=
 normalizeAngle(
@@ -3112,44 +2019,40 @@ wheelRotation
 
 const desired=
 normalizeAngle(
--selectedIndex*slice
+-selected*slice
 );
 
 let delta=
 desired-current;
 
 if(delta<0){
-
-delta+=
-Math.PI*2;
-
+delta+=Math.PI*2;
 }
 
 const fullSpins=
-8+
-Math.floor(
-randomUnit()*3
-);
+9+
+Math.floor(randomUnit()*4);
 
-const totalRotation=
+const total=
 fullSpins*
 Math.PI*2+
 delta;
 
-const startRotation=
+const start=
 wheelRotation;
 
-const finalRotation=
-startRotation+
-totalRotation;
+const finish=
+start+total;
 
 const duration=
-6500;
+7800;
 
 const startTime=
 performance.now();
 
-function animateWheel(now){
+startTicking();
+
+function animate(now){
 
 const elapsed=
 now-startTime;
@@ -3160,26 +2063,38 @@ elapsed/duration,
 1
 );
 
-/* LONG DRAMATIC EASE-OUT */
+/*
+ Dramatic deceleration.
+*/
 
 const eased=
-1-
-Math.pow(
+1-Math.pow(
 1-progress,
 5
 );
 
 wheelRotation=
-startRotation+
-totalRotation*
-eased;
+start+
+total*eased;
 
-drawWinnerWheel();
+drawWheel();
+
+/*
+ Camera flashes early in the spin.
+*/
+
+if(
+progress>.12&&
+progress<.45&&
+Math.random()<.018
+){
+cameraFlashes(1);
+}
 
 if(progress<1){
 
 requestAnimationFrame(
-animateWheel
+animate
 );
 
 return;
@@ -3187,198 +2102,279 @@ return;
 }
 
 wheelRotation=
-finalRotation;
+finish;
 
-drawWinnerWheel();
+drawWheel();
 
-spinning=false;
+stopTicking();
 
-button.disabled=false;
+setTimeout(function(){
 
-button.textContent=
-"🏆 TEST SPIN AGAIN";
-
-showWinnerResult(
-selectedItem
+finishSpin(
+item
 );
+
+},650);
 
 }
 
 requestAnimationFrame(
-animateWheel
+animate
 );
 
 }
 
-/**************************************************************
- SHOW RESULT
-**************************************************************/
+/* ============================================================
+   FINISH SPIN
+============================================================ */
 
-function showWinnerResult(item){
+function finishSpin(item){
 
-if(
-item.grandPrize===true
-){
+spinning=false;
+
+const button=
+document.getElementById("spin-button");
+
+button.disabled=false;
+
+button.textContent=
+"TEST SPIN AGAIN";
 
 setResult(
-
-"🚨 GRAND PRIZE 🚨",
-
+item.grand
+?"🚨 GRAND PRIZE 🚨"
+:"WINNER'S ADVANTAGE",
 item.result,
-
 item.note
-
 );
 
-launchJackpot(
+if(item.grand){
+
+launchGrandPrize(
 item
 );
 
-return;
+}else{
+
+launchAdvantage(
+item
+);
 
 }
 
-setResult(
+}
 
-"WINNER'S ADVANTAGE",
+/* ============================================================
+   ADVANTAGE TAKEOVER
+============================================================ */
 
-item.result,
+function launchAdvantage(item){
 
+playWinSting();
+
+launchConfetti(80);
+
+showTakeover(
+{
+alert:"F4SN WINNER'S ADVANTAGE",
+icon:item.icon,
+title:item.result,
+description:
 item.note+
-" Effective next week once final league rules are connected."
-
-);
-
-launchConfetti(
-65
+" Effective next week once the final league rules are connected.",
+accent:item.accent,
+jackpot:false
+}
 );
 
 }
 
-/**************************************************************
- RESULT HELPER
-**************************************************************/
+/* ============================================================
+   GRAND PRIZE
+============================================================ */
+
+function launchGrandPrize(item){
+
+playJackpotAlarm();
+
+document.body.classList.add("shake");
+
+setTimeout(function(){
+document.body.classList.remove("shake");
+},900);
+
+cameraFlashes(25);
+
+launchConfetti(260);
+
+showTakeover(
+{
+alert:"🚨 F4SN JACKPOT ALERT 🚨",
+icon:"🏆",
+title:"JACKPOT",
+description:
+item.result+
+" — "+
+item.note+
+" F4SN is treating this $25 transaction like somebody just broke the bank at Caesars Palace.",
+accent:"#ffd700",
+jackpot:true
+}
+);
+
+}
+
+/* ============================================================
+   TAKEOVER
+============================================================ */
+
+function showTakeover(config){
+
+const overlay=
+document.getElementById("takeover");
+
+const card=
+document.getElementById("takeover-card");
+
+overlay.className=
+config.jackpot
+?"show jackpot"
+:"show";
+
+card.style.setProperty(
+"--accent",
+config.accent
+);
+
+card.style.setProperty(
+"--glow",
+hexAlpha(config.accent,.48)
+);
+
+document
+.getElementById("takeover-alert")
+.textContent=
+config.alert;
+
+document
+.getElementById("takeover-icon")
+.textContent=
+config.icon;
+
+document
+.getElementById("takeover-title")
+.textContent=
+config.title;
+
+document
+.getElementById("takeover-description")
+.textContent=
+config.description;
+
+document
+.getElementById("takeover-manager")
+.textContent=
+selectedManager+
+" • "+
+selectedTeam+
+" • EFFECTIVE NEXT WEEK";
+
+}
+
+function closeTakeover(){
+
+document
+.getElementById("takeover")
+.className="";
+
+}
+
+/* ============================================================
+   RESULT BOX
+============================================================ */
 
 function setResult(
-eyebrow,
+label,
 value,
 note
 ){
 
-const panel=
-document.getElementById(
-"result-panel"
-);
+const box=
+document.getElementById("result-box");
 
-panel.innerHTML=
-
-'<div class="result-eyebrow">'+
-safeText(eyebrow)+
+box.innerHTML=
+'<div class="result-label">'+
+safeText(label)+
 '</div>'+
-
 '<div class="result-value">'+
 safeText(value)+
 '</div>'+
-
 '<div class="result-note">'+
 safeText(note)+
 '</div>';
 
 }
 
-/**************************************************************
- JACKPOT
-**************************************************************/
+/* ============================================================
+   CAMERA FLASHES
+============================================================ */
 
-function launchJackpot(item){
+function cameraFlashes(amount){
 
-const overlay=
-document.getElementById(
-"jackpot-overlay"
-);
+const layer=
+document.getElementById("fx-layer");
 
-document
-.getElementById(
-"jackpot-prize"
-)
-.textContent=
-item.result;
+for(let i=0;i<amount;i++){
 
-document
-.getElementById(
-"jackpot-manager"
-)
-.textContent=
-selectedManager+
-" • "+
-selectedTeam;
+setTimeout(function(){
 
-overlay.classList.add(
-"show"
-);
+const flash=
+document.createElement("div");
 
-document.body.classList.add(
-"screen-shake"
-);
+flash.className=
+"flash fire";
 
-setTimeout(
-function(){
+flash.style.left=
+(5+randomUnit()*90)+"%";
 
-document.body.classList.remove(
-"screen-shake"
-);
+flash.style.top=
+(8+randomUnit()*70)+"%";
+
+layer.appendChild(flash);
+
+setTimeout(function(){
+flash.remove();
+},700);
 
 },
-800
-);
-
-launchConfetti(
-180
+i*90+
+randomUnit()*350
 );
 
 }
 
-function closeJackpot(){
-
-document
-.getElementById(
-"jackpot-overlay"
-)
-.classList.remove(
-"show"
-);
-
 }
 
-/**************************************************************
- CONFETTI
-**************************************************************/
+/* ============================================================
+   CONFETTI
+============================================================ */
 
-function launchConfetti(
-amount
-){
+function launchConfetti(amount){
 
 const colors=[
-
 "#facc15",
 "#ffffff",
 "#18a8ff",
 "#ff3b30",
 "#16d5d1",
-"#9c4dff"
-
+"#9c4dff",
+"#ff9f00"
 ];
 
-for(
-let i=0;
-i<amount;
-i++
-){
+for(let i=0;i<amount;i++){
 
 const piece=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 piece.className=
 "confetti";
@@ -3389,93 +2385,323 @@ randomUnit()*100+"vw";
 piece.style.background=
 colors[
 Math.floor(
-randomUnit()*
-colors.length
+randomUnit()*colors.length
 )
 ];
 
 piece.style.animationDuration=
-(
-2.5+
-randomUnit()*3
-)+"s";
+(2.6+randomUnit()*3.5)+"s";
 
 piece.style.animationDelay=
-(
-randomUnit()*.8
-)+"s";
+(randomUnit()*.9)+"s";
 
-piece.style.transform=
-"rotate("+
-Math.floor(
-randomUnit()*360
-)+
-"deg)";
+document.body.appendChild(piece);
 
-document.body.appendChild(
-piece
-);
-
-setTimeout(
-function(){
-
+setTimeout(function(){
 piece.remove();
+},7500);
 
-},
-7000
+}
+
+}
+
+/* ============================================================
+   AUDIO ENGINE
+
+   All sound is synthesized in the browser.
+   No external audio files required.
+============================================================ */
+
+function initAudio(){
+
+if(audioContext){
+return;
+}
+
+const AudioCtx=
+window.AudioContext||
+window.webkitAudioContext;
+
+if(!AudioCtx){
+return;
+}
+
+audioContext=
+new AudioCtx();
+
+}
+
+function tone(
+frequency,
+duration,
+type,
+volume,
+delay
+){
+
+if(!audioContext){
+return;
+}
+
+const start=
+audioContext.currentTime+
+(delay||0);
+
+const oscillator=
+audioContext.createOscillator();
+
+const gain=
+audioContext.createGain();
+
+oscillator.type=
+type||"sine";
+
+oscillator.frequency.setValueAtTime(
+frequency,
+start
+);
+
+gain.gain.setValueAtTime(
+0.0001,
+start
+);
+
+gain.gain.exponentialRampToValueAtTime(
+volume||.05,
+start+.015
+);
+
+gain.gain.exponentialRampToValueAtTime(
+0.0001,
+start+duration
+);
+
+oscillator.connect(gain);
+gain.connect(audioContext.destination);
+
+oscillator.start(start);
+oscillator.stop(start+duration+.05);
+
+}
+
+function playImpact(){
+
+tone(90,.35,"sine",.15,0);
+tone(180,.18,"square",.04,.02);
+
+}
+
+function playDoorBoom(){
+
+tone(65,.55,"sine",.18,0);
+tone(95,.45,"sawtooth",.035,.04);
+tone(130,.25,"square",.025,.08);
+
+}
+
+function playCountdownBeep(number){
+
+const freq=
+number===0
+?880
+:420+
+number*60;
+
+tone(freq,.16,"square",.055,0);
+
+}
+
+function startTicking(){
+
+stopTicking();
+
+tickTimer=
+setInterval(function(){
+
+tone(
+1200,
+.035,
+"square",
+.018,
+0
+);
+
+},115);
+
+}
+
+function stopTicking(){
+
+if(tickTimer){
+
+clearInterval(tickTimer);
+
+tickTimer=null;
+
+}
+
+}
+
+function playWinSting(){
+
+tone(523,.25,"square",.05,0);
+tone(659,.25,"square",.05,.13);
+tone(784,.3,"square",.05,.26);
+tone(1047,.55,"square",.055,.4);
+
+}
+
+function playCrowdBurst(){
+
+if(!audioContext)return;
+
+for(let i=0;i<14;i++){
+
+tone(
+120+
+randomUnit()*450,
+.12+
+randomUnit()*.3,
+"sawtooth",
+.004,
+randomUnit()*.5
 );
 
 }
 
 }
 
-/**************************************************************
- SAFE TEXT
-**************************************************************/
+function playJackpotAlarm(){
+
+for(let i=0;i<6;i++){
+
+tone(
+i%2===0
+?880
+:660,
+.22,
+"square",
+.065,
+i*.23
+);
+
+}
+
+tone(1047,.8,"sine",.07,1.4);
+tone(1319,.8,"sine",.06,1.55);
+
+}
+
+/* ============================================================
+   HELPERS
+============================================================ */
+
+function normalizeAngle(angle){
+
+const full=
+Math.PI*2;
+
+return (
+(angle%full)+full
+)%full;
+
+}
 
 function safeText(value){
 
-return String(
-value??""
-)
+return String(value??"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
-.replace(
-/&/g,
-"&amp;"
-)
+}
 
-.replace(
-/</g,
-"&lt;"
-)
+function hexToRgb(hex){
 
-.replace(
-/>/g,
-"&gt;"
-)
+const clean=
+String(hex).replace("#","");
 
-.replace(
-/"/g,
-"&quot;"
-)
+const value=
+parseInt(clean,16);
 
-.replace(
-/'/g,
-"&#039;"
+return{
+r:(value>>16)&255,
+g:(value>>8)&255,
+b:value&255
+};
+
+}
+
+function hexAlpha(hex,alpha){
+
+const rgb=
+hexToRgb(hex);
+
+return "rgba("+
+rgb.r+","+
+rgb.g+","+
+rgb.b+","+
+alpha+
+")";
+
+}
+
+function rgbToHex(r,g,b){
+
+return "#"+
+[r,g,b]
+.map(function(value){
+
+return Math.max(
+0,
+Math.min(
+255,
+Math.round(value)
+)
+)
+.toString(16)
+.padStart(2,"0");
+
+})
+.join("");
+
+}
+
+function lighten(hex,amount){
+
+const rgb=
+hexToRgb(hex);
+
+return rgbToHex(
+rgb.r+(255-rgb.r)*amount/100,
+rgb.g+(255-rgb.g)*amount/100,
+rgb.b+(255-rgb.b)*amount/100
 );
 
 }
 
-/**************************************************************
- INITIALIZE
-**************************************************************/
+function darken(hex,amount){
 
-createArenaSparks();
+const rgb=
+hexToRgb(hex);
 
-drawWinnerWheel();
+return rgbToHex(
+rgb.r*(1-amount/100),
+rgb.g*(1-amount/100),
+rgb.b*(1-amount/100)
+);
+
+}
+
+/* ============================================================
+   INITIALIZE
+============================================================ */
+
+drawWheel();
 
 </script>
 
 </body>
-
 </html>
