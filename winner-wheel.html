@@ -42,10 +42,6 @@ radial-gradient(circle at 20% 40%,rgba(24,168,255,.07),transparent 28%),
 linear-gradient(180deg,#0d131e,#030508 60%);
 }
 
-/* ============================================================
-   GLOBAL FX
-============================================================ */
-
 #fx-layer{
 position:fixed;
 inset:0;
@@ -85,26 +81,24 @@ animation:confettiFall linear forwards;
 }
 
 @keyframes confettiFall{
-to{
-transform:translateY(115vh) rotate(1080deg);
-}
+to{transform:translateY(115vh) rotate(1080deg)}
 }
 
 body.shake{
-animation:screenShake .075s linear 9;
+animation:screenShake .075s linear 10;
 }
 
 @keyframes screenShake{
 0%{transform:translate(0)}
-20%{transform:translate(5px,-3px)}
-40%{transform:translate(-5px,3px)}
-60%{transform:translate(4px,4px)}
-80%{transform:translate(-4px,-2px)}
+20%{transform:translate(6px,-4px)}
+40%{transform:translate(-6px,4px)}
+60%{transform:translate(5px,5px)}
+80%{transform:translate(-5px,-3px)}
 100%{transform:translate(0)}
 }
 
 /* ============================================================
-   INTRO SCREEN
+   INTRO
 ============================================================ */
 
 #intro{
@@ -152,7 +146,6 @@ font-size:12px;
 font-weight:900;
 letter-spacing:5px;
 text-transform:uppercase;
-animation:introFade 1s ease forwards;
 }
 
 .intro-logo{
@@ -181,9 +174,7 @@ letter-spacing:3px;
 text-transform:uppercase;
 }
 
-.intro-title span{
-color:var(--yellow);
-}
+.intro-title span{color:var(--yellow)}
 
 .intro-copy{
 max-width:650px;
@@ -216,7 +207,7 @@ transform:translateY(-2px);
 }
 
 /* ============================================================
-   NETWORK HEADER
+   HEADER
 ============================================================ */
 
 .network-bar{
@@ -270,10 +261,6 @@ margin:0 11px;
 
 nav a:hover{color:var(--yellow)}
 
-/* ============================================================
-   LED RIBBON
-============================================================ */
-
 .ribbon{
 overflow:hidden;
 background:#080b10;
@@ -299,7 +286,7 @@ to{transform:translateX(-50%)}
 }
 
 /* ============================================================
-   STAGE BACKGROUND
+   STAGE
 ============================================================ */
 
 .stage{
@@ -362,7 +349,7 @@ pointer-events:none;
 }
 
 /* ============================================================
-   COMMON SCREEN
+   SCREENS
 ============================================================ */
 
 .screen{
@@ -467,12 +454,8 @@ text-transform:uppercase;
 }
 
 /* ============================================================
-   TEAM ENTRANCE
+   ENTRANCE
 ============================================================ */
-
-#entrance-screen{
-position:relative;
-}
 
 .entrance-box{
 max-width:900px;
@@ -559,9 +542,7 @@ border-right:1px solid #344157;
 font-size:42px;
 }
 
-.oracle-copy{
-padding:15px 18px;
-}
+.oracle-copy{padding:15px 18px}
 
 .oracle-label{
 color:var(--yellow);
@@ -578,12 +559,10 @@ margin-top:5px;
 }
 
 /* ============================================================
-   WHEEL ARENA
+   WHEEL
 ============================================================ */
 
-.wheel-arena{
-text-align:center;
-}
+.wheel-arena{text-align:center}
 
 .arena-title{
 font-size:clamp(28px,5vw,52px);
@@ -671,6 +650,16 @@ height:32px;
 border-radius:50%;
 background:var(--yellow);
 box-shadow:0 0 20px var(--yellow);
+}
+
+.pointer.hit{
+animation:pointerHit .09s ease;
+}
+
+@keyframes pointerHit{
+0%{transform:translateX(-50%) rotate(0)}
+50%{transform:translateX(-50%) rotate(8deg)}
+100%{transform:translateX(-50%) rotate(0)}
 }
 
 .center-cap{
@@ -767,7 +756,7 @@ margin-top:8px;
 }
 
 /* ============================================================
-   SPIN COUNTDOWN
+   COUNTDOWN
 ============================================================ */
 
 #countdown{
@@ -781,9 +770,7 @@ background:rgba(0,0,0,.72);
 pointer-events:none;
 }
 
-#countdown.show{
-display:flex;
-}
+#countdown.show{display:flex}
 
 #countdown-number{
 font-size:clamp(120px,30vw,350px);
@@ -800,7 +787,7 @@ to{transform:scale(1);opacity:1}
 }
 
 /* ============================================================
-   RESULT TAKEOVER
+   TAKEOVER
 ============================================================ */
 
 #takeover{
@@ -833,8 +820,7 @@ border-radius:22px;
 background:
 radial-gradient(circle at center,var(--glow,rgba(250,204,21,.14)),transparent 60%),
 linear-gradient(145deg,#121926,#05070b);
-box-shadow:
-0 0 60px var(--glow,rgba(250,204,21,.25));
+box-shadow:0 0 60px var(--glow,rgba(250,204,21,.25));
 animation:resultSlam .55s cubic-bezier(.2,.9,.25,1.35);
 }
 
@@ -890,12 +876,10 @@ font-weight:1000;
 cursor:pointer;
 }
 
-/* JACKPOT */
-
 #takeover.jackpot{
 background:
 radial-gradient(circle,#795700 0,#160f00 38%,#000 75%);
-animation:jackpotFlash .35s linear 7;
+animation:jackpotFlash .35s linear 8;
 }
 
 @keyframes jackpotFlash{
@@ -913,10 +897,6 @@ border-width:5px;
 font-size:clamp(55px,12vw,120px);
 }
 
-/* ============================================================
-   FOOTER
-============================================================ */
-
 footer{
 position:relative;
 z-index:6;
@@ -930,10 +910,6 @@ color:#748195;
 }
 
 footer strong{color:var(--yellow)}
-
-/* ============================================================
-   MOBILE
-============================================================ */
 
 @media(max-width:700px){
 
@@ -949,21 +925,15 @@ margin:5px 6px;
 display:inline-block;
 }
 
-.team-grid{
-grid-template-columns:1fr;
-}
+.team-grid{grid-template-columns:1fr}
 
 .oracle-booth{
 grid-template-columns:70px 1fr;
 }
 
-.oracle-logo{
-font-size:30px;
-}
+.oracle-logo{font-size:30px}
 
-.wheel-machine{
-padding:22px;
-}
+.wheel-machine{padding:22px}
 
 .pointer{
 top:-18px;
@@ -985,7 +955,6 @@ padding:17px 18px;
 }
 
 }
-
 </style>
 </head>
 
@@ -1058,7 +1027,7 @@ NO APPEALS • ORACLE DECISIONS ARE FINAL • CHAMPIONS ONLY • LEAGUE MANAGEME
 <div class="crowd"></div>
 
 <!-- ==========================================================
-     SCREEN 1 — CHECK IN
+     CHECK IN
 ========================================================== -->
 
 <section id="checkin-screen" class="screen active">
@@ -1133,7 +1102,7 @@ No spin is recorded and no Week 5 advantage is actually applied.
 </section>
 
 <!-- ==========================================================
-     SCREEN 2 — TEAM ENTRANCE
+     ENTRANCE
 ========================================================== -->
 
 <section id="entrance-screen" class="screen">
@@ -1159,11 +1128,10 @@ OPEN THE ARENA DOORS
 </button>
 
 </div>
-
 </section>
 
 <!-- ==========================================================
-     SCREEN 3 — WHEEL
+     WHEEL
 ========================================================== -->
 
 <section id="wheel-screen" class="screen">
@@ -1189,7 +1157,8 @@ Live From The Oracle Control Booth
 </div>
 
 <div id="oracle-message">
-League management is preparing the wheel. This already feels like a terrible idea.
+League management is preparing the wheel.
+This already feels like a terrible idea.
 </div>
 
 </div>
@@ -1201,7 +1170,7 @@ League management is preparing the wheel. This already feels like a terrible ide
 
 <div class="bulb-ring"></div>
 
-<div class="pointer"></div>
+<div id="pointer" class="pointer"></div>
 
 <canvas id="wheel" width="1000" height="1000"></canvas>
 
@@ -1231,7 +1200,6 @@ One spin. Twelve possibilities. Two ridiculously overproduced $25 gift cards.
 </div>
 
 </div>
-
 </div>
 
 </section>
@@ -1280,16 +1248,16 @@ RETURN TO THE ARENA
 
 <script>
 
-/* ============================================================
-   F4SN WINNER'S WHEEL ARENA — V2
+/**************************************************************
+ F4SN WINNER'S WHEEL ARENA — V3
+ THE F4SN SOUND DEPARTMENT HAS LOST ADULT SUPERVISION.
 
-   PROTOTYPE / CONSTRUCTION MODE
-
-   NO BACKEND CALLS.
-   NO SCORING CHANGES.
-   NO SAVED RESULTS.
-   NO LIVE WEEK MODIFICATIONS.
-============================================================ */
+ STANDALONE PROTOTYPE:
+ - NO BACKEND CALLS
+ - NO SCORING CHANGES
+ - NO SAVED SPINS
+ - NO WEEK 5 EFFECTS APPLIED
+**************************************************************/
 
 let selectedManager="";
 let selectedTeam="";
@@ -1297,17 +1265,17 @@ let selectedColor="#facc15";
 
 let wheelRotation=0;
 let spinning=false;
+
 let audioContext=null;
-let tickTimer=null;
+let masterGain=null;
+let ambientGain=null;
+let ambientNodes=[];
+
+let lastSliceIndex=null;
+let lastLateJackpotSlice=null;
 
 /* ============================================================
-   PRIZES / ADVANTAGES
-
-   Proposed prototype weighting:
-   Grand prizes: 2 each.
-   Competitive advantages: remainder.
-
-   Visual slices remain equal.
+   WHEEL ITEMS
 ============================================================ */
 
 const ITEMS=[
@@ -1318,6 +1286,7 @@ result:"$25 BARNES & NOBLE",
 note:"The weekly champion has somehow converted fantasy football into actual bookstore money.",
 weight:2,
 grand:true,
+sound:"jackpot",
 icon:"📚",
 accent:"#ffd700"
 },
@@ -1328,6 +1297,7 @@ result:"$25 7 BREW",
 note:"The caffeine department has been notified. This victory now has a beverage budget.",
 weight:2,
 grand:true,
+sound:"jackpot",
 icon:"🏆",
 accent:"#ffd700"
 },
@@ -1337,6 +1307,7 @@ label:"Double Flex",
 result:"DOUBLE FLEX",
 note:"Start a second FLEX next week. Somewhere, competitive balance just burst into flames.",
 weight:10,
+sound:"double",
 icon:"⚡",
 accent:"#18a8ff"
 },
@@ -1346,6 +1317,7 @@ label:"Bench Boost",
 result:"BENCH BOOST",
 note:"One eligible bench player's points may count next week under the final league rules.",
 weight:10,
+sound:"boost",
 icon:"🚀",
 accent:"#22c55e"
 },
@@ -1355,6 +1327,7 @@ label:"Oracle Swap",
 result:"ORACLE SWAP",
 note:"The Oracle receives authority to optimize one legal starter/bench decision before kickoff.",
 weight:10,
+sound:"oracle",
 icon:"🔮",
 accent:"#9c4dff"
 },
@@ -1364,6 +1337,7 @@ label:"Viking Raid",
 result:"VIKING RAID",
 note:"The champion earns a special Vikings roster advantage. Valhalla has apparently joined the rules committee.",
 weight:9,
+sound:"viking",
 icon:"⚔️",
 accent:"#9c4dff"
 },
@@ -1373,6 +1347,7 @@ label:"First Pick",
 result:"FIRST PICK",
 note:"You move to the front of the line whenever next week's roster-selection priority matters.",
 weight:10,
+sound:"first",
 icon:"☝️",
 accent:"#18a8ff"
 },
@@ -1382,6 +1357,7 @@ label:"Insurance",
 result:"INSURANCE POLICY",
 note:"You receive the approved injury-protection advantage for next week's games.",
 weight:10,
+sound:"shield",
 icon:"🛡️",
 accent:"#22c55e"
 },
@@ -1391,6 +1367,7 @@ label:"Captain",
 result:"CAPTAIN BONUS",
 note:"Designate one eligible starter for the approved Captain scoring bonus.",
 weight:9,
+sound:"captain",
 icon:"⭐",
 accent:"#facc15"
 },
@@ -1400,6 +1377,7 @@ label:"Shield",
 result:"PENALTY SHIELD",
 note:"You earn protection against a future Loser's Wheel consequence under the final rules.",
 weight:9,
+sound:"shield",
 icon:"🛡️",
 accent:"#16d5d1"
 },
@@ -1409,6 +1387,7 @@ label:"Roster Raid",
 result:"ROSTER RAID",
 note:"You earn the right to raid one eligible rival bench player under next week's roster rules.",
 weight:9,
+sound:"raid",
 icon:"🚨",
 accent:"#ff4b4b"
 },
@@ -1418,6 +1397,7 @@ label:"FA Upgrade",
 result:"FREE AGENT UPGRADE",
 note:"Replace one eligible player on your generated roster before the week begins.",
 weight:10,
+sound:"upgrade",
 icon:"⬆️",
 accent:"#16d5d1"
 }
@@ -1440,6 +1420,847 @@ const COLORS=[
 ];
 
 /* ============================================================
+   AUDIO ENGINE
+============================================================ */
+
+function initAudio(){
+
+if(audioContext){
+
+if(audioContext.state==="suspended"){
+audioContext.resume();
+}
+
+return;
+}
+
+const AudioCtx=
+window.AudioContext||
+window.webkitAudioContext;
+
+if(!AudioCtx){
+return;
+}
+
+audioContext=new AudioCtx();
+
+masterGain=audioContext.createGain();
+masterGain.gain.value=.82;
+masterGain.connect(audioContext.destination);
+
+ambientGain=audioContext.createGain();
+ambientGain.gain.value=.0001;
+ambientGain.connect(masterGain);
+
+}
+
+/* ------------------------------------------------------------
+   BASIC OSCILLATOR
+------------------------------------------------------------ */
+
+function tone(
+frequency,
+duration,
+type=".sine",
+volume=.05,
+delay=0,
+endFrequency=null
+){
+
+if(!audioContext)return;
+
+const start=audioContext.currentTime+delay;
+
+const oscillator=audioContext.createOscillator();
+const gain=audioContext.createGain();
+
+oscillator.type=
+type===".sine"
+?"sine"
+:type;
+
+oscillator.frequency.setValueAtTime(
+Math.max(20,frequency),
+start
+);
+
+if(endFrequency!==null){
+
+oscillator.frequency.exponentialRampToValueAtTime(
+Math.max(20,endFrequency),
+start+duration
+);
+
+}
+
+gain.gain.setValueAtTime(.0001,start);
+
+gain.gain.exponentialRampToValueAtTime(
+Math.max(.0002,volume),
+start+.008
+);
+
+gain.gain.exponentialRampToValueAtTime(
+.0001,
+start+duration
+);
+
+oscillator.connect(gain);
+gain.connect(masterGain);
+
+oscillator.start(start);
+oscillator.stop(start+duration+.05);
+
+}
+
+/* ------------------------------------------------------------
+   NOISE
+------------------------------------------------------------ */
+
+function noiseBurst(
+duration=.2,
+volume=.04,
+delay=0,
+filterFrequency=1000
+){
+
+if(!audioContext)return;
+
+const sampleRate=audioContext.sampleRate;
+
+const buffer=
+audioContext.createBuffer(
+1,
+Math.ceil(sampleRate*duration),
+sampleRate
+);
+
+const data=buffer.getChannelData(0);
+
+for(let i=0;i<data.length;i++){
+
+data[i]=
+(Math.random()*2-1)*
+(1-i/data.length);
+
+}
+
+const source=audioContext.createBufferSource();
+source.buffer=buffer;
+
+const filter=audioContext.createBiquadFilter();
+filter.type="lowpass";
+filter.frequency.value=filterFrequency;
+
+const gain=audioContext.createGain();
+
+const start=audioContext.currentTime+delay;
+
+gain.gain.setValueAtTime(.0001,start);
+
+gain.gain.exponentialRampToValueAtTime(
+volume,
+start+.01
+);
+
+gain.gain.exponentialRampToValueAtTime(
+.0001,
+start+duration
+);
+
+source.connect(filter);
+filter.connect(gain);
+gain.connect(masterGain);
+
+source.start(start);
+
+}
+
+/* ------------------------------------------------------------
+   AMBIENT ARENA
+------------------------------------------------------------ */
+
+function startArenaAmbience(){
+
+if(!audioContext)return;
+
+stopArenaAmbience();
+
+const oscillator1=
+audioContext.createOscillator();
+
+const oscillator2=
+audioContext.createOscillator();
+
+const gain1=
+audioContext.createGain();
+
+const gain2=
+audioContext.createGain();
+
+oscillator1.type="sine";
+oscillator1.frequency.value=48;
+
+oscillator2.type="sine";
+oscillator2.frequency.value=73;
+
+gain1.gain.value=.035;
+gain2.gain.value=.018;
+
+oscillator1.connect(gain1);
+oscillator2.connect(gain2);
+
+gain1.connect(ambientGain);
+gain2.connect(ambientGain);
+
+oscillator1.start();
+oscillator2.start();
+
+ambientNodes=[
+oscillator1,
+oscillator2
+];
+
+ambientGain.gain.cancelScheduledValues(
+audioContext.currentTime
+);
+
+ambientGain.gain.setValueAtTime(
+.0001,
+audioContext.currentTime
+);
+
+ambientGain.gain.exponentialRampToValueAtTime(
+.18,
+audioContext.currentTime+2
+);
+
+}
+
+function stopArenaAmbience(){
+
+if(!audioContext)return;
+
+ambientNodes.forEach(function(node){
+
+try{
+node.stop();
+}catch(e){}
+
+});
+
+ambientNodes=[];
+
+}
+
+function duckAmbience(){
+
+if(!audioContext)return;
+
+ambientGain.gain.cancelScheduledValues(
+audioContext.currentTime
+);
+
+ambientGain.gain.setTargetAtTime(
+.025,
+audioContext.currentTime,
+.08
+);
+
+}
+
+function restoreAmbience(){
+
+if(!audioContext)return;
+
+ambientGain.gain.cancelScheduledValues(
+audioContext.currentTime
+);
+
+ambientGain.gain.setTargetAtTime(
+.18,
+audioContext.currentTime,
+.4
+);
+
+}
+
+/* ============================================================
+   BIG SOUND EFFECTS
+============================================================ */
+
+function playPowerUp(){
+
+tone(45,.9,"sine",.16,0,95);
+tone(90,.7,"sawtooth",.035,.15,280);
+tone(180,.6,"square",.018,.45,650);
+
+noiseBurst(
+.75,
+.045,
+.05,
+500
+);
+
+setTimeout(function(){
+playStadiumHit();
+},650);
+
+}
+
+function playStadiumHit(){
+
+tone(52,.5,"sine",.18,0,34);
+tone(104,.25,"square",.035,0);
+noiseBurst(.32,.075,0,700);
+
+}
+
+function playMechanicalLock(){
+
+tone(190,.07,"square",.055,0);
+tone(120,.08,"square",.065,.1);
+tone(75,.16,"sine",.11,.2);
+
+noiseBurst(
+.12,
+.035,
+.18,
+1000
+);
+
+}
+
+function playArenaDoors(){
+
+playMechanicalLock();
+
+tone(58,1.15,"sine",.16,.28,34);
+tone(110,.9,"sawtooth",.025,.3,55);
+
+noiseBurst(
+1.15,
+.065,
+.3,
+420
+);
+
+tone(45,.5,"sine",.19,1.25,30);
+
+noiseBurst(
+.28,
+.08,
+1.23,
+700
+);
+
+}
+
+function playLeverKaChunk(){
+
+tone(165,.055,"square",.08,0);
+tone(90,.1,"square",.1,.065);
+tone(48,.28,"sine",.19,.12,32);
+
+noiseBurst(
+.18,
+.09,
+.04,
+850
+);
+
+}
+
+function playLaunchWhoosh(){
+
+noiseBurst(
+.65,
+.11,
+0,
+2200
+);
+
+tone(
+110,
+.65,
+"sawtooth",
+.035,
+0,
+780
+);
+
+tone(
+55,
+.7,
+"sine",
+.14,
+0,
+130
+);
+
+}
+
+function playCountdown(number){
+
+if(number===3){
+
+tone(260,.18,"square",.065,0);
+tone(65,.24,"sine",.09,0);
+
+}
+
+else if(number===2){
+
+tone(220,.21,"square",.075,0);
+tone(55,.27,"sine",.11,0);
+
+}
+
+else if(number===1){
+
+tone(180,.25,"square",.085,0);
+tone(45,.32,"sine",.14,0);
+
+}
+
+else{
+
+tone(620,.18,"square",.075,0);
+tone(930,.25,"square",.055,.07);
+playStadiumHit();
+
+}
+
+}
+
+/* ============================================================
+   PHYSICAL WHEEL CLACK
+============================================================ */
+
+function playPointerClack(progress){
+
+if(!audioContext)return;
+
+const late=
+Math.max(0,progress-.55)/.45;
+
+const pitch=
+900-
+late*350+
+randomUnit()*80;
+
+const volume=
+.025+
+late*.04;
+
+tone(
+pitch,
+.025,
+"square",
+volume,
+0
+);
+
+tone(
+pitch*.48,
+.035,
+"sine",
+volume*.75,
+0
+);
+
+noiseBurst(
+.025,
+volume*.65,
+0,
+2600
+);
+
+const pointer=
+document.getElementById("pointer");
+
+pointer.classList.remove("hit");
+
+void pointer.offsetWidth;
+
+pointer.classList.add("hit");
+
+}
+
+/* ============================================================
+   JACKPOT DANGER DING
+============================================================ */
+
+function playJackpotDanger(){
+
+tone(1047,.16,"sine",.075,0);
+tone(1568,.24,"sine",.055,.08);
+
+}
+
+/* ============================================================
+   CROWD
+============================================================ */
+
+function playCrowdBurst(strength=1){
+
+if(!audioContext)return;
+
+for(let i=0;i<28;i++){
+
+tone(
+100+randomUnit()*600,
+.15+randomUnit()*.5,
+"sawtooth",
+.0028*strength,
+randomUnit()*.7
+);
+
+}
+
+noiseBurst(
+.8,
+.028*strength,
+0,
+1700
+);
+
+}
+
+/* ============================================================
+   TEAM-SPECIFIC ENTRANCES
+============================================================ */
+
+function playTeamEntrance(manager){
+
+playStadiumHit();
+
+if(manager==="Brad"){
+
+tone(110,.18,"square",.07,.15);
+tone(165,.18,"square",.065,.28);
+tone(220,.38,"square",.07,.42);
+
+noiseBurst(.4,.055,.18,1200);
+
+}
+
+else if(manager==="Maria"){
+
+tone(523,.18,"triangle",.06,.12);
+tone(659,.18,"triangle",.06,.28);
+tone(784,.18,"triangle",.06,.44);
+tone(1047,.5,"triangle",.065,.60);
+
+}
+
+else if(manager==="Mackenzie"){
+
+for(let i=0;i<5;i++){
+
+tone(
+420+i*75,
+.16,
+"sawtooth",
+.045,
+.12+i*.11,
+650+i*90
+);
+
+}
+
+noiseBurst(.55,.05,.12,1900);
+
+}
+
+else if(manager==="Madison"){
+
+tone(880,.08,"sine",.06,.12);
+tone(880,.08,"sine",.06,.34);
+tone(880,.08,"sine",.06,.56);
+
+tone(
+90,
+.45,
+"sine",
+.16,
+.78,
+45
+);
+
+noiseBurst(.35,.06,.8,900);
+
+}
+
+setTimeout(function(){
+
+playCrowdBurst(1.2);
+
+},700);
+
+}
+
+/* ============================================================
+   RESULT SOUNDS
+============================================================ */
+
+function playNormalVictory(){
+
+playStadiumHit();
+
+tone(392,.2,"square",.05,.12);
+tone(523,.2,"square",.055,.26);
+tone(659,.2,"square",.055,.40);
+tone(784,.55,"square",.065,.54);
+
+playCrowdBurst(1.3);
+
+}
+
+function playDoubleFlex(){
+
+playStadiumHit();
+
+setTimeout(function(){
+playStadiumHit();
+},330);
+
+tone(523,.3,"square",.05,.6);
+tone(784,.5,"square",.055,.78);
+
+}
+
+function playBenchBoost(){
+
+tone(180,.6,"sawtooth",.035,0,900);
+
+tone(523,.15,"square",.05,.42);
+tone(659,.15,"square",.05,.54);
+tone(784,.4,"square",.06,.66);
+
+playCrowdBurst();
+
+}
+
+function playOracleEffect(){
+
+tone(110,1.2,"sine",.08,0,220);
+tone(220,1.4,"sine",.04,.1,440);
+
+for(let i=0;i<8;i++){
+
+tone(
+700+i*90,
+.28,
+"sine",
+.025,
+.3+i*.1
+);
+
+}
+
+}
+
+function playVikingHorn(){
+
+tone(110,1.1,"sawtooth",.08,0,82);
+tone(165,1.1,"sawtooth",.045,.04,110);
+tone(55,1.2,"sine",.14,0,42);
+
+setTimeout(function(){
+playCrowdBurst(1.5);
+},700);
+
+}
+
+function playFirstPick(){
+
+tone(392,.14,"square",.05,0);
+tone(523,.14,"square",.055,.12);
+tone(659,.14,"square",.06,.24);
+tone(1047,.45,"square",.065,.38);
+
+}
+
+function playShield(){
+
+tone(95,.28,"sine",.16,0,45);
+
+noiseBurst(
+.16,
+.11,
+0,
+3500
+);
+
+tone(1200,.09,"square",.04,.03);
+
+}
+
+function playCaptain(){
+
+const notes=[
+261.6,
+329.6,
+392,
+523.3
+];
+
+notes.forEach(function(note,index){
+
+tone(
+note,
+.42,
+"sawtooth",
+.04,
+index*.16
+);
+
+tone(
+note/2,
+.42,
+"sine",
+.045,
+index*.16
+);
+
+});
+
+}
+
+function playRaidAlarm(){
+
+for(let i=0;i<7;i++){
+
+tone(
+i%2===0
+?720
+:520,
+.19,
+"square",
+.055,
+i*.2
+);
+
+}
+
+noiseBurst(
+1.3,
+.025,
+0,
+1200
+);
+
+}
+
+function playUpgrade(){
+
+tone(220,.7,"sawtooth",.035,0,880);
+
+tone(440,.15,"square",.04,.3);
+tone(660,.15,"square",.045,.46);
+tone(880,.4,"square",.055,.62);
+
+}
+
+/* ============================================================
+   JACKPOT — COMPLETELY UNREASONABLE
+============================================================ */
+
+function playJackpotSequence(){
+
+if(!audioContext)return;
+
+/* tiny suspense ding */
+
+tone(
+1047,
+.18,
+"sine",
+.06,
+0
+);
+
+tone(
+1568,
+.22,
+"sine",
+.06,
+.35
+);
+
+/* "oh shit" alarm */
+
+for(let i=0;i<10;i++){
+
+tone(
+i%2===0
+?880
+:660,
+.2,
+"square",
+.06,
+.75+i*.2
+);
+
+}
+
+/* casino bells climbing */
+
+const bells=[
+523,
+659,
+784,
+1047,
+1319,
+1568,
+2093
+];
+
+bells.forEach(function(note,index){
+
+tone(
+note,
+.35,
+"sine",
+.055,
+1.0+index*.13
+);
+
+});
+
+/* bass explosions */
+
+setTimeout(function(){
+playStadiumHit();
+},1100);
+
+setTimeout(function(){
+playStadiumHit();
+},1650);
+
+setTimeout(function(){
+playStadiumHit();
+},2200);
+
+/* victory fanfare */
+
+tone(523,.3,"square",.055,2.3);
+tone(659,.3,"square",.055,2.48);
+tone(784,.3,"square",.06,2.66);
+tone(1047,.8,"square",.07,2.86);
+
+setTimeout(function(){
+playCrowdBurst(2);
+},1200);
+
+setTimeout(function(){
+playCrowdBurst(2);
+},2400);
+
+}
+
+/* ============================================================
    INTRO
 ============================================================ */
 
@@ -1447,15 +2268,19 @@ function enterArena(){
 
 initAudio();
 
-playImpact();
+playPowerUp();
 
 document
 .getElementById("intro")
 .classList.add("hidden");
 
 setTimeout(function(){
-cameraFlashes(5);
-},500);
+
+cameraFlashes(6);
+
+startArenaAmbience();
+
+},700);
 
 }
 
@@ -1468,7 +2293,9 @@ function showScreen(id){
 document
 .querySelectorAll(".screen")
 .forEach(function(screen){
+
 screen.classList.remove("active");
+
 });
 
 document
@@ -1499,7 +2326,9 @@ button.dataset.team;
 selectedColor=
 button.dataset.color;
 
-playImpact();
+playTeamEntrance(
+selectedManager
+);
 
 showTeamEntrance();
 
@@ -1530,11 +2359,15 @@ selectedColor
 
 box.style.setProperty(
 "--team-glow",
-hexAlpha(selectedColor,.24)
+hexAlpha(
+selectedColor,
+.24
+)
 );
 
 manager.textContent=
-selectedManager+" HAS ENTERED THE BUILDING";
+selectedManager+
+" HAS ENTERED THE BUILDING";
 
 team.textContent=
 selectedTeam;
@@ -1565,17 +2398,19 @@ showScreen(
 
 cameraFlashes(12);
 
-playCrowdBurst();
-
 }
 
 /* ============================================================
-   OPEN WHEEL
+   OPEN ARENA
 ============================================================ */
 
 function openWheelArena(){
 
-playDoorBoom();
+duckAmbience();
+
+playArenaDoors();
+
+setTimeout(function(){
 
 showScreen(
 "wheel-screen"
@@ -1586,9 +2421,11 @@ document
 .textContent=
 oracleWelcome();
 
-setTimeout(function(){
-cameraFlashes(7);
-},400);
+cameraFlashes(8);
+
+restoreAmbience();
+
+},1250);
 
 }
 
@@ -1615,7 +2452,9 @@ selectedTeam+
 ];
 
 return lines[
-Math.floor(Math.random()*lines.length)
+Math.floor(
+randomUnit()*lines.length
+)
 ];
 
 }
@@ -1623,15 +2462,23 @@ Math.floor(Math.random()*lines.length)
 function oracleSpinLine(){
 
 const lines=[
+
 "The Oracle has lost control of the situation.",
+
 "This is exactly why normal families just play fantasy football.",
+
 "Somewhere, a league commissioner is regretting every decision that led here.",
+
 "Remember: the grand prizes are rare. Your screaming will not change mathematics.",
+
 "F4SN legal would like to clarify that F4SN does not have a legal department."
+
 ];
 
 return lines[
-Math.floor(Math.random()*lines.length)
+Math.floor(
+randomUnit()*lines.length
+)
 ];
 
 }
@@ -1642,14 +2489,20 @@ Math.floor(Math.random()*lines.length)
 
 function randomUnit(){
 
-if(window.crypto&&window.crypto.getRandomValues){
+if(
+window.crypto&&
+window.crypto.getRandomValues
+){
 
 const values=
 new Uint32Array(1);
 
-window.crypto.getRandomValues(values);
+window.crypto.getRandomValues(
+values
+);
 
-return values[0]/4294967296;
+return values[0]/
+4294967296;
 
 }
 
@@ -1661,18 +2514,28 @@ function weightedIndex(){
 
 const total=
 ITEMS.reduce(function(sum,item){
-return sum+item.weight;
+
+return sum+
+item.weight;
+
 },0);
 
 let roll=
 randomUnit()*total;
 
-for(let i=0;i<ITEMS.length;i++){
+for(
+let i=0;
+i<ITEMS.length;
+i++
+){
 
-roll-=ITEMS[i].weight;
+roll-=
+ITEMS[i].weight;
 
 if(roll<0){
+
 return i;
+
 }
 
 }
@@ -1703,17 +2566,29 @@ const radius=
 center-20;
 
 const slice=
-Math.PI*2/ITEMS.length;
+Math.PI*2/
+ITEMS.length;
 
-ctx.clearRect(0,0,size,size);
+ctx.clearRect(
+0,
+0,
+size,
+size
+);
 
 ctx.save();
 
-ctx.translate(center,center);
+ctx.translate(
+center,
+center
+);
 
-ctx.rotate(wheelRotation);
+ctx.rotate(
+wheelRotation
+);
 
-ITEMS.forEach(function(item,index){
+ITEMS.forEach(
+function(item,index){
 
 const start=
 index*slice-
@@ -1721,7 +2596,8 @@ Math.PI/2-
 slice/2;
 
 const end=
-start+slice;
+start+
+slice;
 
 const gradient=
 ctx.createRadialGradient(
@@ -1731,7 +2607,10 @@ ctx.createRadialGradient(
 
 gradient.addColorStop(
 0,
-lighten(COLORS[index],28)
+lighten(
+COLORS[index],
+28
+)
 );
 
 gradient.addColorStop(
@@ -1741,22 +2620,37 @@ COLORS[index]
 
 gradient.addColorStop(
 1,
-darken(COLORS[index],28)
+darken(
+COLORS[index],
+28
+)
 );
 
 ctx.beginPath();
-ctx.moveTo(0,0);
-ctx.arc(0,0,radius,start,end);
+
+ctx.moveTo(
+0,
+0
+);
+
+ctx.arc(
+0,
+0,
+radius,
+start,
+end
+);
+
 ctx.closePath();
 
-ctx.fillStyle=gradient;
+ctx.fillStyle=
+gradient;
+
 ctx.fill();
 
 ctx.lineWidth=7;
 ctx.strokeStyle="#05070b";
 ctx.stroke();
-
-/* metallic highlight */
 
 ctx.beginPath();
 
@@ -1775,14 +2669,15 @@ ctx.strokeStyle=
 
 ctx.stroke();
 
-/* text */
-
 ctx.save();
 
 const middle=
-start+slice/2;
+start+
+slice/2;
 
-ctx.rotate(middle);
+ctx.rotate(
+middle
+);
 
 ctx.translate(
 radius*.68,
@@ -1803,8 +2698,11 @@ item.grand
 ?"1000 31px Arial"
 :"1000 28px Arial";
 
-ctx.textAlign="center";
-ctx.textBaseline="middle";
+ctx.textAlign=
+"center";
+
+ctx.textBaseline=
+"middle";
 
 ctx.shadowColor=
 "rgba(0,0,0,.75)";
@@ -1824,18 +2722,18 @@ ctx.restore();
 
 });
 
-/* outer ring */
-
 ctx.beginPath();
 
 ctx.arc(
-0,0,radius,0,Math.PI*2
+0,
+0,
+radius,
+0,
+Math.PI*2
 );
 
 ctx.lineWidth=16;
-
 ctx.strokeStyle="#facc15";
-
 ctx.stroke();
 
 ctx.restore();
@@ -1843,7 +2741,7 @@ ctx.restore();
 }
 
 /* ============================================================
-   TEXT WRAP
+   WRAP TEXT
 ============================================================ */
 
 function wrapText(
@@ -1870,11 +2768,13 @@ line
 :word;
 
 if(
-ctx.measureText(test).width>maxWidth&&
+ctx.measureText(test).width>
+maxWidth&&
 line
 ){
 
 lines.push(line);
+
 line=word;
 
 }else{
@@ -1890,14 +2790,17 @@ lines.push(line);
 }
 
 const total=
-(lines.length-1)*lineHeight;
+(lines.length-1)*
+lineHeight;
 
-lines.forEach(function(value,index){
+lines.forEach(
+function(value,index){
 
 ctx.fillText(
 value,
 x,
-y-total/2+
+y-
+total/2+
 index*lineHeight
 );
 
@@ -1906,7 +2809,7 @@ index*lineHeight
 }
 
 /* ============================================================
-   SPIN CEREMONY
+   BEGIN SPIN
 ============================================================ */
 
 function beginSpin(){
@@ -1917,31 +2820,46 @@ spinning=true;
 
 initAudio();
 
+duckAmbience();
+
+playLeverKaChunk();
+
 const button=
-document.getElementById("spin-button");
+document.getElementById(
+"spin-button"
+);
 
 button.disabled=true;
 
 document
-.getElementById("oracle-message")
+.getElementById(
+"oracle-message"
+)
 .textContent=
 oracleSpinLine();
 
 setResult(
 "F4SN WHEEL CONTROL",
-"LOCKING IN THE CHAMPION...",
-"League management is pretending this is a regulated process."
+"CHAMPION LOCKED IN",
+"League management has pulled the lever. There is no adult supervision remaining."
 );
 
-runCountdown(3,function(){
+setTimeout(function(){
 
-playImpact();
+runCountdown(
+3,
+function(){
 
-cameraFlashes(8);
+playLaunchWhoosh();
+
+cameraFlashes(10);
 
 startActualSpin();
 
-});
+}
+);
+
+},450);
 
 }
 
@@ -1949,39 +2867,61 @@ startActualSpin();
    COUNTDOWN
 ============================================================ */
 
-function runCountdown(number,done){
+function runCountdown(
+number,
+done
+){
 
 const overlay=
-document.getElementById("countdown");
+document.getElementById(
+"countdown"
+);
 
 const display=
-document.getElementById("countdown-number");
+document.getElementById(
+"countdown-number"
+);
 
-overlay.classList.add("show");
+overlay.classList.add(
+"show"
+);
 
 let current=number;
 
 function next(){
 
-display.style.animation="none";
+display.style.animation=
+"none";
+
 void display.offsetWidth;
-display.style.animation="countPop .7s ease";
 
-display.textContent=current;
+display.style.animation=
+"countPop .7s ease";
 
-playCountdownBeep(current);
+display.textContent=
+current;
+
+playCountdown(
+current
+);
 
 if(current===0){
 
-display.textContent="SPIN!";
+display.textContent=
+"SPIN!";
 
-setTimeout(function(){
+setTimeout(
+function(){
 
-overlay.classList.remove("show");
+overlay.classList.remove(
+"show"
+);
 
 done();
 
-},650);
+},
+650
+);
 
 return;
 
@@ -1989,7 +2929,10 @@ return;
 
 current--;
 
-setTimeout(next,750);
+setTimeout(
+next,
+750
+);
 
 }
 
@@ -1998,7 +2941,7 @@ next();
 }
 
 /* ============================================================
-   ACTUAL SPIN
+   SPIN
 ============================================================ */
 
 function startActualSpin(){
@@ -2010,7 +2953,8 @@ const item=
 ITEMS[selected];
 
 const slice=
-Math.PI*2/ITEMS.length;
+Math.PI*2/
+ITEMS.length;
 
 const current=
 normalizeAngle(
@@ -2026,12 +2970,17 @@ let delta=
 desired-current;
 
 if(delta<0){
-delta+=Math.PI*2;
+
+delta+=
+Math.PI*2;
+
 }
 
 const fullSpins=
 9+
-Math.floor(randomUnit()*4);
+Math.floor(
+randomUnit()*4
+);
 
 const total=
 fullSpins*
@@ -2042,15 +2991,17 @@ const start=
 wheelRotation;
 
 const finish=
-start+total;
+start+
+total;
 
 const duration=
-7800;
+8500;
 
 const startTime=
 performance.now();
 
-startTicking();
+lastSliceIndex=null;
+lastLateJackpotSlice=null;
 
 function animate(now){
 
@@ -2063,12 +3014,9 @@ elapsed/duration,
 1
 );
 
-/*
- Dramatic deceleration.
-*/
-
 const eased=
-1-Math.pow(
+1-
+Math.pow(
 1-progress,
 5
 );
@@ -2080,15 +3028,63 @@ total*eased;
 drawWheel();
 
 /*
- Camera flashes early in the spin.
+ Determine which visual slice is currently
+ passing the pointer.
+*/
+
+const pointerIndex=
+getPointerSliceIndex(
+wheelRotation
+);
+
+if(
+pointerIndex!==
+lastSliceIndex
+){
+
+lastSliceIndex=
+pointerIndex;
+
+playPointerClack(
+progress
+);
+
+/*
+ Late-spin jackpot tease.
+ Only sound when a grand-prize slice passes
+ the pointer late enough for everybody to
+ start screaming.
 */
 
 if(
-progress>.12&&
-progress<.45&&
-Math.random()<.018
+progress>.72&&
+ITEMS[pointerIndex]&&
+ITEMS[pointerIndex].grand&&
+pointerIndex!==
+lastLateJackpotSlice
 ){
+
+lastLateJackpotSlice=
+pointerIndex;
+
+playJackpotDanger();
+
+}
+
+}
+
+/*
+ Camera flashes during fast section.
+*/
+
+if(
+progress>.1&&
+progress<.45&&
+randomUnit()<.015
+){
+
 cameraFlashes(1);
+
 }
 
 if(progress<1){
@@ -2106,15 +3102,20 @@ finish;
 
 drawWheel();
 
-stopTicking();
+/*
+ Dramatic silence after the wheel lands.
+*/
 
-setTimeout(function(){
+setTimeout(
+function(){
 
 finishSpin(
 item
 );
 
-},650);
+},
+500
+);
 
 }
 
@@ -2125,7 +3126,32 @@ animate
 }
 
 /* ============================================================
-   FINISH SPIN
+   POINTER POSITION
+============================================================ */
+
+function getPointerSliceIndex(
+rotation
+){
+
+const slice=
+Math.PI*2/
+ITEMS.length;
+
+const angle=
+normalizeAngle(
+-rotation+
+slice/2
+);
+
+return Math.floor(
+angle/slice
+)%
+ITEMS.length;
+
+}
+
+/* ============================================================
+   FINISH
 ============================================================ */
 
 function finishSpin(item){
@@ -2133,7 +3159,9 @@ function finishSpin(item){
 spinning=false;
 
 const button=
-document.getElementById("spin-button");
+document.getElementById(
+"spin-button"
+);
 
 button.disabled=false;
 
@@ -2165,27 +3193,97 @@ item
 }
 
 /* ============================================================
-   ADVANTAGE TAKEOVER
+   ADVANTAGE
 ============================================================ */
 
 function launchAdvantage(item){
 
-playWinSting();
+playOutcomeSound(
+item.sound
+);
 
-launchConfetti(80);
+launchConfetti(
+95
+);
 
-showTakeover(
-{
-alert:"F4SN WINNER'S ADVANTAGE",
-icon:item.icon,
-title:item.result,
+showTakeover({
+
+alert:
+"F4SN WINNER'S ADVANTAGE",
+
+icon:
+item.icon,
+
+title:
+item.result,
+
 description:
 item.note+
 " Effective next week once the final league rules are connected.",
-accent:item.accent,
+
+accent:
+item.accent,
+
 jackpot:false
+
+});
+
+setTimeout(function(){
+
+restoreAmbience();
+
+},1700);
+
 }
-);
+
+/* ============================================================
+   OUTCOME SOUND ROUTER
+============================================================ */
+
+function playOutcomeSound(sound){
+
+switch(sound){
+
+case "double":
+playDoubleFlex();
+break;
+
+case "boost":
+playBenchBoost();
+break;
+
+case "oracle":
+playOracleEffect();
+break;
+
+case "viking":
+playVikingHorn();
+break;
+
+case "first":
+playFirstPick();
+break;
+
+case "shield":
+playShield();
+break;
+
+case "captain":
+playCaptain();
+break;
+
+case "raid":
+playRaidAlarm();
+break;
+
+case "upgrade":
+playUpgrade();
+break;
+
+default:
+playNormalVictory();
+
+}
 
 }
 
@@ -2195,32 +3293,57 @@ jackpot:false
 
 function launchGrandPrize(item){
 
-playJackpotAlarm();
-
-document.body.classList.add("shake");
+document.body.classList.add(
+"shake"
+);
 
 setTimeout(function(){
-document.body.classList.remove("shake");
-},900);
 
-cameraFlashes(25);
+document.body.classList.remove(
+"shake"
+);
 
-launchConfetti(260);
+},1100);
 
-showTakeover(
-{
-alert:"🚨 F4SN JACKPOT ALERT 🚨",
-icon:"🏆",
-title:"JACKPOT",
+cameraFlashes(
+30
+);
+
+launchConfetti(
+300
+);
+
+playJackpotSequence();
+
+showTakeover({
+
+alert:
+"🚨 F4SN JACKPOT ALERT 🚨",
+
+icon:
+item.icon,
+
+title:
+"JACKPOT",
+
 description:
 item.result+
 " — "+
 item.note+
 " F4SN is treating this $25 transaction like somebody just broke the bank at Caesars Palace.",
-accent:"#ffd700",
+
+accent:
+"#ffd700",
+
 jackpot:true
-}
-);
+
+});
+
+setTimeout(function(){
+
+restoreAmbience();
+
+},3600);
 
 }
 
@@ -2231,10 +3354,14 @@ jackpot:true
 function showTakeover(config){
 
 const overlay=
-document.getElementById("takeover");
+document.getElementById(
+"takeover"
+);
 
 const card=
-document.getElementById("takeover-card");
+document.getElementById(
+"takeover-card"
+);
 
 overlay.className=
 config.jackpot
@@ -2248,31 +3375,44 @@ config.accent
 
 card.style.setProperty(
 "--glow",
-hexAlpha(config.accent,.48)
+hexAlpha(
+config.accent,
+.48
+)
 );
 
 document
-.getElementById("takeover-alert")
+.getElementById(
+"takeover-alert"
+)
 .textContent=
 config.alert;
 
 document
-.getElementById("takeover-icon")
+.getElementById(
+"takeover-icon"
+)
 .textContent=
 config.icon;
 
 document
-.getElementById("takeover-title")
+.getElementById(
+"takeover-title"
+)
 .textContent=
 config.title;
 
 document
-.getElementById("takeover-description")
+.getElementById(
+"takeover-description"
+)
 .textContent=
 config.description;
 
 document
-.getElementById("takeover-manager")
+.getElementById(
+"takeover-manager"
+)
 .textContent=
 selectedManager+
 " • "+
@@ -2284,7 +3424,9 @@ selectedTeam+
 function closeTakeover(){
 
 document
-.getElementById("takeover")
+.getElementById(
+"takeover"
+)
 .className="";
 
 }
@@ -2300,7 +3442,9 @@ note
 ){
 
 const box=
-document.getElementById("result-box");
+document.getElementById(
+"result-box"
+);
 
 box.innerHTML=
 '<div class="result-label">'+
@@ -2322,29 +3466,51 @@ safeText(note)+
 function cameraFlashes(amount){
 
 const layer=
-document.getElementById("fx-layer");
+document.getElementById(
+"fx-layer"
+);
 
-for(let i=0;i<amount;i++){
+for(
+let i=0;
+i<amount;
+i++
+){
 
-setTimeout(function(){
+setTimeout(
+function(){
 
 const flash=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 flash.className=
 "flash fire";
 
 flash.style.left=
-(5+randomUnit()*90)+"%";
+(
+5+
+randomUnit()*90
+)+"%";
 
 flash.style.top=
-(8+randomUnit()*70)+"%";
+(
+8+
+randomUnit()*70
+)+"%";
 
-layer.appendChild(flash);
+layer.appendChild(
+flash
+);
 
-setTimeout(function(){
+setTimeout(
+function(){
+
 flash.remove();
-},700);
+
+},
+700
+);
 
 },
 i*90+
@@ -2371,224 +3537,57 @@ const colors=[
 "#ff9f00"
 ];
 
-for(let i=0;i<amount;i++){
+for(
+let i=0;
+i<amount;
+i++
+){
 
 const piece=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 piece.className=
 "confetti";
 
 piece.style.left=
-randomUnit()*100+"vw";
+randomUnit()*100+
+"vw";
 
 piece.style.background=
 colors[
 Math.floor(
-randomUnit()*colors.length
+randomUnit()*
+colors.length
 )
 ];
 
 piece.style.animationDuration=
-(2.6+randomUnit()*3.5)+"s";
+(
+2.6+
+randomUnit()*3.5
+)+"s";
 
 piece.style.animationDelay=
-(randomUnit()*.9)+"s";
+(
+randomUnit()*.9
+)+"s";
 
-document.body.appendChild(piece);
+document.body.appendChild(
+piece
+);
 
-setTimeout(function(){
+setTimeout(
+function(){
+
 piece.remove();
-},7500);
 
-}
-
-}
-
-/* ============================================================
-   AUDIO ENGINE
-
-   All sound is synthesized in the browser.
-   No external audio files required.
-============================================================ */
-
-function initAudio(){
-
-if(audioContext){
-return;
-}
-
-const AudioCtx=
-window.AudioContext||
-window.webkitAudioContext;
-
-if(!AudioCtx){
-return;
-}
-
-audioContext=
-new AudioCtx();
-
-}
-
-function tone(
-frequency,
-duration,
-type,
-volume,
-delay
-){
-
-if(!audioContext){
-return;
-}
-
-const start=
-audioContext.currentTime+
-(delay||0);
-
-const oscillator=
-audioContext.createOscillator();
-
-const gain=
-audioContext.createGain();
-
-oscillator.type=
-type||"sine";
-
-oscillator.frequency.setValueAtTime(
-frequency,
-start
-);
-
-gain.gain.setValueAtTime(
-0.0001,
-start
-);
-
-gain.gain.exponentialRampToValueAtTime(
-volume||.05,
-start+.015
-);
-
-gain.gain.exponentialRampToValueAtTime(
-0.0001,
-start+duration
-);
-
-oscillator.connect(gain);
-gain.connect(audioContext.destination);
-
-oscillator.start(start);
-oscillator.stop(start+duration+.05);
-
-}
-
-function playImpact(){
-
-tone(90,.35,"sine",.15,0);
-tone(180,.18,"square",.04,.02);
-
-}
-
-function playDoorBoom(){
-
-tone(65,.55,"sine",.18,0);
-tone(95,.45,"sawtooth",.035,.04);
-tone(130,.25,"square",.025,.08);
-
-}
-
-function playCountdownBeep(number){
-
-const freq=
-number===0
-?880
-:420+
-number*60;
-
-tone(freq,.16,"square",.055,0);
-
-}
-
-function startTicking(){
-
-stopTicking();
-
-tickTimer=
-setInterval(function(){
-
-tone(
-1200,
-.035,
-"square",
-.018,
-0
-);
-
-},115);
-
-}
-
-function stopTicking(){
-
-if(tickTimer){
-
-clearInterval(tickTimer);
-
-tickTimer=null;
-
-}
-
-}
-
-function playWinSting(){
-
-tone(523,.25,"square",.05,0);
-tone(659,.25,"square",.05,.13);
-tone(784,.3,"square",.05,.26);
-tone(1047,.55,"square",.055,.4);
-
-}
-
-function playCrowdBurst(){
-
-if(!audioContext)return;
-
-for(let i=0;i<14;i++){
-
-tone(
-120+
-randomUnit()*450,
-.12+
-randomUnit()*.3,
-"sawtooth",
-.004,
-randomUnit()*.5
+},
+7500
 );
 
 }
-
-}
-
-function playJackpotAlarm(){
-
-for(let i=0;i<6;i++){
-
-tone(
-i%2===0
-?880
-:660,
-.22,
-"square",
-.065,
-i*.23
-);
-
-}
-
-tone(1047,.8,"sine",.07,1.4);
-tone(1319,.8,"sine",.06,1.55);
 
 }
 
@@ -2609,7 +3608,9 @@ return (
 
 function safeText(value){
 
-return String(value??"")
+return String(
+value??""
+)
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
@@ -2621,10 +3622,14 @@ return String(value??"")
 function hexToRgb(hex){
 
 const clean=
-String(hex).replace("#","");
+String(hex)
+.replace("#","");
 
 const value=
-parseInt(clean,16);
+parseInt(
+clean,
+16
+);
 
 return{
 r:(value>>16)&255,
@@ -2634,7 +3639,10 @@ b:value&255
 
 }
 
-function hexAlpha(hex,alpha){
+function hexAlpha(
+hex,
+alpha
+){
 
 const rgb=
 hexToRgb(hex);
@@ -2648,7 +3656,11 @@ alpha+
 
 }
 
-function rgbToHex(r,g,b){
+function rgbToHex(
+r,
+g,
+b
+){
 
 return "#"+
 [r,g,b]
@@ -2662,35 +3674,61 @@ Math.round(value)
 )
 )
 .toString(16)
-.padStart(2,"0");
+.padStart(
+2,
+"0"
+);
 
 })
 .join("");
 
 }
 
-function lighten(hex,amount){
+function lighten(
+hex,
+amount
+){
 
 const rgb=
 hexToRgb(hex);
 
 return rgbToHex(
-rgb.r+(255-rgb.r)*amount/100,
-rgb.g+(255-rgb.g)*amount/100,
-rgb.b+(255-rgb.b)*amount/100
+
+rgb.r+
+(255-rgb.r)*
+amount/100,
+
+rgb.g+
+(255-rgb.g)*
+amount/100,
+
+rgb.b+
+(255-rgb.b)*
+amount/100
+
 );
 
 }
 
-function darken(hex,amount){
+function darken(
+hex,
+amount
+){
 
 const rgb=
 hexToRgb(hex);
 
 return rgbToHex(
-rgb.r*(1-amount/100),
-rgb.g*(1-amount/100),
-rgb.b*(1-amount/100)
+
+rgb.r*
+(1-amount/100),
+
+rgb.g*
+(1-amount/100),
+
+rgb.b*
+(1-amount/100)
+
 );
 
 }
