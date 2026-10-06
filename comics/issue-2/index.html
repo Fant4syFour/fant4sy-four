@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>F4SN Comics — Issue #2: The Oracle Goes to Court</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, #18253c 0%, #0b1220 38%, #05080e 100%);
+      color: #ffffff;
+    }
+
+    /* =========================================================
+       TOP BAR
+    ========================================================= */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 20px;
+      background: rgba(5, 8, 14, 0.96);
+      border-bottom: 2px solid #27364e;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: #ffd21f;
+      transform: translateX(-2px);
+    }
+
+    .issue-label {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffd21f;
+    }
+
+    .page-counter {
+      min-width: 92px;
+      text-align: right;
+      font-size: 14px;
+      font-weight: 800;
+      color: #c8d3e3;
+    }
+
+    /* =========================================================
+       PROGRESS BAR
+    ========================================================= */
+
+    .progress-track {
+      position: sticky;
+      top: 54px;
+      z-index: 99;
+      width: 100%;
+      height: 5px;
+      background: #111a28;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ffd21f, #ff7a00, #ff3131);
+      transition: width 0.3s ease;
+    }
+
+    /* =========================================================
+       READER
+    ========================================================= */
+
+    .reader-shell {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      padding: 28px 18px 42px;
+    }
+
+    .comic-stage {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 190px);
+    }
+
+    .comic-frame {
+      position: relative;
+      width: min(100%, 860px);
+      margin: 0 auto;
+      background: #080c13;
+      border: 3px solid #26354d;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 22px 60px rgba(0, 0, 0, 0.65),
+        0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    .comic-page {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: calc(100vh - 190px);
+      object-fit: contain;
+      margin: 0 auto;
+      background: #05070a;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* =========================================================
+       PAGE TRANSITION
+    ========================================================= */
+
+    .comic-page.changing {
+      opacity: 0.25;
+      transform: scale(0.985);
+    }
+
+    .comic-page {
+      opacity: 1;
+      transform: scale(1);
+      transition:
+        opacity 0.18s ease,
+        transform 0.18s ease;
+    }
+
+    /* =========================================================
+       CONTROLS
+    ========================================================= */
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .nav-button {
+      appearance: none;
+      border: 2px solid #33445f;
+      border-radius: 10px;
+      padding: 13px 20px;
+      background: linear-gradient(180deg, #19263a, #101827);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+    }
+
+    .nav-button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #ffd21f;
+      background: linear-gradient(180deg, #253650, #142033);
+    }
+
+    .nav-button:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .nav-button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    #prevButton {
+      justify-self: start;
+    }
+
+    #nextButton {
+      justify-self: end;
+    }
+
+    .page-name {
+      color: #aebbd0;
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* =========================================================
+       END OF ISSUE
+    ========================================================= */
+
+    .end-card {
+      display: none;
+      margin-top: 26px;
+      padding: 26px 20px;
+      text-align: center;
+      background:
+        linear-gradient(145deg, rgba(255, 210, 31, 0.11), rgba(255, 81, 47, 0.07)),
+        #0d1420;
+      border: 2px solid #34455f;
+      border-radius: 14px;
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.35);
+    }
+
+    .end-card.visible {
+      display: block;
+    }
+
+    .end-card h2 {
+      margin: 0 0 10px;
+      color: #ffd21f;
+      font-size: clamp(25px, 5vw, 42px);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .end-card p {
+      max-width: 650px;
+      margin: 0 auto 18px;
+      color: #c8d3e3;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .newsstand-button {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 9px;
+      background: #ffd21f;
+      color: #080b10;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 7px 20px rgba(0, 0, 0, 0.35);
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .newsstand-button:hover {
+      transform: translateY(-2px);
+      background: #ffe25e;
+    }
+
+    /* =========================================================
+       HELP TEXT
+    ========================================================= */
+
+    .reader-help {
+      margin-top: 20px;
+      text-align: center;
+      color: #708098;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 700px) {
+
+      .topbar {
+        padding: 12px;
+        gap: 8px;
+      }
+
+      .back-link {
+        font-size: 11px;
+      }
+
+      .issue-label {
+        font-size: 11px;
+      }
+
+      .page-counter {
+        min-width: 64px;
+        font-size: 11px;
+      }
+
+      .progress-track {
+        top: 48px;
+      }
+
+      .reader-shell {
+        padding: 18px 8px 30px;
+      }
+
+      .comic-stage {
+        min-height: auto;
+      }
+
+      .comic-frame {
+        border-width: 2px;
+        border-radius: 8px;
+      }
+
+      .comic-page {
+        max-height: none;
+      }
+
+      .controls {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .page-name {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        margin-bottom: 2px;
+      }
+
+      #prevButton {
+        grid-column: 1;
+        grid-row: 2;
+        width: 100%;
+      }
+
+      #nextButton {
+        grid-column: 2;
+        grid-row: 2;
+        width: 100%;
+      }
+
+      .nav-button {
+        padding: 12px 8px;
+        font-size: 12px;
+      }
+
+      .reader-help {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =======================================================
+       TOP NAVIGATION
+  ======================================================== -->
+
+  <header class="topbar">
+
+    <a class="back-link" href="../../comics.html">
+      ← F4SN Comics
+    </a>
+
+    <div class="issue-label">
+      Issue #2 — The Oracle Goes to Court
+    </div>
+
+    <div class="page-counter" id="pageCounter">
+      Cover
+    </div>
+
+  </header>
+
+  <div class="progress-track">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+
+  <!-- =======================================================
+       COMIC READER
+  ======================================================== -->
+
+  <main class="reader-shell">
+
+    <section class="comic-stage">
+
+      <div class="comic-frame" id="comicFrame">
+
+        <img
+          id="comicPage"
+          class="comic-page"
+          src="cover.png"
+          alt="F4SN Comics Issue #2 cover"
+          draggable="false"
+        >
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         READER CONTROLS
+    ====================================================== -->
+
+    <div class="controls">
+
+      <button
+        class="nav-button"
+        id="prevButton"
+        type="button"
+        disabled
+      >
+        ← Previous
+      </button>
+
+      <div class="page-name" id="pageName">
+        Cover
+      </div>
+
+      <button
+        class="nav-button"
+        id="nextButton"
+        type="button"
+      >
+        Next →
+      </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         END CARD
+    ====================================================== -->
+
+    <section class="end-card" id="endCard">
+
+      <h2>Issue #2 Complete</h2>
+
+      <p>
+        The Oracle survived the courtroom, Week 4 is officially in the books,
+        and somehow The Fant4sy Four are already headed toward even more chaos.
+        Same family. Same chaos. Next chapter.
+      </p>
+
+      <a class="newsstand-button" href="../../comics.html">
+        Return to the F4SN Comics Newsstand
+      </a>
+
+    </section>
+
+
+    <div class="reader-help">
+      Desktop: use the ← and → arrow keys to turn pages.
+      &nbsp; • &nbsp;
+      Mobile: swipe left or right on the comic.
+    </div>
+
+  </main>
+
+
+  <script>
+    /************************************************************
+     * F4SN COMICS — ISSUE #2 READER
+     * Cover + Pages 1–7
+     ************************************************************/
+
+    const pages = [
+      {
+        src: "cover.png",
+        label: "Cover",
+        alt: "F4SN Comics Issue #2 cover"
+      },
+      {
+        src: "page-01.png",
+        label: "Page 1",
+        alt: "F4SN Comics Issue #2 Page 1"
+      },
+      {
+        src: "page-02.png",
+        label: "Page 2",
+        alt: "F4SN Comics Issue #2 Page 2"
+      },
+      {
+        src: "page-03.png",
+        label: "Page 3",
+        alt: "F4SN Comics Issue #2 Page 3"
+      },
+      {
+        src: "page-04.png",
+        label: "Page 4",
+        alt: "F4SN Comics Issue #2 Page 4"
+      },
+      {
+        src: "page-05.png",
+        label: "Page 5",
+        alt: "F4SN Comics Issue #2 Page 5"
+      },
+      {
+        src: "page-06.png",
+        label: "Page 6",
+        alt: "F4SN Comics Issue #2 Page 6"
+      },
+      {
+        src: "page-07.png",
+        label: "Page 7",
+        alt: "F4SN Comics Issue #2 Page 7"
+      }
+    ];
+
+
+    /************************************************************
+     * ELEMENTS
+     ************************************************************/
+
+    const comicPage = document.getElementById("comicPage");
+    const prevButton = document.getElementById("prevButton");
+    const nextButton = document.getElementById("nextButton");
+
+    const pageCounter = document.getElementById("pageCounter");
+    const pageName = document.getElementById("pageName");
+
+    const progressBar = document.getElementById("progressBar");
+    const endCard = document.getElementById("endCard");
+
+    const comicFrame = document.getElementById("comicFrame");
+
+
+    /************************************************************
+     * CURRENT PAGE
+     ************************************************************/
+
+    let currentPage = 0;
+
+
+    /************************************************************
+     * PRELOAD ALL COMIC IMAGES
+     ************************************************************/
+
+    pages.forEach((page) => {
+
+      const img = new Image();
+
+      img.src = page.src;
+
+    });
+
+
+    /************************************************************
+     * RENDER CURRENT PAGE
+     ************************************************************/
+
+    function renderPage(animate = true) {
+
+      const page = pages[currentPage];
+
+
+      /*
+       * Small transition when changing pages.
+       */
+
+      if (animate) {
+
+        comicPage.classList.add("changing");
+
+      }
+
+
+      setTimeout(() => {
+
+        comicPage.src = page.src;
+        comicPage.alt = page.alt;
+
+        pageName.textContent = page.label;
+
+
+        /*
+         * Counter:
+         * Cover is displayed as "Cover".
+         * Interior pages display Page X of 7.
+         */
+
+        if (currentPage === 0) {
+
+          pageCounter.textContent = "Cover";
+
+        } else {
+
+          pageCounter.textContent =
+            "Page " + currentPage + " / " + (pages.length - 1);
+
+        }
+
+
+        /*
+         * Progress bar.
+         */
+
+        const progress =
+          ((currentPage + 1) / pages.length) * 100;
+
+        progressBar.style.width = progress + "%";
+
+
+        /*
+         * Navigation button states.
+         */
+
+        prevButton.disabled = currentPage === 0;
+
+        nextButton.disabled =
+          currentPage === pages.length - 1;
+
+
+        /*
+         * Show completion card only on final page.
+         */
+
+        if (currentPage === pages.length - 1) {
+
+          endCard.classList.add("visible");
+
+        } else {
+
+          endCard.classList.remove("visible");
+
+        }
+
+
+        /*
+         * Remove page-change animation.
+         */
+
+        comicPage.classList.remove("changing");
+
+
+        /*
+         * Keep the reader positioned nicely after a page turn.
+         * On smaller screens this prevents the user from ending up
+         * halfway down the next page.
+         */
+
+        if (animate) {
+
+          const readerTop =
+            comicFrame.getBoundingClientRect().top +
+            window.scrollY -
+            85;
+
+          window.scrollTo({
+            top: Math.max(0, readerTop),
+            behavior: "smooth"
+          });
+
+        }
+
+      }, animate ? 140 : 0);
+
+    }
+
+
+    /************************************************************
+     * NEXT PAGE
+     ************************************************************/
+
+    function nextPage() {
+
+      if (currentPage >= pages.length - 1) {
+
+        return;
+
+      }
+
+      currentPage++;
+
+      renderPage();
+
+    }
+
+
+    /************************************************************
+     * PREVIOUS PAGE
+     ************************************************************/
+
+    function previousPage() {
+
+      if (currentPage <= 0) {
+
+        return;
+
+      }
+
+      currentPage--;
+
+      renderPage();
+
+    }
+
+
+    /************************************************************
+     * BUTTON EVENTS
+     ************************************************************/
+
+    nextButton.addEventListener("click", nextPage);
+
+    prevButton.addEventListener("click", previousPage);
+
+
+    /************************************************************
+     * KEYBOARD NAVIGATION
+     ************************************************************/
+
+    document.addEventListener("keydown", (event) => {
+
+      if (event.key === "ArrowRight") {
+
+        nextPage();
+
+      }
+
+      if (event.key === "ArrowLeft") {
+
+        previousPage();
+
+      }
+
+    });
+
+
+    /************************************************************
+     * MOBILE SWIPE NAVIGATION
+     ************************************************************/
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+
+    comicFrame.addEventListener(
+      "touchstart",
+      (event) => {
+
+        if (!event.changedTouches.length) {
+
+          return;
+
+        }
+
+        touchStartX =
+          event.changedTouches[0].screenX;
+
+        touchStartY =
+          event.changedTouches[0].screenY;
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    comicFrame.addEventListener(
+      "touchend",
+      (event) => {
+
+        if (!event.changedTouches.length) {
+
+          return;
+
+        }
+
+        touchEndX =
+          event.changedTouches[0].screenX;
+
+        touchEndY =
+          event.changedTouches[0].screenY;
+
+
+        const horizontalDistance =
+          touchEndX - touchStartX;
+
+        const verticalDistance =
+          touchEndY - touchStartY;
+
+
+        /*
+         * Only treat the gesture as a page turn if:
+         *
+         * 1. Horizontal movement is at least 50px.
+         * 2. Horizontal movement is greater than vertical movement.
+         *
+         * This allows normal up/down page scrolling without
+         * accidentally changing comic pages.
+         */
+
+        if (
+          Math.abs(horizontalDistance) >= 50 &&
+          Math.abs(horizontalDistance) >
+            Math.abs(verticalDistance)
+        ) {
+
+          if (horizontalDistance < 0) {
+
+            nextPage();
+
+          } else {
+
+            previousPage();
+
+          }
+
+        }
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    /************************************************************
+     * IMAGE ERROR HANDLING
+     ************************************************************/
+
+    comicPage.addEventListener("error", () => {
+
+      console.error(
+        "F4SN comic image could not be loaded:",
+        pages[currentPage].src
+      );
+
+    });
+
+
+    /************************************************************
+     * INITIAL LOAD
+     ************************************************************/
+
+    renderPage(false);
+
+  </script>
+
+</body>
+</html>
