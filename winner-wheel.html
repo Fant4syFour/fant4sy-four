@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
@@ -12,21 +11,12 @@
 /**************************************************************
  THE FANT4SY FOUR
  F4SN WINNER'S WHEEL ARENA
- V4.2 — MEGA ARENA
-
- STARTING PAGE:
- F4SN WEBSITE
-
- ARENA:
- FULL-SCALE F4SN TELEVISION SPECTACLE
+ V4.3 — THE WHEEL MACHINE
 **************************************************************/
 
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 :root{
-
 --bg:#080b12;
 --panel:#111827;
 --panel2:#182437;
@@ -45,41 +35,24 @@ box-sizing:border-box;
 
 --gold:#ffd54a;
 --gold2:#ff9f00;
+--deepgold:#6d4500;
 
 --team:#18a8ff;
-
 }
 
-html{
-scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
-html,
-body{
-
+html,body{
 margin:0;
 min-height:100%;
-
 background:
-radial-gradient(
-circle at 50% 0%,
-rgba(24,168,255,.08),
-transparent 32%
-),
+radial-gradient(circle at 50% 0%,rgba(24,168,255,.08),transparent 32%),
 var(--bg);
-
 color:white;
-
-font-family:
-Arial,
-Helvetica,
-sans-serif;
-
+font-family:Arial,Helvetica,sans-serif;
 }
 
-body{
-overflow-x:hidden;
-}
+body{overflow-x:hidden}
 
 
 /**************************************************************
@@ -87,1492 +60,674 @@ overflow-x:hidden;
 **************************************************************/
 
 #fx{
-
 position:fixed;
 inset:0;
-
-z-index:20000;
-
+z-index:30000;
 pointer-events:none;
-
 overflow:hidden;
-
 }
 
 .camera-flash{
-
 position:absolute;
-
 width:10px;
 height:10px;
-
 border-radius:50%;
-
 background:white;
-
 opacity:0;
-
-box-shadow:
-0 0 30px 10px white;
-
-animation:
-cameraFlash .55s ease-out forwards;
-
+box-shadow:0 0 30px 10px white;
+animation:cameraFlash .55s ease-out forwards;
 }
 
 @keyframes cameraFlash{
-
-0%{
-opacity:0;
-transform:scale(.2);
-}
-
-15%{
-opacity:1;
-transform:scale(1.6);
-}
-
-100%{
-opacity:0;
-transform:scale(5);
-}
-
+0%{opacity:0;transform:scale(.2)}
+15%{opacity:1;transform:scale(1.6)}
+100%{opacity:0;transform:scale(5)}
 }
 
 .confetti{
-
 position:fixed;
-
 top:-30px;
-
 width:11px;
 height:22px;
-
-z-index:21000;
-
-animation:
-confettiFall linear forwards;
-
+z-index:31000;
+animation:confettiFall linear forwards;
 }
 
 @keyframes confettiFall{
-
-to{
-
-transform:
-translateY(115vh)
-rotate(1200deg);
-
+to{transform:translateY(115vh) rotate(1200deg)}
 }
 
-}
-
-body.shake{
-
-animation:
-screenShake .07s linear 16;
-
-}
+body.shake{animation:screenShake .07s linear 16}
 
 @keyframes screenShake{
-
-0%{transform:translate(0);}
-20%{transform:translate(7px,-4px);}
-40%{transform:translate(-7px,5px);}
-60%{transform:translate(6px,4px);}
-80%{transform:translate(-5px,-4px);}
-100%{transform:translate(0);}
-
+0%{transform:translate(0)}
+20%{transform:translate(7px,-4px)}
+40%{transform:translate(-7px,5px)}
+60%{transform:translate(6px,4px)}
+80%{transform:translate(-5px,-4px)}
+100%{transform:translate(0)}
 }
 
 
 /**************************************************************
- F4SN WEBSITE HERO
+ WEBSITE HEADER
 **************************************************************/
 
 .hero{
-
 width:100%;
-
 background:#05070b;
-
-border-bottom:
-1px solid var(--border);
-
+border-bottom:1px solid var(--border);
 text-align:center;
-
 overflow:hidden;
-
 }
 
 .hero-banner{
-
 display:block;
-
 width:100%;
-
 max-height:340px;
-
 object-fit:cover;
 object-position:center;
-
 }
 
-
-/**************************************************************
- SPECIAL EVENT TICKER
-**************************************************************/
-
 .event-strip{
-
 display:flex;
-
 align-items:stretch;
-
 width:100%;
-
 min-height:57px;
-
 background:#0b1018;
-
-border-bottom:
-1px solid #344154;
-
+border-bottom:1px solid #344154;
 }
 
 .event-strip-label{
-
 min-width:160px;
-
 display:flex;
-
 flex-direction:column;
-
 justify-content:center;
-
 padding:9px 17px;
-
 background:#111827;
-
-border-right:
-1px solid #344154;
-
+border-right:1px solid #344154;
 }
 
 .event-strip-label strong{
-
 color:var(--blue);
-
 font-size:15px;
-
 font-weight:1000;
-
 }
 
 .event-strip-label span{
-
 margin-top:2px;
-
 color:#8d9aac;
-
 font-size:9px;
-
 font-weight:900;
-
 letter-spacing:1px;
-
 text-transform:uppercase;
-
 }
 
 .event-strip-track{
-
 flex:1;
-
 display:flex;
-
 align-items:center;
-
 overflow:hidden;
-
-position:relative;
-
 }
 
 .event-strip-message{
-
 white-space:nowrap;
-
 color:#d6dee8;
-
 font-size:11px;
-
 font-weight:900;
-
 letter-spacing:.8px;
-
-animation:
-eventTicker 26s linear infinite;
-
+animation:eventTicker 26s linear infinite;
 }
 
-.event-strip-message strong{
-color:var(--yellow);
-}
+.event-strip-message strong{color:var(--yellow)}
 
 @keyframes eventTicker{
-
-from{
-transform:translateX(100vw);
+from{transform:translateX(100vw)}
+to{transform:translateX(-100%)}
 }
-
-to{
-transform:translateX(-100%);
-}
-
-}
-
-
-/**************************************************************
- NETWORK BAR
-**************************************************************/
 
 .network-bar{
-
 display:flex;
-
 align-items:center;
-
 justify-content:center;
-
 gap:22px;
-
 padding:9px 14px;
-
 background:#05070b;
-
-border-bottom:
-1px solid var(--border);
-
+border-bottom:1px solid var(--border);
 color:#d6dee8;
-
 font-size:10px;
-
 font-weight:900;
-
 letter-spacing:1px;
-
 }
 
-.network-name{
-color:var(--blue);
-}
+.network-name{color:var(--blue)}
 
 .live-dot{
-
 display:inline-block;
-
 width:8px;
 height:8px;
-
 margin-right:6px;
-
 border-radius:50%;
-
 background:#ff3b30;
-
-box-shadow:
-0 0 11px #ff3b30;
-
-animation:
-livePulse 1.1s infinite;
-
+box-shadow:0 0 11px #ff3b30;
+animation:livePulse 1.1s infinite;
 }
 
-@keyframes livePulse{
+@keyframes livePulse{50%{opacity:.25}}
 
-50%{
-opacity:.25;
-}
-
-}
-
-.update-status{
-color:#8fa0b4;
-}
-
-
-/**************************************************************
- NAV
-**************************************************************/
+.update-status{color:#8fa0b4}
 
 nav{
-
 display:flex;
-
 flex-wrap:wrap;
-
 align-items:center;
-
 justify-content:center;
-
 gap:3px;
-
 padding:12px 10px;
-
 background:#111827;
-
-border-bottom:
-2px solid var(--blue);
-
+border-bottom:2px solid var(--blue);
 }
 
 nav a{
-
 padding:8px 10px;
-
 color:#dbe4ef;
-
 text-decoration:none;
-
 font-size:10px;
-
 font-weight:1000;
-
 letter-spacing:.6px;
-
-transition:
-color .2s,
-background .2s;
-
 }
 
 nav a:hover{
-
 color:white;
-
 background:#182437;
-
 }
 
 
 /**************************************************************
- MAIN F4SN SHELL
+ F4SN PAGE
 **************************************************************/
 
 main{
-
 width:min(1180px,94%);
-
 margin:auto;
-
-padding:
-34px
-0
-80px;
-
+padding:34px 0 80px;
 }
 
 .section-title{
-
 position:relative;
-
-margin:
-0
-0
-20px;
-
+margin:0 0 20px;
 padding-left:14px;
-
-font-size:
-clamp(
-25px,
-4vw,
-35px
-);
-
+font-size:clamp(25px,4vw,35px);
 font-weight:1000;
-
 letter-spacing:-.7px;
-
 }
 
 .section-title::before{
-
 content:"";
-
 position:absolute;
-
 left:0;
 top:3px;
 bottom:3px;
-
 width:5px;
-
 border-radius:3px;
-
 background:var(--blue);
-
 }
 
 .section-subtitle{
-
-margin:
--10px
-0
-25px
-14px;
-
+margin:-10px 0 25px 14px;
 color:var(--muted);
-
 font-size:13px;
-
 line-height:1.55;
-
 }
 
-
-/**************************************************************
- SPECIAL EVENT CARD
-**************************************************************/
-
 .broadcast-card{
-
 position:relative;
-
 overflow:hidden;
-
-border:
-1px solid var(--border);
-
+border:1px solid var(--border);
 border-radius:8px;
-
 background:
-linear-gradient(
-135deg,
-rgba(24,168,255,.07),
-transparent 45%
-),
+linear-gradient(135deg,rgba(24,168,255,.07),transparent 45%),
 var(--panel);
-
-box-shadow:
-0 18px 45px rgba(0,0,0,.25);
-
+box-shadow:0 18px 45px rgba(0,0,0,.25);
 }
 
 .broadcast-header{
-
 display:flex;
-
 align-items:center;
-
 justify-content:space-between;
-
 gap:10px;
-
-padding:
-12px
-16px;
-
+padding:12px 16px;
 background:#0b111a;
-
-border-bottom:
-1px solid var(--border);
-
+border-bottom:1px solid var(--border);
 font-size:10px;
-
 font-weight:1000;
-
 letter-spacing:1.2px;
-
 }
 
-.broadcast-header span:first-child{
-color:var(--blue);
-}
-
-.live-label{
-color:#ff4b4b;
-}
+.broadcast-header span:first-child{color:var(--blue)}
+.live-label{color:#ff4b4b}
 
 .special-event-body{
-
 position:relative;
-
 min-height:440px;
-
 display:flex;
-
 align-items:center;
-
 justify-content:center;
-
-padding:
-45px
-25px;
-
+padding:45px 25px;
 text-align:center;
-
 overflow:hidden;
-
 }
 
 .special-event-body::before{
-
 content:"";
-
 position:absolute;
-
 width:620px;
 height:620px;
-
 left:50%;
 top:50%;
-
-transform:
-translate(-50%,-50%);
-
+transform:translate(-50%,-50%);
 border-radius:50%;
-
-background:
-radial-gradient(
-circle,
-rgba(24,168,255,.13),
-transparent 65%
-);
-
+background:radial-gradient(circle,rgba(24,168,255,.13),transparent 65%);
 pointer-events:none;
-
 }
 
 .special-event-content{
-
 position:relative;
-
 z-index:2;
-
 max-width:820px;
-
 }
 
 .event-kicker{
-
 color:var(--red);
-
 font-size:10px;
-
 font-weight:1000;
-
 letter-spacing:4px;
-
 }
 
 .event-logo{
-
 margin-top:12px;
-
 color:var(--blue);
-
-font-size:
-clamp(
-44px,
-9vw,
-90px
-);
-
+font-size:clamp(44px,9vw,90px);
 line-height:.85;
-
 font-weight:1000;
-
-text-shadow:
-0 0 25px rgba(24,168,255,.25);
-
+text-shadow:0 0 25px rgba(24,168,255,.25);
 }
 
 .event-title{
-
-margin:
-15px
-0
-10px;
-
-font-size:
-clamp(
-31px,
-6vw,
-63px
-);
-
+margin:15px 0 10px;
+font-size:clamp(31px,6vw,63px);
 line-height:.95;
-
 font-weight:1000;
-
 text-transform:uppercase;
-
 }
 
-.event-title span{
-color:var(--yellow);
-}
+.event-title span{color:var(--yellow)}
 
 .event-description{
-
 max-width:680px;
-
-margin:
-18px
-auto;
-
+margin:18px auto;
 color:#aeb9c6;
-
 font-size:14px;
-
 line-height:1.65;
-
 }
 
 .f4sn-button{
-
 margin-top:18px;
-
-padding:
-15px
-28px;
-
-border:
-1px solid #31b2ff;
-
+padding:15px 28px;
+border:1px solid #31b2ff;
 border-radius:6px;
-
-background:
-linear-gradient(
-180deg,
-#20aaf8,
-#0873b5
-);
-
+background:linear-gradient(180deg,#20aaf8,#0873b5);
 color:white;
-
 font-size:13px;
-
 font-weight:1000;
-
 letter-spacing:.8px;
-
 cursor:pointer;
-
 box-shadow:
 0 6px 0 #034c7b,
 0 12px 25px rgba(0,0,0,.4);
-
 }
 
-.f4sn-button:hover{
-filter:brightness(1.12);
-}
+.f4sn-button:hover{filter:brightness(1.12)}
 
 .f4sn-button.gold{
-
 border-color:#fff0a2;
-
-background:
-linear-gradient(
-180deg,
-#fff2a5,
-#ffd54a 50%,
-#c78300
-);
-
+background:linear-gradient(180deg,#fff2a5,#ffd54a 50%,#c78300);
 color:#111;
-
 box-shadow:
 0 6px 0 #6f4900,
 0 12px 25px rgba(0,0,0,.5),
 0 0 25px rgba(255,213,74,.15);
-
 }
 
 
 /**************************************************************
- CHAMPION SELECTION
+ CHAMPION SELECT
 **************************************************************/
 
-#champion-select{
-margin-top:32px;
-}
+#champion-select{margin-top:32px}
 
 .team-grid{
-
 display:grid;
-
-grid-template-columns:
-repeat(2,1fr);
-
+grid-template-columns:repeat(2,1fr);
 gap:16px;
-
 }
 
 .team-card{
-
 position:relative;
-
 overflow:hidden;
-
 min-height:125px;
-
 padding:23px;
-
-border:
-1px solid var(--border);
-
-border-left:
-6px solid var(--card);
-
+border:1px solid var(--border);
+border-left:6px solid var(--card);
 border-radius:7px;
-
 background:
-linear-gradient(
-135deg,
-rgba(255,255,255,.035),
-transparent 55%
-),
+linear-gradient(135deg,rgba(255,255,255,.035),transparent 55%),
 var(--panel);
-
 color:white;
-
 cursor:pointer;
-
 text-align:left;
-
-transition:
-transform .2s,
-border-color .2s,
-box-shadow .2s;
-
+transition:.2s;
 }
 
 .team-card::after{
-
 content:"";
-
 position:absolute;
-
 inset:0;
-
-background:
-linear-gradient(
-90deg,
-var(--card),
-transparent 60%
-);
-
+background:linear-gradient(90deg,var(--card),transparent 60%);
 opacity:.055;
-
 }
 
 .team-card:hover{
-
-transform:
-translateY(-4px);
-
-border-color:
-var(--card);
-
-box-shadow:
-0 12px 30px rgba(0,0,0,.35);
-
+transform:translateY(-4px);
+border-color:var(--card);
+box-shadow:0 12px 30px rgba(0,0,0,.35);
 }
 
 .team-manager{
-
 position:relative;
-
 z-index:2;
-
 color:var(--card);
-
 font-size:11px;
-
 font-weight:1000;
-
 letter-spacing:2px;
-
-text-transform:uppercase;
-
 }
 
 .team-name{
-
 position:relative;
-
 z-index:2;
-
 margin-top:8px;
-
-color:white;
-
 font-size:21px;
-
 line-height:1.1;
-
 font-weight:1000;
-
 }
 
 .team-status{
-
 position:relative;
-
 z-index:2;
-
 margin-top:8px;
-
 color:#8e9bad;
-
 font-size:10px;
-
 font-weight:900;
-
 }
 
 
 /**************************************************************
- F4SN → ARENA TRANSITION
+ TRANSITION
 **************************************************************/
 
 #arena-transition{
-
 position:fixed;
-
 inset:0;
-
 z-index:15000;
-
 display:none;
-
 align-items:center;
-
 justify-content:center;
-
 overflow:hidden;
-
 background:#020305;
-
 }
 
-#arena-transition.show{
-display:flex;
-}
+#arena-transition.show{display:flex}
 
 .transition-grid{
-
 position:absolute;
-
 inset:0;
-
 background:
-linear-gradient(
-rgba(24,168,255,.06) 1px,
-transparent 1px
-),
-linear-gradient(
-90deg,
-rgba(24,168,255,.06) 1px,
-transparent 1px
-);
-
-background-size:
-45px 45px;
-
+linear-gradient(rgba(24,168,255,.06) 1px,transparent 1px),
+linear-gradient(90deg,rgba(24,168,255,.06) 1px,transparent 1px);
+background-size:45px 45px;
 }
 
 .transition-beam{
-
 position:absolute;
-
 top:-35%;
-
 width:30%;
 height:130%;
-
-background:
-linear-gradient(
-180deg,
-rgba(24,168,255,.28),
-transparent 75%
-);
-
+background:linear-gradient(180deg,rgba(24,168,255,.28),transparent 75%);
 filter:blur(25px);
-
-transform-origin:
-top center;
-
+transform-origin:top center;
 }
 
-.transition-beam.one{
-
-left:10%;
-
-transform:
-rotate(25deg);
-
-}
-
-.transition-beam.two{
-
-right:10%;
-
-transform:
-rotate(-25deg);
-
-}
+.transition-beam.one{left:10%;transform:rotate(25deg)}
+.transition-beam.two{right:10%;transform:rotate(-25deg)}
 
 .transition-content{
-
 position:relative;
-
 z-index:2;
-
 width:min(900px,92vw);
-
 text-align:center;
-
 }
 
 .transition-network{
-
 color:var(--blue);
-
 font-size:12px;
-
 font-weight:1000;
-
 letter-spacing:4px;
-
 }
 
 .transition-manager{
-
 margin-top:17px;
-
 color:var(--team);
-
-font-size:
-clamp(
-40px,
-9vw,
-90px
-);
-
+font-size:clamp(40px,9vw,90px);
 line-height:.9;
-
 font-weight:1000;
-
 text-transform:uppercase;
-
-text-shadow:
-0 0 35px var(--team);
-
+text-shadow:0 0 35px var(--team);
 }
 
 .transition-team{
-
 margin-top:13px;
-
-color:white;
-
-font-size:
-clamp(
-18px,
-4vw,
-36px
-);
-
+font-size:clamp(18px,4vw,36px);
 font-weight:1000;
-
 }
 
 .transition-status{
-
 margin-top:25px;
-
 color:var(--yellow);
-
 font-size:12px;
-
 font-weight:1000;
-
 letter-spacing:3px;
-
 }
 
 .transition-progress{
-
 width:min(600px,80vw);
-
 height:6px;
-
-margin:
-18px
-auto
-0;
-
+margin:18px auto 0;
 overflow:hidden;
-
 border-radius:10px;
-
 background:#182437;
-
 }
 
 .transition-progress span{
-
 display:block;
-
 width:0;
 height:100%;
-
-background:
-linear-gradient(
-90deg,
-var(--blue),
-var(--team),
-var(--gold)
-);
-
+background:linear-gradient(90deg,var(--blue),var(--team),var(--gold));
 }
 
-#arena-transition.show
-.transition-progress span{
-
-animation:
-loadArena 3.1s ease forwards;
-
+#arena-transition.show .transition-progress span{
+animation:loadArena 3.1s ease forwards;
 }
 
-@keyframes loadArena{
-
-to{
-width:100%;
-}
-
-}
+@keyframes loadArena{to{width:100%}}
 
 
 /**************************************************************
- ARENA ROOT
+ ARENA
 **************************************************************/
 
 #arena{
-
 position:fixed;
-
 inset:0;
-
 z-index:12000;
-
 display:none;
-
 overflow:hidden;
-
 background:#000;
-
 }
 
 #arena.active{
-
 display:block;
-
-animation:
-arenaAppear .9s ease;
-
+animation:arenaAppear .9s ease;
 }
 
 @keyframes arenaAppear{
-
-from{
-opacity:0;
+from{opacity:0}
+to{opacity:1}
 }
-
-to{
-opacity:1;
-}
-
-}
-
-
-/**************************************************************
- ARENA BACKDROP
-
- THIS IS THE ACTUAL ARTWORK.
-**************************************************************/
 
 .arena-backdrop{
-
 position:absolute;
-
 inset:0;
-
-background-image:
-url("f4sn-winners-arena.png");
-
+background-image:url("f4sn-winners-arena.png");
 background-size:cover;
-
-background-position:
-center center;
-
+background-position:center center;
 background-repeat:no-repeat;
-
 transform:scale(1.01);
-
-transition:
-filter 1s,
-transform 2s;
-
+transition:filter 1.2s,transform 2s;
 }
 
 .arena-backdrop::after{
-
 content:"";
-
 position:absolute;
-
 inset:0;
-
 background:
-linear-gradient(
-180deg,
-rgba(0,0,0,.03) 0%,
-rgba(0,0,0,.02) 52%,
-rgba(0,0,0,.38) 100%
-);
-
-pointer-events:none;
-
+linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.02) 52%,rgba(0,0,0,.35));
 }
 
-#arena.spin-mode
-.arena-backdrop{
-
-filter:
-brightness(.58)
-saturate(1.25);
-
-transform:scale(1.045);
-
+#arena.pre-spin .arena-backdrop{
+filter:brightness(.58) saturate(1.18);
 }
 
-#arena.final-mode
-.arena-backdrop{
+#arena.spin-fast .arena-backdrop{
+filter:brightness(.72) saturate(1.32);
+transform:scale(1.025);
+}
 
-filter:
-brightness(.22)
-saturate(.8);
+#arena.spin-tension .arena-backdrop{
+filter:brightness(.42) saturate(.95);
+transform:scale(1.04);
+}
 
+#arena.final-dark .arena-backdrop{
+filter:brightness(.18) saturate(.7);
 }
 
 
 /**************************************************************
- TEAM COLOR WASH
+ ARENA LIGHTING
 **************************************************************/
 
 .team-wash{
-
 position:absolute;
-
 inset:0;
-
 z-index:2;
-
 pointer-events:none;
-
 opacity:0;
-
-background:
-radial-gradient(
-ellipse at 50% 58%,
-transparent 0 20%,
-var(--team) 80%
-);
-
+background:radial-gradient(ellipse at 50% 58%,transparent 0 20%,var(--team) 80%);
 mix-blend-mode:screen;
-
-transition:
-opacity .8s;
-
+transition:opacity .8s;
 }
 
-#arena.entrance-mode
-.team-wash{
-
+#arena.entrance-mode .team-wash{
 opacity:.18;
-
-animation:
-teamWashPulse 1.1s infinite alternate;
-
+animation:teamWashPulse 1.1s infinite alternate;
 }
 
 @keyframes teamWashPulse{
-
-from{
-opacity:.10;
+from{opacity:.10}
+to{opacity:.27}
 }
-
-to{
-opacity:.27;
-}
-
-}
-
-
-/**************************************************************
- MOVING LIGHTS OVER ARTWORK
-**************************************************************/
 
 .arena-light{
-
 position:absolute;
-
 z-index:3;
-
 top:-20%;
-
 width:17%;
 height:115%;
-
 pointer-events:none;
-
 opacity:.5;
-
 filter:blur(18px);
-
-transform-origin:
-top center;
-
-background:
-linear-gradient(
-180deg,
-rgba(255,255,255,.42),
-rgba(24,168,255,.12) 45%,
-transparent 80%
-);
-
+transform-origin:top center;
+background:linear-gradient(180deg,rgba(255,255,255,.42),rgba(24,168,255,.12) 45%,transparent 80%);
 }
 
-.arena-light.l1{
+.arena-light.l1{left:8%;transform:rotate(25deg);animation:light1 5s ease-in-out infinite alternate}
+.arena-light.l2{left:30%;transform:rotate(10deg);animation:light2 6s ease-in-out infinite alternate}
+.arena-light.l3{right:30%;transform:rotate(-10deg);animation:light3 6.5s ease-in-out infinite alternate}
+.arena-light.l4{right:8%;transform:rotate(-25deg);animation:light4 5.5s ease-in-out infinite alternate}
 
-left:8%;
+@keyframes light1{to{transform:rotate(-5deg)}}
+@keyframes light2{to{transform:rotate(-18deg)}}
+@keyframes light3{to{transform:rotate(18deg)}}
+@keyframes light4{to{transform:rotate(5deg)}}
 
-transform:
-rotate(25deg);
-
-animation:
-megaLight1 5s ease-in-out infinite alternate;
-
+#arena.spin-fast .arena-light{
+animation-duration:.65s;
+opacity:.78;
 }
 
-.arena-light.l2{
-
-left:30%;
-
-transform:
-rotate(10deg);
-
-animation:
-megaLight2 6s ease-in-out infinite alternate;
-
+#arena.spin-tension .arena-light{
+animation-play-state:paused;
+opacity:.12;
 }
 
-.arena-light.l3{
-
-right:30%;
-
-transform:
-rotate(-10deg);
-
-animation:
-megaLight3 6.5s ease-in-out infinite alternate;
-
-}
-
-.arena-light.l4{
-
-right:8%;
-
-transform:
-rotate(-25deg);
-
-animation:
-megaLight4 5.5s ease-in-out infinite alternate;
-
-}
-
-@keyframes megaLight1{
-
-to{
-transform:rotate(-5deg);
-}
-
-}
-
-@keyframes megaLight2{
-
-to{
-transform:rotate(-18deg);
-}
-
-}
-
-@keyframes megaLight3{
-
-to{
-transform:rotate(18deg);
-}
-
-}
-
-@keyframes megaLight4{
-
-to{
-transform:rotate(5deg);
-}
-
-}
-
-#arena.spin-mode
-.arena-light{
-
-animation-duration:.9s;
-
-opacity:.72;
-
-}
-
-#arena.final-mode
-.arena-light{
-
-opacity:.06;
-
-}
+#arena.final-dark .arena-light{opacity:.03}
 
 
 /**************************************************************
- TEAM ENTRANCE SPOTLIGHT
-**************************************************************/
-
-.team-spotlight{
-
-position:absolute;
-
-z-index:4;
-
-left:50%;
-top:-20%;
-
-width:48%;
-height:120%;
-
-transform:
-translateX(-50%);
-
-pointer-events:none;
-
-opacity:0;
-
-background:
-linear-gradient(
-180deg,
-var(--team),
-transparent 75%
-);
-
-filter:blur(42px);
-
-transition:
-opacity .6s;
-
-}
-
-#arena.entrance-mode
-.team-spotlight{
-
-opacity:.17;
-
-}
-
-
-/**************************************************************
- ARENA TOP BROADCAST BAR
+ ARENA NETWORK BAR
 **************************************************************/
 
 .arena-network{
-
 position:absolute;
-
 left:0;
 right:0;
 top:0;
-
 z-index:50;
-
 display:flex;
-
 align-items:center;
-
 justify-content:space-between;
-
 gap:15px;
-
-padding:
-9px
-16px;
-
-background:
-rgba(5,7,11,.91);
-
-border-bottom:
-1px solid rgba(255,255,255,.18);
-
-backdrop-filter:
-blur(8px);
-
+padding:9px 16px;
+background:rgba(5,7,11,.91);
+border-bottom:1px solid rgba(255,255,255,.18);
+backdrop-filter:blur(8px);
 font-size:10px;
-
 font-weight:1000;
-
 letter-spacing:1px;
-
 }
 
-.arena-network strong{
-color:var(--blue);
-}
-
-.arena-network .special{
-color:var(--gold);
-}
+.arena-network strong{color:var(--blue)}
+.arena-network .special{color:var(--gold)}
 
 .exit-arena{
-
-padding:
-6px
-10px;
-
-border:
-1px solid #344154;
-
+padding:6px 10px;
+border:1px solid #344154;
 border-radius:4px;
-
 background:#111827;
-
 color:#aeb9c6;
-
 font-size:9px;
-
 font-weight:1000;
-
 cursor:pointer;
-
 }
 
 
@@ -1581,790 +736,480 @@ cursor:pointer;
 **************************************************************/
 
 .arena-hud{
-
 position:absolute;
-
 left:50%;
 top:48px;
-
 z-index:45;
-
-transform:
-translateX(-50%);
-
-width:min(720px,78vw);
-
+transform:translateX(-50%);
+width:min(760px,80vw);
 text-align:center;
-
 pointer-events:none;
-
 }
 
 .arena-hud-main{
-
 display:inline-block;
-
-padding:
-7px 18px;
-
-border:
-1px solid rgba(255,255,255,.25);
-
+padding:7px 18px;
+border:1px solid rgba(255,255,255,.25);
 border-radius:4px;
-
-background:
-rgba(5,7,11,.72);
-
-backdrop-filter:
-blur(8px);
-
-color:white;
-
-font-size:
-clamp(
-13px,
-2vw,
-20px
-);
-
+background:rgba(5,7,11,.72);
+backdrop-filter:blur(8px);
+font-size:clamp(13px,2vw,20px);
 font-weight:1000;
-
 letter-spacing:1.4px;
-
 text-transform:uppercase;
-
-box-shadow:
-0 7px 20px rgba(0,0,0,.45);
-
+box-shadow:0 7px 20px rgba(0,0,0,.45);
 }
 
 .arena-hud-sub{
-
 margin-top:6px;
-
 color:#dbeafe;
-
 font-size:9px;
-
 font-weight:1000;
-
 letter-spacing:2px;
-
-text-shadow:
-0 2px 4px black;
-
+text-shadow:0 2px 4px black;
 }
 
 
 /**************************************************************
- ARENA SCENES
+ SCENES
 **************************************************************/
 
 .arena-scene{
-
 position:absolute;
-
 inset:0;
-
 z-index:20;
-
 display:none;
-
 }
 
 .arena-scene.active{
-
 display:block;
-
-animation:
-sceneIn .6s ease;
-
+animation:sceneIn .6s ease;
 }
 
 @keyframes sceneIn{
-
-from{
-opacity:0;
-}
-
-to{
-opacity:1;
-}
-
+from{opacity:0}
+to{opacity:1}
 }
 
 
 /**************************************************************
- ENTRANCE BROADCAST GRAPHIC
+ ENTRANCE
 **************************************************************/
 
 .entrance-overlay{
-
 position:absolute;
-
 left:50%;
 top:50%;
-
-transform:
-translate(-50%,-50%);
-
+transform:translate(-50%,-50%);
 width:min(920px,90vw);
-
-padding:
-30px 25px;
-
+padding:30px 25px;
 text-align:center;
-
 background:
-linear-gradient(
-90deg,
-transparent,
-rgba(3,7,15,.82) 15%,
-rgba(3,7,15,.88) 50%,
-rgba(3,7,15,.82) 85%,
-transparent
-);
-
-border-top:
-2px solid var(--team);
-
-border-bottom:
-2px solid var(--team);
-
-box-shadow:
-0 0 55px rgba(0,0,0,.8);
-
+linear-gradient(90deg,transparent,rgba(3,7,15,.82) 15%,rgba(3,7,15,.88) 50%,rgba(3,7,15,.82) 85%,transparent);
+border-top:2px solid var(--team);
+border-bottom:2px solid var(--team);
+box-shadow:0 0 55px rgba(0,0,0,.8);
 }
 
 .entrance-kicker{
-
 color:var(--blue);
-
 font-size:10px;
-
 font-weight:1000;
-
 letter-spacing:4px;
-
 }
 
 #entrance-manager{
-
 margin-top:13px;
-
-color:white;
-
-font-size:
-clamp(
-19px,
-3vw,
-31px
-);
-
+font-size:clamp(19px,3vw,31px);
 font-weight:1000;
-
 }
 
 #entrance-team{
-
 max-width:950px;
-
-margin:
-10px
-auto;
-
+margin:10px auto;
 color:var(--team);
-
-font-size:
-clamp(
-39px,
-8vw,
-87px
-);
-
+font-size:clamp(39px,8vw,87px);
 line-height:.9;
-
 font-weight:1000;
-
 text-transform:uppercase;
-
-text-shadow:
-0 0 30px var(--team);
-
+text-shadow:0 0 30px var(--team);
 }
 
 #entrance-line{
-
-margin:
-22px
-auto
-0;
-
+margin:22px auto 0;
 color:var(--yellow);
-
 font-size:12px;
-
 font-weight:1000;
-
 letter-spacing:1px;
-
 }
 
 .access-stamp{
-
 display:inline-block;
-
 margin-top:22px;
-
-padding:
-8px
-17px;
-
-border:
-3px solid #22c55e;
-
-background:
-rgba(0,0,0,.55);
-
+padding:8px 17px;
+border:3px solid #22c55e;
+background:rgba(0,0,0,.55);
 color:#4ade80;
-
 font-size:20px;
-
 font-weight:1000;
-
 letter-spacing:2px;
-
-transform:
-rotate(-2deg);
-
+transform:rotate(-2deg);
 }
 
 
 /**************************************************************
- ARENA DOOR REVEAL
+ DOORS
 **************************************************************/
 
-#door-scene{
-
-background:#020305;
-
-}
+#door-scene{background:#020305}
 
 .door-arena-preview{
-
 position:absolute;
-
 inset:0;
-
-background-image:
-url("f4sn-winners-arena.png");
-
+background-image:url("f4sn-winners-arena.png");
 background-size:cover;
-
 background-position:center;
-
-filter:
-brightness(.85);
-
+filter:brightness(.85);
 }
 
 .mega-door{
-
 position:absolute;
-
 top:0;
 bottom:0;
-
 z-index:6;
-
 width:50.2%;
-
-background:
-linear-gradient(
-90deg,
-#05070b,
-#182437 50%,
-#05070b
-);
-
-border:
-4px solid #263244;
-
-transition:
-transform 1.9s
-cubic-bezier(.18,.8,.2,1);
-
+background:linear-gradient(90deg,#05070b,#182437 50%,#05070b);
+border:4px solid #263244;
+transition:transform 1.9s cubic-bezier(.18,.8,.2,1);
 }
 
 .mega-door::before{
-
 content:"";
-
 position:absolute;
-
 inset:0;
-
-background:
-repeating-linear-gradient(
-135deg,
-transparent 0 60px,
-rgba(255,255,255,.025) 61px 65px
-);
-
+background:repeating-linear-gradient(135deg,transparent 0 60px,rgba(255,255,255,.025) 61px 65px);
 }
 
-.mega-door.left{
-left:0;
-}
-
-.mega-door.right{
-right:0;
-}
+.mega-door.left{left:0}
+.mega-door.right{right:0}
 
 .mega-door.left::after,
 .mega-door.right::after{
-
 content:"";
-
 position:absolute;
-
 top:0;
 bottom:0;
-
 width:6px;
-
 background:var(--blue);
-
-box-shadow:
-0 0 25px var(--blue);
-
+box-shadow:0 0 25px var(--blue);
 }
 
-.mega-door.left::after{
-right:0;
-}
-
-.mega-door.right::after{
-left:0;
-}
+.mega-door.left::after{right:0}
+.mega-door.right::after{left:0}
 
 .mega-door-logo{
-
 position:absolute;
-
 top:50%;
-
 z-index:8;
-
-transform:
-translateY(-50%);
-
+transform:translateY(-50%);
 color:#536276;
-
-font-size:
-clamp(
-55px,
-12vw,
-140px
-);
-
+font-size:clamp(55px,12vw,140px);
 font-weight:1000;
-
-text-shadow:
-0 5px 0 black;
-
+text-shadow:0 5px 0 black;
 }
 
-.mega-door-logo.left{
-right:25px;
-}
+.mega-door-logo.left{right:25px}
+.mega-door-logo.right{left:25px}
 
-.mega-door-logo.right{
-left:25px;
-}
-
-#door-scene.open
-.mega-door.left{
-
-transform:
-translateX(-102%);
-
-}
-
-#door-scene.open
-.mega-door.right{
-
-transform:
-translateX(102%);
-
-}
+#door-scene.open .mega-door.left{transform:translateX(-102%)}
+#door-scene.open .mega-door.right{transform:translateX(102%)}
 
 .door-control{
-
 position:absolute;
-
 z-index:10;
-
 left:50%;
 bottom:7%;
-
-transform:
-translateX(-50%);
-
+transform:translateX(-50%);
 text-align:center;
-
 }
 
 
 /**************************************************************
- WHEEL STAGE PLACEMENT
-
- POSITIONED ON THE EMPTY CENTER STAGE IN THE ARTWORK.
+ WHEEL STAGE
 **************************************************************/
 
 .wheel-stage-zone{
-
 position:absolute;
-
 z-index:25;
-
 left:50%;
-
-top:58%;
-
-transform:
-translate(-50%,-50%);
-
-width:
-min(
-49vw,
-650px
-);
-
+top:57%;
+transform:translate(-50%,-50%);
+width:min(48vw,640px);
 aspect-ratio:1;
-
-transition:
-transform .5s,
-filter .5s;
-
+transition:filter .5s,transform .5s;
 }
 
-#arena.spin-mode
-.wheel-stage-zone{
+#arena.spin-fast .wheel-stage-zone{
+filter:drop-shadow(0 0 40px rgba(255,213,74,.55));
+}
 
-filter:
-drop-shadow(
-0 0 38px rgba(255,213,74,.5)
-);
-
+#arena.spin-tension .wheel-stage-zone{
+filter:drop-shadow(0 0 55px rgba(255,213,74,.32));
 }
 
 .wheel-shadow{
-
 position:absolute;
-
-left:12%;
-right:12%;
-bottom:-7%;
-
-height:20%;
-
+left:9%;
+right:9%;
+bottom:-9%;
+height:21%;
 border-radius:50%;
-
-background:
-rgba(0,0,0,.68);
-
+background:rgba(0,0,0,.82);
 filter:blur(20px);
-
-transform:
-perspective(400px)
-rotateX(65deg);
-
+transform:perspective(400px) rotateX(65deg);
 }
 
 
 /**************************************************************
- WHEEL MACHINE
+ NEW WHEEL PEDESTAL
+**************************************************************/
+
+.machine-pedestal{
+position:absolute;
+left:50%;
+bottom:-15%;
+width:38%;
+height:25%;
+transform:translateX(-50%);
+z-index:-1;
+background:
+linear-gradient(90deg,#211400,#8d5b00 18%,#ffe477 50%,#8d5b00 82%,#211400);
+clip-path:polygon(20% 0,80% 0,100% 100%,0 100%);
+box-shadow:0 20px 30px rgba(0,0,0,.8);
+}
+
+.machine-pedestal::after{
+content:"F4SN";
+position:absolute;
+left:50%;
+top:48%;
+transform:translate(-50%,-50%);
+color:#080b12;
+font-size:clamp(15px,2.5vw,32px);
+font-weight:1000;
+letter-spacing:2px;
+}
+
+
+/**************************************************************
+ V4.3 WHEEL MACHINE
 **************************************************************/
 
 .wheel-machine{
-
 position:absolute;
-
 inset:0;
-
-padding:7.5%;
-
+padding:9%;
 border-radius:50%;
-
 background:
-linear-gradient(
-135deg,
-#fff6c5 0%,
-#d69b00 11%,
-#6d4600 27%,
-#ffd54a 42%,
-#fff2a0 51%,
-#976100 67%,
-#ffd54a 84%,
-#694300 100%
+radial-gradient(circle at 35% 20%,#fff9d2 0 2%,transparent 8%),
+conic-gradient(
+#5c3900,
+#ffd75a,
+#7b4b00,
+#fff0a0,
+#9a6100,
+#ffd75a,
+#5c3900,
+#f8cb42,
+#704400,
+#fff1a6,
+#5c3900
 );
-
 box-shadow:
-0 0 0 7px #2b1c00,
-0 0 0 13px #111827,
-0 0 0 16px #263244,
-inset 0 0 28px rgba(255,255,255,.35),
-0 0 55px rgba(255,213,74,.40),
-0 30px 45px rgba(0,0,0,.85);
-
+0 0 0 4px #1d1200,
+0 0 0 10px #e2aa1d,
+0 0 0 16px #382300,
+0 0 0 20px #111827,
+0 0 0 23px #4a5565,
+inset 0 0 35px rgba(255,255,255,.45),
+inset 0 0 70px rgba(74,42,0,.55),
+0 0 55px rgba(255,190,20,.35),
+0 30px 55px rgba(0,0,0,.95);
 }
 
 .wheel-machine::before{
-
 content:"";
-
 position:absolute;
-
-inset:3%;
-
+inset:4.5%;
 border-radius:50%;
-
-border:
-3px solid rgba(255,255,255,.28);
-
+border:4px solid rgba(255,239,155,.75);
+box-shadow:
+inset 0 0 12px #4b2d00,
+0 0 10px rgba(255,213,74,.4);
 pointer-events:none;
-
+z-index:5;
 }
 
 .wheel-machine::after{
-
 content:"";
-
 position:absolute;
-
-inset:6%;
-
-z-index:6;
-
+inset:7%;
 border-radius:50%;
-
 box-shadow:
-inset 16px 18px 24px rgba(255,255,255,.10),
-inset -20px -20px 30px rgba(0,0,0,.55);
-
+inset 18px 20px 28px rgba(255,255,255,.10),
+inset -25px -25px 38px rgba(0,0,0,.72);
 pointer-events:none;
-
+z-index:6;
 }
 
 #wheel{
-
 display:block;
-
 width:100%;
 height:100%;
-
 border-radius:50%;
-
-background:#111827;
-
+background:#080b12;
 box-shadow:
-inset 0 0 30px rgba(0,0,0,.9),
-0 0 0 4px #5d3d00;
-
+inset 0 0 45px rgba(0,0,0,.95),
+0 0 0 5px #271700,
+0 0 0 8px #c18b12;
 }
 
 
 /**************************************************************
- BULBS
+ MARQUEE BULBS
 **************************************************************/
 
 #bulbs{
-
 position:absolute;
-
 inset:0;
-
-z-index:8;
-
+z-index:10;
 border-radius:50%;
-
 pointer-events:none;
-
 }
 
 .bulb{
-
 position:absolute;
-
-width:15px;
-height:15px;
-
-margin:-7.5px;
-
-border:
-2px solid #987000;
-
+width:16px;
+height:16px;
+margin:-8px;
+border:2px solid #3b2800;
 border-radius:50%;
-
-background:#5a4300;
-
+background:
+radial-gradient(circle at 35% 30%,#92743a,#3c2c0b 60%,#100b02);
 box-shadow:
-inset 0 0 4px black;
-
-transition:
-background .07s,
-box-shadow .07s,
-transform .07s;
-
+inset 0 0 5px black,
+0 2px 4px black;
+transition:.06s;
 }
 
 .bulb.on{
-
-transform:
-scale(1.2);
-
-background:#fff9cf;
-
+transform:scale(1.25);
+background:#fff9d4;
 box-shadow:
 0 0 7px white,
 0 0 18px #ffd54a,
-0 0 29px #ff9f00;
-
+0 0 30px #ff9f00;
 }
 
 .bulb.blue{
-
-transform:
-scale(1.18);
-
+transform:scale(1.2);
 background:white;
-
 box-shadow:
 0 0 7px white,
 0 0 18px #18a8ff,
-0 0 28px #18a8ff;
-
+0 0 30px #18a8ff;
 }
 
 .bulb.red{
-
-transform:
-scale(1.18);
-
+transform:scale(1.25);
 background:white;
-
 box-shadow:
 0 0 7px white,
 0 0 18px #ff4b4b,
-0 0 28px #ff4b4b;
-
+0 0 32px #ff4b4b;
 }
 
 
 /**************************************************************
- POINTER
+ MECHANICAL POINTER
 **************************************************************/
 
-.pointer-housing{
-
+.pointer-assembly{
 position:absolute;
-
 left:50%;
-top:-8%;
+top:-12%;
+z-index:20;
+width:19%;
+height:24%;
+transform:translateX(-50%);
+filter:drop-shadow(0 10px 8px rgba(0,0,0,.85));
+}
 
-z-index:16;
-
-width:15%;
-height:19%;
-
-transform:
-translateX(-50%);
-
+.pointer-mount{
+position:absolute;
+left:50%;
+top:0;
+width:75%;
+aspect-ratio:1;
+transform:translateX(-50%);
+border:5px solid #6d4500;
+border-radius:50%;
+background:
+radial-gradient(circle at 32% 28%,#fff,#d6dce4 16%,#66717d 42%,#202832 67%,#080b12 100%);
+box-shadow:
+0 0 0 4px #e5b635,
+0 0 0 7px #312000,
+inset 0 0 10px white,
+0 8px 15px black;
 }
 
 .pointer-bolt{
-
 position:absolute;
-
 left:50%;
-top:0;
-
-width:60%;
+top:50%;
+width:28%;
 aspect-ratio:1;
-
-transform:
-translateX(-50%);
-
-border:
-4px solid var(--blue);
-
+transform:translate(-50%,-50%);
 border-radius:50%;
-
-background:
-radial-gradient(
-circle at 35% 30%,
-white,
-#bdc8d5 20%,
-#566273 58%,
-#111827
-);
-
-box-shadow:
-0 5px 12px rgba(0,0,0,.8),
-0 0 18px rgba(24,168,255,.45);
-
+background:#111827;
+border:2px solid #e8bd47;
 }
 
 #pointer{
-
 position:absolute;
-
 left:50%;
-top:43%;
+top:45%;
+width:27%;
+height:58%;
+transform:translateX(-50%);
+transform-origin:50% 3%;
+background:
+linear-gradient(90deg,#5b6570,#fff 35%,#dce2e8 55%,#626d79);
+clip-path:polygon(22% 0,78% 0,100% 72%,50% 100%,0 72%);
+border-radius:4px;
+box-shadow:inset 0 0 7px white;
+}
 
-width:0;
-height:0;
-
-transform:
-translateX(-50%);
-
-transform-origin:
-50% 0;
-
-border-left:
-18px solid transparent;
-
-border-right:
-18px solid transparent;
-
-border-top:
-52px solid #f8fafc;
-
-filter:
-drop-shadow(
-0 6px 5px rgba(0,0,0,.9)
-);
-
+#pointer::after{
+content:"";
+position:absolute;
+left:50%;
+bottom:5%;
+width:32%;
+height:26%;
+transform:translateX(-50%);
+background:#ffd54a;
+clip-path:polygon(50% 100%,0 0,100% 0);
 }
 
 #pointer.hit{
-
-animation:
-pointerHit .09s ease;
-
+animation:pointerHit .11s cubic-bezier(.3,.8,.4,1);
 }
 
 @keyframes pointerHit{
-
-50%{
-
-transform:
-translateX(-50%)
-rotate(10deg);
-
-}
-
+0%{transform:translateX(-50%) rotate(0)}
+45%{transform:translateX(-50%) rotate(14deg)}
+100%{transform:translateX(-50%) rotate(0)}
 }
 
 
@@ -2373,295 +1218,267 @@ rotate(10deg);
 **************************************************************/
 
 .center-hub{
-
 position:absolute;
-
 left:50%;
 top:50%;
-
-z-index:13;
-
-width:25%;
+z-index:14;
+width:27%;
 aspect-ratio:1;
-
-transform:
-translate(-50%,-50%);
-
+transform:translate(-50%,-50%);
 display:flex;
-
 flex-direction:column;
-
 align-items:center;
-
 justify-content:center;
-
-border:
-6px solid var(--blue);
-
+border:6px solid #d6a322;
 border-radius:50%;
-
 background:
-radial-gradient(
-circle at 35% 30%,
-#344154,
-#111827 42%,
-#020305 78%
-);
-
+radial-gradient(circle at 35% 28%,#3b4858,#17212e 38%,#070b10 72%);
 box-shadow:
-0 0 0 5px #073e62,
-inset 0 0 20px rgba(255,255,255,.12),
-0 8px 25px rgba(0,0,0,.8);
+0 0 0 5px #493000,
+0 0 0 9px #f1c847,
+inset 0 0 22px rgba(255,255,255,.16),
+0 10px 30px rgba(0,0,0,.9),
+0 0 30px rgba(24,168,255,.25);
+}
 
+.center-hub::before{
+content:"";
+position:absolute;
+inset:10%;
+border-radius:50%;
+border:1px solid rgba(255,255,255,.18);
 }
 
 .center-hub strong{
-
 color:var(--blue);
-
-font-size:
-clamp(
-15px,
-2.7vw,
-34px
-);
-
+font-size:clamp(17px,3vw,38px);
 font-weight:1000;
-
+text-shadow:0 0 12px rgba(24,168,255,.65);
 }
 
 .center-hub span{
-
-color:white;
-
-font-size:
-clamp(
-5px,
-.7vw,
-9px
-);
-
+margin-top:1px;
+color:#f6d267;
+font-size:clamp(5px,.7vw,9px);
 font-weight:1000;
-
-letter-spacing:2px;
-
+letter-spacing:1.5px;
 }
 
 
 /**************************************************************
- LIVE CONTROL DECK
+ PHYSICAL LEVER
+**************************************************************/
+
+.lever-machine{
+position:absolute;
+right:-16%;
+top:43%;
+z-index:18;
+width:18%;
+height:38%;
+}
+
+.lever-base{
+position:absolute;
+left:10%;
+bottom:0;
+width:80%;
+height:37%;
+border:4px solid #3c2700;
+border-radius:14px;
+background:
+linear-gradient(90deg,#6b4200,#f2c44e 45%,#7b4d00);
+box-shadow:
+inset 0 0 10px rgba(255,255,255,.3),
+0 12px 20px rgba(0,0,0,.8);
+}
+
+.lever-slot{
+position:absolute;
+left:50%;
+bottom:24%;
+width:24%;
+height:70%;
+transform:translateX(-50%);
+border-radius:20px;
+background:#080b12;
+box-shadow:inset 0 0 8px black;
+}
+
+#lever-arm{
+position:absolute;
+left:50%;
+bottom:25%;
+width:13%;
+height:69%;
+transform:translateX(-50%) rotate(-18deg);
+transform-origin:50% 92%;
+border-radius:12px;
+background:linear-gradient(90deg,#4c5660,#fff,#65717d);
+box-shadow:0 5px 8px black;
+transition:transform .25s cubic-bezier(.3,.8,.3,1.4);
+}
+
+#lever-arm.pulled{
+transform:translateX(-50%) rotate(42deg);
+}
+
+.lever-knob{
+position:absolute;
+left:50%;
+top:-12%;
+width:270%;
+aspect-ratio:1;
+transform:translateX(-50%);
+border-radius:50%;
+background:
+radial-gradient(circle at 35% 28%,#fff5ba,#ffd54a 35%,#a36300 72%);
+border:3px solid #5e3b00;
+box-shadow:
+0 0 15px rgba(255,213,74,.6),
+0 6px 10px black;
+}
+
+
+/**************************************************************
+ CONTROL DECK
 **************************************************************/
 
 .control-deck{
-
 position:absolute;
-
 z-index:40;
-
 left:50%;
 bottom:2.3%;
-
-transform:
-translateX(-50%);
-
-width:min(760px,92vw);
-
+transform:translateX(-50%);
+width:min(790px,92vw);
 display:grid;
-
-grid-template-columns:
-1fr auto;
-
+grid-template-columns:1fr auto;
 align-items:center;
-
 gap:14px;
-
-padding:
-11px 13px;
-
-border:
-1px solid rgba(255,255,255,.28);
-
-border-top:
-3px solid var(--blue);
-
+padding:11px 13px;
+border:1px solid rgba(255,255,255,.28);
+border-top:3px solid var(--blue);
 border-radius:8px;
-
-background:
-rgba(5,7,11,.86);
-
-backdrop-filter:
-blur(10px);
-
-box-shadow:
-0 12px 35px rgba(0,0,0,.7);
-
-}
-
-.oracle-control{
-
-min-width:0;
-
+background:rgba(5,7,11,.88);
+backdrop-filter:blur(10px);
+box-shadow:0 12px 35px rgba(0,0,0,.7);
 }
 
 .oracle-label{
-
 color:var(--blue);
-
 font-size:8px;
-
 font-weight:1000;
-
 letter-spacing:2px;
-
 }
 
 #oracle-message{
-
 margin-top:4px;
-
 overflow:hidden;
-
 color:#e3e8ef;
-
 font-size:11px;
-
 font-weight:900;
-
 line-height:1.35;
-
 white-space:nowrap;
-
 text-overflow:ellipsis;
-
 }
 
 #spin-button{
-
-min-width:250px;
-
-padding:
-14px
-20px;
-
-border:
-2px solid #fff0a0;
-
+min-width:270px;
+padding:14px 20px;
+border:2px solid #fff0a0;
 border-radius:7px;
-
-background:
-linear-gradient(
-180deg,
-#fff5b8,
-#ffd54a 50%,
-#ba7800
-);
-
+background:linear-gradient(180deg,#fff5b8,#ffd54a 50%,#ba7800);
 color:#111;
-
 font-size:13px;
-
 font-weight:1000;
-
 letter-spacing:.8px;
-
 cursor:pointer;
-
 box-shadow:
 0 5px 0 #684300,
 0 9px 20px rgba(0,0,0,.55),
 0 0 24px rgba(255,213,74,.20);
-
 }
 
 #spin-button:disabled{
-
 opacity:.45;
-
 cursor:not-allowed;
-
 }
 
 
 /**************************************************************
- BROADCAST SIDE GRAPHICS
+ SIDE HUD
 **************************************************************/
 
 .side-result{
-
 position:absolute;
-
 z-index:35;
-
 top:50%;
-
 width:min(220px,18vw);
-
-padding:
-10px;
-
-border:
-1px solid rgba(255,255,255,.24);
-
-background:
-rgba(5,7,11,.78);
-
-backdrop-filter:
-blur(7px);
-
+padding:10px;
+border:1px solid rgba(255,255,255,.24);
+background:rgba(5,7,11,.78);
+backdrop-filter:blur(7px);
 text-align:center;
-
-box-shadow:
-0 10px 25px rgba(0,0,0,.6);
-
+box-shadow:0 10px 25px rgba(0,0,0,.6);
 }
 
 .side-result.left{
-
 left:2%;
-
-border-left:
-4px solid var(--team);
-
+border-left:4px solid var(--team);
 }
 
 .side-result.right{
-
 right:2%;
-
-border-right:
-4px solid var(--gold);
-
+border-right:4px solid var(--gold);
 }
 
 .side-label{
-
 color:#9ba9bb;
-
 font-size:7px;
-
 font-weight:1000;
-
 letter-spacing:1.5px;
-
 }
 
 .side-value{
-
 margin-top:5px;
-
-color:white;
-
-font-size:
-clamp(
-10px,
-1.5vw,
-17px
-);
-
+font-size:clamp(10px,1.5vw,17px);
 font-weight:1000;
-
 line-height:1.15;
+}
 
+
+/**************************************************************
+ POWER DOWN OVERLAY
+**************************************************************/
+
+#power-down{
+position:fixed;
+inset:0;
+z-index:16500;
+display:none;
+align-items:center;
+justify-content:center;
+pointer-events:none;
+background:rgba(0,0,0,.48);
+}
+
+#power-down.show{
+display:flex;
+animation:powerFade 1.15s ease forwards;
+}
+
+@keyframes powerFade{
+0%{background:rgba(0,0,0,0)}
+45%{background:rgba(0,0,0,.67)}
+100%{background:rgba(0,0,0,.38)}
+}
+
+.power-text{
+color:#ffd54a;
+font-size:clamp(15px,3vw,30px);
+font-weight:1000;
+letter-spacing:5px;
+text-shadow:0 0 20px #ff9f00;
 }
 
 
@@ -2670,77 +1487,77 @@ line-height:1.15;
 **************************************************************/
 
 #countdown{
-
 position:fixed;
-
 inset:0;
-
 z-index:17000;
-
 display:none;
-
 align-items:center;
-
 justify-content:center;
-
-background:
-rgba(2,3,5,.78);
-
-backdrop-filter:
-blur(2px);
-
+background:rgba(2,3,5,.72);
+backdrop-filter:blur(2px);
 }
 
-#countdown.show{
-display:flex;
-}
+#countdown.show{display:flex}
 
 #countdown-number{
-
 color:var(--blue);
-
-font-size:
-clamp(
-130px,
-30vw,
-350px
-);
-
+font-size:clamp(130px,30vw,350px);
 font-weight:1000;
-
 text-shadow:
 0 0 30px #18a8ff,
 0 0 85px rgba(24,168,255,.5);
+animation:countPop .65s ease;
+}
 
-animation:
-countPop .65s ease;
-
+#countdown-number.spin-word{
+color:#ffd54a;
+font-size:clamp(85px,20vw,240px);
+text-shadow:
+0 0 30px #ffd54a,
+0 0 90px #ff9f00;
 }
 
 @keyframes countPop{
+from{opacity:0;transform:scale(.25)}
+55%{opacity:1;transform:scale(1.15)}
+to{transform:scale(1)}
+}
 
-from{
 
+/**************************************************************
+ SHOCKWAVE
+**************************************************************/
+
+#shockwave{
+position:fixed;
+left:50%;
+top:55%;
+z-index:16800;
+width:30px;
+height:30px;
+border:7px solid #ffd54a;
+border-radius:50%;
 opacity:0;
-
-transform:
-scale(.25);
-
+pointer-events:none;
+transform:translate(-50%,-50%);
 }
 
-55%{
+#shockwave.fire{
+animation:shockwave 1s ease-out forwards;
+}
 
+@keyframes shockwave{
+0%{
 opacity:1;
-
-transform:
-scale(1.15);
-
+width:30px;
+height:30px;
 }
-
-to{
-transform:scale(1);
+100%{
+opacity:0;
+width:140vw;
+height:140vw;
+border-width:1px;
 }
-
 }
 
 
@@ -2749,46 +1566,23 @@ transform:scale(1);
 **************************************************************/
 
 #blackout{
-
 position:fixed;
-
 inset:0;
-
 z-index:18000;
-
 display:none;
-
 align-items:center;
-
 justify-content:center;
-
 background:black;
-
 }
 
-#blackout.show{
-display:flex;
-}
+#blackout.show{display:flex}
 
 #blackout-text{
-
 padding:25px;
-
-color:white;
-
 text-align:center;
-
-font-size:
-clamp(
-25px,
-5vw,
-60px
-);
-
+font-size:clamp(25px,5vw,60px);
 font-weight:1000;
-
 letter-spacing:3px;
-
 }
 
 
@@ -2797,321 +1591,145 @@ letter-spacing:3px;
 **************************************************************/
 
 #takeover{
-
 position:fixed;
-
 inset:0;
-
 z-index:19000;
-
 display:none;
-
 align-items:center;
-
 justify-content:center;
-
 padding:20px;
-
 background:
-radial-gradient(
-circle,
-var(
---take-glow,
-rgba(24,168,255,.18)
-),
-transparent 55%
-),
+radial-gradient(circle,var(--take-glow,rgba(24,168,255,.18)),transparent 55%),
 rgba(2,3,5,.91);
-
-backdrop-filter:
-blur(5px);
-
+backdrop-filter:blur(5px);
 }
 
 #takeover.show{
-
 display:flex;
-
-animation:
-takeoverIn .4s ease;
-
+animation:takeoverIn .4s ease;
 }
 
 @keyframes takeoverIn{
-
-from{
-opacity:0;
-}
-
-to{
-opacity:1;
-}
-
+from{opacity:0}
+to{opacity:1}
 }
 
 .take-card{
-
 width:min(900px,96vw);
-
-padding:
-42px
-25px;
-
-border:
-3px solid var(--take-color);
-
+padding:42px 25px;
+border:3px solid var(--take-color);
 border-top-width:7px;
-
 border-radius:10px;
-
 background:
-radial-gradient(
-circle at 50% 10%,
-var(--take-glow),
-transparent 55%
-),
+radial-gradient(circle at 50% 10%,var(--take-glow),transparent 55%),
 rgba(17,24,39,.96);
-
 text-align:center;
-
-box-shadow:
-0 0 70px var(--take-glow);
-
-animation:
-resultSlam .55s
-cubic-bezier(.2,.9,.25,1.35);
-
+box-shadow:0 0 70px var(--take-glow);
+animation:resultSlam .55s cubic-bezier(.2,.9,.25,1.35);
 }
 
 @keyframes resultSlam{
-
-from{
-
-opacity:0;
-
-transform:
-scale(.3)
-rotate(-3deg);
-
-}
-
+from{opacity:0;transform:scale(.3) rotate(-3deg)}
 }
 
 .take-network{
-
 color:var(--blue);
-
 font-size:10px;
-
 font-weight:1000;
-
 letter-spacing:3px;
-
 }
 
 .take-alert{
-
 margin-top:8px;
-
 color:var(--take-color);
-
 font-size:11px;
-
 font-weight:1000;
-
 letter-spacing:5px;
-
 }
 
 .take-icon{
-
-margin:
-12px
-0;
-
+margin:12px 0;
 font-size:75px;
-
 }
 
 .take-title{
-
 color:var(--take-color);
-
-font-size:
-clamp(
-43px,
-10vw,
-95px
-);
-
+font-size:clamp(43px,10vw,95px);
 line-height:.9;
-
 font-weight:1000;
-
 text-transform:uppercase;
-
-text-shadow:
-0 0 30px var(--take-glow);
-
+text-shadow:0 0 30px var(--take-glow);
 }
 
 .take-description{
-
 max-width:680px;
-
-margin:
-22px
-auto
-0;
-
+margin:22px auto 0;
 color:#d3dae4;
-
 line-height:1.6;
-
 }
 
 .take-manager{
-
 margin-top:20px;
-
 color:#96a3b4;
-
 font-size:12px;
-
 font-weight:900;
-
 }
 
 .take-button{
-
 margin-top:27px;
-
-padding:
-13px
-23px;
-
-border:
-1px solid var(--blue);
-
+padding:13px 23px;
+border:1px solid var(--blue);
 border-radius:6px;
-
 background:#0a1018;
-
 color:white;
-
 font-weight:1000;
-
 cursor:pointer;
-
 }
 
-
-/**************************************************************
- JACKPOT MODE
-**************************************************************/
-
 #takeover.jackpot{
-
 background:
-radial-gradient(
-circle,
-rgba(154,107,0,.88) 0,
-rgba(40,26,0,.93) 32%,
-rgba(0,0,0,.97) 73%
-);
-
-animation:
-jackpotBackground .22s linear infinite alternate;
-
+radial-gradient(circle,rgba(154,107,0,.88),rgba(40,26,0,.93) 32%,rgba(0,0,0,.97) 73%);
+animation:jackpotBackground .22s linear infinite alternate;
 }
 
 @keyframes jackpotBackground{
-
-from{
-filter:brightness(.85);
+from{filter:brightness(.85)}
+to{filter:brightness(1.55)}
 }
 
-to{
-filter:brightness(1.55);
-}
-
-}
-
-#takeover.jackpot
-.take-card{
-
+#takeover.jackpot .take-card{
 border-width:6px;
-
 background:
-radial-gradient(
-circle at 50% 10%,
-rgba(255,213,74,.35),
-transparent 52%
-),
+radial-gradient(circle at 50% 10%,rgba(255,213,74,.35),transparent 52%),
 #111006;
-
 }
 
-#takeover.jackpot
-.take-title{
-
-font-size:
-clamp(
-70px,
-15vw,
-145px
-);
-
+#takeover.jackpot .take-title{
+font-size:clamp(70px,15vw,145px);
 }
 
 
 /**************************************************************
- JACKPOT ARENA WASH
+ JACKPOT ARENA
 **************************************************************/
 
 .jackpot-wash{
-
 position:absolute;
-
 inset:0;
-
 z-index:10;
-
 display:none;
-
 pointer-events:none;
-
 background:
-radial-gradient(
-circle at 50% 55%,
-rgba(255,244,160,.15),
-rgba(255,213,74,.28) 40%,
-rgba(255,130,0,.13) 70%,
-transparent
-);
-
+radial-gradient(circle at 50% 55%,rgba(255,244,160,.15),rgba(255,213,74,.28) 40%,rgba(255,130,0,.13) 70%,transparent);
 mix-blend-mode:screen;
-
-animation:
-jackpotWash .18s infinite alternate;
-
+animation:jackpotWash .18s infinite alternate;
 }
 
-#arena.jackpot-mode
-.jackpot-wash{
-display:block;
-}
+#arena.jackpot-mode .jackpot-wash{display:block}
 
 @keyframes jackpotWash{
-
-from{
-opacity:.45;
-}
-
-to{
-opacity:1;
-}
-
+from{opacity:.45}
+to{opacity:1}
 }
 
 
@@ -3120,31 +1738,17 @@ opacity:1;
 **************************************************************/
 
 footer{
-
-padding:
-24px
-20px;
-
-border-top:
-1px solid var(--border);
-
+padding:24px 20px;
+border-top:1px solid var(--border);
 background:#05070b;
-
 color:#748297;
-
 text-align:center;
-
 font-size:9px;
-
 font-weight:900;
-
 letter-spacing:1px;
-
 }
 
-footer strong{
-color:var(--blue);
-}
+footer strong{color:var(--blue)}
 
 
 /**************************************************************
@@ -3154,256 +1758,136 @@ color:var(--blue);
 @media(max-width:800px){
 
 .hero-banner{
-
 min-height:130px;
-
 object-fit:cover;
-
 }
 
 .event-strip-label{
-
 min-width:105px;
-
 padding:8px;
-
-}
-
-.event-strip-label strong{
-font-size:12px;
 }
 
 .network-bar{
-
 flex-direction:column;
-
 gap:4px;
-
 }
 
-nav{
-padding:8px;
-}
-
-nav a{
-
-padding:6px;
-
-font-size:9px;
-
-}
+nav{padding:8px}
+nav a{padding:6px;font-size:9px}
 
 main{
-
 width:94%;
-
 padding-top:25px;
-
 }
 
-.team-grid{
-grid-template-columns:1fr;
-}
+.team-grid{grid-template-columns:1fr}
 
 .special-event-body{
-
 min-height:380px;
-
-padding:
-35px
-18px;
-
-}
-
-.arena-backdrop{
-
-background-size:cover;
-
-background-position:center;
-
+padding:35px 18px;
 }
 
 .wheel-stage-zone{
-
-top:58%;
-
-width:min(65vw,520px);
-
+top:56%;
+width:min(64vw,520px);
 }
 
-.side-result{
-
-display:none;
-
+.lever-machine{
+right:-18%;
 }
+
+.side-result{display:none}
 
 .control-deck{
-
 grid-template-columns:1fr;
-
 bottom:1%;
-
 width:94vw;
-
 }
 
 #oracle-message{
-
 white-space:normal;
-
 font-size:9px;
-
 }
 
 #spin-button{
-
 min-width:0;
-
 width:100%;
-
 padding:11px;
-
 }
 
 .arena-hud{
-
 top:43px;
-
 width:88vw;
-
 }
 
-.arena-network{
-
-font-size:8px;
-
-}
-
-.pointer-housing{
-
-top:-7%;
-
-}
-
-#pointer{
-
-border-left-width:12px;
-
-border-right-width:12px;
-
-border-top-width:36px;
-
-}
+.arena-network{font-size:8px}
 
 .bulb{
-
 width:10px;
 height:10px;
-
 margin:-5px;
-
 }
 
 }
-
-
-/**************************************************************
- SHORT SCREEN
-**************************************************************/
 
 @media(max-height:720px){
 
 .wheel-stage-zone{
-
-top:55%;
-
-width:min(43vw,520px);
-
+top:54%;
+width:min(42vw,510px);
 }
 
-.control-deck{
-
-bottom:1%;
-
-}
-
-.arena-hud{
-
-top:39px;
-
-}
+.control-deck{bottom:1%}
+.arena-hud{top:39px}
 
 }
 
 </style>
-
 </head>
 
 <body>
-
 
 <div id="fx"></div>
 
 
 <!-- =========================================================
- F4SN WEBSITE OPENING
+ F4SN WEBSITE
 ========================================================= -->
 
 <header class="hero">
-
 <img
 src="fant4sy-four-banner.png"
 alt="The Fant4sy Four"
-class="hero-banner"
->
-
+class="hero-banner">
 </header>
 
 
 <div class="event-strip">
 
 <div class="event-strip-label">
-
 <strong>F4SN</strong>
-
 <span>Special Event</span>
-
 </div>
 
 <div class="event-strip-track">
 
 <div class="event-strip-message">
 
-<strong>
-WINNER'S WHEEL ARENA
-</strong>
-
+<strong>WINNER'S WHEEL ARENA</strong>
 &nbsp; • &nbsp;
-
 ONE WEEKLY CHAMPION
-
 &nbsp; • &nbsp;
-
 ONE SPIN
-
 &nbsp; • &nbsp;
-
 ONE ADVANTAGE FOR NEXT WEEK
-
 &nbsp; • &nbsp;
-
 GRAND PRIZE ODDS REMAIN COMPLETELY UNREASONABLE
-
 &nbsp; • &nbsp;
-
-<strong>
-F4SN SPECIAL EVENT COVERAGE
-</strong>
+<strong>F4SN SPECIAL EVENT COVERAGE</strong>
 
 </div>
 
 </div>
-
 </div>
 
 
@@ -3414,11 +1898,8 @@ F4SN • FANT4SY FOUR SPORTS NETWORK
 </span>
 
 <span>
-
 <span class="live-dot"></span>
-
 LIVE SPECIAL EVENT
-
 </span>
 
 <span class="update-status">
@@ -3430,39 +1911,18 @@ WINNER'S WHEEL ARENA
 
 <nav>
 
-<a href="index.html">
-HOME
-</a>
-
-<a href="index.html#scoreboard">
-SCOREBOARD
-</a>
-
-<a href="index.html#standings">
-STANDINGS
-</a>
-
-<a href="index.html#lineups">
-LINEUPS
-</a>
-
-<a href="index.html#wheels">
-THE WHEELS
-</a>
-
-<a href="index.html#comics">
-COMICS
-</a>
-
-<a href="index.html#hall-of-shame">
-HALL OF SHAME
-</a>
+<a href="index.html">HOME</a>
+<a href="index.html#scoreboard">SCOREBOARD</a>
+<a href="index.html#standings">STANDINGS</a>
+<a href="index.html#lineups">LINEUPS</a>
+<a href="index.html#wheels">THE WHEELS</a>
+<a href="index.html#comics">COMICS</a>
+<a href="index.html#hall-of-shame">HALL OF SHAME</a>
 
 </nav>
 
 
 <main>
-
 
 <section>
 
@@ -3471,16 +1931,12 @@ Winner's Wheel Arena
 </h1>
 
 <p class="section-subtitle">
-
-F4SN presents the completely unnecessary
-primetime ceremony awarded to each week's
-Fant4sy Four champion.
-
+F4SN presents the completely unnecessary primetime ceremony
+awarded to each week's Fant4sy Four champion.
 </p>
 
 
 <div class="broadcast-card">
-
 
 <div class="broadcast-header">
 
@@ -3508,15 +1964,9 @@ F4SN
 </div>
 
 <div class="event-title">
-
 THE
-
-<span>
-WINNER'S WHEEL
-</span>
-
+<span>WINNER'S WHEEL</span>
 ARENA
-
 </div>
 
 <div class="event-description">
@@ -3535,17 +1985,12 @@ $25 grand prizes.
 
 <button
 class="f4sn-button"
-onclick="scrollToChampion()"
->
-
+onclick="scrollToChampion()">
 ENTER F4SN SPECIAL EVENT
-
 </button>
 
 </div>
-
 </div>
-
 </div>
 
 </section>
@@ -3561,14 +2006,12 @@ Champion Check-In
 
 Construction mode is active.
 All four franchises are authorized for testing.
-No result is recorded and no Week 5 advantage
-is actually applied.
+No result is recorded and no Week 5 advantage is actually applied.
 
 </p>
 
 
 <div class="team-grid">
-
 
 <button
 class="team-card"
@@ -3576,20 +2019,11 @@ style="--card:#1687ff"
 data-manager="Brad"
 data-team="Breaking Brad"
 data-color="#1687ff"
-onclick="chooseChampion(this)"
->
+onclick="chooseChampion(this)">
 
-<div class="team-manager">
-BRAD
-</div>
-
-<div class="team-name">
-Breaking Brad
-</div>
-
-<div class="team-status">
-AUTHORIZED FOR ARENA TESTING
-</div>
+<div class="team-manager">BRAD</div>
+<div class="team-name">Breaking Brad</div>
+<div class="team-status">AUTHORIZED FOR ARENA TESTING</div>
 
 </button>
 
@@ -3600,20 +2034,11 @@ style="--card:#ff3b30"
 data-manager="Maria"
 data-team="The Real Housewives of the Red Zone"
 data-color="#ff3b30"
-onclick="chooseChampion(this)"
->
+onclick="chooseChampion(this)">
 
-<div class="team-manager">
-MARIA
-</div>
-
-<div class="team-name">
-The Real Housewives of the Red Zone
-</div>
-
-<div class="team-status">
-AUTHORIZED FOR ARENA TESTING
-</div>
+<div class="team-manager">MARIA</div>
+<div class="team-name">The Real Housewives of the Red Zone</div>
+<div class="team-status">AUTHORIZED FOR ARENA TESTING</div>
 
 </button>
 
@@ -3624,20 +2049,11 @@ style="--card:#16d5d1"
 data-manager="Mackenzie"
 data-team="Mack Around & Find Out"
 data-color="#16d5d1"
-onclick="chooseChampion(this)"
->
+onclick="chooseChampion(this)">
 
-<div class="team-manager">
-MACKENZIE
-</div>
-
-<div class="team-name">
-Mack Around & Find Out
-</div>
-
-<div class="team-status">
-AUTHORIZED FOR ARENA TESTING
-</div>
+<div class="team-manager">MACKENZIE</div>
+<div class="team-name">Mack Around & Find Out</div>
+<div class="team-status">AUTHORIZED FOR ARENA TESTING</div>
 
 </button>
 
@@ -3648,42 +2064,24 @@ style="--card:#9c4dff"
 data-manager="Madison"
 data-team="Maddie's Anatomy"
 data-color="#9c4dff"
-onclick="chooseChampion(this)"
->
+onclick="chooseChampion(this)">
 
-<div class="team-manager">
-MADISON
-</div>
-
-<div class="team-name">
-Maddie's Anatomy
-</div>
-
-<div class="team-status">
-AUTHORIZED FOR ARENA TESTING
-</div>
+<div class="team-manager">MADISON</div>
+<div class="team-name">Maddie's Anatomy</div>
+<div class="team-status">AUTHORIZED FOR ARENA TESTING</div>
 
 </button>
 
-
 </div>
-
 </section>
-
 
 </main>
 
 
 <footer>
-
-<strong>
-F4SN
-</strong>
-
+<strong>F4SN</strong>
 • FANT4SY FOUR SPORTS NETWORK
-
 • QUESTIONABLE LEAGUE GOVERNANCE SINCE 2026
-
 </footer>
 
 
@@ -3694,11 +2092,8 @@ F4SN
 <div id="arena-transition">
 
 <div class="transition-grid"></div>
-
 <div class="transition-beam one"></div>
-
 <div class="transition-beam two"></div>
-
 
 <div class="transition-content">
 
@@ -3706,51 +2101,31 @@ F4SN
 F4SN SPECIAL EVENT CONTROL
 </div>
 
-<div
-id="transition-manager"
-class="transition-manager"
-></div>
+<div id="transition-manager" class="transition-manager"></div>
 
-<div
-id="transition-team"
-class="transition-team"
-></div>
+<div id="transition-team" class="transition-team"></div>
 
-<div
-id="transition-status"
-class="transition-status"
->
-
+<div id="transition-status" class="transition-status">
 VERIFYING WEEKLY CHAMPION...
-
 </div>
 
 <div class="transition-progress">
-
 <span></span>
-
 </div>
 
 </div>
-
 </div>
 
 
 <!-- =========================================================
- MEGA ARENA
+ ARENA
 ========================================================= -->
 
 <div id="arena">
 
-
 <div class="arena-backdrop"></div>
-
 <div class="team-wash"></div>
-
-<div class="team-spotlight"></div>
-
 <div class="jackpot-wash"></div>
-
 
 <div class="arena-light l1"></div>
 <div class="arena-light l2"></div>
@@ -3761,28 +2136,16 @@ VERIFYING WEEKLY CHAMPION...
 <div class="arena-network">
 
 <span>
-
-<strong>
-F4SN
-</strong>
-
+<strong>F4SN</strong>
 • FANT4SY FOUR SPORTS NETWORK
-
 </span>
 
 <span class="special">
-
 ● LIVE • WINNER'S WHEEL ARENA
-
 </span>
 
-<button
-class="exit-arena"
-onclick="exitArena()"
->
-
+<button class="exit-arena" onclick="exitArena()">
 EXIT ARENA
-
 </button>
 
 </div>
@@ -3790,48 +2153,29 @@ EXIT ARENA
 
 <div class="arena-hud">
 
-<div
-id="arena-hud-main"
-class="arena-hud-main"
->
-
+<div id="arena-hud-main" class="arena-hud-main">
 F4SN WINNER'S WHEEL ARENA
-
 </div>
 
-<div
-id="arena-hud-sub"
-class="arena-hud-sub"
->
-
+<div id="arena-hud-sub" class="arena-hud-sub">
 SPECIAL EVENT COVERAGE
-
 </div>
 
 </div>
 
 
-<!-- =======================================================
- ENTRANCE SCENE
-======================================================== -->
+<!-- ENTRANCE -->
 
-<section
-id="entrance-scene"
-class="arena-scene active"
->
+<section id="entrance-scene" class="arena-scene active">
 
 <div class="entrance-overlay">
 
 <div class="entrance-kicker">
-
 F4SN PRESENTS THE WEEKLY CHAMPION
-
 </div>
 
 <div id="entrance-manager"></div>
-
 <div id="entrance-team"></div>
-
 <div id="entrance-line"></div>
 
 <div class="access-stamp">
@@ -3842,58 +2186,35 @@ ACCESS GRANTED
 
 <button
 class="f4sn-button gold"
-onclick="showDoors()"
->
-
+onclick="showDoors()">
 PROCEED TO THE ARENA
-
 </button>
 
 </div>
-
 </section>
 
 
-<!-- =======================================================
- DOOR SCENE
-======================================================== -->
+<!-- DOORS -->
 
-<section
-id="door-scene"
-class="arena-scene"
->
+<section id="door-scene" class="arena-scene">
 
 <div class="door-arena-preview"></div>
 
-
 <div class="mega-door left">
-
-<div class="mega-door-logo left">
-F4
+<div class="mega-door-logo left">F4</div>
 </div>
-
-</div>
-
 
 <div class="mega-door right">
-
-<div class="mega-door-logo right">
-SN
+<div class="mega-door-logo right">SN</div>
 </div>
-
-</div>
-
 
 <div class="door-control">
 
 <button
 id="door-button"
 class="f4sn-button gold"
-onclick="openDoors()"
->
-
+onclick="openDoors()">
 OPEN THE DAMN DOORS
-
 </button>
 
 </div>
@@ -3901,14 +2222,9 @@ OPEN THE DAMN DOORS
 </section>
 
 
-<!-- =======================================================
- WHEEL SCENE
-======================================================== -->
+<!-- WHEEL -->
 
-<section
-id="wheel-scene"
-class="arena-scene"
->
+<section id="wheel-scene" class="arena-scene">
 
 
 <div class="side-result left">
@@ -3917,10 +2233,7 @@ class="arena-scene"
 F4SN CHAMPION
 </div>
 
-<div
-id="side-manager"
-class="side-value"
->
+<div id="side-manager" class="side-value">
 —
 </div>
 
@@ -3933,10 +2246,7 @@ class="side-value"
 WHEEL STATUS
 </div>
 
-<div
-id="side-status"
-class="side-value"
->
+<div id="side-status" class="side-value">
 READY
 </div>
 
@@ -3945,19 +2255,20 @@ READY
 
 <div class="wheel-stage-zone">
 
-
 <div class="wheel-shadow"></div>
+<div class="machine-pedestal"></div>
 
 
 <div class="wheel-machine">
 
-
 <div id="bulbs"></div>
 
 
-<div class="pointer-housing">
+<div class="pointer-assembly">
 
+<div class="pointer-mount">
 <div class="pointer-bolt"></div>
+</div>
 
 <div id="pointer"></div>
 
@@ -3966,23 +2277,32 @@ READY
 
 <canvas
 id="wheel"
-width="1000"
-height="1000"
-></canvas>
+width="1100"
+height="1100">
+</canvas>
 
 
 <div class="center-hub">
 
-<strong>
-F4SN
-</strong>
+<strong>F4SN</strong>
 
 <span>
-WINNER
+WINNER'S WHEEL
 </span>
 
 </div>
 
+</div>
+
+
+<div class="lever-machine">
+
+<div class="lever-base"></div>
+<div class="lever-slot"></div>
+
+<div id="lever-arm">
+<div class="lever-knob"></div>
+</div>
 
 </div>
 
@@ -3992,7 +2312,6 @@ WINNER
 
 <div class="control-deck">
 
-
 <div class="oracle-control">
 
 <div class="oracle-label">
@@ -4000,9 +2319,7 @@ WINNER
 </div>
 
 <div id="oracle-message">
-
 The wheel is being prepared.
-
 </div>
 
 </div>
@@ -4010,124 +2327,76 @@ The wheel is being prepared.
 
 <button
 id="spin-button"
-onclick="beginSpin()"
->
-
+onclick="beginSpin()">
 PULL THE DAMN LEVER
-
 </button>
 
-
 </div>
-
 
 </section>
 
-
 </div>
 
 
 <!-- =========================================================
- COUNTDOWN
+ SPIN FX
 ========================================================= -->
+
+<div id="power-down">
+<div class="power-text">
+ARENA POWER TRANSFER
+</div>
+</div>
 
 <div id="countdown">
-
-<div id="countdown-number">
-3
+<div id="countdown-number">3</div>
 </div>
 
-</div>
-
-
-<!-- =========================================================
- BLACKOUT
-========================================================= -->
+<div id="shockwave"></div>
 
 <div id="blackout">
-
 <div id="blackout-text"></div>
-
 </div>
 
 
 <!-- =========================================================
- RESULT TAKEOVER
+ RESULT
 ========================================================= -->
 
 <div id="takeover">
 
-
 <div class="take-card">
 
-
 <div class="take-network">
-
 F4SN • OFFICIAL WINNER'S WHEEL RESULT
-
 </div>
 
-
-<div
-id="take-alert"
-class="take-alert"
-></div>
-
-
-<div
-id="take-icon"
-class="take-icon"
-></div>
-
-
-<div
-id="take-title"
-class="take-title"
-></div>
-
-
-<div
-id="take-description"
-class="take-description"
-></div>
-
-
-<div
-id="take-manager"
-class="take-manager"
-></div>
-
+<div id="take-alert" class="take-alert"></div>
+<div id="take-icon" class="take-icon"></div>
+<div id="take-title" class="take-title"></div>
+<div id="take-description" class="take-description"></div>
+<div id="take-manager" class="take-manager"></div>
 
 <button
 class="take-button"
-onclick="closeTakeover()"
->
-
+onclick="closeTakeover()">
 RETURN TO THE ARENA
-
 </button>
 
-
 </div>
-
-
 </div>
 
 
 <script>
 
 /**************************************************************
- F4SN WINNER'S WHEEL ARENA
- V4.2
+ V4.3 — THE WHEEL MACHINE
 
  CONSTRUCTION MODE.
-
  NO BACKEND.
  NO SCORING CHANGE.
  NO RESULT SAVED.
- NO WEEK 5 EFFECT APPLIED.
 **************************************************************/
-
 
 let selectedManager="";
 let selectedTeam="";
@@ -4139,6 +2408,7 @@ let spinning=false;
 let audioCtx=null;
 let master=null;
 let ambience=null;
+let spinRumble=null;
 
 let bulbTimer=null;
 let bulbStep=0;
@@ -4148,263 +2418,163 @@ let lastJackpotTease=null;
 
 
 /**************************************************************
- WHEEL ITEMS
-
- GRAND PRIZES ARE INDEX 0 AND INDEX 6.
- EXACTLY OPPOSITE.
+ ITEMS
+ GRAND PRIZES REMAIN OPPOSITE
 **************************************************************/
 
 const ITEMS=[
 
 {
-
-label:"$25 B&N",
-
+label:"$25",
+sub:"B&N",
 result:"$25 BARNES & NOBLE",
-
-note:
-"Fantasy football has somehow been converted into actual bookstore money.",
-
+note:"Fantasy football has somehow been converted into actual bookstore money.",
 weight:2,
-
 grand:true,
-
 sound:"jackpot",
-
 icon:"📚",
-
 accent:"#ffd54a"
-
 },
 
 {
-
-label:"Double Flex",
-
+label:"DOUBLE",
+sub:"FLEX",
 result:"DOUBLE FLEX",
-
-note:
-"Start a second FLEX next week under the final approved Week 5 rules.",
-
+note:"Start a second FLEX next week under the final approved Week 5 rules.",
 weight:10,
-
 sound:"double",
-
 icon:"⚡",
-
 accent:"#18a8ff"
-
 },
 
 {
-
-label:"Bench Boost",
-
+label:"BENCH",
+sub:"BOOST",
 result:"BENCH BOOST",
-
-note:
-"One eligible bench player's points may count next week under the final league rules.",
-
+note:"One eligible bench player's points may count next week under the final league rules.",
 weight:10,
-
 sound:"boost",
-
 icon:"🚀",
-
 accent:"#22c55e"
-
 },
 
 {
-
-label:"Oracle Swap",
-
+label:"ORACLE",
+sub:"SWAP",
 result:"ORACLE SWAP",
-
-note:
-"The Oracle receives authority to optimize one legal starter/bench decision before kickoff.",
-
+note:"The Oracle receives authority to optimize one legal starter/bench decision before kickoff.",
 weight:10,
-
 sound:"oracle",
-
 icon:"🔮",
-
 accent:"#9c4dff"
-
 },
 
 {
-
-label:"Viking Raid",
-
+label:"VIKING",
+sub:"RAID",
 result:"VIKING RAID",
-
-note:
-"A special Vikings roster advantage is awarded. Valhalla has joined the rules committee.",
-
+note:"A special Vikings roster advantage is awarded. Valhalla has joined the rules committee.",
 weight:9,
-
 sound:"viking",
-
 icon:"⚔️",
-
 accent:"#9c4dff"
-
 },
 
 {
-
-label:"First Pick",
-
+label:"FIRST",
+sub:"PICK",
 result:"FIRST PICK",
-
-note:
-"Move to the front of the line whenever next week's roster-selection priority matters.",
-
+note:"Move to the front of the line whenever next week's roster-selection priority matters.",
 weight:10,
-
 sound:"first",
-
 icon:"☝️",
-
 accent:"#18a8ff"
-
 },
 
 {
-
-label:"$25 7 Brew",
-
+label:"$25",
+sub:"7 BREW",
 result:"$25 7 BREW",
-
-note:
-"The caffeine department has been notified. Victory now has a beverage budget.",
-
+note:"The caffeine department has been notified. Victory now has a beverage budget.",
 weight:2,
-
 grand:true,
-
 sound:"jackpot",
-
 icon:"🏆",
-
 accent:"#ffd54a"
-
 },
 
 {
-
-label:"Insurance",
-
+label:"INSURANCE",
+sub:"POLICY",
 result:"INSURANCE POLICY",
-
-note:
-"Receive the approved injury-protection advantage for next week's games.",
-
+note:"Receive the approved injury-protection advantage for next week's games.",
 weight:10,
-
 sound:"shield",
-
 icon:"🛡️",
-
 accent:"#22c55e"
-
 },
 
 {
-
-label:"Captain",
-
+label:"CAPTAIN",
+sub:"BONUS",
 result:"CAPTAIN BONUS",
-
-note:
-"Designate one eligible starter for the approved Captain scoring bonus.",
-
+note:"Designate one eligible starter for the approved Captain scoring bonus.",
 weight:9,
-
 sound:"captain",
-
 icon:"⭐",
-
 accent:"#facc15"
-
 },
 
 {
-
-label:"Shield",
-
+label:"PENALTY",
+sub:"SHIELD",
 result:"PENALTY SHIELD",
-
-note:
-"Protection against a future Loser's Wheel consequence under the final rules.",
-
+note:"Protection against a future Loser's Wheel consequence under the final rules.",
 weight:9,
-
 sound:"shield",
-
 icon:"🛡️",
-
 accent:"#16d5d1"
-
 },
 
 {
-
-label:"Roster Raid",
-
+label:"ROSTER",
+sub:"RAID",
 result:"ROSTER RAID",
-
-note:
-"Raid one eligible rival bench player under next week's final roster rules.",
-
+note:"Raid one eligible rival bench player under next week's final roster rules.",
 weight:9,
-
 sound:"raid",
-
 icon:"🚨",
-
 accent:"#ff4b4b"
-
 },
 
 {
-
-label:"FA Upgrade",
-
+label:"FREE AGENT",
+sub:"UPGRADE",
 result:"FREE AGENT UPGRADE",
-
-note:
-"Replace one eligible player on your generated roster before the week begins.",
-
+note:"Replace one eligible player on your generated roster before the week begins.",
 weight:10,
-
 sound:"upgrade",
-
 icon:"⬆️",
-
 accent:"#16d5d1"
-
 }
 
 ];
 
 
-const WHEEL_COLORS=[
+const COLORS=[
 
-"#d5a400",
-"#075985",
-"#166534",
-"#581c87",
-"#4c1d95",
-"#0369a1",
-"#d5a400",
-"#15803d",
-"#a16207",
-"#0f766e",
-"#b91c1c",
-"#0e7490"
+["#fff1a1","#9a6500"],
+["#1b6ba3","#062a45"],
+["#208957","#083c25"],
+["#7b3aa9","#32134d"],
+["#6336a5","#28134f"],
+["#2585b8","#073b58"],
+["#fff1a1","#9a6500"],
+["#1c8954","#073b24"],
+["#b47b17","#543200"],
+["#168d87","#073e3b"],
+["#c84242","#5a1010"],
+["#198a9a","#063f49"]
 
 ];
 
@@ -4415,20 +2585,13 @@ const WHEEL_COLORS=[
 
 function randomUnit(){
 
-if(
-window.crypto &&
-window.crypto.getRandomValues
-){
+if(window.crypto&&window.crypto.getRandomValues){
 
-const value=
-new Uint32Array(1);
+const value=new Uint32Array(1);
 
-window.crypto.getRandomValues(
-value
-);
+window.crypto.getRandomValues(value);
 
-return value[0]/
-4294967296;
+return value[0]/4294967296;
 
 }
 
@@ -4439,37 +2602,15 @@ return Math.random();
 
 function weightedIndex(){
 
-const total=
-ITEMS.reduce(
-function(sum,item){
+const total=ITEMS.reduce((sum,item)=>sum+item.weight,0);
 
-return sum+
-item.weight;
+let roll=randomUnit()*total;
 
-},
-0
-);
+for(let i=0;i<ITEMS.length;i++){
 
+roll-=ITEMS[i].weight;
 
-let roll=
-randomUnit()*
-total;
-
-
-for(
-let i=0;
-i<ITEMS.length;
-i++
-){
-
-roll-=
-ITEMS[i].weight;
-
-if(roll<0){
-
-return i;
-
-}
+if(roll<0)return i;
 
 }
 
@@ -4479,61 +2620,38 @@ return ITEMS.length-1;
 
 
 /**************************************************************
- AUDIO
+ AUDIO ENGINE
 **************************************************************/
 
 function initAudio(){
 
 if(audioCtx){
 
-if(
-audioCtx.state===
-"suspended"
-){
-
+if(audioCtx.state==="suspended"){
 audioCtx.resume();
-
 }
 
 return;
 
 }
 
+const AC=window.AudioContext||window.webkitAudioContext;
 
-const AudioContextClass=
+if(!AC)return;
 
-window.AudioContext ||
+audioCtx=new AC();
 
-window.webkitAudioContext;
+master=audioCtx.createGain();
 
+master.gain.value=.72;
 
-if(!AudioContextClass){
-
-return;
-
-}
-
-
-audioCtx=
-new AudioContextClass();
-
-
-master=
-audioCtx.createGain();
-
-
-master.gain.value=.75;
-
-
-master.connect(
-audioCtx.destination
-);
+master.connect(audioCtx.destination);
 
 }
 
 
 /**************************************************************
- BASIC TONE
+ TONE
 **************************************************************/
 
 function tone(
@@ -4545,100 +2663,46 @@ delay=0,
 endFrequency=null
 ){
 
-if(!audioCtx){
-return;
-}
+if(!audioCtx)return;
 
+const start=audioCtx.currentTime+delay;
 
-const start=
-audioCtx.currentTime+
-delay;
+const osc=audioCtx.createOscillator();
+const gain=audioCtx.createGain();
 
+osc.type=type;
 
-const oscillator=
-audioCtx.createOscillator();
-
-
-const gain=
-audioCtx.createGain();
-
-
-oscillator.type=
-type;
-
-
-oscillator.frequency
-.setValueAtTime(
-Math.max(
-20,
-frequency
-),
+osc.frequency.setValueAtTime(
+Math.max(20,frequency),
 start
 );
 
+if(endFrequency!==null){
 
-if(
-endFrequency!==null
-){
-
-oscillator.frequency
-.exponentialRampToValueAtTime(
-Math.max(
-20,
-endFrequency
-),
-start+
-duration
+osc.frequency.exponentialRampToValueAtTime(
+Math.max(20,endFrequency),
+start+duration
 );
 
 }
 
+gain.gain.setValueAtTime(.0001,start);
 
-gain.gain
-.setValueAtTime(
-.0001,
-start
-);
-
-
-gain.gain
-.exponentialRampToValueAtTime(
-Math.max(
-.0002,
-volume
-),
+gain.gain.exponentialRampToValueAtTime(
+Math.max(.0002,volume),
 start+.01
 );
 
-
-gain.gain
-.exponentialRampToValueAtTime(
+gain.gain.exponentialRampToValueAtTime(
 .0001,
-start+
-duration
+start+duration
 );
 
+osc.connect(gain);
+gain.connect(master);
 
-oscillator.connect(
-gain
-);
-
-
-gain.connect(
-master
-);
-
-
-oscillator.start(
-start
-);
-
-
-oscillator.stop(
-start+
-duration+
-.05
-);
+osc.start(start);
+osc.stop(start+duration+.05);
 
 }
 
@@ -4654,248 +2718,101 @@ delay=0,
 frequency=1200
 ){
 
-if(!audioCtx){
-return;
-}
+if(!audioCtx)return;
 
+const rate=audioCtx.sampleRate;
 
-const rate=
-audioCtx.sampleRate;
-
-
-const buffer=
-audioCtx.createBuffer(
+const buffer=audioCtx.createBuffer(
 1,
-Math.ceil(
-rate*
-duration
-),
+Math.ceil(rate*duration),
 rate
 );
 
+const data=buffer.getChannelData(0);
 
-const data=
-buffer.getChannelData(0);
+for(let i=0;i<data.length;i++){
 
-
-for(
-let i=0;
-i<data.length;
-i++
-){
-
-data[i]=
-(
-Math.random()*2-1
-)*
-(
-1-
-i/data.length
-);
+data[i]=(Math.random()*2-1)*(1-i/data.length);
 
 }
 
+const source=audioCtx.createBufferSource();
+const filter=audioCtx.createBiquadFilter();
+const gain=audioCtx.createGain();
 
-const source=
-audioCtx.createBufferSource();
+source.buffer=buffer;
 
+filter.type="lowpass";
+filter.frequency.value=frequency;
 
-const filter=
-audioCtx.createBiquadFilter();
+const start=audioCtx.currentTime+delay;
 
+gain.gain.setValueAtTime(.0001,start);
+gain.gain.exponentialRampToValueAtTime(volume,start+.01);
+gain.gain.exponentialRampToValueAtTime(.0001,start+duration);
 
-const gain=
-audioCtx.createGain();
+source.connect(filter);
+filter.connect(gain);
+gain.connect(master);
 
-
-source.buffer=
-buffer;
-
-
-filter.type=
-"lowpass";
-
-
-filter.frequency.value=
-frequency;
-
-
-const start=
-audioCtx.currentTime+
-delay;
-
-
-gain.gain
-.setValueAtTime(
-.0001,
-start
-);
-
-
-gain.gain
-.exponentialRampToValueAtTime(
-volume,
-start+.01
-);
-
-
-gain.gain
-.exponentialRampToValueAtTime(
-.0001,
-start+
-duration
-);
-
-
-source.connect(
-filter
-);
-
-
-filter.connect(
-gain
-);
-
-
-gain.connect(
-master
-);
-
-
-source.start(
-start
-);
+source.start(start);
 
 }
 
 
 /**************************************************************
- AMBIENT ARENA RUMBLE
+ ARENA AMBIENCE
 **************************************************************/
 
 function startAmbience(){
 
-if(
-!audioCtx ||
-ambience
-){
+if(!audioCtx||ambience)return;
 
-return;
+ambience=audioCtx.createGain();
 
-}
+ambience.gain.value=.0001;
 
+ambience.connect(master);
 
-ambience=
-audioCtx.createGain();
+const bass1=audioCtx.createOscillator();
+const bass2=audioCtx.createOscillator();
 
+const g1=audioCtx.createGain();
+const g2=audioCtx.createGain();
 
-ambience.gain.value=
-.0001;
+bass1.type="sine";
+bass2.type="sine";
 
+bass1.frequency.value=43;
+bass2.frequency.value=67;
 
-ambience.connect(
-master
-);
+g1.gain.value=.03;
+g2.gain.value=.014;
 
+bass1.connect(g1);
+bass2.connect(g2);
 
-const bass1=
-audioCtx.createOscillator();
-
-
-const bass2=
-audioCtx.createOscillator();
-
-
-const g1=
-audioCtx.createGain();
-
-
-const g2=
-audioCtx.createGain();
-
-
-bass1.type=
-"sine";
-
-
-bass2.type=
-"sine";
-
-
-bass1.frequency.value=
-43;
-
-
-bass2.frequency.value=
-67;
-
-
-g1.gain.value=
-.03;
-
-
-g2.gain.value=
-.014;
-
-
-bass1.connect(
-g1
-);
-
-
-bass2.connect(
-g2
-);
-
-
-g1.connect(
-ambience
-);
-
-
-g2.connect(
-ambience
-);
-
+g1.connect(ambience);
+g2.connect(ambience);
 
 bass1.start();
-
 bass2.start();
 
-
-ambience.gain
-.exponentialRampToValueAtTime(
+ambience.gain.exponentialRampToValueAtTime(
 .16,
-audioCtx.currentTime+
-2
+audioCtx.currentTime+2
 );
 
 }
 
 
-function ambienceLevel(
-value,
-time=.3
-){
+function ambienceLevel(value,time=.3){
 
-if(
-!audioCtx ||
-!ambience
-){
+if(!audioCtx||!ambience)return;
 
-return;
+ambience.gain.cancelScheduledValues(audioCtx.currentTime);
 
-}
-
-
-ambience.gain
-.cancelScheduledValues(
-audioCtx.currentTime
-);
-
-
-ambience.gain
-.setTargetAtTime(
+ambience.gain.setTargetAtTime(
 value,
 audioCtx.currentTime,
 time
@@ -4905,33 +2822,121 @@ time
 
 
 /**************************************************************
- BROADCAST HIT
+ PHYSICAL WHEEL RUMBLE
+**************************************************************/
+
+function startSpinRumble(){
+
+if(!audioCtx)return;
+
+stopSpinRumble();
+
+const group=audioCtx.createGain();
+
+group.gain.value=.0001;
+
+group.connect(master);
+
+const motor=audioCtx.createOscillator();
+const bearing=audioCtx.createOscillator();
+
+motor.type="sawtooth";
+bearing.type="sine";
+
+motor.frequency.value=58;
+bearing.frequency.value=116;
+
+const mg=audioCtx.createGain();
+const bg=audioCtx.createGain();
+
+mg.gain.value=.026;
+bg.gain.value=.035;
+
+motor.connect(mg);
+bearing.connect(bg);
+
+mg.connect(group);
+bg.connect(group);
+
+motor.start();
+bearing.start();
+
+group.gain.exponentialRampToValueAtTime(
+.75,
+audioCtx.currentTime+.35
+);
+
+spinRumble={
+group,
+motor,
+bearing
+};
+
+}
+
+
+function updateSpinRumble(progress){
+
+if(!spinRumble||!audioCtx)return;
+
+const speed=Math.max(.12,1-progress);
+
+spinRumble.motor.frequency.setTargetAtTime(
+38+speed*105,
+audioCtx.currentTime,
+.06
+);
+
+spinRumble.bearing.frequency.setTargetAtTime(
+75+speed*185,
+audioCtx.currentTime,
+.06
+);
+
+spinRumble.group.gain.setTargetAtTime(
+progress>.86 ? .18 : .72,
+audioCtx.currentTime,
+.08
+);
+
+}
+
+
+function stopSpinRumble(){
+
+if(!spinRumble||!audioCtx)return;
+
+const r=spinRumble;
+
+r.group.gain.setTargetAtTime(
+.0001,
+audioCtx.currentTime,
+.04
+);
+
+setTimeout(()=>{
+
+try{
+r.motor.stop();
+r.bearing.stop();
+}catch(e){}
+
+},350);
+
+spinRumble=null;
+
+}
+
+
+/**************************************************************
+ BROADCAST
 **************************************************************/
 
 function broadcastHit(){
 
-tone(
-45,
-.55,
-"sine",
-.18,
-0,
-30
-);
-
-tone(
-90,
-.35,
-"square",
-.035
-);
-
-noise(
-.35,
-.07,
-0,
-800
-);
+tone(45,.55,"sine",.18,0,30);
+tone(90,.35,"square",.035);
+noise(.35,.07,0,800);
 
 }
 
@@ -4940,42 +2945,12 @@ function broadcastTheme(){
 
 broadcastHit();
 
+[196,261.6,329.6,392,523.3].forEach((note,index)=>{
 
-const notes=[
-196,
-261.6,
-329.6,
-392,
-523.3
-];
+tone(note,.32,"sawtooth",.035,.35+index*.13);
+tone(note/2,.35,"sine",.04,.35+index*.13);
 
-
-notes.forEach(
-function(
-note,
-index
-){
-
-tone(
-note,
-.32,
-"sawtooth",
-.035,
-.35+
-index*.13
-);
-
-tone(
-note/2,
-.35,
-"sine",
-.04,
-.35+
-index*.13
-);
-
-}
-);
+});
 
 }
 
@@ -4984,38 +2959,19 @@ index*.13
  CROWD
 **************************************************************/
 
-function crowd(
-level=1
-){
+function crowd(level=1){
 
-if(!audioCtx){
-return;
-}
+if(!audioCtx)return;
 
+noise(.9,.026*level,0,1800);
 
-noise(
-.9,
-.026*
-level,
-0,
-1800
-);
-
-
-for(
-let i=0;
-i<32;
-i++
-){
+for(let i=0;i<32;i++){
 
 tone(
-120+
-randomUnit()*650,
-.18+
-randomUnit()*.55,
+120+randomUnit()*650,
+.18+randomUnit()*.55,
 "sawtooth",
-.0022*
-level,
+.0022*level,
 randomUnit()*.7
 );
 
@@ -5026,20 +2982,12 @@ randomUnit()*.7
 
 function crowdOh(){
 
-if(!audioCtx){
-return;
-}
+if(!audioCtx)return;
 
-
-for(
-let i=0;
-i<25;
-i++
-){
+for(let i=0;i<25;i++){
 
 tone(
-180+
-randomUnit()*160,
+180+randomUnit()*160,
 .45,
 "sine",
 .0035,
@@ -5049,226 +2997,125 @@ randomUnit()*.08,
 
 }
 
-
-noise(
-.45,
-.035,
-0,
-1000
-);
+noise(.45,.035,0,1000);
 
 }
 
 
 /**************************************************************
- TEAM ENTRANCE
+ ENTRANCE
 **************************************************************/
 
-function teamEntrance(
-manager
-){
+function teamEntrance(manager){
 
 broadcastHit();
 
+if(manager==="Brad"){
 
-if(
-manager==="Brad"
-){
-
-tone(
-110,
-.18,
-"square",
-.07,
-.2
-);
-
-tone(
-165,
-.18,
-"square",
-.07,
-.35
-);
-
-tone(
-220,
-.5,
-"square",
-.075,
-.5
-);
+tone(110,.18,"square",.07,.2);
+tone(165,.18,"square",.07,.35);
+tone(220,.5,"square",.075,.5);
 
 }
 
+else if(manager==="Maria"){
 
-else if(
-manager==="Maria"
-){
-
-tone(
-523,
-.2,
-"triangle",
-.06,
-.2
-);
-
-tone(
-659,
-.2,
-"triangle",
-.06,
-.4
-);
-
-tone(
-784,
-.2,
-"triangle",
-.06,
-.6
-);
-
-tone(
-1047,
-.6,
-"triangle",
-.07,
-.8
-);
+tone(523,.2,"triangle",.06,.2);
+tone(659,.2,"triangle",.06,.4);
+tone(784,.2,"triangle",.06,.6);
+tone(1047,.6,"triangle",.07,.8);
 
 }
 
+else if(manager==="Mackenzie"){
 
-else if(
-manager==="Mackenzie"
-){
-
-for(
-let i=0;
-i<6;
-i++
-){
+for(let i=0;i<6;i++){
 
 tone(
-350+
-i*90,
+350+i*90,
 .18,
 "sawtooth",
 .045,
-.18+
-i*.1,
-650+
-i*80
+.18+i*.1,
+650+i*80
 );
 
 }
 
 }
 
+else if(manager==="Madison"){
 
-else if(
-manager==="Madison"
-){
-
-tone(
-880,
-.08,
-"sine",
-.06,
-.2
-);
-
-tone(
-880,
-.08,
-"sine",
-.06,
-.43
-);
-
-tone(
-880,
-.08,
-"sine",
-.06,
-.66
-);
-
-tone(
-95,
-.55,
-"sine",
-.16,
-.88,
-42
-);
+tone(880,.08,"sine",.06,.2);
+tone(880,.08,"sine",.06,.43);
+tone(880,.08,"sine",.06,.66);
+tone(95,.55,"sine",.16,.88,42);
 
 }
 
-
-setTimeout(
-function(){
-
-crowd(
-1.4
-);
-
-},
-700
-);
+setTimeout(()=>crowd(1.4),700);
 
 }
 
 
 /**************************************************************
- DOOR SOUND
+ DOORS
 **************************************************************/
 
 function doorSound(){
 
-tone(
-180,
-.07,
-"square",
-.07
-);
+tone(180,.07,"square",.07);
+tone(110,.09,"square",.08,.1);
+tone(58,1.6,"sine",.17,.22,30);
+tone(115,1.45,"sawtooth",.025,.22,48);
 
-tone(
-110,
-.09,
-"square",
-.08,
-.1
-);
-
-tone(
-58,
-1.6,
-"sine",
-.17,
-.22,
-30
-);
-
-tone(
-115,
-1.45,
-"sawtooth",
-.025,
-.22,
-48
-);
-
-noise(
-1.5,
-.065,
-.22,
-450
-);
+noise(1.5,.065,.22,450);
 
 broadcastHit();
+
+}
+
+
+/**************************************************************
+ LEVER
+**************************************************************/
+
+function leverSound(){
+
+/* metal latch */
+tone(420,.035,"square",.08);
+noise(.05,.08,0,4000);
+
+/* heavy mechanical drop */
+tone(145,.08,"square",.10,.05);
+tone(78,.15,"square",.13,.10);
+
+/* machine thud */
+tone(43,.45,"sine",.20,.14,29);
+noise(.24,.10,.12,650);
+
+}
+
+
+/**************************************************************
+ POWER TRANSFER
+**************************************************************/
+
+function powerTransferSound(){
+
+tone(72,.85,"sawtooth",.045,0,36);
+
+tone(36,.9,"sine",.14,0,28);
+
+noise(.5,.035,.1,600);
+
+setTimeout(()=>{
+
+tone(310,.08,"square",.05);
+tone(420,.08,"square",.05,.09);
+tone(560,.15,"square",.06,.18);
+
+},500);
 
 }
 
@@ -5277,84 +3124,33 @@ broadcastHit();
  COUNTDOWN
 **************************************************************/
 
-function countdownSound(
-number
-){
+function countdownSound(number){
 
 if(number===3){
 
-tone(
-280,
-.18,
-"square",
-.07
-);
-
-tone(
-70,
-.22,
-"sine",
-.1
-);
+tone(240,.18,"square",.07);
+tone(55,.28,"sine",.13);
 
 }
 
-else if(
-number===2
-){
+else if(number===2){
 
-tone(
-235,
-.2,
-"square",
-.075
-);
-
-tone(
-58,
-.25,
-"sine",
-.11
-);
+tone(205,.20,"square",.075);
+tone(48,.30,"sine",.14);
 
 }
 
-else if(
-number===1
-){
+else if(number===1){
 
-tone(
-190,
-.23,
-"square",
-.085
-);
-
-tone(
-47,
-.3,
-"sine",
-.14
-);
+tone(165,.23,"square",.085);
+tone(40,.34,"sine",.16);
 
 }
 
 else{
 
-tone(
-650,
-.2,
-"square",
-.08
-);
-
-tone(
-980,
-.25,
-"square",
-.06,
-.08
-);
+tone(720,.20,"square",.08);
+tone(1080,.30,"square",.06,.07);
 
 broadcastHit();
 
@@ -5364,170 +3160,81 @@ broadcastHit();
 
 
 /**************************************************************
- LEVER / LAUNCH
+ LAUNCH
 **************************************************************/
-
-function leverSound(){
-
-tone(
-190,
-.055,
-"square",
-.08
-);
-
-tone(
-115,
-.1,
-"square",
-.1,
-.06
-);
-
-tone(
-48,
-.32,
-"sine",
-.18,
-.12,
-30
-);
-
-noise(
-.18,
-.09,
-.03,
-950
-);
-
-}
-
 
 function launchSound(){
 
-noise(
-.7,
-.1,
-0,
-2500
-);
+/* huge mechanical release */
+tone(62,.18,"square",.13);
+tone(38,.65,"sine",.22,0,28);
 
-tone(
-90,
-.75,
-"sawtooth",
-.035,
-0,
-850
-);
+/* acceleration */
+noise(.85,.09,0,3200);
+tone(85,.85,"sawtooth",.045,0,900);
 
-tone(
-45,
-.7,
-"sine",
-.15,
-0,
-120
-);
+/* arena hit */
+tone(720,.18,"square",.045,.12);
+tone(1080,.20,"square",.035,.18);
 
 }
 
 
 /**************************************************************
- POINTER
+ POINTER CLACK
 **************************************************************/
 
-function pointerClack(
-progress
-){
+function pointerClack(progress){
 
-const late=
+const late=Math.max(0,progress-.55)/.45;
 
-Math.max(
-0,
-progress-.55
-)/.45;
+const pitch=780-late*340;
 
+const volume=.035+late*.075;
 
-const pitch=
-
-980-
-
-late*480+
-
-randomUnit()*60;
-
-
-const volume=
-
-.025+
-
-late*.055;
-
-
-tone(
-pitch,
-.025,
-"square",
-volume
-);
-
-tone(
-pitch*.43,
-.04,
-"sine",
-volume*.7
-);
+/* metal-on-metal */
+tone(pitch,.028,"square",volume);
+tone(pitch*.48,.045,"triangle",volume*.7);
 
 noise(
-.025,
-volume*.7,
+.03,
+volume*.8,
 0,
-2800
+2600
 );
 
+if(late>.55){
 
-const pointer=
-document.getElementById(
-"pointer"
+tone(
+72-late*20,
+.055,
+"sine",
+.035+late*.035
 );
 
+}
 
-pointer.classList.remove(
-"hit"
-);
+const pointer=document.getElementById("pointer");
 
+pointer.classList.remove("hit");
 
 void pointer.offsetWidth;
 
-
-pointer.classList.add(
-"hit"
-);
+pointer.classList.add("hit");
 
 }
 
 
 /**************************************************************
- JACKPOT APPROACH
+ JACKPOT TEASE
 **************************************************************/
 
 function jackpotApproach(){
 
-tone(
-1047,
-.16,
-"sine",
-.075
-);
+tone(1047,.16,"sine",.075);
+tone(1568,.24,"sine",.055,.08);
 
-tone(
-1568,
-.24,
-"sine",
-.055,
-.08
-);
+tone(45,.35,"sine",.12,.03,32);
 
 }
 
@@ -5538,20 +3245,9 @@ tone(
 
 function heartbeat(){
 
-tone(
-52,
-.12,
-"sine",
-.17
-);
+tone(48,.11,"sine",.19);
 
-tone(
-45,
-.16,
-"sine",
-.14,
-.16
-);
+tone(42,.14,"sine",.16,.15);
 
 }
 
@@ -5564,108 +3260,42 @@ function victoryFanfare(){
 
 broadcastHit();
 
-
-const notes=[
-392,
-523,
-659,
-784
-];
-
-
-notes.forEach(
-function(
-note,
-index
-){
+[392,523,659,784].forEach((note,index)=>{
 
 tone(
 note,
-index===3
-?.7
-:.22,
+index===3?.7:.22,
 "square",
 .055,
-.15+
-index*.15
+.15+index*.15
 );
 
-}
-);
+});
 
-
-crowd(
-1.5
-);
+crowd(1.5);
 
 }
 
 
 function doubleFlexSound(){
-
 broadcastHit();
-
-setTimeout(
-broadcastHit,
-330
-);
-
+setTimeout(broadcastHit,330);
 }
 
 
 function boostSound(){
-
-tone(
-180,
-.65,
-"sawtooth",
-.04,
-0,
-950
-);
-
+tone(180,.65,"sawtooth",.04,0,950);
 victoryFanfare();
-
 }
 
 
 function oracleSound(){
 
-tone(
-95,
-1.4,
-"sine",
-.1,
-0,
-190
-);
+tone(95,1.4,"sine",.1,0,190);
+tone(190,1.5,"sine",.045,.1,420);
 
-tone(
-190,
-1.5,
-"sine",
-.045,
-.1,
-420
-);
-
-
-for(
-let i=0;
-i<9;
-i++
-){
-
-tone(
-650+
-i*85,
-.3,
-"sine",
-.022,
-.3+
-i*.1
-);
-
+for(let i=0;i<9;i++){
+tone(650+i*85,.3,"sine",.022,.3+i*.1);
 }
 
 }
@@ -5673,163 +3303,52 @@ i*.1
 
 function vikingHorn(){
 
-tone(
-105,
-1.6,
-"sawtooth",
-.085,
-0,
-75
-);
+tone(105,1.6,"sawtooth",.085,0,75);
+tone(158,1.6,"sawtooth",.045,.03,105);
+tone(52,1.7,"sine",.16,0,38);
 
-tone(
-158,
-1.6,
-"sawtooth",
-.045,
-.03,
-105
-);
-
-tone(
-52,
-1.7,
-"sine",
-.16,
-0,
-38
-);
-
-
-setTimeout(
-function(){
-
-crowd(
-1.7
-);
-
-},
-800
-);
+setTimeout(()=>crowd(1.7),800);
 
 }
 
 
 function firstPickSound(){
 
-tone(
-392,
-.16,
-"square",
-.05
-);
-
-tone(
-523,
-.16,
-"square",
-.055,
-.14
-);
-
-tone(
-659,
-.16,
-"square",
-.06,
-.28
-);
-
-tone(
-1047,
-.5,
-"square",
-.07,
-.43
-);
+tone(392,.16,"square",.05);
+tone(523,.16,"square",.055,.14);
+tone(659,.16,"square",.06,.28);
+tone(1047,.5,"square",.07,.43);
 
 }
 
 
 function shieldSound(){
 
-tone(
-90,
-.35,
-"sine",
-.17,
-0,
-42
-);
-
-noise(
-.17,
-.12,
-0,
-3800
-);
-
-tone(
-1400,
-.08,
-"square",
-.04,
-.02
-);
+tone(90,.35,"sine",.17,0,42);
+noise(.17,.12,0,3800);
+tone(1400,.08,"square",.04,.02);
 
 }
 
 
 function captainSound(){
 
-const notes=[
-261.6,
-329.6,
-392,
-523.3
-];
+[261.6,329.6,392,523.3].forEach((note,index)=>{
 
+tone(note,.45,"sawtooth",.04,index*.16);
+tone(note/2,.45,"sine",.04,index*.16);
 
-notes.forEach(
-function(
-note,
-index
-){
-
-tone(
-note,
-.45,
-"sawtooth",
-.04,
-index*.16
-);
-
-tone(
-note/2,
-.45,
-"sine",
-.04,
-index*.16
-);
-
-}
-);
+});
 
 }
 
 
 function raidSound(){
 
-for(
-let i=0;
-i<8;
-i++
-){
+for(let i=0;i<8;i++){
 
 tone(
-i%2===0
-?760
-:520,
+i%2===0?760:520,
 .19,
 "square",
 .06,
@@ -5838,206 +3357,93 @@ i*.2
 
 }
 
-
-noise(
-1.5,
-.03,
-0,
-1300
-);
+noise(1.5,.03,0,1300);
 
 }
 
 
 function upgradeSound(){
 
-tone(
-200,
-.8,
-"sawtooth",
-.035,
-0,
-1000
-);
-
-tone(
-440,
-.16,
-"square",
-.045,
-.35
-);
-
-tone(
-660,
-.16,
-"square",
-.05,
-.52
-);
-
-tone(
-880,
-.45,
-"square",
-.06,
-.7
-);
+tone(200,.8,"sawtooth",.035,0,1000);
+tone(440,.16,"square",.045,.35);
+tone(660,.16,"square",.05,.52);
+tone(880,.45,"square",.06,.7);
 
 }
 
 
 /**************************************************************
- JACKPOT SOUND
+ JACKPOT — COMPLETELY RIDICULOUS
 **************************************************************/
 
 function jackpotSound(){
 
-tone(
-1047,
-.25,
-"sine",
-.065
-);
+/* emergency alarm */
+for(let i=0;i<10;i++){
 
 tone(
-1568,
-.3,
-"sine",
-.07,
-.55
-);
-
-
-const cascade=[
-523,
-659,
-784,
-1047,
-1319,
-1568,
-2093
-];
-
-
-cascade.forEach(
-function(
-note,
-index
-){
-
-tone(
-note,
-.32,
-"sine",
-.06,
-1.05+
-index*.12
-);
-
-}
-);
-
-
-for(
-let i=0;
-i<12;
-i++
-){
-
-tone(
-i%2===0
-?880
-:620,
+i%2===0?920:690,
 .18,
 "square",
-.055,
-1.25+
+.06,
 i*.18
 );
 
 }
 
-
-setTimeout(
-broadcastHit,
-1450
-);
-
-setTimeout(
-broadcastHit,
-1950
-);
-
-setTimeout(
-broadcastHit,
-2450
-);
-
-
-setTimeout(
-function(){
-
-crowd(
-2.3
-);
-
-},
-1500
-);
-
+/* casino bells */
+for(let i=0;i<14;i++){
 
 tone(
-261.6,
-1,
-"sawtooth",
-.045,
-2.5
+1047+(i%4)*260,
+.22,
+"sine",
+.055,
+.4+i*.11
 );
 
-tone(
-329.6,
-1,
-"sawtooth",
-.045,
-2.5
-);
+}
+
+/* massive hits */
+setTimeout(broadcastHit,500);
+setTimeout(broadcastHit,1050);
+setTimeout(broadcastHit,1600);
+setTimeout(broadcastHit,2200);
+
+/* fanfare */
+const fanfare=[523,659,784,1047,1319,1568,2093];
+
+fanfare.forEach((note,index)=>{
 
 tone(
-392,
-1,
-"sawtooth",
-.045,
-2.5
-);
-
-tone(
-523.3,
-1,
+note,
+.42,
 "sawtooth",
 .05,
-2.5
+1.55+index*.13
 );
+
+});
+
+/* bass */
+tone(45,2.4,"sine",.18,.5,30);
+
+/* crowd */
+setTimeout(()=>crowd(2.5),700);
+setTimeout(()=>crowd(2.2),1800);
 
 }
 
 
 /**************************************************************
- PAGE SCROLL
+ PAGE
 **************************************************************/
 
 function scrollToChampion(){
 
-document
-.getElementById(
-"champion-select"
-)
-.scrollIntoView({
-
+document.getElementById("champion-select").scrollIntoView({
 behavior:"smooth",
-
 block:"start"
-
 });
 
 }
@@ -6047,113 +3453,52 @@ block:"start"
  CHOOSE CHAMPION
 **************************************************************/
 
-function chooseChampion(
-button
-){
+function chooseChampion(button){
 
 initAudio();
 
+selectedManager=button.dataset.manager;
+selectedTeam=button.dataset.team;
+selectedColor=button.dataset.color;
 
-selectedManager=
-button.dataset.manager;
-
-
-selectedTeam=
-button.dataset.team;
-
-
-selectedColor=
-button.dataset.color;
-
-
-document
-.documentElement
-.style
-.setProperty(
+document.documentElement.style.setProperty(
 "--team",
 selectedColor
 );
 
-
-document
-.getElementById(
-"transition-manager"
-)
-.textContent=
+document.getElementById("transition-manager").textContent=
 selectedManager;
 
-
-document
-.getElementById(
-"transition-team"
-)
-.textContent=
+document.getElementById("transition-team").textContent=
 selectedTeam;
 
+const transition=document.getElementById("arena-transition");
 
-const transition=
-document.getElementById(
-"arena-transition"
-);
-
-
-transition.classList.add(
-"show"
-);
-
+transition.classList.add("show");
 
 broadcastTheme();
 
+flashes(7);
 
-flashes(
-7
-);
+setTimeout(()=>{
 
-
-setTimeout(
-function(){
-
-document
-.getElementById(
-"transition-status"
-)
-.textContent=
+document.getElementById("transition-status").textContent=
 "CHAMPION VERIFIED";
 
 broadcastHit();
 
-},
-1000
-);
+},1000);
 
+setTimeout(()=>{
 
-setTimeout(
-function(){
-
-document
-.getElementById(
-"transition-status"
-)
-.textContent=
+document.getElementById("transition-status").textContent=
 "F4SN MEGA-ARENA ACCESS AUTHORIZED";
 
-flashes(
-8
-);
+flashes(8);
 
-},
-1900
-);
+},1900);
 
-
-setTimeout(
-function(){
-
-enterArena();
-
-},
-3200
-);
+setTimeout(enterArena,3200);
 
 }
 
@@ -6164,65 +3509,33 @@ enterArena();
 
 function enterArena(){
 
-const transition=
-document.getElementById(
-"arena-transition"
-);
+const transition=document.getElementById("arena-transition");
+const arena=document.getElementById("arena");
 
+arena.className="active entrance-mode";
 
-const arena=
-document.getElementById(
-"arena"
-);
-
-
-arena.className=
-"active entrance-mode";
-
-
-document.body.style.overflow=
-"hidden";
-
+document.body.style.overflow="hidden";
 
 setupEntrance();
 
-
-showArenaScene(
-"entrance-scene"
-);
-
+showArenaScene("entrance-scene");
 
 setArenaHud(
 selectedTeam,
 "THE WEEKLY CHAMPION HAS ARRIVED"
 );
 
-
 startAmbience();
 
+teamEntrance(selectedManager);
 
-teamEntrance(
-selectedManager
-);
+flashes(20);
 
+setTimeout(()=>{
 
-flashes(
-20
-);
+transition.classList.remove("show");
 
-
-setTimeout(
-function(){
-
-transition
-.classList
-.remove(
-"show"
-);
-
-},
-700
-);
+},700);
 
 }
 
@@ -6233,31 +3546,14 @@ transition
 
 function setupEntrance(){
 
-document
-.getElementById(
-"entrance-manager"
-)
-.textContent=
+document.getElementById("entrance-manager").textContent=
+selectedManager+" HAS ENTERED THE BUILDING";
 
-selectedManager+
-" HAS ENTERED THE BUILDING";
-
-
-document
-.getElementById(
-"entrance-team"
-)
-.textContent=
+document.getElementById("entrance-team").textContent=
 selectedTeam;
 
-
-document
-.getElementById(
-"side-manager"
-)
-.textContent=
+document.getElementById("side-manager").textContent=
 selectedManager;
-
 
 const lines={
 
@@ -6275,207 +3571,96 @@ Madison:
 
 };
 
-
-document
-.getElementById(
-"entrance-line"
-)
-.textContent=
-lines[
-selectedManager
-];
+document.getElementById("entrance-line").textContent=
+lines[selectedManager];
 
 }
 
 
 /**************************************************************
- ARENA SCENE CONTROL
+ SCENES
 **************************************************************/
 
-function showArenaScene(
-id
-){
+function showArenaScene(id){
 
-document
-.querySelectorAll(
-".arena-scene"
-)
-.forEach(
-function(scene){
+document.querySelectorAll(".arena-scene").forEach(scene=>{
+scene.classList.remove("active");
+});
 
-scene
-.classList
-.remove(
-"active"
-);
+document.getElementById(id).classList.add("active");
 
 }
-);
 
 
-document
-.getElementById(
-id
-)
-.classList
-.add(
-"active"
-);
+function setArenaHud(main,sub){
+
+document.getElementById("arena-hud-main").textContent=main;
+document.getElementById("arena-hud-sub").textContent=sub;
 
 }
 
 
 /**************************************************************
- HUD
-**************************************************************/
-
-function setArenaHud(
-main,
-sub
-){
-
-document
-.getElementById(
-"arena-hud-main"
-)
-.textContent=
-main;
-
-
-document
-.getElementById(
-"arena-hud-sub"
-)
-.textContent=
-sub;
-
-}
-
-
-/**************************************************************
- SHOW DOORS
+ DOORS
 **************************************************************/
 
 function showDoors(){
 
-const arena=
-document.getElementById(
-"arena"
-);
+const arena=document.getElementById("arena");
 
+arena.classList.remove("entrance-mode");
 
-arena.classList.remove(
-"entrance-mode"
-);
-
-
-showArenaScene(
-"door-scene"
-);
-
+showArenaScene("door-scene");
 
 setArenaHud(
 "CHAMPION VERIFIED",
-selectedManager+
-" • WINNER'S WHEEL ACCESS AUTHORIZED"
+selectedManager+" • WINNER'S WHEEL ACCESS AUTHORIZED"
 );
-
 
 broadcastHit();
 
 }
 
 
-/**************************************************************
- OPEN DOORS
-**************************************************************/
-
 function openDoors(){
 
-const doorScene=
-document.getElementById(
-"door-scene"
-);
+const doorScene=document.getElementById("door-scene");
+const button=document.getElementById("door-button");
 
+button.disabled=true;
 
-const button=
-document.getElementById(
-"door-button"
-);
+doorScene.classList.add("open");
 
-
-button.disabled=
-true;
-
-
-doorScene.classList.add(
-"open"
-);
-
-
-ambienceLevel(
-.025
-);
-
+ambienceLevel(.025);
 
 doorSound();
 
-
-flashes(
-20
-);
-
+flashes(20);
 
 setArenaHud(
 "THE WINNER'S WHEEL",
 "WELCOME TO THE F4SN MEGA-ARENA"
 );
 
+setTimeout(()=>{
 
-setTimeout(
-function(){
+showArenaScene("wheel-scene");
 
-showArenaScene(
-"wheel-scene"
-);
-
-
-document
-.getElementById(
-"oracle-message"
-)
-.textContent=
+document.getElementById("oracle-message").textContent=
 oracleWelcome();
 
-
-document
-.getElementById(
-"side-status"
-)
-.textContent=
+document.getElementById("side-status").textContent=
 "READY TO SPIN";
-
 
 startBulbIdle();
 
+ambienceLevel(.16);
 
-ambienceLevel(
-.16
-);
+crowd(1.6);
 
+flashes(18);
 
-crowd(
-1.6
-);
-
-
-flashes(
-18
-);
-
-},
-1900
-);
+},1900);
 
 }
 
@@ -6489,7 +3674,7 @@ function oracleWelcome(){
 const lines=[
 
 selectedManager+
-", congratulations. Please try not to abuse whatever stupid power this wheel gives you.",
+", congratulations. Please try not to abuse whatever stupid power this machine gives you.",
 
 "League management has asked me to remind "+
 selectedManager+
@@ -6498,16 +3683,12 @@ selectedManager+
 selectedTeam+
 " has officially reached the part of fantasy football where basic rules were apparently no longer enough.",
 
-"The wheel has been inspected by absolutely nobody qualified to inspect a wheel."
+"The wheel has been inspected by absolutely nobody qualified to inspect an eight-hundred-pound game-show machine."
 
 ];
 
-
 return lines[
-Math.floor(
-randomUnit()*
-lines.length
-)
+Math.floor(randomUnit()*lines.length)
 ];
 
 }
@@ -6517,24 +3698,20 @@ function oracleSpin(){
 
 const lines=[
 
-"The Oracle has lost control of the situation.",
+"The Oracle has lost control of the building.",
 
 "This is exactly why normal families just play fantasy football.",
 
 "Somewhere, a commissioner is regretting every decision that led here.",
 
-"The grand prizes are rare. Screaming will not alter mathematics.",
+"The grand prizes are rare. Screaming still does not alter mathematics.",
 
 "F4SN legal would like to clarify that F4SN does not have a legal department."
 
 ];
 
-
 return lines[
-Math.floor(
-randomUnit()*
-lines.length
-)
+Math.floor(randomUnit()*lines.length)
 ];
 
 }
@@ -6546,81 +3723,28 @@ lines.length
 
 function createBulbs(){
 
-const holder=
-document.getElementById(
-"bulbs"
-);
+const holder=document.getElementById("bulbs");
 
+holder.innerHTML="";
 
-holder.innerHTML=
-"";
+const count=36;
 
+for(let i=0;i<count;i++){
 
-const count=
-32;
+const bulb=document.createElement("div");
 
+bulb.className="bulb";
 
-for(
-let i=0;
-i<count;
-i++
-){
-
-const bulb=
-document.createElement(
-"div"
-);
-
-
-bulb.className=
-"bulb";
-
-
-const angle=
-
-(
-Math.PI*
-2*
-i/
-count
-)-
-
-Math.PI/2;
-
-
-const radius=
-47.2;
-
+const angle=(Math.PI*2*i/count)-Math.PI/2;
+const radius=46.8;
 
 bulb.style.left=
-
-50+
-
-Math.cos(
-angle
-)*
-
-radius+
-
-"%";
-
+50+Math.cos(angle)*radius+"%";
 
 bulb.style.top=
+50+Math.sin(angle)*radius+"%";
 
-50+
-
-Math.sin(
-angle
-)*
-
-radius+
-
-"%";
-
-
-holder.appendChild(
-bulb
-);
+holder.appendChild(bulb);
 
 }
 
@@ -6628,27 +3752,15 @@ bulb
 
 
 function bulbs(){
-
-return Array.from(
-document
-.querySelectorAll(
-".bulb"
-)
-);
-
+return Array.from(document.querySelectorAll(".bulb"));
 }
 
 
 function clearBulbs(){
 
-bulbs().forEach(
-function(bulb){
-
-bulb.className=
-"bulb";
-
-}
-);
+bulbs().forEach(bulb=>{
+bulb.className="bulb";
+});
 
 }
 
@@ -6657,56 +3769,25 @@ function startBulbIdle(){
 
 stopBulbs();
 
+bulbTimer=setInterval(()=>{
 
-bulbTimer=
-setInterval(
-function(){
+const list=bulbs();
 
-const list=
-bulbs();
-
-
-list.forEach(
-function(
-bulb,
-index
-){
+list.forEach((bulb,index)=>{
 
 const distance=
-
-(
-index-
-bulbStep+
-list.length
-)%
-
-list.length;
-
+(index-bulbStep+list.length)%list.length;
 
 bulb.className=
-
 distance<5
-
 ?"bulb blue"
-
 :"bulb";
 
-}
-);
+});
 
+bulbStep=(bulbStep+1)%list.length;
 
-bulbStep=
-
-(
-bulbStep+
-1
-)%
-
-list.length;
-
-},
-90
-);
+},90);
 
 }
 
@@ -6715,60 +3796,52 @@ function startBulbSpin(){
 
 stopBulbs();
 
+bulbTimer=setInterval(()=>{
 
-bulbTimer=
-setInterval(
-function(){
+const list=bulbs();
 
-const list=
-bulbs();
-
-
-list.forEach(
-function(
-bulb,
-index
-){
+list.forEach((bulb,index)=>{
 
 const distance=
-
-(
-index-
-bulbStep+
-list.length
-)%
-
-list.length;
-
+(index-bulbStep+list.length)%list.length;
 
 bulb.className=
-
-(
-distance===0 ||
-distance===1 ||
-distance===2
-)
-
+distance<4
 ?"bulb on"
-
 :"bulb";
 
+});
+
+bulbStep=(bulbStep+3)%list.length;
+
+},38);
+
 }
-);
 
 
-bulbStep=
+function slowBulbSpin(){
 
-(
-bulbStep+
-2
-)%
+stopBulbs();
 
-list.length;
+bulbTimer=setInterval(()=>{
 
-},
-45
-);
+const list=bulbs();
+
+list.forEach((bulb,index)=>{
+
+const distance=
+(index-bulbStep+list.length)%list.length;
+
+bulb.className=
+distance<3
+?"bulb on"
+:"bulb";
+
+});
+
+bulbStep=(bulbStep+1)%list.length;
+
+},150);
 
 }
 
@@ -6777,50 +3850,22 @@ function jackpotBulbs(){
 
 stopBulbs();
 
-
 let state=false;
 
+bulbTimer=setInterval(()=>{
 
-bulbTimer=
-setInterval(
-function(){
+state=!state;
 
-state=
-!state;
-
-
-bulbs().forEach(
-function(
-bulb,
-index
-){
+bulbs().forEach((bulb,index)=>{
 
 bulb.className=
-
 state
+?(index%2===0?"bulb on":"bulb red")
+:(index%2===0?"bulb red":"bulb on");
 
-?(
-index%2===0
+});
 
-?"bulb on"
-
-:"bulb red"
-)
-
-:(
-index%2===0
-
-?"bulb red"
-
-:"bulb on"
-);
-
-}
-);
-
-},
-110
-);
+},105);
 
 }
 
@@ -6829,12 +3874,9 @@ function stopBulbs(){
 
 if(bulbTimer){
 
-clearInterval(
-bulbTimer
-);
+clearInterval(bulbTimer);
 
-bulbTimer=
-null;
+bulbTimer=null;
 
 }
 
@@ -6847,290 +3889,160 @@ null;
 
 function drawWheel(){
 
-const canvas=
-document.getElementById(
-"wheel"
-);
+const canvas=document.getElementById("wheel");
+const ctx=canvas.getContext("2d");
 
+const size=canvas.width;
+const center=size/2;
+const radius=center-18;
 
-const ctx=
-canvas.getContext(
-"2d"
-);
+const slice=Math.PI*2/ITEMS.length;
 
-
-const size=
-canvas.width;
-
-
-const center=
-size/2;
-
-
-const radius=
-center-18;
-
-
-const slice=
-
-Math.PI*
-2/
-ITEMS.length;
-
-
-ctx.clearRect(
-0,
-0,
-size,
-size
-);
-
+ctx.clearRect(0,0,size,size);
 
 ctx.save();
 
-
-ctx.translate(
-center,
-center
-);
+ctx.translate(center,center);
+ctx.rotate(wheelRotation);
 
 
-ctx.rotate(
-wheelRotation
-);
-
-
-ITEMS.forEach(
-function(
-item,
-index
-){
+ITEMS.forEach((item,index)=>{
 
 const start=
+index*slice-Math.PI/2-slice/2;
 
-index*
-slice-
-
-Math.PI/2-
-
-slice/2;
-
-
-const end=
-start+
-slice;
-
+const end=start+slice;
 
 const gradient=
 ctx.createRadialGradient(
-0,
-0,
-70,
-0,
-0,
-radius
+0,0,70,
+0,0,radius
 );
 
+if(item.grand){
 
-if(
-item.grand
-){
+gradient.addColorStop(0,"#fff7bd");
+gradient.addColorStop(.35,"#ffe167");
+gradient.addColorStop(.72,"#d59a09");
+gradient.addColorStop(1,"#724500");
 
-gradient.addColorStop(
-0,
-"#fff6b0"
-);
+}else{
 
-gradient.addColorStop(
-.45,
-"#ffd54a"
-);
-
-gradient.addColorStop(
-1,
-"#9a6500"
-);
+gradient.addColorStop(0,COLORS[index][0]);
+gradient.addColorStop(.58,COLORS[index][0]);
+gradient.addColorStop(1,COLORS[index][1]);
 
 }
-
-else{
-
-gradient.addColorStop(
-0,
-lighten(
-WHEEL_COLORS[index],
-30
-)
-);
-
-gradient.addColorStop(
-.58,
-WHEEL_COLORS[index]
-);
-
-gradient.addColorStop(
-1,
-darken(
-WHEEL_COLORS[index],
-32
-)
-);
-
-}
-
 
 ctx.beginPath();
 
-
-ctx.moveTo(
-0,
-0
-);
-
-
-ctx.arc(
-0,
-0,
-radius,
-start,
-end
-);
-
-
+ctx.moveTo(0,0);
+ctx.arc(0,0,radius,start,end);
 ctx.closePath();
 
-
-ctx.fillStyle=
-gradient;
-
-
+ctx.fillStyle=gradient;
 ctx.fill();
 
 
-ctx.lineWidth=
+/* GOLD METAL SEPARATORS */
 
-item.grand
-?10
-:7;
-
+ctx.lineWidth=item.grand?13:8;
 
 ctx.strokeStyle=
-
 item.grand
-
-?"#fff4a3"
-
-:"#05070a";
-
+?"#fff0a0"
+:"#d7a628";
 
 ctx.stroke();
 
 
-ctx.beginPath();
+/* INNER BEVEL */
 
+ctx.beginPath();
 
 ctx.arc(
 0,
 0,
-radius*.96,
+radius*.95,
 start,
 end
 );
 
-
-ctx.lineWidth=
-3;
-
-
-ctx.strokeStyle=
-"rgba(255,255,255,.28)";
-
-
+ctx.lineWidth=3;
+ctx.strokeStyle="rgba(255,255,255,.28)";
 ctx.stroke();
 
 
+/* WEDGE LABEL */
+
 ctx.save();
 
+const middle=start+slice/2;
 
-const middle=
+ctx.rotate(middle);
 
-start+
-slice/2;
+ctx.translate(radius*.67,0);
 
+ctx.rotate(Math.PI/2);
 
-ctx.rotate(
-middle
-);
+ctx.textAlign="center";
+ctx.textBaseline="middle";
 
+ctx.shadowColor="rgba(0,0,0,.95)";
+ctx.shadowBlur=11;
 
-ctx.translate(
-radius*.67,
-0
-);
+if(item.grand){
 
+ctx.fillStyle="#151006";
 
-ctx.rotate(
-Math.PI/2
-);
+ctx.font="1000 48px Arial";
 
-
-ctx.textAlign=
-"center";
-
-
-ctx.textBaseline=
-"middle";
-
-
-ctx.shadowColor=
-"rgba(0,0,0,.85)";
-
-
-ctx.shadowBlur=
-10;
-
-
-if(
-item.grand
-){
-
-ctx.fillStyle=
-"#111";
-
-ctx.font=
-"1000 31px Arial";
-
-}
-
-else{
-
-ctx.fillStyle=
-"#fff";
-
-ctx.font=
-"1000 27px Arial";
-
-}
-
-
-wrapText(
-ctx,
+ctx.fillText(
 item.label,
 0,
-0,
-190,
-31
+-18
 );
 
+ctx.font="1000 25px Arial";
+
+ctx.fillText(
+item.sub,
+0,
+25
+);
+
+}else{
+
+ctx.fillStyle="#fff";
+
+ctx.font="1000 29px Arial";
+
+ctx.fillText(
+item.label,
+0,
+-14
+);
+
+ctx.fillStyle="#f8d96b";
+
+ctx.font="1000 23px Arial";
+
+ctx.fillText(
+item.sub,
+0,
+22
+);
+
+}
 
 ctx.restore();
 
-}
-);
+});
 
+
+/* OUTER METAL RING */
 
 ctx.beginPath();
-
 
 ctx.arc(
 0,
@@ -7140,38 +4052,23 @@ radius,
 Math.PI*2
 );
 
-
-ctx.lineWidth=
-16;
-
-
-ctx.strokeStyle=
-"#ffd54a";
-
-
+ctx.lineWidth=18;
+ctx.strokeStyle="#e2b43d";
 ctx.stroke();
 
 
 ctx.beginPath();
 
-
 ctx.arc(
 0,
 0,
-radius*.25,
+radius*.965,
 0,
 Math.PI*2
 );
 
-
-ctx.lineWidth=
-8;
-
-
-ctx.strokeStyle=
-"rgba(255,255,255,.2)";
-
-
+ctx.lineWidth=4;
+ctx.strokeStyle="rgba(255,255,255,.55)";
 ctx.stroke();
 
 
@@ -7181,220 +4078,121 @@ ctx.restore();
 
 
 /**************************************************************
- CANVAS TEXT
+ LEVER ANIMATION
 **************************************************************/
 
-function wrapText(
-ctx,
-text,
-x,
-y,
-maxWidth,
-lineHeight
-){
+function pullLever(){
 
-const words=
-String(text)
-.split(" ");
+const arm=document.getElementById("lever-arm");
 
+arm.classList.add("pulled");
 
-const lines=[];
+leverSound();
 
+setTimeout(()=>{
 
-let line="";
+arm.classList.remove("pulled");
 
-
-words.forEach(
-function(word){
-
-const test=
-
-line
-
-?line+" "+word
-
-:word;
-
-
-if(
-ctx.measureText(
-test
-).width>
-
-maxWidth &&
-
-line
-){
-
-lines.push(
-line
-);
-
-line=
-word;
-
-}
-
-else{
-
-line=
-test;
-
-}
-
-}
-);
-
-
-if(line){
-
-lines.push(
-line
-);
-
-}
-
-
-const total=
-
-(
-lines.length-
-1
-)*
-
-lineHeight;
-
-
-lines.forEach(
-function(
-value,
-index
-){
-
-ctx.fillText(
-value,
-x,
-y-
-total/2+
-index*
-lineHeight
-);
-
-}
-);
+},550);
 
 }
 
 
 /**************************************************************
- BEGIN SPIN
+ BEGIN SPIN CEREMONY
 **************************************************************/
 
 function beginSpin(){
 
-if(spinning){
-return;
-}
+if(spinning)return;
 
-
-spinning=
-true;
-
+spinning=true;
 
 initAudio();
 
+const arena=document.getElementById("arena");
 
-const arena=
-document.getElementById(
-"arena"
-);
+const button=document.getElementById("spin-button");
 
+button.disabled=true;
 
-arena.classList.add(
-"spin-mode"
-);
-
-
-ambienceLevel(
-.015
-);
-
-
-leverSound();
-
-
-startBulbSpin();
-
-
-document
-.getElementById(
-"spin-button"
-)
-.disabled=
-true;
-
-
-document
-.getElementById(
-"oracle-message"
-)
-.textContent=
+document.getElementById("oracle-message").textContent=
 oracleSpin();
 
-
-document
-.getElementById(
-"side-status"
-)
-.textContent=
-"LEVER PULLED";
-
+document.getElementById("side-status").textContent=
+"LEVER ARMED";
 
 setArenaHud(
-"PREPARE TO SPIN",
-selectedManager+
-" • "+
-selectedTeam
+"F4SN WHEEL CONTROL",
+"MECHANICAL SYSTEM ARMED"
 );
 
 
-setTimeout(
-function(){
+/* PHYSICAL LEVER */
 
-runCountdown(
-3,
-function(){
-
-launchSound();
+pullLever();
 
 
-document
-.getElementById(
-"side-status"
-)
-.textContent=
+setTimeout(()=>{
+
+/* ARENA POWER DOWN */
+
+arena.classList.add("pre-spin");
+
+ambienceLevel(.025);
+
+const power=document.getElementById("power-down");
+
+power.classList.add("show");
+
+powerTransferSound();
+
+document.getElementById("side-status").textContent=
+"POWER TRANSFER";
+
+setArenaHud(
+"ARENA POWER TRANSFER",
+"ALL SYSTEMS ROUTING TO THE WINNER'S WHEEL"
+);
+
+},500);
+
+
+setTimeout(()=>{
+
+document.getElementById("power-down")
+.classList.remove("show");
+
+runCountdown(3,()=>{
+
+arena.classList.remove("pre-spin");
+arena.classList.add("spin-fast");
+
+document.getElementById("side-status").textContent=
 "WHEEL IN MOTION";
-
 
 setArenaHud(
 "WHEEL IN MOTION",
 "THE F4SN ARENA IS NOW COMPLETELY OUT OF CONTROL"
 );
 
+fireShockwave();
 
-flashes(
-18
-);
+launchSound();
 
+startSpinRumble();
+
+startBulbSpin();
+
+crowd(1.25);
+
+flashes(22);
 
 spinWheel();
 
-}
-);
+});
 
-},
-450
-);
+},1650);
 
 }
 
@@ -7403,99 +4201,53 @@ spinWheel();
  COUNTDOWN
 **************************************************************/
 
-function runCountdown(
-start,
-done
-){
+function runCountdown(start,done){
 
-const overlay=
-document.getElementById(
-"countdown"
-);
+const overlay=document.getElementById("countdown");
+const display=document.getElementById("countdown-number");
 
+overlay.classList.add("show");
 
-const display=
-document.getElementById(
-"countdown-number"
-);
-
-
-overlay.classList.add(
-"show"
-);
-
-
-let current=
-start;
-
+let current=start;
 
 function next(){
 
-display.style.animation=
-"none";
-
+display.style.animation="none";
 
 void display.offsetWidth;
 
+display.style.animation="countPop .65s ease";
 
-display.style.animation=
-"countPop .65s ease";
+display.classList.remove("spin-word");
 
+if(current===0){
 
-if(
-current===0
-){
+display.textContent="SPIN!";
+display.classList.add("spin-word");
 
-display.textContent=
-"SPIN!";
+countdownSound(0);
 
+setTimeout(()=>{
 
-countdownSound(
-0
-);
-
-
-setTimeout(
-function(){
-
-overlay
-.classList
-.remove(
-"show"
-);
-
+overlay.classList.remove("show");
 
 done();
 
-},
-650
-);
-
+},650);
 
 return;
 
 }
 
+display.textContent=current;
 
-display.textContent=
-current;
-
-
-countdownSound(
-current
-);
-
+countdownSound(current);
 
 current--;
 
-
-setTimeout(
-next,
-720
-);
+setTimeout(next,720);
 
 }
-
 
 next();
 
@@ -7503,206 +4255,139 @@ next();
 
 
 /**************************************************************
- SPIN WHEEL
+ SHOCKWAVE
 **************************************************************/
 
-function spinWheel(){
+function fireShockwave(){
 
-const selected=
-weightedIndex();
+const wave=document.getElementById("shockwave");
 
+wave.classList.remove("fire");
 
-const item=
-ITEMS[selected];
+void wave.offsetWidth;
 
-
-const slice=
-
-Math.PI*
-2/
-ITEMS.length;
-
-
-const current=
-normalizeAngle(
-wheelRotation
-);
-
-
-const desired=
-normalizeAngle(
--selected*
-slice
-);
-
-
-let delta=
-desired-
-current;
-
-
-if(delta<0){
-
-delta+=
-Math.PI*2;
+wave.classList.add("fire");
 
 }
 
 
+/**************************************************************
+ SPIN
+**************************************************************/
+
+function spinWheel(){
+
+const selected=weightedIndex();
+const item=ITEMS[selected];
+
+const slice=Math.PI*2/ITEMS.length;
+
+const current=normalizeAngle(wheelRotation);
+
+const desired=normalizeAngle(-selected*slice);
+
+let delta=desired-current;
+
+if(delta<0){
+delta+=Math.PI*2;
+}
+
+
+/*
+ V4.3:
+ Plenty of speed up front,
+ then a deliberately long final crawl.
+*/
+
 const fullSpins=
-
-10+
-
-Math.floor(
-randomUnit()*3
-);
-
+11+Math.floor(randomUnit()*3);
 
 const total=
+fullSpins*Math.PI*2+delta;
 
-fullSpins*
-Math.PI*2+
+const start=wheelRotation;
+const finish=start+total;
 
-delta;
+const duration=11200;
 
+const startTime=performance.now();
 
-const start=
-wheelRotation;
-
-
-const finish=
-start+
-total;
-
-
-const duration=
-9800;
-
-
-const startTime=
-performance.now();
-
-
-lastPointerIndex=
-null;
-
-
-lastJackpotTease=
-null;
-
+lastPointerIndex=null;
+lastJackpotTease=null;
 
 let heartbeatOne=false;
 let heartbeatTwo=false;
 let heartbeatThree=false;
+let heartbeatFour=false;
+
+let tensionStarted=false;
+let bulbsSlowed=false;
+
+const arena=document.getElementById("arena");
 
 
-const arena=
-document.getElementById(
-"arena"
-);
+function frame(now){
 
+const elapsed=now-startTime;
 
-function frame(
-now
-){
-
-const elapsed=
-now-
-startTime;
-
-
-const progress=
-
-Math.min(
-elapsed/
-duration,
+const progress=Math.min(
+elapsed/duration,
 1
 );
 
 
+/*
+ A heavier physical deceleration curve.
+ Fast early.
+ Painfully slow at the end.
+*/
+
 const eased=
-
-1-
-
-Math.pow(
-1-
-progress,
-5.4
-);
+1-Math.pow(1-progress,5.9);
 
 
 wheelRotation=
-
-start+
-
-total*
-eased;
-
+start+total*eased;
 
 drawWheel();
 
+updateSpinRumble(progress);
+
 
 const pointerIndex=
-getPointerIndex(
-wheelRotation
-);
+getPointerIndex(wheelRotation);
 
 
-if(
-pointerIndex!==
-lastPointerIndex
-){
+if(pointerIndex!==lastPointerIndex){
 
-lastPointerIndex=
-pointerIndex;
+lastPointerIndex=pointerIndex;
+
+pointerClack(progress);
 
 
-pointerClack(
-progress
-);
-
+/* JACKPOT NEAR MISS */
 
 if(
-progress>.72 &&
-
-ITEMS[
-pointerIndex
-] &&
-
-ITEMS[
-pointerIndex
-].grand &&
-
-pointerIndex!==
-lastJackpotTease
+progress>.69 &&
+ITEMS[pointerIndex] &&
+ITEMS[pointerIndex].grand &&
+pointerIndex!==lastJackpotTease
 ){
 
-lastJackpotTease=
-pointerIndex;
-
+lastJackpotTease=pointerIndex;
 
 jackpotApproach();
 
-
 crowdOh();
 
-
-flashes(
-5
-);
-
+flashes(7);
 
 setArenaHud(
 "🚨 JACKPOT DANGER 🚨",
-"OH COME ON..."
+"THE POINTER JUST ENTERED THE MONEY ZONE"
 );
 
-
-document
-.getElementById(
-"side-status"
-)
-.textContent=
+document.getElementById("side-status").textContent=
 "JACKPOT DANGER";
 
 }
@@ -7710,104 +4395,113 @@ document
 }
 
 
-if(
-progress>.70
-){
+/* MOVE FROM SHOWTIME INTO TENSION */
 
-arena.classList.add(
-"final-mode"
+if(progress>.70&&!tensionStarted){
+
+tensionStarted=true;
+
+arena.classList.remove("spin-fast");
+arena.classList.add("spin-tension");
+
+ambienceLevel(.018);
+
+setArenaHud(
+"FINAL APPROACH",
+"THE ENTIRE BUILDING IS WATCHING THE POINTER"
 );
+
+document.getElementById("side-status").textContent=
+"FINAL APPROACH";
 
 }
 
 
-if(
-progress>.76 &&
-!heartbeatOne
-){
+/* SLOW MARQUEE LIGHTS */
+
+if(progress>.79&&!bulbsSlowed){
+
+bulbsSlowed=true;
+
+slowBulbSpin();
+
+}
+
+
+/* HEARTBEATS */
+
+if(progress>.77&&!heartbeatOne){
 
 heartbeatOne=true;
-
 heartbeat();
 
 }
 
-
-if(
-progress>.84 &&
-!heartbeatTwo
-){
+if(progress>.85&&!heartbeatTwo){
 
 heartbeatTwo=true;
-
 heartbeat();
 
 }
 
-
-if(
-progress>.91 &&
-!heartbeatThree
-){
+if(progress>.91&&!heartbeatThree){
 
 heartbeatThree=true;
+heartbeat();
 
+}
+
+if(progress>.955&&!heartbeatFour){
+
+heartbeatFour=true;
 heartbeat();
 
 }
 
 
+/* RANDOM CROWD CAMERA FLASHES EARLY */
+
 if(
-progress>.1 &&
-progress<.5 &&
-randomUnit()<.015
+progress>.08 &&
+progress<.55 &&
+randomUnit()<.014
 ){
 
-flashes(
-1
-);
+flashes(1);
 
 }
 
 
-if(
-progress<1
-){
+if(progress<1){
 
-requestAnimationFrame(
-frame
-);
+requestAnimationFrame(frame);
 
 return;
 
 }
 
 
-wheelRotation=
-finish;
+/**********************************************************
+ LANDING
+**********************************************************/
 
+wheelRotation=finish;
 
 drawWheel();
 
+stopSpinRumble();
 
 stopBulbs();
 
 clearBulbs();
 
+ambienceLevel(.0001,.03);
 
-ambienceLevel(
-.0001,
-.05
-);
+arena.classList.remove("spin-tension");
+arena.classList.add("final-dark");
 
-
-document
-.getElementById(
-"side-status"
-)
-.textContent=
+document.getElementById("side-status").textContent=
 "RESULT LOCKED";
-
 
 setArenaHud(
 "RESULT LOCKED",
@@ -7815,23 +4509,27 @@ setArenaHud(
 );
 
 
-setTimeout(
-function(){
+/*
+ IMPORTANT:
+ SILENCE.
 
-finalReveal(
-item
-);
+ No music.
+ No crowd.
+ No stupid beep.
 
-},
-650
-);
+ Just let the landing breathe.
+*/
+
+setTimeout(()=>{
+
+finalReveal(item);
+
+},850);
 
 }
 
 
-requestAnimationFrame(
-frame
-);
+requestAnimationFrame(frame);
 
 }
 
@@ -7840,34 +4538,14 @@ frame
  POINTER INDEX
 **************************************************************/
 
-function getPointerIndex(
-rotation
-){
+function getPointerIndex(rotation){
 
-const slice=
-
-Math.PI*
-2/
-ITEMS.length;
-
+const slice=Math.PI*2/ITEMS.length;
 
 const angle=
-normalizeAngle(
--rotation+
-slice/2
-);
+normalizeAngle(-rotation+slice/2);
 
-
-return (
-
-Math.floor(
-angle/
-slice
-)%
-
-ITEMS.length
-
-);
+return Math.floor(angle/slice)%ITEMS.length;
 
 }
 
@@ -7876,104 +4554,66 @@ ITEMS.length
  FINAL REVEAL
 **************************************************************/
 
-function finalReveal(
-item
-){
+function finalReveal(item){
 
-const blackout=
-document.getElementById(
-"blackout"
-);
+const blackout=document.getElementById("blackout");
+const text=document.getElementById("blackout-text");
 
+blackout.classList.add("show");
 
-const text=
-document.getElementById(
-"blackout-text"
-);
+text.textContent="";
 
 
-blackout.classList.add(
-"show"
-);
+/* one final physical settling tick */
+
+setTimeout(()=>{
+
+pointerClack(1);
+
+},200);
 
 
-text.textContent=
-"";
+setTimeout(()=>{
+
+if(item.grand){
+
+text.textContent="...";
+
+setTimeout(()=>{
+
+text.textContent="WAIT.";
+
+tone(52,.3,"sine",.12);
+
+},700);
 
 
-pointerClack(
-1
-);
+setTimeout(()=>{
+
+text.textContent="OH. MY. GOD.";
+
+},1450);
 
 
-setTimeout(
-function(){
+setTimeout(()=>{
 
-if(
-item.grand
-){
+blackout.classList.remove("show");
 
-text.textContent=
-"...";
+revealJackpot(item);
 
-
-tone(
-1047,
-.2,
-"sine",
-.055
-);
-
-
-setTimeout(
-function(){
-
-text.textContent=
-"WAIT.";
-
-},
-650
-);
-
-
-setTimeout(
-function(){
-
-blackout
-.classList
-.remove(
-"show"
-);
-
-
-revealJackpot(
-item
-);
-
-},
-1450
-);
+},2250);
 
 }
 
 else{
 
-blackout
-.classList
-.remove(
-"show"
-);
+blackout.classList.remove("show");
 
-
-revealNormal(
-item
-);
+revealNormal(item);
 
 }
 
-},
-450
-);
+},650);
 
 }
 
@@ -7982,270 +4622,151 @@ item
  NORMAL RESULT
 **************************************************************/
 
-function revealNormal(
-item
-){
+function revealNormal(item){
 
-const arena=
-document.getElementById(
-"arena"
-);
-
+const arena=document.getElementById("arena");
 
 arena.classList.remove(
-"spin-mode",
-"final-mode"
+"spin-fast",
+"spin-tension",
+"final-dark",
+"pre-spin"
 );
 
+playOutcome(item.sound);
 
-playOutcome(
-item.sound
-);
+broadcastHit();
 
+flashes(28);
 
-flashes(
-22
-);
-
-
-confetti(
-150
-);
-
+confetti(190);
 
 setArenaHud(
-selectedTeam+
-" WINS "+
-item.result,
+selectedTeam+" WINS "+item.result,
 "F4SN OFFICIAL WINNER'S WHEEL RESULT"
 );
 
-
-document
-.getElementById(
-"side-status"
-)
-.textContent=
+document.getElementById("side-status").textContent=
 item.result;
 
-
-showTakeover(
-item,
-false
-);
-
+showTakeover(item,false);
 
 startBulbIdle();
 
+ambienceLevel(.16);
 
-ambienceLevel(
-.16
-);
+crowd(1.6);
 
+spinning=false;
 
-spinning=
-false;
+const button=document.getElementById("spin-button");
 
-
-const button=
-document.getElementById(
-"spin-button"
-);
-
-
-button.disabled=
-false;
-
-
-button.textContent=
-"TEST SPIN AGAIN";
+button.disabled=false;
+button.textContent="TEST SPIN AGAIN";
 
 }
 
 
 /**************************************************************
- JACKPOT RESULT
+ JACKPOT
 **************************************************************/
 
-function revealJackpot(
-item
-){
+function revealJackpot(item){
 
-const arena=
-document.getElementById(
-"arena"
-);
-
+const arena=document.getElementById("arena");
 
 arena.classList.remove(
-"spin-mode",
-"final-mode"
+"spin-fast",
+"spin-tension",
+"final-dark",
+"pre-spin"
 );
 
+arena.classList.add("jackpot-mode");
 
-arena.classList.add(
-"jackpot-mode"
-);
+document.body.classList.add("shake");
 
+setTimeout(()=>{
 
-document.body
-.classList
-.add(
-"shake"
-);
+document.body.classList.remove("shake");
 
-
-setTimeout(
-function(){
-
-document.body
-.classList
-.remove(
-"shake"
-);
-
-},
-1200
-);
-
+},1300);
 
 jackpotBulbs();
 
+flashes(75);
 
-flashes(
-55
-);
-
-
-confetti(
-450
-);
-
+confetti(520);
 
 jackpotSound();
 
-
 setArenaHud(
 "🚨 F4SN JACKPOT ALERT 🚨",
-selectedManager+
-" HAS BROKEN THE BANK"
+selectedManager+" HAS WON TWENTY-FIVE ACTUAL DOLLARS"
 );
 
-
-document
-.getElementById(
-"side-status"
-)
-.textContent=
+document.getElementById("side-status").textContent=
 "🚨 JACKPOT 🚨";
 
+showTakeover(item,true);
 
-showTakeover(
-item,
-true
-);
+ambienceLevel(.13);
 
+spinning=false;
 
-ambienceLevel(
-.12
-);
+const button=document.getElementById("spin-button");
 
-
-spinning=
-false;
-
-
-const button=
-document.getElementById(
-"spin-button"
-);
-
-
-button.disabled=
-false;
-
-
-button.textContent=
-"TEST SPIN AGAIN";
+button.disabled=false;
+button.textContent="TEST SPIN AGAIN";
 
 }
 
 
 /**************************************************************
- PLAY OUTCOME SOUND
+ OUTCOME SOUND
 **************************************************************/
 
-function playOutcome(
-sound
-){
+function playOutcome(sound){
 
 switch(sound){
 
 case "double":
-
 doubleFlexSound();
-
 break;
-
 
 case "boost":
-
 boostSound();
-
 break;
-
 
 case "oracle":
-
 oracleSound();
-
 break;
-
 
 case "viking":
-
 vikingHorn();
-
 break;
-
 
 case "first":
-
 firstPickSound();
-
 break;
-
 
 case "shield":
-
 shieldSound();
-
 break;
-
 
 case "captain":
-
 captainSound();
-
 break;
-
 
 case "raid":
-
 raidSound();
-
 break;
-
 
 case "upgrade":
-
 upgradeSound();
-
 break;
 
-
 default:
-
 victoryFanfare();
 
 }
@@ -8254,109 +4775,58 @@ victoryFanfare();
 
 
 /**************************************************************
- RESULT TAKEOVER
+ TAKEOVER
 **************************************************************/
 
-function showTakeover(
-item,
-jackpot
-){
+function showTakeover(item,jackpot){
 
-const takeover=
-document.getElementById(
-"takeover"
-);
-
+const takeover=document.getElementById("takeover");
 
 takeover.className=
-
 jackpot
-
 ?"show jackpot"
-
 :"show";
 
-
-takeover.style
-.setProperty(
+takeover.style.setProperty(
 "--take-color",
 item.accent
 );
 
-
-takeover.style
-.setProperty(
+takeover.style.setProperty(
 "--take-glow",
 hexAlpha(
 item.accent,
-jackpot
-?.62
-:.35
+jackpot?.62:.35
 )
 );
 
-
-document
-.getElementById(
-"take-alert"
-)
-.textContent=
-
+document.getElementById("take-alert").textContent=
 jackpot
-
 ?"🚨 F4SN MEGA-JACKPOT 🚨"
-
 :"F4SN WINNER'S ADVANTAGE";
 
-
-document
-.getElementById(
-"take-icon"
-)
-.textContent=
+document.getElementById("take-icon").textContent=
 item.icon;
 
-
-document
-.getElementById(
-"take-title"
-)
-.textContent=
-
+document.getElementById("take-title").textContent=
 jackpot
-
 ?"JACKPOT"
-
 :item.result;
 
-
-document
-.getElementById(
-"take-description"
-)
-.textContent=
-
+document.getElementById("take-description").textContent=
 jackpot
-
 ?(
 item.result+
 " — "+
 item.note+
 " F4SN is treating this $25 transaction like the largest payout in televised sports history."
 )
-
 :(
 item.note+
 " This remains a construction-mode test and is not actually applied to Week 5."
 );
 
-
-document
-.getElementById(
-"take-manager"
-)
-.textContent=
-
+document.getElementById("take-manager").textContent=
 selectedManager+
 " • "+
 selectedTeam;
@@ -8370,31 +4840,15 @@ selectedTeam;
 
 function closeTakeover(){
 
-const takeover=
-document.getElementById(
-"takeover"
-);
+document.getElementById("takeover").className="";
 
+const arena=document.getElementById("arena");
 
-takeover.className=
-"";
-
-
-const arena=
-document.getElementById(
-"arena"
-);
-
-
-arena.classList.remove(
-"jackpot-mode"
-);
-
+arena.classList.remove("jackpot-mode");
 
 stopBulbs();
 
 startBulbIdle();
-
 
 setArenaHud(
 "THE WINNER'S WHEEL",
@@ -8405,69 +4859,33 @@ setArenaHud(
 
 
 /**************************************************************
- EXIT ARENA
+ EXIT
 **************************************************************/
 
 function exitArena(){
 
-if(spinning){
-return;
-}
-
+if(spinning)return;
 
 stopBulbs();
+stopSpinRumble();
 
+const arena=document.getElementById("arena");
 
-const arena=
-document.getElementById(
-"arena"
-);
+arena.className="";
 
+document.body.style.overflow="";
 
-arena.className=
-"";
+const door=document.getElementById("door-scene");
 
+door.classList.remove("open");
 
-document.body.style.overflow=
-"";
+document.getElementById("door-button").disabled=false;
 
-
-const door=
-document.getElementById(
-"door-scene"
-);
-
-
-door.classList.remove(
-"open"
-);
-
-
-document
-.getElementById(
-"door-button"
-)
-.disabled=
-false;
-
-
-showArenaScene(
-"entrance-scene"
-);
-
+showArenaScene("entrance-scene");
 
 window.scrollTo({
-
-top:
-document
-.getElementById(
-"champion-select"
-)
-.offsetTop-
-20,
-
+top:document.getElementById("champion-select").offsetTop-20,
 behavior:"smooth"
-
 });
 
 }
@@ -8477,71 +4895,29 @@ behavior:"smooth"
  FLASHES
 **************************************************************/
 
-function flashes(
-amount
-){
+function flashes(amount){
 
-const layer=
-document.getElementById(
-"fx"
-);
+const layer=document.getElementById("fx");
 
+for(let i=0;i<amount;i++){
 
-for(
-let i=0;
-i<amount;
-i++
-){
+setTimeout(()=>{
 
-setTimeout(
-function(){
+const flash=document.createElement("div");
 
-const flash=
-document.createElement(
-"div"
-);
-
-
-flash.className=
-"camera-flash";
-
+flash.className="camera-flash";
 
 flash.style.left=
-
-(
-4+
-randomUnit()*92
-)+
-"%";
-
+(4+randomUnit()*92)+"%";
 
 flash.style.top=
+(5+randomUnit()*70)+"%";
 
-(
-5+
-randomUnit()*70
-)+
-"%";
+layer.appendChild(flash);
 
+setTimeout(()=>flash.remove(),650);
 
-layer.appendChild(
-flash
-);
-
-
-setTimeout(
-function(){
-
-flash.remove();
-
-},
-650
-);
-
-},
-i*70+
-randomUnit()*250
-);
+},i*65+randomUnit()*250);
 
 }
 
@@ -8552,12 +4928,9 @@ randomUnit()*250
  CONFETTI
 **************************************************************/
 
-function confetti(
-amount
-){
+function confetti(amount){
 
 const colors=[
-
 "#ffd54a",
 "#ffffff",
 "#18a8ff",
@@ -8565,73 +4938,31 @@ const colors=[
 "#16d5d1",
 "#9c4dff",
 "#ff9f00"
-
 ];
 
+for(let i=0;i<amount;i++){
 
-for(
-let i=0;
-i<amount;
-i++
-){
+const piece=document.createElement("div");
 
-const piece=
-document.createElement(
-"div"
-);
-
-
-piece.className=
-"confetti";
-
+piece.className="confetti";
 
 piece.style.left=
-
-randomUnit()*
-100+
-"vw";
-
+randomUnit()*100+"vw";
 
 piece.style.background=
-
 colors[
-Math.floor(
-randomUnit()*
-colors.length
-)
+Math.floor(randomUnit()*colors.length)
 ];
 
-
 piece.style.animationDuration=
-
-(
-2.5+
-randomUnit()*3.8
-)+
-"s";
-
+(2.5+randomUnit()*3.8)+"s";
 
 piece.style.animationDelay=
+(randomUnit()*.8)+"s";
 
-(
-randomUnit()*.8
-)+
-"s";
+document.body.appendChild(piece);
 
-
-document.body.appendChild(
-piece
-);
-
-
-setTimeout(
-function(){
-
-piece.remove();
-
-},
-7500
-);
+setTimeout(()=>piece.remove(),7500);
 
 }
 
@@ -8642,212 +4973,40 @@ piece.remove();
  HELPERS
 **************************************************************/
 
-function normalizeAngle(
-angle
-){
+function normalizeAngle(angle){
 
-const full=
-Math.PI*2;
+const full=Math.PI*2;
 
-
-return (
-(
-angle%
-full
-)+
-full
-)%
-full;
+return ((angle%full)+full)%full;
 
 }
 
 
-function hexToRgb(
-hex
-){
+function hexToRgb(hex){
 
-const clean=
-String(hex)
-.replace(
-"#",
-""
-);
+const clean=String(hex).replace("#","");
 
-
-const value=
-parseInt(
-clean,
-16
-);
-
+const value=parseInt(clean,16);
 
 return{
-
-r:
-(
-value>>
-16
-)&
-255,
-
-g:
-(
-value>>
-8
-)&
-255,
-
-b:
-value&
-255
-
+r:(value>>16)&255,
+g:(value>>8)&255,
+b:value&255
 };
 
 }
 
 
-function hexAlpha(
-hex,
-alpha
-){
+function hexAlpha(hex,alpha){
 
-const rgb=
-hexToRgb(
-hex
-);
+const rgb=hexToRgb(hex);
 
-
-return (
-"rgba("+
-rgb.r+
-","+
-rgb.g+
-","+
-rgb.b+
-","+
+return "rgba("+
+rgb.r+","+
+rgb.g+","+
+rgb.b+","+
 alpha+
-")"
-);
-
-}
-
-
-function rgbToHex(
-r,
-g,
-b
-){
-
-return (
-"#"+
-[
-r,
-g,
-b
-]
-.map(
-function(value){
-
-return Math.max(
-0,
-Math.min(
-255,
-Math.round(
-value
-)
-)
-)
-.toString(16)
-.padStart(
-2,
-"0"
-);
-
-}
-)
-.join("")
-);
-
-}
-
-
-function lighten(
-hex,
-amount
-){
-
-const rgb=
-hexToRgb(
-hex
-);
-
-
-return rgbToHex(
-
-rgb.r+
-(
-255-
-rgb.r
-)*
-amount/
-100,
-
-rgb.g+
-(
-255-
-rgb.g
-)*
-amount/
-100,
-
-rgb.b+
-(
-255-
-rgb.b
-)*
-amount/
-100
-
-);
-
-}
-
-
-function darken(
-hex,
-amount
-){
-
-const rgb=
-hexToRgb(
-hex
-);
-
-
-return rgbToHex(
-
-rgb.r*
-(
-1-
-amount/
-100
-),
-
-rgb.g*
-(
-1-
-amount/
-100
-),
-
-rgb.b*
-(
-1-
-amount/
-100
-)
-
-);
+")";
 
 }
 
