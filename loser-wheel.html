@@ -1,0 +1,4742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>The Fant4sy Four | F4SN Loser's Wheel Arena</title>
+
+<style>
+*{box-sizing:border-box}
+
+:root{
+  --bg:#070403;
+  --panel:#130b08;
+  --panel2:#21100b;
+  --border:#4b2115;
+  --orange:#ff6a00;
+  --fire:#ff9d00;
+  --yellow:#ffd54a;
+  --red:#ff3528;
+  --darkred:#7d0e08;
+  --muted:#b9aaa4;
+  --team:#ff6a00;
+}
+
+html{scroll-behavior:smooth}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:
+    radial-gradient(circle at top,#271007 0,#0d0705 35%,#050303 75%);
+  color:white;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{overflow-x:hidden}
+
+/* =========================================================
+   GLOBAL FX
+========================================================= */
+
+#fx{
+  position:fixed;
+  inset:0;
+  z-index:30000;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.camera-flash{
+  position:absolute;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#ffb000;
+  opacity:0;
+  box-shadow:
+    0 0 20px 8px #ffb000,
+    0 0 45px 18px #ff3b00;
+  animation:cameraFlash .55s ease-out forwards;
+}
+
+@keyframes cameraFlash{
+  0%{opacity:0;transform:scale(.2)}
+  15%{opacity:1;transform:scale(1.6)}
+  100%{opacity:0;transform:scale(5)}
+}
+
+.ash{
+  position:fixed;
+  bottom:-30px;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  z-index:31000;
+  pointer-events:none;
+  background:#ff7a00;
+  box-shadow:0 0 10px #ff3b00;
+  animation:ashRise linear forwards;
+}
+
+@keyframes ashRise{
+  0%{
+    transform:translateY(0) translateX(0) scale(1);
+    opacity:1;
+  }
+  70%{opacity:.8}
+  100%{
+    transform:translateY(-115vh) translateX(60px) scale(.2);
+    opacity:0;
+  }
+}
+
+body.shake{
+  animation:screenShake .07s linear 16;
+}
+
+@keyframes screenShake{
+  0%{transform:translate(0)}
+  20%{transform:translate(7px,-4px)}
+  40%{transform:translate(-7px,5px)}
+  60%{transform:translate(6px,4px)}
+  80%{transform:translate(-5px,-4px)}
+  100%{transform:translate(0)}
+}
+
+/* =========================================================
+   WEBSITE SHELL
+========================================================= */
+
+.hero{
+  width:100%;
+  background:#050303;
+  border-bottom:1px solid var(--border);
+  text-align:center;
+  overflow:hidden;
+}
+
+.hero-banner{
+  display:block;
+  width:100%;
+  max-height:340px;
+  object-fit:cover;
+  object-position:center;
+}
+
+.event-strip{
+  display:flex;
+  min-height:57px;
+  background:#100806;
+  border-bottom:1px solid #4b2115;
+}
+
+.event-strip-label{
+  min-width:160px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:9px 17px;
+  background:#1a0c08;
+  border-right:1px solid #4b2115;
+}
+
+.event-strip-label strong{
+  color:var(--orange);
+  font-size:15px;
+  font-weight:1000;
+}
+
+.event-strip-label span{
+  color:#a07868;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.event-strip-track{
+  flex:1;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+
+.event-strip-message{
+  white-space:nowrap;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.8px;
+  animation:ticker 28s linear infinite;
+}
+
+.event-strip-message strong{color:var(--red)}
+
+@keyframes ticker{
+  from{transform:translateX(100vw)}
+  to{transform:translateX(-100%)}
+}
+
+.network-bar{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:22px;
+  padding:9px 14px;
+  background:#050303;
+  border-bottom:1px solid var(--border);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.network-name{color:var(--orange)}
+
+.live-dot{
+  display:inline-block;
+  width:8px;
+  height:8px;
+  margin-right:6px;
+  border-radius:50%;
+  background:#ff3b30;
+  box-shadow:0 0 11px #ff3b30;
+  animation:livePulse 1.1s infinite;
+}
+
+@keyframes livePulse{
+  50%{opacity:.25}
+}
+
+nav{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:3px;
+  padding:12px 10px;
+  background:#160a07;
+  border-bottom:2px solid var(--red);
+}
+
+nav a{
+  padding:8px 10px;
+  color:#eadbd4;
+  text-decoration:none;
+  font-size:10px;
+  font-weight:1000;
+}
+
+nav a:hover{
+  background:#29110b;
+  color:white;
+}
+
+main{
+  width:min(1180px,94%);
+  margin:auto;
+  padding:34px 0 80px;
+}
+
+.section-title{
+  position:relative;
+  margin:0 0 20px;
+  padding-left:14px;
+  font-size:clamp(25px,4vw,35px);
+  font-weight:1000;
+}
+
+.section-title:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:3px;
+  bottom:3px;
+  width:5px;
+  background:var(--red);
+  border-radius:3px;
+  box-shadow:0 0 12px var(--red);
+}
+
+.section-subtitle{
+  margin:-10px 0 25px 14px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+}
+
+.broadcast-card{
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:
+    linear-gradient(135deg,rgba(255,61,0,.11),transparent 45%),
+    var(--panel);
+  box-shadow:0 18px 45px rgba(0,0,0,.5);
+}
+
+.broadcast-header{
+  display:flex;
+  justify-content:space-between;
+  padding:12px 16px;
+  background:#0c0604;
+  border-bottom:1px solid var(--border);
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:1.2px;
+}
+
+.broadcast-header span:first-child{color:var(--orange)}
+.live-label{color:#ff4b4b}
+
+.special-event-body{
+  min-height:440px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:45px 25px;
+  text-align:center;
+}
+
+.event-kicker{
+  color:var(--red);
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:4px;
+}
+
+.event-logo{
+  margin-top:12px;
+  color:var(--orange);
+  font-size:clamp(44px,9vw,90px);
+  line-height:.85;
+  font-weight:1000;
+  text-shadow:0 0 25px #ff3b00;
+}
+
+.event-title{
+  margin:15px 0 10px;
+  font-size:clamp(31px,6vw,63px);
+  line-height:.95;
+  font-weight:1000;
+}
+
+.event-title span{
+  color:var(--red);
+  text-shadow:0 0 18px #ff3b00;
+}
+
+.event-description{
+  max-width:700px;
+  margin:18px auto;
+  color:#c3b3ac;
+  font-size:14px;
+  line-height:1.65;
+}
+
+.f4sn-button{
+  margin-top:18px;
+  padding:15px 28px;
+  border:1px solid #ff9b4a;
+  border-radius:6px;
+  background:linear-gradient(#ff7b22,#b82c08);
+  color:white;
+  font-size:13px;
+  font-weight:1000;
+  cursor:pointer;
+  box-shadow:
+    0 6px 0 #641506,
+    0 12px 25px rgba(0,0,0,.5);
+}
+
+.f4sn-button.fire{
+  border-color:#ffd08a;
+  background:linear-gradient(#ffd04d,#ff7a00 45%,#b51c05);
+  color:#190500;
+  box-shadow:
+    0 6px 0 #651100,
+    0 12px 25px rgba(0,0,0,.6);
+}
+
+/* =========================================================
+   LOSER SELECT
+========================================================= */
+
+#loser-select{margin-top:32px}
+
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.team-card{
+  min-height:125px;
+  padding:23px;
+  border:1px solid var(--border);
+  border-left:6px solid var(--card);
+  border-radius:7px;
+  background:#140b08;
+  color:white;
+  cursor:pointer;
+  text-align:left;
+  transition:.2s;
+}
+
+.team-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--card);
+  box-shadow:0 0 25px rgba(255,55,20,.18);
+}
+
+.team-manager{
+  color:var(--card);
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:2px;
+}
+
+.team-name{
+  margin-top:8px;
+  font-size:21px;
+  font-weight:1000;
+}
+
+.team-status{
+  margin-top:8px;
+  color:#a18d84;
+  font-size:10px;
+  font-weight:900;
+}
+
+/* =========================================================
+   TRANSITION
+========================================================= */
+
+#transition{
+  position:fixed;
+  inset:0;
+  z-index:15000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:#020100;
+  text-align:center;
+}
+
+#transition.show{display:flex}
+
+.transition-network{
+  color:var(--orange);
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:4px;
+}
+
+#transition-manager{
+  margin-top:18px;
+  color:var(--team);
+  font-size:clamp(40px,9vw,90px);
+  font-weight:1000;
+  text-transform:uppercase;
+  text-shadow:0 0 35px var(--team);
+}
+
+#transition-team{
+  font-size:clamp(18px,4vw,36px);
+  font-weight:1000;
+}
+
+#transition-status{
+  margin-top:25px;
+  color:var(--red);
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:3px;
+}
+
+/* =========================================================
+   ARENA
+========================================================= */
+
+#arena{
+  position:fixed;
+  inset:0;
+  z-index:12000;
+  display:none;
+  overflow:hidden;
+  background:black;
+}
+
+#arena.active{display:block}
+
+.arena-backdrop{
+  position:absolute;
+  inset:0;
+  background-image:url("f4sn-losers-arena.png");
+  background-size:cover;
+  background-position:center;
+  transition:filter 1s,transform 1.5s;
+  transform:scale(1.01);
+}
+
+.arena-backdrop:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.05),
+      rgba(60,5,0,.02) 52%,
+      rgba(0,0,0,.42)
+    );
+}
+
+#arena.pre-spin .arena-backdrop{
+  filter:brightness(.45) saturate(1.25);
+}
+
+#arena.spin-fast .arena-backdrop{
+  filter:brightness(.72) saturate(1.55);
+  transform:scale(1.025);
+}
+
+#arena.selector-phase .arena-backdrop{
+  filter:brightness(.36) saturate(1.35);
+  transform:scale(1.035);
+}
+
+#arena.final-dark .arena-backdrop{
+  filter:brightness(.18) saturate(1.2);
+}
+
+/* AMBIENT FIRE BEAMS */
+
+.arena-fire{
+  position:absolute;
+  z-index:3;
+  bottom:-20%;
+  width:18%;
+  height:100%;
+  opacity:.32;
+  filter:blur(20px);
+  background:
+    linear-gradient(
+      0deg,
+      rgba(255,48,0,.65),
+      rgba(255,145,0,.22),
+      transparent
+    );
+  transform-origin:bottom center;
+}
+
+.f1{left:8%;transform:rotate(-18deg);animation:fireBeam1 2.1s infinite alternate}
+.f2{left:30%;transform:rotate(-7deg);animation:fireBeam2 1.8s infinite alternate}
+.f3{right:30%;transform:rotate(7deg);animation:fireBeam3 2.3s infinite alternate}
+.f4{right:8%;transform:rotate(18deg);animation:fireBeam4 1.9s infinite alternate}
+
+@keyframes fireBeam1{to{transform:rotate(5deg);opacity:.5}}
+@keyframes fireBeam2{to{transform:rotate(15deg);opacity:.55}}
+@keyframes fireBeam3{to{transform:rotate(-15deg);opacity:.5}}
+@keyframes fireBeam4{to{transform:rotate(-5deg);opacity:.55}}
+
+#arena.spin-fast .arena-fire{
+  animation-duration:.4s;
+  opacity:.7;
+}
+
+#arena.selector-phase .arena-fire{
+  opacity:.18;
+}
+
+.arena-network{
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  z-index:50;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:9px 16px;
+  background:rgba(7,2,1,.92);
+  border-bottom:1px solid rgba(255,80,30,.35);
+  font-size:10px;
+  font-weight:1000;
+}
+
+.arena-network strong{color:var(--orange)}
+.arena-network .special{color:var(--red)}
+
+.exit-arena{
+  padding:6px 10px;
+  border:1px solid #542217;
+  background:#160805;
+  color:#bca69e;
+  cursor:pointer;
+}
+
+.arena-hud{
+  position:absolute;
+  left:50%;
+  top:48px;
+  z-index:45;
+  transform:translateX(-50%);
+  width:min(760px,80vw);
+  text-align:center;
+}
+
+#hud-main{
+  display:inline-block;
+  padding:7px 18px;
+  border:1px solid rgba(255,100,40,.4);
+  background:rgba(8,2,1,.82);
+  font-size:clamp(13px,2vw,20px);
+  font-weight:1000;
+}
+
+#hud-sub{
+  margin-top:6px;
+  color:#ffb07b;
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:2px;
+}
+
+.scene{
+  position:absolute;
+  inset:0;
+  z-index:20;
+  display:none;
+}
+
+.scene.active{display:block}
+
+/* =========================================================
+   ENTRANCE
+========================================================= */
+
+.entrance-overlay{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:min(920px,90vw);
+  padding:30px;
+  text-align:center;
+  background:rgba(10,2,1,.88);
+  border-top:2px solid var(--red);
+  border-bottom:2px solid var(--red);
+  box-shadow:0 0 70px rgba(255,40,0,.22);
+}
+
+.entrance-kicker{
+  color:var(--red);
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:4px;
+}
+
+#entrance-manager{
+  margin-top:13px;
+  font-size:clamp(19px,3vw,31px);
+  font-weight:1000;
+}
+
+#entrance-team{
+  margin:10px auto;
+  color:var(--team);
+  font-size:clamp(39px,8vw,87px);
+  line-height:.9;
+  font-weight:1000;
+  text-transform:uppercase;
+  text-shadow:0 0 30px var(--team);
+}
+
+#entrance-line{
+  margin-top:22px;
+  color:#ffb05c;
+  font-size:12px;
+  font-weight:1000;
+}
+
+.access-stamp{
+  display:inline-block;
+  margin-top:22px;
+  padding:8px 17px;
+  border:3px solid var(--red);
+  color:#ff6257;
+  font-size:20px;
+  font-weight:1000;
+  transform:rotate(-2deg);
+  box-shadow:0 0 20px rgba(255,40,20,.25);
+}
+
+/* =========================================================
+   DOORS
+========================================================= */
+
+#door-scene{background:#020100}
+
+.door-preview{
+  position:absolute;
+  inset:0;
+  background:url("f4sn-losers-arena.png") center/cover;
+  filter:brightness(.78) saturate(1.3);
+}
+
+.mega-door{
+  position:absolute;
+  top:0;
+  bottom:0;
+  z-index:6;
+  width:50.2%;
+  background:
+    linear-gradient(90deg,#080201,#351109,#080201);
+  border:4px solid #4b1a0f;
+  transition:transform 1.9s cubic-bezier(.18,.8,.2,1);
+}
+
+.mega-door.left{left:0}
+.mega-door.right{right:0}
+
+#door-scene.open .mega-door.left{
+  transform:translateX(-102%);
+}
+
+#door-scene.open .mega-door.right{
+  transform:translateX(102%);
+}
+
+.door-logo{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  color:#8f2815;
+  text-shadow:0 0 25px #ff3b00;
+  font-size:clamp(55px,12vw,140px);
+  font-weight:1000;
+}
+
+.left .door-logo{right:25px}
+.right .door-logo{left:25px}
+
+.door-control{
+  position:absolute;
+  z-index:10;
+  left:50%;
+  bottom:7%;
+  transform:translateX(-50%);
+}
+
+/* =========================================================
+   WHEEL STAGE
+========================================================= */
+
+.wheel-stage{
+  position:absolute;
+  z-index:25;
+  left:50%;
+  top:57%;
+  transform:translate(-50%,-50%);
+  width:min(48vw,640px);
+  aspect-ratio:1;
+}
+
+.wheel-shadow{
+  position:absolute;
+  left:9%;
+  right:9%;
+  bottom:-9%;
+  height:21%;
+  border-radius:50%;
+  background:rgba(0,0,0,.9);
+  filter:blur(20px);
+}
+
+.pedestal{
+  position:absolute;
+  left:50%;
+  bottom:-15%;
+  width:38%;
+  height:25%;
+  transform:translateX(-50%);
+  z-index:-1;
+  background:
+    linear-gradient(
+      90deg,
+      #170400,
+      #651400 18%,
+      #ff5a00 50%,
+      #651400 82%,
+      #170400
+    );
+  clip-path:polygon(20% 0,80% 0,100% 100%,0 100%);
+}
+
+.pedestal:after{
+  content:"F4SN";
+  position:absolute;
+  left:50%;
+  top:48%;
+  transform:translate(-50%,-50%);
+  color:#180300;
+  font-size:clamp(15px,2.5vw,32px);
+  font-weight:1000;
+}
+
+/* =========================================================
+   WHEEL MACHINE
+========================================================= */
+
+.wheel-machine{
+  position:absolute;
+  inset:0;
+  padding:9%;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 20%,#fff2c1 0 2%,transparent 8%),
+    conic-gradient(
+      #401000,
+      #ff4b00,
+      #751700,
+      #ff9500,
+      #5e0c00,
+      #ff3b00,
+      #371000,
+      #ff7600,
+      #6e1200,
+      #ffb000,
+      #3c0900,
+      #ff4b00
+    );
+  box-shadow:
+    0 0 0 4px #170300,
+    0 0 0 10px #a72a08,
+    0 0 0 16px #320700,
+    0 0 0 20px #100504,
+    0 0 0 23px #632112,
+    inset 0 0 35px rgba(255,160,50,.45),
+    0 0 60px rgba(255,55,0,.5),
+    0 30px 55px rgba(0,0,0,.95);
+}
+
+#wheel{
+  display:block;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:#100402;
+  box-shadow:0 0 0 8px #8c2509;
+}
+
+/* =========================================================
+   OUTER FIRE RING
+========================================================= */
+
+#embers,#selectors{
+  position:absolute;
+  inset:0;
+  z-index:12;
+  border-radius:50%;
+  pointer-events:none;
+}
+
+.ember{
+  position:absolute;
+  width:17px;
+  height:23px;
+  margin:-11px -8px;
+  transform-origin:50% 100%;
+  opacity:.32;
+}
+
+.ember:before{
+  content:"🔥";
+  position:absolute;
+  inset:0;
+  font-size:18px;
+  line-height:20px;
+  filter:
+    grayscale(.45)
+    brightness(.65);
+  transition:
+    transform .08s,
+    filter .08s,
+    opacity .08s;
+}
+
+.ember.on:before{
+  transform:scale(1.3);
+  opacity:1;
+  filter:
+    grayscale(0)
+    brightness(1.25)
+    drop-shadow(0 0 5px #fff2a0)
+    drop-shadow(0 0 11px #ff8a00)
+    drop-shadow(0 0 18px #ff2600);
+}
+
+.ember.red:before{
+  transform:scale(1.22);
+  opacity:1;
+  filter:
+    hue-rotate(-15deg)
+    brightness(1.2)
+    drop-shadow(0 0 8px #ff2a00)
+    drop-shadow(0 0 20px #b50000);
+}
+
+/* =========================================================
+   12 FIRE SELECTORS
+========================================================= */
+
+.selector{
+  position:absolute;
+  width:34px;
+  height:42px;
+  margin:-21px -17px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  opacity:.24;
+  filter:
+    grayscale(.65)
+    brightness(.55);
+  transform:scale(.8);
+  transition:
+    transform .08s,
+    filter .08s,
+    opacity .08s;
+}
+
+.selector:before{
+  content:"🔥";
+}
+
+.selector.active{
+  opacity:1;
+  transform:scale(1.55);
+  filter:
+    grayscale(0)
+    brightness(1.35)
+    drop-shadow(0 0 7px #fff5b5)
+    drop-shadow(0 0 18px #ff9d00)
+    drop-shadow(0 0 35px #ff3b00);
+}
+
+.selector.locked{
+  opacity:1;
+  transform:scale(2.05);
+  filter:
+    brightness(1.5)
+    drop-shadow(0 0 9px white)
+    drop-shadow(0 0 24px #ffc400)
+    drop-shadow(0 0 48px #ff4b00)
+    drop-shadow(0 0 75px #d41400);
+  animation:hellLock .18s infinite alternate;
+}
+
+.selector.double{
+  transform:scale(2.35);
+  animation:doubleInferno .12s infinite alternate;
+}
+
+@keyframes hellLock{
+  to{
+    transform:scale(2.25) rotate(4deg);
+    filter:
+      brightness(1.8)
+      drop-shadow(0 0 12px white)
+      drop-shadow(0 0 30px #ffb000)
+      drop-shadow(0 0 60px #ff3200);
+  }
+}
+
+@keyframes doubleInferno{
+  to{
+    transform:scale(2.65) rotate(-5deg);
+    filter:
+      brightness(2)
+      drop-shadow(0 0 15px white)
+      drop-shadow(0 0 38px #ffd000)
+      drop-shadow(0 0 80px #ff2600);
+  }
+}
+
+/* =========================================================
+   HUB
+========================================================= */
+
+.center-hub{
+  position:absolute;
+  left:50%;
+  top:50%;
+  z-index:14;
+  width:27%;
+  aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  border:6px solid #b52d0b;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle at 35% 28%,
+      #5c2012,
+      #250a05 38%,
+      #080201 72%
+    );
+  box-shadow:
+    0 0 0 5px #360900,
+    0 0 0 9px #ff5a18,
+    0 10px 30px rgba(0,0,0,.9),
+    0 0 35px rgba(255,55,0,.4);
+}
+
+.center-hub strong{
+  color:var(--orange);
+  font-size:clamp(17px,3vw,38px);
+  font-weight:1000;
+  text-shadow:0 0 12px #ff3b00;
+}
+
+.center-hub span{
+  color:#ff9d73;
+  font-size:clamp(5px,.7vw,9px);
+  font-weight:1000;
+  letter-spacing:1.5px;
+}
+
+/* =========================================================
+   LEVER
+========================================================= */
+
+.lever-machine{
+  position:absolute;
+  right:-16%;
+  top:43%;
+  z-index:18;
+  width:18%;
+  height:38%;
+}
+
+.lever-base{
+  position:absolute;
+  left:10%;
+  bottom:0;
+  width:80%;
+  height:37%;
+  border:4px solid #3c0900;
+  border-radius:14px;
+  background:
+    linear-gradient(
+      90deg,
+      #4d0c00,
+      #ff5a18 45%,
+      #661000
+    );
+}
+
+.lever-slot{
+  position:absolute;
+  left:50%;
+  bottom:24%;
+  width:24%;
+  height:70%;
+  transform:translateX(-50%);
+  border-radius:20px;
+  background:#080201;
+}
+
+#lever-arm{
+  position:absolute;
+  left:50%;
+  bottom:25%;
+  width:13%;
+  height:69%;
+  transform:translateX(-50%) rotate(-18deg);
+  transform-origin:50% 92%;
+  border-radius:12px;
+  background:linear-gradient(90deg,#4c5660,#fff,#65717d);
+  transition:transform .25s;
+}
+
+#lever-arm.pulled{
+  transform:translateX(-50%) rotate(42deg);
+}
+
+.lever-knob{
+  position:absolute;
+  left:50%;
+  top:-12%;
+  width:270%;
+  aspect-ratio:1;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle at 35% 28%,
+      #ffbd77,
+      #ff3b00 35%,
+      #6d0900 72%
+    );
+  border:3px solid #390600;
+  box-shadow:0 0 18px #ff3b00;
+}
+
+/* =========================================================
+   SIDE HUD / CONTROL DECK
+========================================================= */
+
+.side-result{
+  position:absolute;
+  z-index:35;
+  top:50%;
+  width:min(220px,18vw);
+  padding:10px;
+  background:rgba(8,2,1,.86);
+  border:1px solid rgba(255,90,40,.28);
+  text-align:center;
+}
+
+.side-result.left{
+  left:2%;
+  border-left:4px solid var(--team);
+}
+
+.side-result.right{
+  right:2%;
+  border-right:4px solid var(--red);
+}
+
+.side-label{
+  color:#b0978c;
+  font-size:7px;
+  font-weight:1000;
+  letter-spacing:1.5px;
+}
+
+.side-value{
+  margin-top:5px;
+  font-size:clamp(10px,1.5vw,17px);
+  font-weight:1000;
+}
+
+.control-deck{
+  position:absolute;
+  z-index:40;
+  left:50%;
+  bottom:2.3%;
+  transform:translateX(-50%);
+  width:min(790px,92vw);
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:14px;
+  padding:11px 13px;
+  border:1px solid rgba(255,90,40,.35);
+  border-top:3px solid var(--red);
+  border-radius:8px;
+  background:rgba(8,2,1,.92);
+}
+
+.oracle-label{
+  color:var(--orange);
+  font-size:8px;
+  font-weight:1000;
+  letter-spacing:2px;
+}
+
+#oracle-message{
+  margin-top:4px;
+  font-size:11px;
+  font-weight:900;
+}
+
+#spin-button{
+  min-width:270px;
+  padding:14px 20px;
+  border:2px solid #ffb46f;
+  border-radius:7px;
+  background:
+    linear-gradient(
+      #ffc15d,
+      #ff6500 48%,
+      #9d1500
+    );
+  color:#170300;
+  font-size:13px;
+  font-weight:1000;
+  cursor:pointer;
+}
+
+#spin-button:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+#countdown{
+  position:fixed;
+  inset:0;
+  z-index:17000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(2,0,0,.78);
+}
+
+#countdown.show{display:flex}
+
+#count-number{
+  font-size:clamp(130px,30vw,350px);
+  font-weight:1000;
+  color:var(--red);
+  text-shadow:
+    0 0 30px #ff3b00,
+    0 0 70px #9b0000;
+}
+
+#count-number.spin{
+  color:var(--fire);
+  font-size:clamp(85px,20vw,240px);
+}
+
+/* =========================================================
+   BLACKOUT / RESULT
+========================================================= */
+
+#blackout{
+  position:fixed;
+  inset:0;
+  z-index:18000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:black;
+  text-align:center;
+  padding:20px;
+}
+
+#blackout.show{display:flex}
+
+#blackout-text{
+  font-size:clamp(25px,5vw,60px);
+  font-weight:1000;
+  letter-spacing:3px;
+  color:#ff6035;
+  text-shadow:0 0 25px #ff2500;
+}
+
+#takeover{
+  position:fixed;
+  inset:0;
+  z-index:19000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(2,0,0,.94);
+}
+
+#takeover.show{display:flex}
+
+.take-card{
+  width:min(900px,96vw);
+  padding:42px 25px;
+  border:4px solid var(--take-color);
+  border-top-width:8px;
+  border-radius:10px;
+  background:
+    linear-gradient(180deg,#1d0a05,#0d0503);
+  text-align:center;
+  box-shadow:0 0 70px var(--take-glow);
+}
+
+.take-network{
+  color:var(--orange);
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:3px;
+}
+
+.take-alert{
+  margin-top:8px;
+  color:var(--take-color);
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:5px;
+}
+
+.take-icon{
+  margin:12px 0;
+  font-size:75px;
+}
+
+.take-title{
+  color:var(--take-color);
+  font-size:clamp(43px,10vw,95px);
+  line-height:.9;
+  font-weight:1000;
+  text-transform:uppercase;
+}
+
+.take-description{
+  max-width:700px;
+  margin:22px auto;
+  color:#e0d1ca;
+  line-height:1.6;
+}
+
+.take-manager{
+  color:#ad968d;
+  font-size:12px;
+  font-weight:900;
+}
+
+.take-button{
+  margin-top:27px;
+  padding:13px 23px;
+  border:1px solid var(--red);
+  border-radius:6px;
+  background:#160805;
+  color:white;
+  font-weight:1000;
+  cursor:pointer;
+}
+
+#takeover.double{
+  background:
+    radial-gradient(
+      circle,
+      rgba(160,25,0,.88),
+      rgba(55,5,0,.95) 35%,
+      rgba(0,0,0,.98) 75%
+    );
+}
+
+#takeover.double .take-title{
+  font-size:clamp(65px,14vw,135px);
+}
+
+.double-counter{
+  margin-top:15px;
+  color:#ffba72;
+  font-size:13px;
+  font-weight:1000;
+  letter-spacing:2px;
+}
+
+footer{
+  padding:24px;
+  border-top:1px solid var(--border);
+  background:#050303;
+  color:#8f7165;
+  text-align:center;
+  font-size:9px;
+  font-weight:900;
+}
+
+footer strong{color:var(--orange)}
+
+@media(max-width:800px){
+
+  .team-grid{grid-template-columns:1fr}
+
+  .network-bar{
+    flex-direction:column;
+    gap:4px;
+  }
+
+  .wheel-stage{
+    top:55%;
+    width:min(65vw,520px);
+  }
+
+  .side-result{display:none}
+
+  .control-deck{
+    grid-template-columns:1fr;
+    width:94vw;
+    bottom:1%;
+  }
+
+  #spin-button{
+    width:100%;
+    min-width:0;
+  }
+
+  .lever-machine{right:-19%}
+
+  .ember{
+    transform:scale(.75);
+  }
+
+  .selector{
+    font-size:18px;
+    width:25px;
+    height:31px;
+    margin:-15px -12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="fx"></div>
+
+<header class="hero">
+  <img
+    src="fant4sy-four-banner.png"
+    alt="The Fant4sy Four"
+    class="hero-banner"
+  >
+</header>
+
+<div class="event-strip">
+
+  <div class="event-strip-label">
+    <strong>F4SN</strong>
+    <span>Special Event</span>
+  </div>
+
+  <div class="event-strip-track">
+    <div class="event-strip-message">
+      <strong>LOSER'S WHEEL ARENA</strong>
+      &nbsp; • &nbsp;
+      ONE WEEKLY LOSER
+      &nbsp; • &nbsp;
+      ONE SPIN
+      &nbsp; • &nbsp;
+      ONE TERRIBLE WEEK 5 CONSEQUENCE
+      &nbsp; • &nbsp;
+      DOUBLE TROUBLE REMAINS A CRIME AGAINST LEAGUE GOVERNANCE
+      &nbsp; • &nbsp;
+      <strong>F4SN SPECIAL EVENT COVERAGE</strong>
+    </div>
+  </div>
+
+</div>
+
+<div class="network-bar">
+  <span class="network-name">
+    F4SN • FANT4SY FOUR SPORTS NETWORK
+  </span>
+
+  <span>
+    <span class="live-dot"></span>
+    LIVE SPECIAL EVENT
+  </span>
+
+  <span>LOSER'S WHEEL ARENA</span>
+</div>
+
+<nav>
+  <a href="index.html">HOME</a>
+  <a href="index.html#scoreboard">SCOREBOARD</a>
+  <a href="index.html#standings">STANDINGS</a>
+  <a href="index.html#lineups">LINEUPS</a>
+  <a href="index.html#wheels">THE WHEELS</a>
+  <a href="index.html#comics">COMICS</a>
+  <a href="index.html#hall-of-shame">HALL OF SHAME</a>
+</nav>
+
+<main>
+
+<section>
+
+<h1 class="section-title">
+  Loser's Wheel Arena
+</h1>
+
+<p class="section-subtitle">
+  F4SN presents the completely unnecessary primetime punishment
+  ceremony inflicted upon each week's Fant4sy Four loser.
+</p>
+
+<div class="broadcast-card">
+
+  <div class="broadcast-header">
+    <span>F4SN • SPECIAL EVENT PRESENTATION</span>
+    <span class="live-label">● LIVE</span>
+  </div>
+
+  <div class="special-event-body">
+
+    <div>
+
+      <div class="event-kicker">
+        TONIGHT ON F4SN
+      </div>
+
+      <div class="event-logo">
+        F4SN
+      </div>
+
+      <div class="event-title">
+        THE <span>LOSER'S WHEEL</span> ARENA
+      </div>
+
+      <div class="event-description">
+        One manager has already finished dead last.
+        Unfortunately, F4SN believes losing the week was not punishment enough.
+        The weekly loser must now enter the Loser's Wheel Arena,
+        where the Fantasy Oracle has prepared twelve competitive disadvantages
+        capable of making next week considerably worse.
+      </div>
+
+      <button
+        class="f4sn-button"
+        onclick="document.getElementById('loser-select').scrollIntoView({behavior:'smooth'})"
+      >
+        ENTER F4SN SPECIAL EVENT
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+</section>
+
+<section id="loser-select">
+
+<h2 class="section-title">
+  Loser Check-In
+</h2>
+
+<p class="section-subtitle">
+  Construction mode is active. All four franchises are authorized for testing.
+  No penalty is recorded and no Week 5 punishment is actually applied.
+</p>
+
+<div class="team-grid">
+
+<button
+  class="team-card"
+  style="--card:#1687ff"
+  data-manager="Brad"
+  data-team="Breaking Brad"
+  data-color="#1687ff"
+  onclick="chooseLoser(this)"
+>
+  <div class="team-manager">BRAD</div>
+  <div class="team-name">Breaking Brad</div>
+  <div class="team-status">AUTHORIZED FOR PUBLIC HUMILIATION</div>
+</button>
+
+<button
+  class="team-card"
+  style="--card:#ff3b30"
+  data-manager="Maria"
+  data-team="The Real Housewives of the Red Zone"
+  data-color="#ff3b30"
+  onclick="chooseLoser(this)"
+>
+  <div class="team-manager">MARIA</div>
+  <div class="team-name">The Real Housewives of the Red Zone</div>
+  <div class="team-status">AUTHORIZED FOR PUBLIC HUMILIATION</div>
+</button>
+
+<button
+  class="team-card"
+  style="--card:#16d5d1"
+  data-manager="Mackenzie"
+  data-team="Mack Around & Find Out"
+  data-color="#16d5d1"
+  onclick="chooseLoser(this)"
+>
+  <div class="team-manager">MACKENZIE</div>
+  <div class="team-name">Mack Around & Find Out</div>
+  <div class="team-status">AUTHORIZED FOR PUBLIC HUMILIATION</div>
+</button>
+
+<button
+  class="team-card"
+  style="--card:#9c4dff"
+  data-manager="Madison"
+  data-team="Maddie's Anatomy"
+  data-color="#9c4dff"
+  onclick="chooseLoser(this)"
+>
+  <div class="team-manager">MADISON</div>
+  <div class="team-name">Maddie's Anatomy</div>
+  <div class="team-status">AUTHORIZED FOR PUBLIC HUMILIATION</div>
+</button>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+  <strong>F4SN</strong>
+  • FANT4SY FOUR SPORTS NETWORK
+  • BAD DECISIONS LIVE HERE
+</footer>
+
+<!-- =====================================================
+     TRANSITION
+===================================================== -->
+
+<div id="transition">
+
+  <div>
+
+    <div class="transition-network">
+      F4SN LOSER PROCESSING CENTER
+    </div>
+
+    <div id="transition-manager"></div>
+    <div id="transition-team"></div>
+
+    <div id="transition-status">
+      VERIFYING WEEKLY FAILURE...
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =====================================================
+     ARENA
+===================================================== -->
+
+<div id="arena">
+
+  <div class="arena-backdrop"></div>
+
+  <div class="arena-fire f1"></div>
+  <div class="arena-fire f2"></div>
+  <div class="arena-fire f3"></div>
+  <div class="arena-fire f4"></div>
+
+  <div class="arena-network">
+
+    <span>
+      <strong>F4SN</strong>
+      • FANT4SY FOUR SPORTS NETWORK
+    </span>
+
+    <span class="special">
+      🔥 LIVE • LOSER'S WHEEL ARENA
+    </span>
+
+    <button
+      class="exit-arena"
+      onclick="exitArena()"
+    >
+      ESCAPE ARENA
+    </button>
+
+  </div>
+
+  <div class="arena-hud">
+    <div id="hud-main">
+      F4SN LOSER'S WHEEL ARENA
+    </div>
+
+    <div id="hud-sub">
+      PUNISHMENT DIVISION
+    </div>
+  </div>
+
+  <!-- ENTRANCE -->
+
+  <section
+    id="entrance-scene"
+    class="scene active"
+  >
+
+    <div class="entrance-overlay">
+
+      <div class="entrance-kicker">
+        F4SN PRESENTS THE WEEKLY LOSER
+      </div>
+
+      <div id="entrance-manager"></div>
+      <div id="entrance-team"></div>
+      <div id="entrance-line"></div>
+
+      <div class="access-stamp">
+        CONDEMNED
+      </div>
+
+      <br>
+
+      <button
+        class="f4sn-button fire"
+        onclick="showDoors()"
+      >
+        ACCEPT YOUR FATE
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- DOORS -->
+
+  <section
+    id="door-scene"
+    class="scene"
+  >
+
+    <div class="door-preview"></div>
+
+    <div class="mega-door left">
+      <div class="door-logo">F4</div>
+    </div>
+
+    <div class="mega-door right">
+      <div class="door-logo">SN</div>
+    </div>
+
+    <div class="door-control">
+
+      <button
+        id="door-button"
+        class="f4sn-button fire"
+        onclick="openDoors()"
+      >
+        OPEN THE GATES OF HELL
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- WHEEL -->
+
+  <section
+    id="wheel-scene"
+    class="scene"
+  >
+
+    <div class="side-result left">
+
+      <div class="side-label">
+        F4SN WEEKLY LOSER
+      </div>
+
+      <div
+        id="side-manager"
+        class="side-value"
+      >
+        —
+      </div>
+
+    </div>
+
+    <div class="side-result right">
+
+      <div class="side-label">
+        PUNISHMENT MACHINE
+      </div>
+
+      <div
+        id="side-status"
+        class="side-value"
+      >
+        READY
+      </div>
+
+    </div>
+
+    <div class="wheel-stage">
+
+      <div class="wheel-shadow"></div>
+      <div class="pedestal"></div>
+
+      <div class="wheel-machine">
+
+        <div id="embers"></div>
+        <div id="selectors"></div>
+
+        <canvas
+          id="wheel"
+          width="1100"
+          height="1100"
+        ></canvas>
+
+        <div class="center-hub">
+          <strong>F4SN</strong>
+          <span>LOSER'S WHEEL</span>
+        </div>
+
+      </div>
+
+      <div class="lever-machine">
+
+        <div class="lever-base"></div>
+        <div class="lever-slot"></div>
+
+        <div id="lever-arm">
+          <div class="lever-knob"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="control-deck">
+
+      <div>
+
+        <div class="oracle-label">
+          😈 🔮 LIVE • EVIL ORACLE CONTROL BOOTH
+        </div>
+
+        <div id="oracle-message">
+          The punishment machine is being prepared.
+        </div>
+
+      </div>
+
+      <button
+        id="spin-button"
+        onclick="beginSpin()"
+      >
+        PULL THE DAMN LEVER
+      </button>
+
+    </div>
+
+  </section>
+
+</div>
+
+<!-- COUNTDOWN -->
+
+<div id="countdown">
+  <div id="count-number">3</div>
+</div>
+
+<!-- BLACKOUT -->
+
+<div id="blackout">
+  <div id="blackout-text"></div>
+</div>
+
+<!-- RESULT -->
+
+<div id="takeover">
+
+  <div class="take-card">
+
+    <div class="take-network">
+      F4SN • OFFICIAL LOSER'S WHEEL RESULT
+    </div>
+
+    <div
+      id="take-alert"
+      class="take-alert"
+    ></div>
+
+    <div
+      id="take-icon"
+      class="take-icon"
+    ></div>
+
+    <div
+      id="take-title"
+      class="take-title"
+    ></div>
+
+    <div
+      id="take-description"
+      class="take-description"
+    ></div>
+
+    <div
+      id="double-counter"
+      class="double-counter"
+    ></div>
+
+    <div
+      id="take-manager"
+      class="take-manager"
+    ></div>
+
+    <button
+      id="take-button"
+      class="take-button"
+      onclick="closeTakeover()"
+    >
+      RETURN TO THE ARENA
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+/* =========================================================
+   F4SN LOSER'S WHEEL V1.0
+   THE HELLFIRE SELECTOR MACHINE
+   BASED ON WINNER'S WHEEL V4.4 MECHANICS
+========================================================= */
+
+let selectedManager="";
+let selectedTeam="";
+let selectedColor="#ff6a00";
+
+let wheelRotation=0;
+let finalWheelSteps=0;
+
+let activeSelector=null;
+let activeWedge=null;
+
+let spinning=false;
+
+let audioCtx=null;
+let master=null;
+
+let emberTimer=null;
+let emberStep=0;
+
+let doubleTroubleMode=false;
+let doubleSpinsRemaining=0;
+let doubleResults=[];
+
+/* =========================================================
+   OFFICIAL 12 PENALTIES
+========================================================= */
+
+const ITEMS=[
+
+{
+  label:"LOSE",
+  sub:"YOUR FLEX",
+  result:"LOSE YOUR FLEX",
+  note:"No FLEX starter next week. Your starting lineup plays one man short.",
+  icon:"🚫",
+  accent:"#ff3b30"
+},
+
+{
+  label:"BENCH",
+  sub:"TAX",
+  result:"BENCH TAX",
+  note:"Only three usable bench players next week instead of four.",
+  icon:"💸",
+  accent:"#ff7a00"
+},
+
+{
+  label:"LAST",
+  sub:"PICK",
+  result:"LAST PICK",
+  note:"You move to the back of whatever roster-selection priority system is established for the week.",
+  icon:"👇",
+  accent:"#ff9d00"
+},
+
+{
+  label:"QB",
+  sub:"HANDICAP",
+  result:"QB HANDICAP",
+  note:"Your normal starting quarterback is benched. Your backup quarterback must start.",
+  icon:"🏈",
+  accent:"#ff3b30"
+},
+
+{
+  label:"ROSTER",
+  sub:"FREEZE",
+  result:"ROSTER FREEZE",
+  note:"One randomly selected starter is locked into your lineup before you choose the rest.",
+  icon:"🥶",
+  accent:"#55bfff"
+},
+
+{
+  label:"NO",
+  sub:"INSURANCE",
+  result:"NO INSURANCE",
+  note:"Injured starters receive no bench substitution protection that week.",
+  icon:"💀",
+  accent:"#c5c5c5"
+},
+
+{
+  label:"ORACLE'S",
+  sub:"CHOICE",
+  result:"ORACLE'S CHOICE",
+  note:"The Fantasy Oracle chooses one of your starters. Resistance is statistically irrelevant.",
+  icon:"🔮",
+  accent:"#a855f7"
+},
+
+{
+  label:"POINTS",
+  sub:"TAX -5",
+  result:"POINTS TAX",
+  note:"You begin next week at minus five fantasy points.",
+  icon:"➖",
+  accent:"#ff3b30"
+},
+
+{
+  label:"FLEX",
+  sub:"RESTRICTION",
+  result:"FLEX RESTRICTION",
+  note:"Your FLEX must use a randomly selected position: RB, WR, or TE.",
+  icon:"🔒",
+  accent:"#ff9d00"
+},
+
+{
+  label:"BENCH",
+  sub:"LOCK",
+  result:"BENCH LOCK",
+  note:"One randomly selected bench player becomes unusable for the week.",
+  icon:"🔐",
+  accent:"#ff6a00"
+},
+
+{
+  label:"OPPONENT'S",
+  sub:"CHOICE",
+  result:"OPPONENT'S CHOICE",
+  note:"The previous week's winner chooses between two legal penalties.",
+  icon:"😈",
+  accent:"#d946ef"
+},
+
+{
+  label:"DOUBLE",
+  sub:"TROUBLE",
+  result:"DOUBLE TROUBLE",
+  note:"One punishment was apparently not enough. Spin again twice and take both penalties.",
+  icon:"🔥",
+  accent:"#ff2200",
+  double:true
+}
+
+];
+
+/*
+ Equal odds for all 12 wedges.
+ Double Trouble bonus spins cannot land on
+ Double Trouble again; they automatically reroll.
+*/
+
+const COLORS=[
+  ["#b91c1c","#3d0505"],
+  ["#d35400","#4a1200"],
+  ["#c96c00","#492200"],
+  ["#a91515","#350404"],
+  ["#176b8f","#062b3d"],
+  ["#626262","#1c1c1c"],
+  ["#6b21a8","#27083f"],
+  ["#b91c1c","#3d0505"],
+  ["#b45309","#3d1900"],
+  ["#c2410c","#401000"],
+  ["#86198f","#330536"],
+  ["#ef2500","#550600"]
+];
+
+/* =========================================================
+   RANDOM RESULT
+========================================================= */
+
+function randomUnit(){
+
+  if(window.crypto&&window.crypto.getRandomValues){
+
+    const value=new Uint32Array(1);
+
+    window.crypto.getRandomValues(value);
+
+    return value[0]/4294967296;
+
+  }
+
+  return Math.random();
+}
+
+function randomIndex(allowDouble=true){
+
+  let index=
+    Math.floor(randomUnit()*ITEMS.length);
+
+  if(!allowDouble){
+
+    while(ITEMS[index].double){
+      index=
+        Math.floor(randomUnit()*ITEMS.length);
+    }
+
+  }
+
+  return index;
+}
+
+/* =========================================================
+   AUDIO
+========================================================= */
+
+function initAudio(){
+
+  if(audioCtx){
+
+    if(audioCtx.state==="suspended"){
+      audioCtx.resume();
+    }
+
+    return;
+  }
+
+  const AC=
+    window.AudioContext||
+    window.webkitAudioContext;
+
+  if(!AC)return;
+
+  audioCtx=new AC();
+
+  master=audioCtx.createGain();
+
+  master.gain.value=.7;
+
+  master.connect(audioCtx.destination);
+}
+
+function tone(
+  freq,
+  duration,
+  type="sine",
+  volume=.05,
+  delay=0,
+  endFreq=null
+){
+
+  if(!audioCtx)return;
+
+  const start=
+    audioCtx.currentTime+delay;
+
+  const osc=
+    audioCtx.createOscillator();
+
+  const gain=
+    audioCtx.createGain();
+
+  osc.type=type;
+
+  osc.frequency.setValueAtTime(
+    Math.max(20,freq),
+    start
+  );
+
+  if(endFreq!==null){
+
+    osc.frequency.exponentialRampToValueAtTime(
+      Math.max(20,endFreq),
+      start+duration
+    );
+
+  }
+
+  gain.gain.setValueAtTime(
+    .0001,
+    start
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    Math.max(.0002,volume),
+    start+.01
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    .0001,
+    start+duration
+  );
+
+  osc.connect(gain);
+  gain.connect(master);
+
+  osc.start(start);
+  osc.stop(start+duration+.05);
+}
+
+function noise(
+  duration=.2,
+  volume=.04,
+  delay=0,
+  frequency=1200
+){
+
+  if(!audioCtx)return;
+
+  const rate=
+    audioCtx.sampleRate;
+
+  const buffer=
+    audioCtx.createBuffer(
+      1,
+      Math.ceil(rate*duration),
+      rate
+    );
+
+  const data=
+    buffer.getChannelData(0);
+
+  for(let i=0;i<data.length;i++){
+
+    data[i]=
+      (Math.random()*2-1)*
+      (1-i/data.length);
+
+  }
+
+  const source=
+    audioCtx.createBufferSource();
+
+  const filter=
+    audioCtx.createBiquadFilter();
+
+  const gain=
+    audioCtx.createGain();
+
+  source.buffer=buffer;
+
+  filter.type="lowpass";
+  filter.frequency.value=frequency;
+
+  const start=
+    audioCtx.currentTime+delay;
+
+  gain.gain.setValueAtTime(
+    .0001,
+    start
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    volume,
+    start+.01
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    .0001,
+    start+duration
+  );
+
+  source.connect(filter);
+  filter.connect(gain);
+  gain.connect(master);
+
+  source.start(start);
+}
+
+function broadcastHit(){
+
+  tone(45,.55,"sine",.18,0,30);
+  tone(90,.35,"square",.035);
+  noise(.35,.07,0,800);
+}
+
+function crowd(level=1){
+
+  noise(.9,.028*level,0,1800);
+
+  for(let i=0;i<30;i++){
+
+    tone(
+      120+randomUnit()*650,
+      .18+randomUnit()*.55,
+      "sawtooth",
+      .0022*level,
+      randomUnit()*.7
+    );
+
+  }
+}
+
+function crowdOh(){
+
+  for(let i=0;i<24;i++){
+
+    tone(
+      180+randomUnit()*160,
+      .45,
+      "sine",
+      .0035,
+      randomUnit()*.08,
+      110
+    );
+
+  }
+
+  noise(.45,.035,0,1000);
+}
+
+function leverSound(){
+
+  tone(420,.035,"square",.08);
+  noise(.05,.08,0,4000);
+
+  tone(145,.08,"square",.10,.05);
+  tone(78,.15,"square",.13,.10);
+  tone(43,.45,"sine",.20,.14,29);
+
+  noise(.24,.10,.12,650);
+}
+
+function wheelLaunch(){
+
+  tone(62,.18,"square",.13);
+  tone(38,.65,"sine",.22,0,28);
+  noise(.85,.09,0,3200);
+  tone(85,.85,"sawtooth",.045,0,900);
+}
+
+function fireTick(progress){
+
+  const pitch=
+    760-progress*390;
+
+  const volume=
+    .035+progress*.085;
+
+  tone(
+    pitch,
+    .035,
+    "square",
+    volume
+  );
+
+  tone(
+    pitch*.5,
+    .055,
+    "triangle",
+    volume*.65
+  );
+
+  noise(
+    .045,
+    volume*.75,
+    0,
+    2200
+  );
+
+  if(progress>.7){
+
+    tone(
+      60-progress*17,
+      .07,
+      "sine",
+      .03+progress*.04
+    );
+
+  }
+}
+
+function heartbeat(){
+
+  tone(48,.11,"sine",.19);
+  tone(42,.14,"sine",.16,.15);
+}
+
+function doomSound(){
+
+  broadcastHit();
+
+  tone(70,.35,"square",.07);
+  tone(52,.65,"sine",.16,.08,34);
+  tone(38,1.1,"sine",.18,.25,26);
+
+  noise(.75,.07,.1,1000);
+
+  crowdOh();
+}
+
+function doubleTroubleSound(){
+
+  for(let i=0;i<8;i++){
+
+    tone(
+      i%2===0?620:430,
+      .15,
+      "square",
+      .06,
+      i*.13
+    );
+
+  }
+
+  setTimeout(broadcastHit,300);
+  setTimeout(broadcastHit,700);
+  setTimeout(broadcastHit,1100);
+
+  tone(42,2,"sine",.2,.2,27);
+
+  setTimeout(()=>crowd(2),500);
+}
+
+/* =========================================================
+   LOSER ENTRANCE
+========================================================= */
+
+function chooseLoser(button){
+
+  initAudio();
+
+  selectedManager=
+    button.dataset.manager;
+
+  selectedTeam=
+    button.dataset.team;
+
+  selectedColor=
+    button.dataset.color;
+
+  document.documentElement.style.setProperty(
+    "--team",
+    selectedColor
+  );
+
+  document.getElementById(
+    "transition-manager"
+  ).textContent=
+    selectedManager;
+
+  document.getElementById(
+    "transition-team"
+  ).textContent=
+    selectedTeam;
+
+  document.getElementById(
+    "transition-status"
+  ).textContent=
+    "VERIFYING WEEKLY FAILURE...";
+
+  const transition=
+    document.getElementById("transition");
+
+  transition.classList.add("show");
+
+  broadcastHit();
+  flashes(7);
+
+  setTimeout(()=>{
+
+    document.getElementById(
+      "transition-status"
+    ).textContent=
+      "LOSER VERIFIED";
+
+  },900);
+
+  setTimeout(()=>{
+
+    document.getElementById(
+      "transition-status"
+    ).textContent=
+      "PUNISHMENT ARENA ACCESS MANDATORY";
+
+  },1800);
+
+  setTimeout(
+    enterArena,
+    2800
+  );
+}
+
+function enterArena(){
+
+  document.getElementById(
+    "transition"
+  ).classList.remove("show");
+
+  const arena=
+    document.getElementById("arena");
+
+  arena.className="active";
+
+  document.body.style.overflow="hidden";
+
+  setupEntrance();
+
+  showScene("entrance-scene");
+
+  setHud(
+    selectedTeam,
+    "THE WEEKLY LOSER HAS BEEN DELIVERED"
+  );
+
+  crowdOh();
+  flames(24);
+}
+
+function setupEntrance(){
+
+  document.getElementById(
+    "entrance-manager"
+  ).textContent=
+    selectedManager+
+    " HAS BEEN SUMMONED";
+
+  document.getElementById(
+    "entrance-team"
+  ).textContent=
+    selectedTeam;
+
+  document.getElementById(
+    "side-manager"
+  ).textContent=
+    selectedManager;
+
+  const lines={
+
+    Brad:
+      "BREAKING BRAD HAS ARRIVED. UNFORTUNATELY, SO HAVE CONSEQUENCES.",
+
+    Maria:
+      "THE REAL HOUSEWIVES HAVE ENTERED HELL. F4SN CAMERAS ARE ALREADY ROLLING.",
+
+    Mackenzie:
+      "MACK AROUND & FIND OUT HAS ARRIVED. THE FINDING OUT PORTION BEGINS NOW.",
+
+    Madison:
+      "MADDIE'S ANATOMY HAS ENTERED THE ARENA. PROGNOSIS: EXTREMELY QUESTIONABLE."
+
+  };
+
+  document.getElementById(
+    "entrance-line"
+  ).textContent=
+    lines[selectedManager]||
+    "THE LOSER HAS ARRIVED. THE ORACLE IS DELIGHTED.";
+}
+
+function showScene(id){
+
+  document.querySelectorAll(
+    ".scene"
+  ).forEach(scene=>{
+
+    scene.classList.remove(
+      "active"
+    );
+
+  });
+
+  document.getElementById(
+    id
+  ).classList.add(
+    "active"
+  );
+}
+
+function setHud(main,sub){
+
+  document.getElementById(
+    "hud-main"
+  ).textContent=main;
+
+  document.getElementById(
+    "hud-sub"
+  ).textContent=sub;
+}
+
+/* =========================================================
+   DOORS
+========================================================= */
+
+function showDoors(){
+
+  showScene("door-scene");
+
+  setHud(
+    "LOSER VERIFIED",
+    selectedManager+
+    " • ESCAPE REQUEST DENIED"
+  );
+
+  broadcastHit();
+}
+
+function openDoors(){
+
+  const scene=
+    document.getElementById(
+      "door-scene"
+    );
+
+  document.getElementById(
+    "door-button"
+  ).disabled=true;
+
+  scene.classList.add("open");
+
+  tone(58,1.6,"sine",.17,0,30);
+  noise(1.5,.065,0,450);
+
+  broadcastHit();
+  flames(35);
+
+  setHud(
+    "THE LOSER'S WHEEL",
+    "WELCOME TO YOUR PUNISHMENT"
+  );
+
+  setTimeout(()=>{
+
+    showScene("wheel-scene");
+
+    document.getElementById(
+      "oracle-message"
+    ).textContent=
+      "The Oracle has prepared twelve ways to make next week worse.";
+
+    document.getElementById(
+      "side-status"
+    ).textContent=
+      "READY TO PUNISH";
+
+    startIdleEmbers();
+
+    crowd(1.3);
+
+  },1900);
+}
+
+/* =========================================================
+   FIRE CREATION
+========================================================= */
+
+function createFire(){
+
+  const embers=
+    document.getElementById(
+      "embers"
+    );
+
+  const selectors=
+    document.getElementById(
+      "selectors"
+    );
+
+  embers.innerHTML="";
+  selectors.innerHTML="";
+
+  for(let i=0;i<36;i++){
+
+    const ember=
+      document.createElement(
+        "div"
+      );
+
+    ember.className="ember";
+
+    const angle=
+      Math.PI*2*i/36-
+      Math.PI/2;
+
+    const radius=46.8;
+
+    ember.style.left=
+      50+
+      Math.cos(angle)*radius+
+      "%";
+
+    ember.style.top=
+      50+
+      Math.sin(angle)*radius+
+      "%";
+
+    embers.appendChild(
+      ember
+    );
+  }
+
+  for(
+    let i=0;
+    i<ITEMS.length;
+    i++
+  ){
+
+    const flame=
+      document.createElement(
+        "div"
+      );
+
+    flame.className=
+      "selector";
+
+    flame.dataset.index=i;
+
+    const angle=
+      Math.PI*2*i/
+      ITEMS.length-
+      Math.PI/2;
+
+    const radius=42.7;
+
+    flame.style.left=
+      50+
+      Math.cos(angle)*radius+
+      "%";
+
+    flame.style.top=
+      50+
+      Math.sin(angle)*radius+
+      "%";
+
+    selectors.appendChild(
+      flame
+    );
+  }
+}
+
+function emberList(){
+
+  return Array.from(
+    document.querySelectorAll(
+      ".ember"
+    )
+  );
+}
+
+function selectorList(){
+
+  return Array.from(
+    document.querySelectorAll(
+      ".selector"
+    )
+  );
+}
+
+function clearSelectors(){
+
+  selectorList().forEach(
+    flame=>{
+      flame.className="selector";
+    }
+  );
+
+  activeSelector=null;
+  activeWedge=null;
+
+  drawWheel();
+}
+
+function setSelector(
+  index,
+  locked=false
+){
+
+  const count=
+    ITEMS.length;
+
+  const normalized=
+    ((index%count)+count)%count;
+
+  activeSelector=
+    normalized;
+
+  /*
+    Wheel stops on exact wedge increments.
+    This determines which physical wedge
+    sits under the active fixed flame.
+  */
+
+  activeWedge=
+    (
+      (
+        normalized-
+        finalWheelSteps
+      )%count+
+      count
+    )%count;
+
+  selectorList().forEach(
+    (flame,i)=>{
+
+      flame.className=
+        "selector";
+
+      if(i===normalized){
+
+        flame.classList.add(
+          "active"
+        );
+
+        if(locked){
+
+          flame.classList.add(
+            "locked"
+          );
+
+          if(
+            ITEMS[activeWedge]
+            .double
+          ){
+
+            flame.classList.add(
+              "double"
+            );
+
+          }
+        }
+      }
+    }
+  );
+
+  drawWheel();
+}
+
+/* =========================================================
+   OUTER FIRE RING
+========================================================= */
+
+function stopEmbers(){
+
+  if(emberTimer){
+
+    clearInterval(
+      emberTimer
+    );
+
+    emberTimer=null;
+  }
+}
+
+function startIdleEmbers(){
+
+  stopEmbers();
+
+  emberTimer=
+    setInterval(()=>{
+
+      const list=
+        emberList();
+
+      list.forEach(
+        (ember,index)=>{
+
+          const distance=
+            (
+              index-
+              emberStep+
+              list.length
+            )%
+            list.length;
+
+          ember.className=
+            distance<5
+            ?"ember on"
+            :"ember";
+
+        }
+      );
+
+      emberStep=
+        (
+          emberStep+1
+        )%
+        list.length;
+
+    },90);
+}
+
+function startFastEmbers(){
+
+  stopEmbers();
+
+  emberTimer=
+    setInterval(()=>{
+
+      const list=
+        emberList();
+
+      list.forEach(
+        (ember,index)=>{
+
+          const distance=
+            (
+              index-
+              emberStep+
+              list.length
+            )%
+            list.length;
+
+          ember.className=
+            distance<5
+            ?"ember on"
+            :"ember";
+
+        }
+      );
+
+      emberStep=
+        (
+          emberStep+3
+        )%
+        list.length;
+
+    },38);
+}
+
+function infernoEmbers(){
+
+  stopEmbers();
+
+  let state=false;
+
+  emberTimer=
+    setInterval(()=>{
+
+      state=!state;
+
+      emberList().forEach(
+        (ember,index)=>{
+
+          ember.className=
+            state
+            ?(
+              index%2===0
+              ?"ember on"
+              :"ember red"
+            )
+            :(
+              index%2===0
+              ?"ember red"
+              :"ember on"
+            );
+
+        }
+      );
+
+    },95);
+}
+
+/* =========================================================
+   WHEEL DRAWING
+========================================================= */
+
+function drawWheel(){
+
+  const canvas=
+    document.getElementById(
+      "wheel"
+    );
+
+  const ctx=
+    canvas.getContext("2d");
+
+  const size=
+    canvas.width;
+
+  const center=
+    size/2;
+
+  const radius=
+    center-18;
+
+  const slice=
+    Math.PI*2/
+    ITEMS.length;
+
+  ctx.clearRect(
+    0,
+    0,
+    size,
+    size
+  );
+
+  ctx.save();
+
+  ctx.translate(
+    center,
+    center
+  );
+
+  ctx.rotate(
+    wheelRotation
+  );
+
+  ITEMS.forEach(
+    (item,index)=>{
+
+      const start=
+        index*slice-
+        Math.PI/2-
+        slice/2;
+
+      const end=
+        start+slice;
+
+      const selected=
+        index===activeWedge;
+
+      const gradient=
+        ctx.createRadialGradient(
+          0,
+          0,
+          70,
+          0,
+          0,
+          radius
+        );
+
+      gradient.addColorStop(
+        0,
+        selected
+        ?lighten(
+          COLORS[index][0],
+          48
+        )
+        :COLORS[index][0]
+      );
+
+      gradient.addColorStop(
+        .6,
+        selected
+        ?lighten(
+          COLORS[index][0],
+          20
+        )
+        :COLORS[index][0]
+      );
+
+      gradient.addColorStop(
+        1,
+        COLORS[index][1]
+      );
+
+      ctx.beginPath();
+
+      ctx.moveTo(0,0);
+
+      ctx.arc(
+        0,
+        0,
+        radius,
+        start,
+        end
+      );
+
+      ctx.closePath();
+
+      ctx.fillStyle=
+        gradient;
+
+      ctx.fill();
+
+      if(selected){
+
+        ctx.save();
+
+        ctx.shadowColor=
+          item.double
+          ?"#ff2200"
+          :"#ff7a00";
+
+        ctx.shadowBlur=
+          item.double
+          ?75
+          :45;
+
+        ctx.lineWidth=
+          item.double
+          ?22
+          :15;
+
+        ctx.strokeStyle=
+          item.double
+          ?"#fff0a0"
+          :"rgba(255,230,180,.95)";
+
+        ctx.stroke();
+
+        ctx.restore();
+      }
+
+      ctx.lineWidth=
+        item.double
+        ?12
+        :8;
+
+      ctx.strokeStyle=
+        item.double
+        ?"#ffb000"
+        :"#a83a13";
+
+      ctx.stroke();
+
+      /* LABEL */
+
+      ctx.save();
+
+      const middle=
+        start+
+        slice/2;
+
+      ctx.rotate(middle);
+
+      ctx.translate(
+        radius*.67,
+        0
+      );
+
+      ctx.rotate(
+        Math.PI/2
+      );
+
+      ctx.textAlign=
+        "center";
+
+      ctx.textBaseline=
+        "middle";
+
+      ctx.shadowColor=
+        "black";
+
+      ctx.shadowBlur=10;
+
+      ctx.fillStyle=
+        item.double
+        ?"#fff1a8"
+        :"white";
+
+      ctx.font=
+        item.double
+        ?"1000 32px Arial"
+        :"1000 28px Arial";
+
+      ctx.fillText(
+        item.label,
+        0,
+        -15
+      );
+
+      ctx.fillStyle=
+        item.double
+        ?"#ffba45"
+        :"#ffc36a";
+
+      ctx.font=
+        "1000 21px Arial";
+
+      ctx.fillText(
+        item.sub,
+        0,
+        22
+      );
+
+      ctx.restore();
+    }
+  );
+
+  ctx.beginPath();
+
+  ctx.arc(
+    0,
+    0,
+    radius,
+    0,
+    Math.PI*2
+  );
+
+  ctx.lineWidth=18;
+
+  ctx.strokeStyle=
+    "#a8320c";
+
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+/* =========================================================
+   LEVER / COUNTDOWN
+========================================================= */
+
+function pullLever(){
+
+  const arm=
+    document.getElementById(
+      "lever-arm"
+    );
+
+  arm.classList.add(
+    "pulled"
+  );
+
+  leverSound();
+
+  setTimeout(()=>{
+
+    arm.classList.remove(
+      "pulled"
+    );
+
+  },550);
+}
+
+function beginSpin(){
+
+  if(spinning)return;
+
+  spinning=true;
+
+  initAudio();
+
+  document.getElementById(
+    "spin-button"
+  ).disabled=true;
+
+  document.getElementById(
+    "oracle-message"
+  ).textContent=
+    doubleTroubleMode
+    ?"DOUBLE TROUBLE IS STILL ACTIVE. THIS WAS YOUR MISTAKE."
+    :"The Oracle is deciding how much worse next week should become.";
+
+  document.getElementById(
+    "side-status"
+  ).textContent=
+    "PUNISHMENT ARMED";
+
+  pullLever();
+
+  const arena=
+    document.getElementById(
+      "arena"
+    );
+
+  setTimeout(()=>{
+
+    arena.classList.add(
+      "pre-spin"
+    );
+
+    setHud(
+      "HELLFIRE POWER TRANSFER",
+      doubleTroubleMode
+      ?"DOUBLE TROUBLE SPIN "+(3-doubleSpinsRemaining)+" OF 2"
+      :"ALL SYSTEMS ROUTING TO THE LOSER'S WHEEL"
+    );
+
+    tone(
+      72,
+      .85,
+      "sawtooth",
+      .045,
+      0,
+      36
+    );
+
+    tone(
+      36,
+      .9,
+      "sine",
+      .14,
+      0,
+      28
+    );
+
+  },500);
+
+  setTimeout(()=>{
+
+    runCountdown(()=>{
+
+      arena.classList.remove(
+        "pre-spin"
+      );
+
+      arena.classList.add(
+        "spin-fast"
+      );
+
+      setHud(
+        "WHEEL IN MOTION",
+        "HELLFIRE SYSTEMS AT FULL POWER"
+      );
+
+      wheelLaunch();
+
+      startFastEmbers();
+
+      flames(30);
+
+      spinWheel();
+
+    });
+
+  },1500);
+}
+
+function runCountdown(done){
+
+  const overlay=
+    document.getElementById(
+      "countdown"
+    );
+
+  const display=
+    document.getElementById(
+      "count-number"
+    );
+
+  overlay.classList.add(
+    "show"
+  );
+
+  let number=3;
+
+  function step(){
+
+    display.classList.remove(
+      "spin"
+    );
+
+    if(number===0){
+
+      display.textContent=
+        "BURN!";
+
+      display.classList.add(
+        "spin"
+      );
+
+      tone(
+        720,
+        .2,
+        "square",
+        .08
+      );
+
+      broadcastHit();
+
+      setTimeout(()=>{
+
+        overlay.classList.remove(
+          "show"
+        );
+
+        done();
+
+      },600);
+
+      return;
+    }
+
+    display.textContent=
+      number;
+
+    tone(
+      220-number*20,
+      .2,
+      "square",
+      .08
+    );
+
+    tone(
+      50-number*3,
+      .28,
+      "sine",
+      .13
+    );
+
+    number--;
+
+    setTimeout(
+      step,
+      700
+    );
+  }
+
+  step();
+}
+
+/* =========================================================
+   PHASE ONE — WHEEL SPIN
+========================================================= */
+
+function spinWheel(){
+
+  /*
+    Normal spin:
+    all 12 penalties are legal.
+
+    Double Trouble bonus spins:
+    Double Trouble itself is excluded.
+  */
+
+  const winningIndex=
+    randomIndex(
+      !doubleTroubleMode
+    );
+
+  const winningItem=
+    ITEMS[winningIndex];
+
+  const count=
+    ITEMS.length;
+
+  const slice=
+    Math.PI*2/count;
+
+  /*
+    Randomize the fixed fire selector
+    that the winning wedge will eventually
+    line up with.
+
+    Wheel still stops on an exact wedge
+    increment just like Winner's V4.4.
+  */
+
+  finalWheelSteps=
+    Math.floor(
+      randomUnit()*count
+    );
+
+  const current=
+    normalize(
+      wheelRotation
+    );
+
+  const desired=
+    normalize(
+      finalWheelSteps*
+      slice
+    );
+
+  let delta=
+    desired-current;
+
+  if(delta<0){
+    delta+=Math.PI*2;
+  }
+
+  const fullSpins=
+    10+
+    Math.floor(
+      randomUnit()*3
+    );
+
+  const total=
+    fullSpins*
+    Math.PI*2+
+    delta;
+
+  const start=
+    wheelRotation;
+
+  const finish=
+    start+total;
+
+  const duration=
+    7600;
+
+  const startTime=
+    performance.now();
+
+  clearSelectors();
+
+  document.getElementById(
+    "side-status"
+  ).textContent=
+    "WHEEL IN MOTION";
+
+  function frame(now){
+
+    const progress=
+      Math.min(
+        (
+          now-
+          startTime
+        )/
+        duration,
+        1
+      );
+
+    const eased=
+      1-
+      Math.pow(
+        1-progress,
+        4.8
+      );
+
+    wheelRotation=
+      start+
+      total*
+      eased;
+
+    drawWheel();
+
+    if(progress<.92){
+
+      tone(
+        55+
+        (1-progress)*85,
+        .06,
+        "sawtooth",
+        .006
+      );
+
+    }
+
+    if(progress<1){
+
+      requestAnimationFrame(
+        frame
+      );
+
+      return;
+    }
+
+    /* WHEEL STOPS FIRST */
+
+    wheelRotation=
+      finish;
+
+    drawWheel();
+
+    stopEmbers();
+
+    emberList().forEach(
+      ember=>{
+        ember.className=
+          "ember";
+      }
+    );
+
+    document.getElementById(
+      "arena"
+    ).classList.remove(
+      "spin-fast"
+    );
+
+    document.getElementById(
+      "arena"
+    ).classList.add(
+      "selector-phase"
+    );
+
+    tone(
+      54,
+      .22,
+      "sine",
+      .12,
+      0,
+      32
+    );
+
+    noise(
+      .14,
+      .045,
+      0,
+      700
+    );
+
+    document.getElementById(
+      "side-status"
+    ).textContent=
+      "WHEEL LOCKED";
+
+    setHud(
+      "WHEEL LOCKED",
+      "THE FIRE SELECTOR NOW CONTROLS YOUR FATE"
+    );
+
+    document.getElementById(
+      "oracle-message"
+    ).textContent=
+      "The wheel has stopped. The flames have not.";
+
+    const targetFire=
+      (
+        (
+          winningIndex+
+          finalWheelSteps
+        )%
+        count+
+        count
+      )%
+      count;
+
+    setTimeout(()=>{
+
+      runFireSelector(
+        targetFire,
+        winningItem
+      );
+
+    },700);
+  }
+
+  requestAnimationFrame(
+    frame
+  );
+}
+
+/* =========================================================
+   PHASE TWO — HELLFIRE SELECTOR CHASE
+========================================================= */
+
+function runFireSelector(
+  targetFire,
+  item
+){
+
+  const count=
+    ITEMS.length;
+
+  let current=
+    Math.floor(
+      randomUnit()*count
+    );
+
+  let hops=
+    34+
+    Math.floor(
+      randomUnit()*8
+    );
+
+  const projected=
+    (
+      current+
+      hops
+    )%
+    count;
+
+  const correction=
+    (
+      targetFire-
+      projected+
+      count
+    )%
+    count;
+
+  hops+=correction;
+
+  let hop=0;
+
+  document.getElementById(
+    "side-status"
+  ).textContent=
+    "HELLFIRE SELECTOR LIVE";
+
+  setHud(
+    "🔥 HELLFIRE SELECTOR LIVE 🔥",
+    "FOLLOW THE FLAMES — THE WHEEL IS NO LONGER MOVING"
+  );
+
+  function next(){
+
+    current=
+      (
+        current+1
+      )%
+      count;
+
+    hop++;
+
+    const progress=
+      hop/hops;
+
+    const wedge=
+      (
+        (
+          current-
+          finalWheelSteps
+        )%
+        count+
+        count
+      )%
+      count;
+
+    const wedgeItem=
+      ITEMS[wedge];
+
+    setSelector(
+      current,
+      false
+    );
+
+    fireTick(
+      progress
+    );
+
+    /*
+      DOUBLE TROUBLE fly-by.
+      Only tease it on the original spin.
+    */
+
+    if(
+      !doubleTroubleMode &&
+      progress>.67 &&
+      wedgeItem.double &&
+      current!==targetFire
+    ){
+
+      crowdOh();
+
+      flames(10);
+
+      setHud(
+        "🔥 DOUBLE TROUBLE DANGER 🔥",
+        "THE FLAMES JUST CROSSED THE WORST WEDGE ON THE BOARD"
+      );
+
+      document.getElementById(
+        "side-status"
+      ).textContent=
+        "DOUBLE TROUBLE DANGER";
+    }
+
+    if(
+      hop===
+        Math.floor(
+          hops*.75
+        )||
+      hop===
+        Math.floor(
+          hops*.84
+        )||
+      hop===
+        Math.floor(
+          hops*.91
+        )||
+      hop===
+        Math.floor(
+          hops*.96
+        )
+    ){
+
+      heartbeat();
+    }
+
+    if(hop>=hops){
+
+      lockSelector(
+        targetFire,
+        item
+      );
+
+      return;
+    }
+
+    let delay;
+
+    if(progress<.45){
+
+      delay=55;
+
+    }else if(progress<.68){
+
+      delay=
+        85+
+        (
+          (
+            progress-.45
+          )/
+          .23
+        )*
+        85;
+
+    }else if(progress<.84){
+
+      delay=
+        175+
+        (
+          (
+            progress-.68
+          )/
+          .16
+        )*
+        180;
+
+    }else{
+
+      delay=
+        355+
+        Math.pow(
+          (
+            progress-.84
+          )/
+          .16,
+          2
+        )*
+        650;
+    }
+
+    setTimeout(
+      next,
+      delay
+    );
+  }
+
+  setSelector(
+    current,
+    false
+  );
+
+  fireTick(0);
+
+  setTimeout(
+    next,
+    70
+  );
+}
+
+/* =========================================================
+   FINAL FIRE LOCK
+========================================================= */
+
+function lockSelector(
+  targetFire,
+  item
+){
+
+  setSelector(
+    targetFire,
+    true
+  );
+
+  const arena=
+    document.getElementById(
+      "arena"
+    );
+
+  arena.classList.remove(
+    "selector-phase"
+  );
+
+  arena.classList.add(
+    "final-dark"
+  );
+
+  document.getElementById(
+    "side-status"
+  ).textContent=
+    "FATE SEALED";
+
+  setHud(
+    "🔥 FATE SEALED 🔥",
+    "F4SN OFFICIAL PUNISHMENT CONFIRMED"
+  );
+
+  tone(
+    72,
+    .2,
+    "sine",
+    .12,
+    0,
+    38
+  );
+
+  tone(
+    780,
+    .08,
+    "square",
+    .07,
+    .02
+  );
+
+  flames(
+    item.double
+    ?40
+    :18
+  );
+
+  setTimeout(()=>{
+
+    finalReveal(
+      item
+    );
+
+  },1100);
+}
+
+/* =========================================================
+   RESULT REVEAL
+========================================================= */
+
+function finalReveal(item){
+
+  const blackout=
+    document.getElementById(
+      "blackout"
+    );
+
+  const text=
+    document.getElementById(
+      "blackout-text"
+    );
+
+  blackout.classList.add(
+    "show"
+  );
+
+  text.textContent="";
+
+  setTimeout(()=>{
+
+    if(item.double){
+
+      text.textContent=
+        "...";
+
+      setTimeout(()=>{
+
+        text.textContent=
+          "OH NO.";
+
+        tone(
+          52,
+          .3,
+          "sine",
+          .12
+        );
+
+      },700);
+
+      setTimeout(()=>{
+
+        text.textContent=
+          "DOUBLE. TROUBLE.";
+
+      },1450);
+
+      setTimeout(()=>{
+
+        blackout.classList.remove(
+          "show"
+        );
+
+        revealDoubleTrouble(
+          item
+        );
+
+      },2250);
+
+    }else{
+
+      text.textContent=
+        "PUNISHMENT CONFIRMED.";
+
+      setTimeout(()=>{
+
+        blackout.classList.remove(
+          "show"
+        );
+
+        revealPenalty(
+          item
+        );
+
+      },850);
+    }
+
+  },650);
+}
+
+/* =========================================================
+   NORMAL PENALTY
+========================================================= */
+
+function revealPenalty(item){
+
+  const arena=
+    document.getElementById(
+      "arena"
+    );
+
+  arena.classList.remove(
+    "spin-fast",
+    "selector-phase",
+    "final-dark",
+    "pre-spin"
+  );
+
+  doomSound();
+
+  flames(55);
+
+  setHud(
+    selectedTeam+
+    " RECEIVES "+
+    item.result,
+    "F4SN OFFICIAL LOSER'S WHEEL RESULT"
+  );
+
+  document.getElementById(
+    "side-status"
+  ).textContent=
+    item.result;
+
+  if(doubleTroubleMode){
+
+    doubleResults.push(
+      item
+    );
+
+    doubleSpinsRemaining--;
+
+    showDoublePenaltyResult(
+      item
+    );
+
+  }else{
+
+    showTakeover(
+      item,
+      false
+    );
+
+    startIdleEmbers();
+
+    spinning=false;
+
+    const button=
+      document.getElementById(
+        "spin-button"
+      );
+
+    button.disabled=false;
+
+    button.textContent=
+      "TEST SPIN AGAIN";
+  }
+}
+
+/* =========================================================
+   DOUBLE TROUBLE
+========================================================= */
+
+function revealDoubleTrouble(item){
+
+  const arena=
+    document.getElementById(
+      "arena"
+    );
+
+  arena.classList.remove(
+    "spin-fast",
+    "selector-phase",
+    "final-dark",
+    "pre-spin"
+  );
+
+  document.body.classList.add(
+    "shake"
+  );
+
+  setTimeout(()=>{
+
+    document.body.classList.remove(
+      "shake"
+    );
+
+  },1400);
+
+  infernoEmbers();
+
+  flames(110);
+
+  doubleTroubleSound();
+
+  setHud(
+    "🔥 DOUBLE TROUBLE 🔥",
+    "ONE PUNISHMENT WAS APPARENTLY NOT ENOUGH"
+  );
+
+  document.getElementById(
+    "side-status"
+  ).textContent=
+    "DOUBLE TROUBLE";
+
+  doubleTroubleMode=true;
+  doubleSpinsRemaining=2;
+  doubleResults=[];
+
+  showTakeover(
+    item,
+    true
+  );
+
+  spinning=false;
+}
+
+function showDoublePenaltyResult(item){
+
+  const takeover=
+    document.getElementById(
+      "takeover"
+    );
+
+  takeover.className=
+    "show";
+
+  takeover.style.setProperty(
+    "--take-color",
+    item.accent
+  );
+
+  takeover.style.setProperty(
+    "--take-glow",
+    hexAlpha(
+      item.accent,
+      .45
+    )
+  );
+
+  document.getElementById(
+    "take-alert"
+  ).textContent=
+    "🔥 DOUBLE TROUBLE PENALTY 🔥";
+
+  document.getElementById(
+    "take-icon"
+  ).textContent=
+    item.icon;
+
+  document.getElementById(
+    "take-title"
+  ).textContent=
+    item.result;
+
+  document.getElementById(
+    "take-description"
+  ).textContent=
+    item.note+
+    " This penalty is now part of the Double Trouble package.";
+
+  const completed=
+    doubleResults.length;
+
+  document.getElementById(
+    "double-counter"
+  ).textContent=
+    completed<2
+    ?"PENALTY 1 OF 2 • ONE MORE SPIN REQUIRED"
+    :"DOUBLE TROUBLE COMPLETE • BOTH PENALTIES APPLY";
+
+  document.getElementById(
+    "take-manager"
+  ).textContent=
+    selectedManager+
+    " • "+
+    selectedTeam;
+
+  const button=
+    document.getElementById(
+      "take-button"
+    );
+
+  if(doubleSpinsRemaining>0){
+
+    button.textContent=
+      "RETURN FOR PUNISHMENT #2";
+
+  }else{
+
+    button.textContent=
+      "VIEW FINAL DOUBLE TROUBLE SENTENCE";
+  }
+
+  spinning=false;
+}
+
+/* =========================================================
+   TAKEOVER
+========================================================= */
+
+function showTakeover(
+  item,
+  isDouble
+){
+
+  const takeover=
+    document.getElementById(
+      "takeover"
+    );
+
+  takeover.className=
+    isDouble
+    ?"show double"
+    :"show";
+
+  takeover.style.setProperty(
+    "--take-color",
+    item.accent
+  );
+
+  takeover.style.setProperty(
+    "--take-glow",
+    hexAlpha(
+      item.accent,
+      isDouble
+      ?.68
+      :.4
+    )
+  );
+
+  document.getElementById(
+    "take-alert"
+  ).textContent=
+    isDouble
+    ?"🔥 F4SN CATASTROPHIC PENALTY ALERT 🔥"
+    :"F4SN WEEKLY PUNISHMENT";
+
+  document.getElementById(
+    "take-icon"
+  ).textContent=
+    item.icon;
+
+  document.getElementById(
+    "take-title"
+  ).textContent=
+    item.result;
+
+  document.getElementById(
+    "take-description"
+  ).textContent=
+    isDouble
+    ?(
+      item.note+
+      " Double Trouble itself is not one of the two penalties. "+
+      "Two additional spins will now determine the actual punishments. "+
+      "Any additional Double Trouble result is automatically rerolled."
+    )
+    :(
+      item.note+
+      " This remains a construction-mode test and is not actually applied to Week 5."
+    );
+
+  document.getElementById(
+    "double-counter"
+  ).textContent=
+    isDouble
+    ?"TWO ADDITIONAL PENALTY SPINS REQUIRED"
+    :"";
+
+  document.getElementById(
+    "take-manager"
+  ).textContent=
+    selectedManager+
+    " • "+
+    selectedTeam;
+
+  const button=
+    document.getElementById(
+      "take-button"
+    );
+
+  button.textContent=
+    isDouble
+    ?"BEGIN DOUBLE TROUBLE"
+    :"RETURN TO THE ARENA";
+}
+
+/* =========================================================
+   CLOSE TAKEOVER
+========================================================= */
+
+function closeTakeover(){
+
+  const takeover=
+    document.getElementById(
+      "takeover"
+    );
+
+  /*
+    DOUBLE TROUBLE:
+    Initial reveal -> start spin 1
+    Spin 1 reveal -> start spin 2
+    Spin 2 reveal -> final sentence
+  */
+
+  if(doubleTroubleMode){
+
+    if(doubleSpinsRemaining>0){
+
+      takeover.className="";
+
+      stopEmbers();
+      startIdleEmbers();
+
+      clearSelectors();
+
+      setHud(
+        "🔥 DOUBLE TROUBLE 🔥",
+        doubleSpinsRemaining===2
+        ?"PUNISHMENT SPIN 1 OF 2"
+        :"PUNISHMENT SPIN 2 OF 2"
+      );
+
+      document.getElementById(
+        "oracle-message"
+      ).textContent=
+        doubleSpinsRemaining===2
+        ?"The Oracle requires the first additional punishment."
+        :"One penalty down. The Oracle demands another.";
+
+      document.getElementById(
+        "side-status"
+      ).textContent=
+        doubleSpinsRemaining===2
+        ?"DOUBLE SPIN 1 READY"
+        :"DOUBLE SPIN 2 READY";
+
+      const spinButton=
+        document.getElementById(
+          "spin-button"
+        );
+
+      spinButton.disabled=false;
+
+      spinButton.textContent=
+        doubleSpinsRemaining===2
+        ?"SPIN FOR PENALTY #1"
+        :"SPIN FOR PENALTY #2";
+
+      spinning=false;
+
+      return;
+    }
+
+    showFinalDoubleSentence();
+
+    return;
+  }
+
+  takeover.className="";
+
+  stopEmbers();
+  startIdleEmbers();
+
+  setHud(
+    "THE LOSER'S WHEEL",
+    "CONSTRUCTION MODE • TEST SPINS AUTHORIZED"
+  );
+}
+
+/* =========================================================
+   FINAL DOUBLE TROUBLE SENTENCE
+========================================================= */
+
+function showFinalDoubleSentence(){
+
+  const takeover=
+    document.getElementById(
+      "takeover"
+    );
+
+  takeover.className=
+    "show double";
+
+  takeover.style.setProperty(
+    "--take-color",
+    "#ff3b00"
+  );
+
+  takeover.style.setProperty(
+    "--take-glow",
+    "rgba(255,45,0,.7)"
+  );
+
+  document.getElementById(
+    "take-alert"
+  ).textContent=
+    "🔥 F4SN DOUBLE TROUBLE SENTENCE 🔥";
+
+  document.getElementById(
+    "take-icon"
+  ).textContent=
+    "😈";
+
+  document.getElementById(
+    "take-title"
+  ).textContent=
+    "BOTH APPLY";
+
+  const first=
+    doubleResults[0];
+
+  const second=
+    doubleResults[1];
+
+  document.getElementById(
+    "take-description"
+  ).innerHTML=
+    "<strong>"+
+    escapeHtml(
+      first.result
+    )+
+    "</strong><br>"+
+    escapeHtml(
+      first.note
+    )+
+    "<br><br>"+
+    "<strong>"+
+    escapeHtml(
+      second.result
+    )+
+    "</strong><br>"+
+    escapeHtml(
+      second.note
+    )+
+    "<br><br>"+
+    "Congratulations. You have successfully turned one bad fantasy week into two separate problems.";
+
+  document.getElementById(
+    "double-counter"
+  ).textContent=
+    "DOUBLE TROUBLE COMPLETE";
+
+  document.getElementById(
+    "take-manager"
+  ).textContent=
+    selectedManager+
+    " • "+
+    selectedTeam;
+
+  const button=
+    document.getElementById(
+      "take-button"
+    );
+
+  button.textContent=
+    "ACCEPT YOUR TERRIBLE DECISIONS";
+
+  button.onclick=
+    finishDoubleTrouble;
+}
+
+function finishDoubleTrouble(){
+
+  const takeover=
+    document.getElementById(
+      "takeover"
+    );
+
+  takeover.className="";
+
+  const button=
+    document.getElementById(
+      "take-button"
+    );
+
+  button.onclick=
+    closeTakeover;
+
+  doubleTroubleMode=false;
+  doubleSpinsRemaining=0;
+  doubleResults=[];
+
+  stopEmbers();
+  startIdleEmbers();
+
+  clearSelectors();
+
+  setHud(
+    "THE LOSER'S WHEEL",
+    "THE ORACLE HAS FINISHED WITH YOU"
+  );
+
+  document.getElementById(
+    "oracle-message"
+  ).textContent=
+    "Double Trouble complete. Somehow you are still allowed in the league.";
+
+  document.getElementById(
+    "side-status"
+  ).textContent=
+    "SENTENCE COMPLETE";
+
+  const spinButton=
+    document.getElementById(
+      "spin-button"
+    );
+
+  spinButton.disabled=false;
+
+  spinButton.textContent=
+    "TEST SPIN AGAIN";
+
+  spinning=false;
+}
+
+/* =========================================================
+   EXIT
+========================================================= */
+
+function exitArena(){
+
+  if(spinning)return;
+
+  stopEmbers();
+
+  clearSelectors();
+
+  doubleTroubleMode=false;
+  doubleSpinsRemaining=0;
+  doubleResults=[];
+
+  const arena=
+    document.getElementById(
+      "arena"
+    );
+
+  arena.className="";
+
+  document.body.style.overflow="";
+
+  const door=
+    document.getElementById(
+      "door-scene"
+    );
+
+  door.classList.remove(
+    "open"
+  );
+
+  document.getElementById(
+    "door-button"
+  ).disabled=false;
+
+  document.getElementById(
+    "takeover"
+  ).className="";
+
+  const takeButton=
+    document.getElementById(
+      "take-button"
+    );
+
+  takeButton.onclick=
+    closeTakeover;
+
+  showScene(
+    "entrance-scene"
+  );
+}
+
+/* =========================================================
+   FX
+========================================================= */
+
+function flashes(amount){
+
+  const layer=
+    document.getElementById(
+      "fx"
+    );
+
+  for(let i=0;i<amount;i++){
+
+    setTimeout(()=>{
+
+      const flash=
+        document.createElement(
+          "div"
+        );
+
+      flash.className=
+        "camera-flash";
+
+      flash.style.left=
+        (
+          4+
+          randomUnit()*92
+        )+
+        "%";
+
+      flash.style.top=
+        (
+          5+
+          randomUnit()*70
+        )+
+        "%";
+
+      layer.appendChild(
+        flash
+      );
+
+      setTimeout(()=>{
+
+        flash.remove();
+
+      },650);
+
+    },
+    i*65+
+    randomUnit()*250);
+  }
+}
+
+function flames(amount){
+
+  for(let i=0;i<amount;i++){
+
+    const piece=
+      document.createElement(
+        "div"
+      );
+
+    piece.className=
+      "ash";
+
+    piece.style.left=
+      randomUnit()*100+
+      "vw";
+
+    const size=
+      4+
+      randomUnit()*8;
+
+    piece.style.width=
+      size+"px";
+
+    piece.style.height=
+      size+"px";
+
+    piece.style.animationDuration=
+      (
+        2+
+        randomUnit()*3.5
+      )+
+      "s";
+
+    piece.style.animationDelay=
+      (
+        randomUnit()*.7
+      )+
+      "s";
+
+    document.body.appendChild(
+      piece
+    );
+
+    setTimeout(()=>{
+
+      piece.remove();
+
+    },6500);
+  }
+}
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function normalize(angle){
+
+  const full=
+    Math.PI*2;
+
+  return(
+    (
+      angle%full
+    )+
+    full
+  )%
+  full;
+}
+
+function hexToRgb(hex){
+
+  const clean=
+    String(hex)
+    .replace("#","");
+
+  const value=
+    parseInt(
+      clean,
+      16
+    );
+
+  return{
+    r:(value>>16)&255,
+    g:(value>>8)&255,
+    b:value&255
+  };
+}
+
+function lighten(
+  hex,
+  amount
+){
+
+  const rgb=
+    hexToRgb(hex);
+
+  const mix=
+    value=>
+      Math.min(
+        255,
+        Math.round(
+          value+
+          (
+            255-value
+          )*
+          (
+            amount/100
+          )
+        )
+      );
+
+  return(
+    "rgb("+
+    mix(rgb.r)+","+
+    mix(rgb.g)+","+
+    mix(rgb.b)+
+    ")"
+  );
+}
+
+function hexAlpha(
+  hex,
+  alpha
+){
+
+  const rgb=
+    hexToRgb(hex);
+
+  return(
+    "rgba("+
+    rgb.r+","+
+    rgb.g+","+
+    rgb.b+","+
+    alpha+
+    ")"
+  );
+}
+
+function escapeHtml(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+createFire();
+
+drawWheel();
+
+</script>
+
+</body>
+</html>
