@@ -57,6 +57,34 @@ box-shadow:0 12px 35px rgba(0,0,0,.45);
 margin:0 0 22px
 }
 
+.franchise-banner-wrap{
+position:relative;
+margin:0 0 22px
+}
+
+.franchise-banner-wrap .franchise-banner{
+margin:0
+}
+
+.franchise-link{
+position:absolute;
+top:0;
+bottom:0;
+width:25%;
+z-index:2;
+text-decoration:none
+}
+
+.franchise-link:nth-of-type(1){left:0}
+.franchise-link:nth-of-type(2){left:25%}
+.franchise-link:nth-of-type(3){left:50%}
+.franchise-link:nth-of-type(4){left:75%}
+
+.franchise-link:focus-visible{
+outline:3px solid var(--yellow);
+outline-offset:-4px
+}
+
 /* NFL SCORE STRIP */
 
 .nfl-strip{
@@ -557,253 +585,6 @@ letter-spacing:.8px;
 margin-left:3px
 }
 
-/* F4SN COMICS */
-
-.comics-shell{
-background:linear-gradient(145deg,#111827,#090e16);
-border:1px solid var(--border);
-border-radius:14px;
-overflow:hidden;
-box-shadow:0 12px 35px rgba(0,0,0,.45)
-}
-
-.cancelled-banner{
-padding:28px;
-background:linear-gradient(135deg,rgba(255,75,75,.13),rgba(0,0,0,.18));
-border-bottom:1px solid var(--border)
-}
-
-.cancelled-stamp{
-display:inline-block;
-color:#ff6b6b;
-border:3px solid #ff4b4b;
-padding:7px 12px;
-font-size:20px;
-font-weight:900;
-letter-spacing:2px;
-transform:rotate(-2deg);
-margin-bottom:15px
-}
-
-.cancelled-banner h3{
-font-size:27px;
-margin:0 0 12px
-}
-
-.cancelled-banner p{
-color:#c5ced9;
-line-height:1.65;
-margin:8px 0
-}
-
-.cancelled-banner ul{
-color:#aeb9c6;
-line-height:1.7
-}
-
-.comics-launch{
-padding:28px;
-text-align:center
-}
-
-.comics-launch .eyebrow{
-color:var(--yellow);
-font-size:12px;
-font-weight:900;
-letter-spacing:2px;
-text-transform:uppercase
-}
-
-.comics-launch h3{
-font-size:32px;
-margin:8px 0
-}
-
-.comics-tagline{
-font-size:19px;
-font-weight:900;
-color:#eef2f7;
-margin-bottom:24px
-}
-
-.comic-reader{
-max-width:420px;
-margin:0 auto
-}
-
-.comic-preview{
-background:#05070b;
-border:1px solid #2a374a;
-border-radius:12px;
-padding:12px;
-box-shadow:0 12px 35px rgba(0,0,0,.5);
-cursor:pointer;
-transition:transform .2s ease,border-color .2s ease
-}
-
-.comic-preview:hover{
-transform:translateY(-3px);
-border-color:var(--blue)
-}
-
-.comic-preview img{
-display:block;
- width:100%;
-height:auto;
-border-radius:6px
-}
-
-.comic-preview-note{
-margin:12px 0 0;
-color:#9eacbd;
-font-size:11px;
-font-weight:900;
-letter-spacing:1px;
-text-transform:uppercase
-}
-
-.comic-open-button{
-display:inline-block;
-margin-top:15px;
-border:1px solid var(--blue);
-background:#10263a;
-color:white;
-border-radius:8px;
-padding:12px 20px;
-font-weight:900;
-cursor:pointer
-}
-
-.comic-open-button:hover{
-background:#173a58
-}
-
-/* FULL SCREEN COMIC READER */
-
-.comic-modal{
-position:fixed;
-inset:0;
-z-index:1000;
-background:rgba(0,0,0,.94);
-display:none;
-align-items:center;
-justify-content:center;
-padding:18px
-}
-
-.comic-modal.open{
-display:flex
-}
-
-.comic-modal-inner{
-position:relative;
-width:100%;
-height:100%;
-display:flex;
-align-items:center;
-justify-content:center
-}
-
-.comic-modal-image{
-display:block;
-max-width:min(92vw,900px);
-max-height:88vh;
-width:auto;
-height:auto;
-object-fit:contain;
-box-shadow:0 18px 70px rgba(0,0,0,.8);
-cursor:pointer;
-user-select:none
-}
-
-.comic-close{
-position:absolute;
-top:0;
-right:0;
-width:46px;
-height:46px;
-border:1px solid #46556a;
-background:#111827;
-color:white;
-border-radius:50%;
-font-size:26px;
-line-height:1;
-cursor:pointer;
-z-index:4
-}
-
-.comic-modal-counter{
-position:absolute;
-top:8px;
-left:50%;
-transform:translateX(-50%);
-background:rgba(8,11,18,.82);
-border:1px solid #334155;
-border-radius:999px;
-padding:8px 14px;
-color:#d8e0ea;
-font-size:11px;
-font-weight:900;
-letter-spacing:1px;
-text-transform:uppercase;
-z-index:4
-}
-
-.comic-hit{
-position:absolute;
-top:0;
-bottom:0;
-width:50%;
-border:0;
-background:transparent;
-cursor:pointer;
-z-index:2
-}
-
-.comic-hit-left{left:0}
-.comic-hit-right{right:0}
-
-.comic-side-arrow{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-z-index:3;
-width:48px;
-height:64px;
-border:1px solid #46556a;
-background:rgba(17,24,39,.72);
-color:white;
-border-radius:9px;
-font-size:30px;
-cursor:pointer
-}
-
-.comic-side-arrow.left{left:8px}
-.comic-side-arrow.right{right:8px}
-
-.comic-side-arrow:disabled{
-opacity:.2;
-cursor:default
-}
-
-.comic-modal-hint{
-position:absolute;
-bottom:7px;
-left:50%;
-transform:translateX(-50%);
-z-index:4;
-background:rgba(8,11,18,.82);
-border:1px solid #334155;
-border-radius:999px;
-padding:7px 12px;
-color:#9eacbd;
-font-size:10px;
-font-weight:900;
-letter-spacing:.8px;
-text-transform:uppercase;
-white-space:nowrap
-}
-
 /* HALL OF SHAME */
 
 .shame-card{
@@ -830,112 +611,6 @@ color:#9eacbd;
 max-width:620px;
 margin:10px auto 0;
 line-height:1.6
-}
-
-/* WHEELS */
-
-.wheels-grid{
-display:grid;
-grid-template-columns:repeat(2,minmax(0,1fr));
-gap:22px
-}
-
-.wheel-card{
-background:linear-gradient(145deg,#111827,#0b1018);
-border:1px solid var(--border);
-border-radius:14px;
-padding:24px;
-box-shadow:0 10px 30px rgba(0,0,0,.35);
-text-align:center
-}
-
-.wheel-card h3{
-margin:0 0 8px;
-font-size:23px
-}
-
-.wheel-card p{
-color:#9eacbd;
-line-height:1.5;
-margin:0 0 20px
-}
-
-.wheel-wrap{
-position:relative;
-width:min(100%,430px);
-aspect-ratio:1;
-margin:0 auto 20px
-}
-
-.wheel-canvas{
-display:block;
-width:100%;
-height:100%;
-border-radius:50%;
-filter:drop-shadow(0 12px 25px rgba(0,0,0,.5))
-}
-
-.wheel-pointer{
-position:absolute;
-left:50%;
-top:-3px;
-transform:translateX(-50%);
-width:0;
-height:0;
-border-left:17px solid transparent;
-border-right:17px solid transparent;
-border-top:34px solid white;
-filter:drop-shadow(0 4px 5px rgba(0,0,0,.55));
-z-index:2
-}
-
-.wheel-spin{
-border:1px solid var(--blue);
-background:#10263a;
-color:white;
-border-radius:9px;
-padding:13px 25px;
-font-size:14px;
-font-weight:900;
-letter-spacing:.6px;
-cursor:pointer;
-text-transform:uppercase
-}
-
-.wheel-spin:disabled{
-opacity:.5;
-cursor:not-allowed
-}
-
-.wheel-result{
-margin-top:18px;
-min-height:82px;
-background:#080c13;
-border:1px solid #273447;
-border-radius:10px;
-padding:16px
-}
-
-.wheel-result-label{
-color:#8391a4;
-font-size:10px;
-font-weight:900;
-letter-spacing:1px;
-text-transform:uppercase
-}
-
-.wheel-result-value{
-color:var(--yellow);
-font-size:19px;
-font-weight:900;
-margin-top:6px
-}
-
-.wheel-result-note{
-color:#c1cad6;
-font-size:12px;
-line-height:1.5;
-margin-top:6px
 }
 
 .loading{
@@ -966,7 +641,6 @@ footer strong{color:var(--yellow)}
 @media(max-width:900px){
 .teams{grid-template-columns:repeat(2,1fr)}
 .lineup-grid{grid-template-columns:1fr}
-.wheels-grid{grid-template-columns:1fr}
 .nfl-strip-label{flex-basis:105px}
 }
 
@@ -993,12 +667,6 @@ main{width:94%;padding-top:28px}
 .nfl-game{flex-basis:155px;min-height:76px;padding:8px 11px}
 .nfl-team-row{font-size:12px}
 .nfl-team-score{font-size:14px}
-.comic-modal{padding:6px}
-.comic-modal-image{max-width:98vw;max-height:90vh}
-.comic-side-arrow{width:38px;height:54px;font-size:24px}
-.comic-side-arrow.left{left:0}
-.comic-side-arrow.right{right:0}
-.comic-modal-hint{font-size:8px;max-width:90%;white-space:normal;text-align:center}
 }
 </style>
 </head>
@@ -1033,9 +701,10 @@ class="hero-banner">
 <a href="#home">HOME</a>
 <a href="#scoreboard">SCOREBOARD</a>
 <a href="#standings">STANDINGS</a>
-<a href="#lineups">LINEUPS</a>
-<a href="#wheels">THE WHEELS</a>
-<a href="#comics">COMICS</a>
+<a href="lineups.html">LINEUPS</a>
+<a href="winner-wheel.html">WINNER'S WHEEL</a>
+<a href="loser-wheel.html">LOSER'S WHEEL</a>
+<a href="comics.html">COMICS</a>
 <a href="#hall-of-shame">HALL OF SHAME</a>
 </nav>
 
@@ -1044,10 +713,16 @@ class="hero-banner">
 <section id="teams">
 <h2 class="section-title">Meet The Fant4sy Four</h2>
 
+<div class="franchise-banner-wrap">
 <img
 src="Fant4syFour-Team-Banner.png"
 alt="The Fant4sy Four franchise teams"
 class="franchise-banner">
+<a class="franchise-link" href="lineups.html" aria-label="Open Lineup Command Center from Breaking Brad"></a>
+<a class="franchise-link" href="lineups.html" aria-label="Open Lineup Command Center from The Real Housewives of the Red Zone"></a>
+<a class="franchise-link" href="lineups.html" aria-label="Open Lineup Command Center from Mack Around & Find Out"></a>
+<a class="franchise-link" href="lineups.html" aria-label="Open Lineup Command Center from Maddie’s Anatomy"></a>
+</div>
 </section>
 
 <section id="scoreboard">
@@ -1089,124 +764,6 @@ Click an NFL player’s name to open their NFL.com player profile.
 </div>
 </section>
 
-<section id="wheels">
-<h2 class="section-title">The Wheels</h2>
-
-<p class="section-subtitle">
-Victory has rewards. Defeat has consequences. The Oracle accepts no appeals.
-</p>
-
-<div class="wheels-grid">
-
-<div class="wheel-card">
-<h3>🏆 Winner’s Wheel</h3>
-<p>Weekly champion spins for glory, prizes, and possibly an unreasonable amount of power.</p>
-
-<div class="wheel-wrap">
-<div class="wheel-pointer"></div>
-<canvas id="winner-wheel" class="wheel-canvas" width="700" height="700"></canvas>
-</div>
-
-<button id="winner-spin" class="wheel-spin" type="button" onclick="spinLeagueWheel('winner')">
-SPIN WINNER’S WHEEL
-</button>
-
-<div id="winner-result" class="wheel-result">
-<div class="wheel-result-label">THE ORACLE AWAITS</div>
-<div class="wheel-result-value">WHO WILL CLAIM THE PRIZE?</div>
-</div>
-</div>
-
-<div class="wheel-card">
-<h3>💀 Loser’s Wheel</h3>
-<p>Last place spins for punishment. League management recommends losing with dignity. Nobody listens.</p>
-
-<div class="wheel-wrap">
-<div class="wheel-pointer"></div>
-<canvas id="loser-wheel" class="wheel-canvas" width="700" height="700"></canvas>
-</div>
-
-<button id="loser-spin" class="wheel-spin" type="button" onclick="spinLeagueWheel('loser')">
-SPIN LOSER’S WHEEL
-</button>
-
-<div id="loser-result" class="wheel-result">
-<div class="wheel-result-label">YOUR FATE AWAITS</div>
-<div class="wheel-result-value">THE WHEEL SHOWS NO MERCY</div>
-</div>
-</div>
-
-</div>
-</section>
-
-<section id="comics">
-<h2 class="section-title">F4SN Comics</h2>
-
-<div class="comics-shell">
-
-<div class="cancelled-banner">
-<div class="cancelled-stamp">CANCELLED</div>
-
-<h3>The F4SN Animated Series Has Been Sent to the Shadow Realm</h3>
-
-<p>
-After one glorious experiment in questionable television,
-league management has officially cancelled the F4SN animated series.
-</p>
-
-<p>
-The production department has been reassigned to a far more dangerous format:
-<strong>weekly comic books.</strong>
-</p>
-
-<ul>
-<li>More trash talk.</li>
-<li>More ridiculous storylines.</li>
-<li>More opportunities for public humiliation.</li>
-<li>Far fewer rendering headaches.</li>
-</ul>
-</div>
-
-<div class="comics-launch">
-<div class="eyebrow">THE NEW ERA OF F4SN</div>
-<h3>F4SN COMICS</h3>
-
-<div class="comics-tagline">
-Fantasy football was a mistake. We made it a comic book.
-</div>
-
-<div class="comic-reader">
-
-<div
-class="comic-preview"
-onclick="openComicReader(0)"
-role="button"
-tabindex="0"
-onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openComicReader(0);}">
-
-<img
-id="comic-preview-image"
-src="comics/issue-1/cover.png"
-alt="F4SN Comics Issue 1 cover">
-
-</div>
-
-<p class="comic-preview-note">
-Click the comic to open the full-screen reader.
-</p>
-
-<button
-class="comic-open-button"
-type="button"
-onclick="openComicReader(0)">
-OPEN ISSUE #1
-</button>
-
-</div>
-</div>
-</div>
-</section>
-
 <section id="hall-of-shame">
 <h2 class="section-title">Hall of Shame</h2>
 
@@ -1230,71 +787,6 @@ offense as “completely avoidable” and “honestly kind of impressive.”
 • FANT4SY FOUR SPORTS NETWORK
 • QUESTIONABLE ANALYSIS SINCE 2026
 </footer>
-
-<!-- FULL SCREEN COMIC READER -->
-
-<div id="comic-modal" class="comic-modal" aria-hidden="true">
-
-<div class="comic-modal-inner">
-
-<button
-class="comic-close"
-type="button"
-onclick="closeComicReader()"
-aria-label="Close comic reader">
-×
-</button>
-
-<div id="comic-modal-counter" class="comic-modal-counter">
-PAGE 1
-</div>
-
-<button
-id="comic-left-hit"
-class="comic-hit comic-hit-left"
-type="button"
-onclick="previousComicPage()"
-aria-label="Previous comic page">
-</button>
-
-<button
-id="comic-right-hit"
-class="comic-hit comic-hit-right"
-type="button"
-onclick="nextComicPage()"
-aria-label="Next comic page">
-</button>
-
-<button
-id="comic-left-arrow"
-class="comic-side-arrow left"
-type="button"
-onclick="previousComicPage()"
-aria-label="Previous comic page">
-‹
-</button>
-
-<img
-id="comic-modal-image"
-class="comic-modal-image"
-src="comics/issue-1/cover.png"
-alt="F4SN comic cover">
-
-<button
-id="comic-right-arrow"
-class="comic-side-arrow right"
-type="button"
-onclick="nextComicPage()"
-aria-label="Next comic page">
-›
-</button>
-
-<div class="comic-modal-hint">
-Click left/right side • Arrow keys turn pages • Esc closes
-</div>
-
-</div>
-</div>
 
 <script>
 
@@ -1321,505 +813,6 @@ maria:"The Real Housewives of the Red Zone",
 mackenzie:"Mack Around & Find Out",
 madison:"Maddie’s Anatomy"
 };
-
-/**************************************************************
- THE WHEELS
-**************************************************************/
-
-const WINNER_WHEEL_ITEMS = [
-{
-label:"$25 B&N",
-result:"$25 Barnes & Noble Gift Card",
-note:"GRAND PRIZE! Bookstore glory has been achieved."
-},
-{
-label:"$25 7 Brew",
-result:"$25 7 Brew Gift Card",
-note:"GRAND PRIZE! Caffeine victory belongs to you."
-},
-{
-label:"$5 Cash",
-result:"$5 CASH MONEY",
-note:"Cold hard cash. Try not to spend it all in one place."
-},
-{
-label:"$5 Snack",
-result:"$5 SNACK DRAFT",
-note:"Draft your snack like a champion."
-},
-{
-label:"Drink",
-result:"COFFEE / DRINK ON THE LEAGUE",
-note:"One coffee or drink on the league."
-},
-{
-label:"Fast Food",
-result:"FAST-FOOD MVP",
-note:"A victory worthy of the drive-thru."
-},
-{
-label:"Dessert",
-result:"DESSERT CHAMPION",
-note:"The champion claims dessert glory."
-},
-{
-label:"Lottery",
-result:"LOTTERY TICKET SHOT",
-note:"Take your shot at turning fantasy glory into actual riches."
-},
-{
-label:"Remote",
-result:"REMOTE CONTROL CHAMPION",
-note:"You control the remote. Use this power responsibly."
-},
-{
-label:"No Chore",
-result:"NO CHORE PASS",
-note:"One chore avoided. Victory has never smelled so clean."
-},
-{
-label:"2X Oracle",
-result:"DOUBLE ORACLE GLORY",
-note:"The Oracle recognizes your greatness twice over."
-},
-{
-label:"Golden Flex",
-result:"THE GOLDEN FLEX",
-note:"A legendary flex worthy of the Fant4sy Four."
-}
-];
-
-const LOSER_WHEEL_ITEMS = [
-{
-label:"Selfie",
-result:"LOSER SELFIE",
-note:"Winner chooses the pose."
-},
-{
-label:"Chore",
-result:"CHORE OF SHAME",
-note:"The loser gets assigned a household chore."
-},
-{
-label:"Status",
-result:"EMBARRASSING STATUS",
-note:"The family chooses a ridiculous status or post for the loser."
-},
-{
-label:"Press Conf.",
-result:"PRESS CONFERENCE OF SHAME",
-note:"The loser has to answer ridiculous postgame questions."
-},
-{
-label:"Crown",
-result:"WEAR THE LOSER CROWN",
-note:"Wear the designated loser gear or crown."
-},
-{
-label:"Servant",
-result:"WINNER'S SERVANT",
-note:"The loser serves the winner during a meal or snack."
-},
-{
-label:"Walk-Up",
-result:"WALK-UP SONG OF SHAME",
-note:"The family chooses the loser's entrance song."
-},
-{
-label:"Trash Talk",
-result:"TRASH-TALK IMMUNITY",
-note:"The winner gets unrestricted fantasy trash-talking rights for the week."
-},
-{
-label:"Cleanup",
-result:"CLEANUP DUTY",
-note:"The loser handles cleanup after a family meal."
-},
-{
-label:"Last Pick",
-result:"LAST PICK",
-note:"The loser gets last choice of TV, movie or entertainment."
-},
-{
-label:"Double",
-result:"DOUBLE TROUBLE",
-note:"Spin the Loser's Wheel again and do BOTH punishments."
-},
-{
-label:"Oracle",
-result:"THE ORACLE'S CURSE",
-note:"The Fantasy Oracle creates a special one-off punishment for this week's loser."
-}
-];
-
-const WINNER_WHEEL_COLORS = [
-"#facc15","#1687ff","#16a34a","#9c4dff",
-"#ea580c","#0891b2","#db2777","#65a30d",
-"#4f46e5","#d97706","#0d9488","#7c3aed"
-];
-
-const LOSER_WHEEL_COLORS = [
-"#dc2626","#7f1d1d","#b91c1c","#991b1b",
-"#ef4444","#881337","#be123c","#9f1239",
-"#c2410c","#b45309","#7c2d12","#9a3412"
-];
-
-const WHEEL_STATE = {
-winner:{rotation:0,spinning:false},
-loser:{rotation:0,spinning:false}
-};
-
-function drawLeagueWheels(){
-drawLeagueWheel("winner",WINNER_WHEEL_ITEMS,WINNER_WHEEL_COLORS);
-drawLeagueWheel("loser",LOSER_WHEEL_ITEMS,LOSER_WHEEL_COLORS);
-}
- function drawLeagueWheel(type,items,colors){
-
-const canvas=document.getElementById(type+"-wheel");
-if(!canvas)return;
-
-const context=canvas.getContext("2d");
-const size=canvas.width;
-const center=size/2;
-const radius=center-14;
-const slice=Math.PI*2/items.length;
-const rotation=WHEEL_STATE[type].rotation;
-
-context.clearRect(0,0,size,size);
-context.save();
-context.translate(center,center);
-context.rotate(rotation);
-
-items.forEach(function(item,index){
-
-const start=index*slice-Math.PI/2-slice/2;
-const end=start+slice;
-
-context.beginPath();
-context.moveTo(0,0);
-context.arc(0,0,radius,start,end);
-context.closePath();
-
-context.fillStyle=colors[index%colors.length];
-context.fill();
-
-context.lineWidth=4;
-context.strokeStyle="#080b12";
-context.stroke();
-
-context.save();
-
-const middle=start+slice/2;
-context.rotate(middle);
-context.translate(radius*.64,0);
-context.rotate(Math.PI/2);
-
-context.fillStyle=
-(type==="winner"&&(index===0||index===1))
-?"#111827"
-:"#ffffff";
-
-context.font="900 23px Arial";
-context.textAlign="center";
-context.textBaseline="middle";
-
-wrapWheelText(context,item.label,0,0,145,26);
-
-context.restore();
-});
-
-context.beginPath();
-context.arc(0,0,radius,0,Math.PI*2);
-context.lineWidth=10;
-context.strokeStyle=type==="winner"?"#facc15":"#ff4b4b";
-context.stroke();
-
-context.restore();
-}
-
-function wrapWheelText(context,text,x,y,maxWidth,lineHeight){
-
-const words=String(text).split(" ");
-const lines=[];
-let line="";
-
-words.forEach(function(word){
-
-const test=line?line+" "+word:word;
-
-if(context.measureText(test).width>maxWidth&&line){
-lines.push(line);
-line=word;
-}else{
-line=test;
-}
-});
-
-if(line)lines.push(line);
-
-const totalHeight=(lines.length-1)*lineHeight;
-
-lines.forEach(function(value,index){
-context.fillText(
-value,
-x,
-y-totalHeight/2+index*lineHeight
-);
-});
-}
-
-function randomWheelIndex(length){
-
-if(window.crypto&&window.crypto.getRandomValues){
-const values=new Uint32Array(1);
-window.crypto.getRandomValues(values);
-return values[0]%length;
-}
-
-return Math.floor(Math.random()*length);
-}
-
-function normalizeWheelAngle(angle){
-const full=Math.PI*2;
-return ((angle%full)+full)%full;
-}
-
-function spinLeagueWheel(type){
-
-const items=type==="winner"
-?WINNER_WHEEL_ITEMS
-:LOSER_WHEEL_ITEMS;
-
-const colors=type==="winner"
-?WINNER_WHEEL_COLORS
-:LOSER_WHEEL_COLORS;
-
-const state=WHEEL_STATE[type];
-
-if(state.spinning)return;
-
-state.spinning=true;
-
-const button=document.getElementById(type+"-spin");
-const result=document.getElementById(type+"-result");
-
-button.disabled=true;
-
-result.innerHTML=`
-<div class="wheel-result-label">
-${type==="winner"
-?"THE ORACLE IS DECIDING..."
-:"YOUR FATE IS BEING DECIDED..."}
-</div>
-<div class="wheel-result-value">SPINNING...</div>
-`;
-
-const selectedIndex=randomWheelIndex(items.length);
-const slice=Math.PI*2/items.length;
-const current=normalizeWheelAngle(state.rotation);
-const desired=normalizeWheelAngle(-selectedIndex*slice);
-
-let delta=desired-current;
-
-if(delta<0)delta+=Math.PI*2;
-
-const fullSpins=6+Math.floor(Math.random()*3);
-const totalRotation=fullSpins*Math.PI*2+delta;
-const startRotation=state.rotation;
-const finalRotation=startRotation+totalRotation;
-const duration=5000;
-const startTime=performance.now();
-
-function animateWheel(now){
-
-const elapsed=now-startTime;
-const progress=Math.min(elapsed/duration,1);
-const eased=1-Math.pow(1-progress,4);
-
-state.rotation=startRotation+totalRotation*eased;
-
-drawLeagueWheel(type,items,colors);
-
-if(progress<1){
-requestAnimationFrame(animateWheel);
-return;
-}
-
-state.rotation=finalRotation;
-state.spinning=false;
-button.disabled=false;
-
-drawLeagueWheel(type,items,colors);
-showLeagueWheelResult(type,items[selectedIndex]);
-}
-
-requestAnimationFrame(animateWheel);
-}
-
-function showLeagueWheelResult(type,item){
-
-const result=document.getElementById(type+"-result");
-
-const grandPrize=
-type==="winner"&&
-(
-item.result==="$25 Barnes & Noble Gift Card"||
-item.result==="$25 7 Brew Gift Card"
-);
-
-const heading=
-grandPrize
-?"🏆 GRAND PRIZE 🏆"
-:type==="winner"
-?"WINNER'S WHEEL RESULT"
-:"LOSER'S WHEEL RESULT";
-
-result.innerHTML=`
-<div class="wheel-result-label">
-${safeText(heading)}
-</div>
-<div class="wheel-result-value">
-${safeText(item.result)}
-</div>
-<div class="wheel-result-note">
-${safeText(item.note)}
-</div>
-`;
-}
-
-/**************************************************************
- F4SN COMIC READER
-**************************************************************/
-
-const COMIC_PAGES = [
-"comics/issue-1/cover.png",
-"comics/issue-1/page-01.png",
-"comics/issue-1/page-02.png",
-"comics/issue-1/page-03.png",
-"comics/issue-1/page-04.png",
-"comics/issue-1/page-05.png",
-"comics/issue-1/page-06.png",
-"comics/issue-1/page-07.png",
-"comics/issue-1/page-08.png"
-];
-
-let currentComicPage=0;
-
-function openComicReader(index){
-
-currentComicPage=Number(index)||0;
-
-if(currentComicPage<0)currentComicPage=0;
-
-if(currentComicPage>=COMIC_PAGES.length){
-currentComicPage=COMIC_PAGES.length-1;
-}
-
-const modal=document.getElementById("comic-modal");
-if(!modal)return;
-
-modal.classList.add("open");
-modal.setAttribute("aria-hidden","false");
-document.body.style.overflow="hidden";
-
-renderComicPage();
-}
-
-function closeComicReader(){
-
-const modal=document.getElementById("comic-modal");
-if(!modal)return;
-
-modal.classList.remove("open");
-modal.setAttribute("aria-hidden","true");
-document.body.style.overflow="";
-}
-
-function renderComicPage(){
-
-const image=document.getElementById("comic-modal-image");
-const preview=document.getElementById("comic-preview-image");
-const counter=document.getElementById("comic-modal-counter");
-const leftArrow=document.getElementById("comic-left-arrow");
-const rightArrow=document.getElementById("comic-right-arrow");
-const leftHit=document.getElementById("comic-left-hit");
-const rightHit=document.getElementById("comic-right-hit");
-
-const source=COMIC_PAGES[currentComicPage];
-
-if(image){
-image.src=source;
-image.alt=currentComicPage===0
-?"F4SN comic cover"
-:"F4SN comic page "+currentComicPage;
-}
-
-if(preview){
-preview.src=source;
-preview.alt=currentComicPage===0
-?"F4SN Comics Issue 1 cover"
-:"F4SN comic page "+currentComicPage;
-}
-
-if(counter){
-counter.textContent=
-"PAGE "+(currentComicPage+1)+" OF "+COMIC_PAGES.length;
-}
-
-const atStart=currentComicPage===0;
-const atEnd=currentComicPage===COMIC_PAGES.length-1;
-
-if(leftArrow)leftArrow.disabled=atStart;
-if(rightArrow)rightArrow.disabled=atEnd;
-if(leftHit)leftHit.disabled=atStart;
-if(rightHit)rightHit.disabled=atEnd;
-}
-
-function previousComicPage(){
-if(currentComicPage<=0)return;
-currentComicPage--;
-renderComicPage();
-}
-
-function nextComicPage(){
-if(currentComicPage>=COMIC_PAGES.length-1)return;
-currentComicPage++;
-renderComicPage();
-}
-
-document.addEventListener("keydown",function(event){
-
-const modal=document.getElementById("comic-modal");
-
-if(!modal||!modal.classList.contains("open"))return;
-
-if(event.key==="Escape"){
-closeComicReader();
-return;
-}
-
-if(event.key==="ArrowLeft"){
-previousComicPage();
-return;
-}
-
-if(event.key==="ArrowRight"){
-nextComicPage();
-}
-});
-
-document.addEventListener("click",function(event){
-
-const modal=document.getElementById("comic-modal");
-
-if(
-modal&&
-modal.classList.contains("open")&&
-event.target===modal
-){
-closeComicReader();
-}
-});
 
 /**************************************************************
  HELPERS
@@ -2103,8 +1096,7 @@ renderLineups(orderedTeams,nflScoreboard);
 /**************************************************************
  NFL SCOREBOARD
 **************************************************************/
-
-function renderNFLScoreboard(scoreboard){
+ function renderNFLScoreboard(scoreboard){
 
 const container=document.getElementById("nfl-games");
 const weekLabel=document.getElementById("nfl-week-label");
@@ -2225,7 +1217,8 @@ ${closeTag}
 
 }).join("");
 }
- /**************************************************************
+
+/**************************************************************
  FORMAT NFL DATE
 **************************************************************/
 
@@ -2589,8 +1582,6 @@ Please refresh the page in a moment.
  START WEBSITE
 **************************************************************/
 
-drawLeagueWheels();
-
 loadFantasyData();
 
 /*
@@ -2615,3 +1606,4 @@ loadFantasyData,
 
 </body>
 </html>
+ 
