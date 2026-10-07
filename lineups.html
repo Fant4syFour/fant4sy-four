@@ -20,6 +20,12 @@
   box-sizing: border-box;
 }
 
+:root {
+  --accent: #4fa8ff;
+  --accent-soft: rgba(79,168,255,.15);
+  --accent-border: rgba(79,168,255,.45);
+}
+
 body {
 
   margin: 0;
@@ -45,7 +51,8 @@ body {
 
 
 /**************************************************************
- HEADER
+ LOGIN HEADER
+ Only shown before manager login.
 **************************************************************/
 
 .site-header {
@@ -53,8 +60,8 @@ body {
   text-align: center;
 
   padding:
-    28px 18px
-    20px;
+    24px 18px
+    18px;
 
   border-bottom:
     1px solid
@@ -65,13 +72,17 @@ body {
 
 }
 
+.site-header.hidden {
+  display: none;
+}
+
 .brand {
 
   font-size:
     clamp(
-      28px,
+      27px,
       6vw,
-      52px
+      48px
     );
 
   font-weight: 900;
@@ -82,11 +93,11 @@ body {
 
 .subtitle {
 
-  margin-top: 7px;
+  margin-top: 6px;
 
   color: #aebbd1;
 
-  font-size: 14px;
+  font-size: 13px;
 
   text-transform: uppercase;
 
@@ -103,13 +114,13 @@ main {
 
   width:
     min(
-      1100px,
+      1120px,
       calc(100% - 28px)
     );
 
   margin:
-    28px auto
-    70px;
+    25px auto
+    65px;
 
 }
 
@@ -121,7 +132,7 @@ main {
 .panel {
 
   background:
-    rgba(11,20,38,.94);
+    rgba(11,20,38,.96);
 
   border:
     1px solid
@@ -148,7 +159,7 @@ main {
   max-width: 520px;
 
   margin:
-    45px auto 0;
+    40px auto 0;
 
 }
 
@@ -220,11 +231,11 @@ select:focus {
 
   outline: none;
 
-  border-color: #72b7ff;
+  border-color: var(--accent);
 
   box-shadow:
     0 0 0 3px
-    rgba(114,183,255,.15);
+    var(--accent-soft);
 
 }
 
@@ -278,7 +289,7 @@ button:disabled {
 
 
 /**************************************************************
- STATUS MESSAGE
+ STATUS MESSAGES
 **************************************************************/
 
 .message {
@@ -337,47 +348,157 @@ button:disabled {
 
 }
 
-.manager-header {
+
+/**************************************************************
+ COMPACT FRANCHISE HEADER
+**************************************************************/
+
+.franchise-header {
 
   display: flex;
 
   align-items: center;
 
-  justify-content:
-    space-between;
+  gap: 20px;
 
-  gap: 16px;
+  padding-bottom: 18px;
 
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.10);
 
 }
 
-.manager-name {
+.franchise-art-wrap {
+
+  flex:
+    0 0 108px;
+
+  width: 108px;
+
+  height: 125px;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  border:
+    2px solid
+    var(--accent-border);
+
+  background: #050a12;
+
+  box-shadow:
+    0 0 24px
+    var(--accent-soft);
+
+}
+
+.franchise-art {
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  object-position: top center;
+
+}
+
+.franchise-info {
+
+  min-width: 0;
+
+  flex: 1;
+
+}
+
+.franchise-name {
 
   margin: 0;
 
   font-size:
     clamp(
-      26px,
+      25px,
       5vw,
       40px
     );
 
+  line-height: 1;
+
   font-weight: 900;
-
-}
-
-.week-label {
-
-  margin-top: 5px;
-
-  color: #9dacbf;
-
-  font-size: 13px;
 
   text-transform: uppercase;
 
-  letter-spacing: 1.5px;
+  letter-spacing: .5px;
+
+}
+
+.manager-line {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 9px;
+
+  color: #aebbd1;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+}
+
+.manager-dot {
+
+  color: var(--accent);
+
+}
+
+.week-pill {
+
+  display: inline-block;
+
+  margin-top: 12px;
+
+  padding:
+    6px 10px;
+
+  border-radius: 999px;
+
+  background:
+    var(--accent-soft);
+
+  border:
+    1px solid
+    var(--accent-border);
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+
+}
+
+.header-actions {
+
+  flex:
+    0 0 auto;
 
 }
 
@@ -389,9 +510,15 @@ button:disabled {
 
 }
 
+.logout-button:hover {
+
+  background: #34435e;
+
+}
+
 
 /**************************************************************
- EXPLANATION
+ RULES NOTE
 **************************************************************/
 
 .rules-note {
@@ -399,9 +526,13 @@ button:disabled {
   margin-bottom: 22px;
 
   padding:
-    14px 16px;
+    13px 15px;
 
   border-radius: 12px;
+
+  border-left:
+    3px solid
+    var(--accent);
 
   background:
     rgba(255,255,255,.045);
@@ -416,15 +547,27 @@ button:disabled {
 
 
 /**************************************************************
- SECTIONS
+ SECTION HEADERS
 **************************************************************/
 
-.section-title {
+.section-heading {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
 
   margin:
     28px 0 12px;
 
-  font-size: 18px;
+}
+
+.section-title {
+
+  margin: 0;
+
+  font-size: 19px;
 
   font-weight: 900;
 
@@ -434,20 +577,55 @@ button:disabled {
 
 }
 
+.section-count {
+
+  color: #65df7b;
+
+  font-size: 15px;
+
+  font-weight: 900;
+
+}
+
+
+/**************************************************************
+ ROSTER GRID
+**************************************************************/
+
 .roster-grid {
 
   display: grid;
 
   grid-template-columns:
     repeat(
-      auto-fit,
+      3,
       minmax(
-        245px,
+        0,
         1fr
       )
     );
 
   gap: 12px;
+
+}
+
+#benchGrid {
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+}
+
+#sleeperGrid {
+
+  grid-template-columns:
+    1fr;
 
 }
 
@@ -459,6 +637,8 @@ button:disabled {
 .player-card {
 
   position: relative;
+
+  min-width: 0;
 
   padding: 15px;
 
@@ -475,11 +655,22 @@ button:disabled {
       #0b1527
     );
 
+  transition:
+    border-color .2s ease,
+    transform .2s ease;
+
+}
+
+.player-card:not(.locked):not(.sleeper):hover {
+
+  border-color:
+    var(--accent-border);
+
 }
 
 .player-card.locked {
 
-  opacity: .7;
+  opacity: .72;
 
   border-color: #596171;
 
@@ -487,7 +678,8 @@ button:disabled {
 
 .player-card.sleeper {
 
-  border-color: #8c65d9;
+  border-color:
+    rgba(155,95,255,.55);
 
   background:
     linear-gradient(
@@ -505,13 +697,20 @@ button:disabled {
   justify-content:
     space-between;
 
+  align-items:
+    flex-start;
+
   gap: 10px;
 
 }
 
 .player-name {
 
+  min-width: 0;
+
   font-size: 17px;
+
+  line-height: 1.2;
 
   font-weight: 900;
 
@@ -519,9 +718,21 @@ button:disabled {
 
 .slot {
 
-  color: #75baff;
+  flex:
+    0 0 auto;
 
-  font-size: 13px;
+  padding:
+    4px 7px;
+
+  border-radius: 6px;
+
+  background:
+    var(--accent-soft);
+
+  color:
+    var(--accent);
+
+  font-size: 11px;
 
   font-weight: 900;
 
@@ -529,11 +740,13 @@ button:disabled {
 
 .player-meta {
 
-  margin-top: 6px;
+  margin-top: 7px;
 
   color: #a8b6ca;
 
   font-size: 13px;
+
+  font-weight: 700;
 
 }
 
@@ -613,7 +826,12 @@ button:disabled {
 
   padding: 10px;
 
-  background: #243b62;
+  background:
+    rgba(47,140,255,.30);
+
+  border:
+    1px solid
+    rgba(79,168,255,.28);
 
   color: white;
 
@@ -621,7 +839,25 @@ button:disabled {
 
 .move-button:hover {
 
-  background: #315184;
+  background:
+    rgba(47,140,255,.48);
+
+}
+
+
+/**************************************************************
+ SLEEPER CARD
+**************************************************************/
+
+.player-card.sleeper {
+
+  padding: 17px;
+
+}
+
+.player-card.sleeper .player-top {
+
+  max-width: 600px;
 
 }
 
@@ -647,7 +883,7 @@ button:disabled {
   padding: 20px;
 
   background:
-    rgba(0,0,0,.78);
+    rgba(0,0,0,.80);
 
 }
 
@@ -749,8 +985,12 @@ button:disabled {
 
   justify-content: center;
 
+  padding: 25px;
+
+  text-align: center;
+
   background:
-    rgba(3,7,17,.84);
+    rgba(3,7,17,.88);
 
   font-size: 18px;
 
@@ -766,6 +1006,31 @@ button:disabled {
 
 
 /**************************************************************
+ TABLET
+**************************************************************/
+
+@media (
+  max-width: 900px
+) {
+
+  .roster-grid,
+  #benchGrid {
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+
+  }
+
+}
+
+
+/**************************************************************
  MOBILE
 **************************************************************/
 
@@ -776,32 +1041,150 @@ button:disabled {
   main {
 
     width:
-      min(
-        100% - 18px,
-        1100px
-      );
+      calc(100% - 16px);
 
-    margin-top: 18px;
+    margin:
+      14px auto
+      45px;
 
   }
 
   .panel {
 
-    padding: 16px;
+    padding: 14px;
+
+    border-radius: 14px;
 
   }
 
-  .manager-header {
+  .franchise-header {
 
-    align-items: flex-start;
+    position: relative;
 
-    flex-direction: column;
+    gap: 13px;
+
+    align-items:
+      flex-start;
+
+    padding-right: 0;
+
+  }
+
+  .franchise-art-wrap {
+
+    flex:
+      0 0 78px;
+
+    width: 78px;
+
+    height: 92px;
+
+    border-radius: 10px;
+
+  }
+
+  .franchise-name {
+
+    font-size: 23px;
+
+  }
+
+  .manager-line {
+
+    margin-top: 6px;
+
+    font-size: 12px;
+
+  }
+
+  .week-pill {
+
+    margin-top: 8px;
+
+    padding:
+      5px 8px;
+
+    font-size: 10px;
+
+  }
+
+  .header-actions {
+
+    position: absolute;
+
+    right: 0;
+
+    bottom: 16px;
 
   }
 
   .logout-button {
 
-    width: 100%;
+    padding:
+      8px 10px;
+
+    font-size: 11px;
+
+  }
+
+  .rules-note {
+
+    font-size: 12px;
+
+  }
+
+  .roster-grid,
+  #benchGrid {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+  .section-heading {
+
+    margin-top: 24px;
+
+  }
+
+}
+
+
+/**************************************************************
+ VERY SMALL MOBILE
+**************************************************************/
+
+@media (
+  max-width: 390px
+) {
+
+  .franchise-art-wrap {
+
+    flex-basis: 68px;
+
+    width: 68px;
+
+    height: 82px;
+
+  }
+
+  .franchise-name {
+
+    font-size: 20px;
+
+  }
+
+  .header-actions {
+
+    position: static;
+
+    margin-left: auto;
+
+  }
+
+  .logout-button {
+
+    padding: 8px;
 
   }
 
@@ -815,7 +1198,10 @@ button:disabled {
 <body>
 
 
-<header class="site-header">
+<header
+  id="siteHeader"
+  class="site-header"
+>
 
   <div class="brand">
     THE FANT4SY FOUR
@@ -915,34 +1301,68 @@ button:disabled {
     class="panel"
   >
 
-    <div class="manager-header">
 
-      <div>
+    <!-- COMPACT TEAM IDENTITY -->
+
+    <div class="franchise-header">
+
+      <div class="franchise-art-wrap">
+
+        <img
+          id="franchiseArt"
+          class="franchise-art"
+          src=""
+          alt=""
+        >
+
+      </div>
+
+
+      <div class="franchise-info">
 
         <h1
-          id="managerHeading"
-          class="manager-name"
+          id="franchiseName"
+          class="franchise-name"
         >
-          Manager
+          Team
         </h1>
 
-        <div
-          id="weekHeading"
-          class="week-label"
-        >
-          Week 5 Lineup
+
+        <div class="manager-line">
+
+          <span id="managerHeading">
+            Manager
+          </span>
+
+          <span class="manager-dot">
+            •
+          </span>
+
+          <span id="weekHeading">
+            Week 5 Lineup
+          </span>
+
+        </div>
+
+
+        <div class="week-pill">
+          Lineup Command Center
         </div>
 
       </div>
 
 
-      <button
-        id="logoutButton"
-        class="logout-button"
-        type="button"
-      >
-        Log Out
-      </button>
+      <div class="header-actions">
+
+        <button
+          id="logoutButton"
+          class="logout-button"
+          type="button"
+        >
+          Log Out
+        </button>
+
+      </div>
 
     </div>
 
@@ -954,8 +1374,8 @@ button:disabled {
 
       Players lock when their game begins.
 
-      The Sleeper is protected and is used only as the
-      league tiebreaker.
+      The Sleeper is protected and used only as the league
+      tiebreaker.
 
     </div>
 
@@ -966,9 +1386,22 @@ button:disabled {
     ></div>
 
 
-    <h2 class="section-title">
-      Starting Lineup
-    </h2>
+    <!-- STARTERS -->
+
+    <div class="section-heading">
+
+      <h2 class="section-title">
+        Starting Lineup
+      </h2>
+
+      <span
+        id="starterCount"
+        class="section-count"
+      >
+        9/9
+      </span>
+
+    </div>
 
     <div
       id="starterGrid"
@@ -976,9 +1409,22 @@ button:disabled {
     ></div>
 
 
-    <h2 class="section-title">
-      Bench
-    </h2>
+    <!-- BENCH -->
+
+    <div class="section-heading">
+
+      <h2 class="section-title">
+        Bench
+      </h2>
+
+      <span
+        id="benchCount"
+        class="section-count"
+      >
+        4/4
+      </span>
+
+    </div>
 
     <div
       id="benchGrid"
@@ -986,14 +1432,28 @@ button:disabled {
     ></div>
 
 
-    <h2 class="section-title">
-      Sleeper
-    </h2>
+    <!-- SLEEPER -->
+
+    <div class="section-heading">
+
+      <h2 class="section-title">
+        Sleeper
+      </h2>
+
+      <span
+        id="sleeperCount"
+        class="section-count"
+      >
+        1/1
+      </span>
+
+    </div>
 
     <div
       id="sleeperGrid"
       class="roster-grid"
     ></div>
+
 
   </section>
 
@@ -1074,10 +1534,100 @@ const API_URL =
 
 
 /**************************************************************
+ ESTABLISHED FRANCHISE IDENTITIES
+
+ These use the exact cropped graphics uploaded to GitHub.
+**************************************************************/
+
+const FRANCHISE_CONFIG = {
+
+  Brad: {
+
+    teamName:
+      "Breaking Brad",
+
+    image:
+      "breaking-brad.png",
+
+    accent:
+      "#ffd22e",
+
+    accentSoft:
+      "rgba(255,210,46,.14)",
+
+    accentBorder:
+      "rgba(255,210,46,.48)"
+
+  },
+
+
+  Maria: {
+
+    teamName:
+      "The Real Housewives of the Red Zone",
+
+    image:
+      "red-zone-housewives.png",
+
+    accent:
+      "#ff4fa3",
+
+    accentSoft:
+      "rgba(255,79,163,.14)",
+
+    accentBorder:
+      "rgba(255,79,163,.48)"
+
+  },
+
+
+  Mackenzie: {
+
+    teamName:
+      "Mack Around & Find Out",
+
+    image:
+      "mack-around.png",
+
+    accent:
+      "#24d9f5",
+
+    accentSoft:
+      "rgba(36,217,245,.14)",
+
+    accentBorder:
+      "rgba(36,217,245,.48)"
+
+  },
+
+
+  Madison: {
+
+    teamName:
+      "Maddie's Anatomy",
+
+    image:
+      "maddies-anatomy.png",
+
+    accent:
+      "#ff476b",
+
+    accentSoft:
+      "rgba(255,71,107,.14)",
+
+    accentBorder:
+      "rgba(255,71,107,.48)"
+
+  }
+
+};
+
+
+/**************************************************************
  SESSION STATE
 
- PIN exists only in this page's memory.
- We intentionally do NOT put it in localStorage.
+ PIN exists only in memory.
+ It is NOT stored in localStorage/sessionStorage.
 **************************************************************/
 
 let currentManager = "";
@@ -1092,6 +1642,11 @@ let selectedPlayer = null;
 /**************************************************************
  DOM
 **************************************************************/
+
+const siteHeader =
+  document.getElementById(
+    "siteHeader"
+  );
 
 const loginPanel =
   document.getElementById(
@@ -1136,6 +1691,31 @@ const managerHeading =
 const weekHeading =
   document.getElementById(
     "weekHeading"
+  );
+
+const franchiseName =
+  document.getElementById(
+    "franchiseName"
+  );
+
+const franchiseArt =
+  document.getElementById(
+    "franchiseArt"
+  );
+
+const starterCount =
+  document.getElementById(
+    "starterCount"
+  );
+
+const benchCount =
+  document.getElementById(
+    "benchCount"
+  );
+
+const sleeperCount =
+  document.getElementById(
+    "sleeperCount"
   );
 
 const starterGrid =
@@ -1191,11 +1771,6 @@ const saveMoveButton =
 
 /**************************************************************
  API REQUEST
-
- text/plain avoids unnecessary browser CORS preflight
- complications with Apps Script Web Apps.
-
- Apps Script still receives JSON in e.postData.contents.
 **************************************************************/
 
 async function apiRequest(
@@ -1210,8 +1785,10 @@ async function apiRequest(
         method: "POST",
 
         headers: {
+
           "Content-Type":
             "text/plain;charset=utf-8"
+
         },
 
         body:
@@ -1252,6 +1829,73 @@ async function apiRequest(
 
 
   return data;
+
+}
+
+
+/**************************************************************
+ APPLY MANAGER / FRANCHISE IDENTITY
+**************************************************************/
+
+function applyFranchiseIdentity(
+  manager
+) {
+
+  const config =
+    FRANCHISE_CONFIG[
+      manager
+    ];
+
+
+  if (!config) {
+
+    franchiseName.textContent =
+      manager;
+
+    franchiseArt.src = "";
+
+    franchiseArt.alt =
+      manager;
+
+    return;
+
+  }
+
+
+  franchiseName.textContent =
+    config.teamName;
+
+
+  franchiseArt.src =
+    config.image;
+
+
+  franchiseArt.alt =
+    config.teamName;
+
+
+  document.documentElement
+    .style
+    .setProperty(
+      "--accent",
+      config.accent
+    );
+
+
+  document.documentElement
+    .style
+    .setProperty(
+      "--accent-soft",
+      config.accentSoft
+    );
+
+
+  document.documentElement
+    .style
+    .setProperty(
+      "--accent-border",
+      config.accentBorder
+    );
 
 }
 
@@ -1306,10 +1950,6 @@ async function login() {
 
   try {
 
-    /*
-     First authenticate.
-    */
-
     const auth =
       await apiRequest({
 
@@ -1338,11 +1978,6 @@ async function login() {
     }
 
 
-    /*
-     Store credentials only in memory after
-     successful authentication.
-    */
-
     currentManager =
       manager;
 
@@ -1350,9 +1985,10 @@ async function login() {
       pin;
 
 
-    /*
-     Now load authoritative roster.
-    */
+    applyFranchiseIdentity(
+      manager
+    );
+
 
     await loadRoster();
 
@@ -1360,8 +1996,14 @@ async function login() {
     pinInput.value = "";
 
 
+    siteHeader.classList.add(
+      "hidden"
+    );
+
+
     loginPanel.style.display =
       "none";
+
 
     commandCenter.style.display =
       "block";
@@ -1442,6 +2084,12 @@ async function loadRoster() {
     " Lineup";
 
 
+  applyFranchiseIdentity(
+    data.manager ||
+    currentManager
+  );
+
+
   renderRoster();
 
 }
@@ -1501,6 +2149,21 @@ function renderRoster() {
 
       }
     );
+
+
+  starterCount.textContent =
+    starters.length +
+    "/9";
+
+
+  benchCount.textContent =
+    bench.length +
+    "/4";
+
+
+  sleeperCount.textContent =
+    sleepers.length +
+    "/1";
 
 
   starters.forEach(
@@ -1772,16 +2435,8 @@ function createPlayerCard(
   /************************************************************
    MOVE BUTTON
 
-   Sleeper can never move.
-
-   Locked players do not receive a move button.
-
-   Starter-to-starter direct rearrangement is not needed
-   for the first version because a bench player replaces
-   the occupant of the selected target slot.
-
-   A current starter may also be selected later if we
-   expand the interface to support slot-to-slot moves.
+   Only unlocked Bench players can initiate a move.
+   Server remains authoritative.
   ************************************************************/
 
   if (
@@ -1936,6 +2591,11 @@ function openMoveModal(
     player;
 
 
+  clearMessage(
+    commandMessage
+  );
+
+
   movePlayerText.textContent =
     "Choose which starting slot " +
     player.player +
@@ -1971,10 +2631,10 @@ function openMoveModal(
 
 
       /*
-       If the current starter in that slot is locked,
-       don't even offer the slot in the interface.
+       Don't offer a slot occupied by a player
+       whose game is already locked.
 
-       The server independently checks this again.
+       Server independently checks again.
       */
 
       if (
@@ -2165,13 +2825,6 @@ async function saveMove() {
 
   } catch (error) {
 
-    /*
-     Server is authoritative.
-
-     If a game kicked off between page load and clicking
-     Save, the server rejects the move here.
-    */
-
     closeMoveModal();
 
 
@@ -2184,8 +2837,7 @@ async function saveMove() {
 
 
     /*
-     Refresh roster after a rejected move when possible,
-     so displayed locks/assignments stay current.
+     Refresh authoritative state after a rejection.
     */
 
     try {
@@ -2221,10 +2873,6 @@ async function saveMove() {
 
 function logout() {
 
-  /*
-   Destroy the in-memory credentials.
-  */
-
   currentManager = "";
 
   currentPin = "";
@@ -2246,6 +2894,14 @@ function logout() {
   sleeperGrid.innerHTML = "";
 
 
+  franchiseArt.src = "";
+
+  franchiseArt.alt = "";
+
+  franchiseName.textContent =
+    "Team";
+
+
   clearMessage(
     loginMessage
   );
@@ -2258,8 +2914,38 @@ function logout() {
   commandCenter.style.display =
     "none";
 
+
   loginPanel.style.display =
     "block";
+
+
+  siteHeader.classList.remove(
+    "hidden"
+  );
+
+
+  document.documentElement
+    .style
+    .setProperty(
+      "--accent",
+      "#4fa8ff"
+    );
+
+
+  document.documentElement
+    .style
+    .setProperty(
+      "--accent-soft",
+      "rgba(79,168,255,.15)"
+    );
+
+
+  document.documentElement
+    .style
+    .setProperty(
+      "--accent-border",
+      "rgba(79,168,255,.45)"
+    );
 
 }
 
