@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -363,118 +364,6 @@ main{
 }
 
 /* =========================================================
-   ISSUE TWO / COMING SOON
-========================================================= */
-
-.issue.coming{
-  border-color:#50346e;
-}
-
-.issue.coming .issue-number{
-  color:var(--purple);
-}
-
-.coming-cover{
-  position:relative;
-  width:min(360px,90%);
-  aspect-ratio:.68;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  border:1px solid #61418a;
-  background:
-    radial-gradient(
-      circle at 50% 35%,
-      rgba(156,77,255,.32),
-      transparent 32%
-    ),
-    linear-gradient(
-      145deg,
-      #27133e,
-      #0c0911 60%
-    );
-  box-shadow:
-    0 20px 45px rgba(0,0,0,.75),
-    0 0 35px rgba(156,77,255,.18);
-}
-
-.coming-cover:before{
-  content:"🔮";
-  position:absolute;
-  top:14%;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:clamp(75px,11vw,125px);
-  filter:drop-shadow(0 0 22px #9c4dff);
-}
-
-.coming-inner{
-  position:relative;
-  z-index:2;
-  margin-top:45%;
-  padding:20px;
-  text-align:center;
-}
-
-.coming-f4sn{
-  color:var(--blue);
-  font-size:16px;
-  font-weight:1000;
-  letter-spacing:3px;
-}
-
-.coming-title{
-  margin-top:12px;
-  color:white;
-  font-size:clamp(26px,4vw,42px);
-  line-height:.92;
-  font-weight:1000;
-}
-
-.coming-title span{
-  color:var(--red);
-}
-
-.coming-text{
-  margin-top:17px;
-  color:#c7afd9;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:1px;
-}
-
-.shame-stamp{
-  position:absolute;
-  left:50%;
-  bottom:11%;
-  transform:
-    translateX(-50%)
-    rotate(-7deg);
-  padding:8px 13px;
-  border:4px solid var(--red);
-  color:var(--red);
-  font-size:17px;
-  font-weight:1000;
-  white-space:nowrap;
-  opacity:.9;
-}
-
-.disabled-button{
-  display:block;
-  width:100%;
-  margin-top:18px;
-  padding:13px 15px;
-  border:1px solid #49385c;
-  border-radius:6px;
-  background:#1c1426;
-  color:#8e7aa3;
-  text-align:center;
-  font-size:11px;
-  font-weight:1000;
-}
-
-/* =========================================================
    ARCHIVE BAR
 ========================================================= */
 
@@ -569,7 +458,6 @@ footer strong{
 
 </header>
 
-
 <!-- =====================================================
      NETWORK BAR
 ===================================================== -->
@@ -590,7 +478,6 @@ footer strong{
   </span>
 
 </div>
-
 
 <!-- =====================================================
      NAVIGATION
@@ -628,13 +515,11 @@ footer strong{
 
 </nav>
 
-
 <!-- =====================================================
      CONTENT
 ===================================================== -->
 
 <main>
-
 
 <!-- =====================================================
      COMICS NETWORK INTRO
@@ -668,7 +553,6 @@ footer strong{
 
 </section>
 
-
 <!-- =====================================================
      TITLE
 ===================================================== -->
@@ -690,13 +574,11 @@ footer strong{
 
   </p>
 
-
 <!-- =====================================================
      ISSUES
 ===================================================== -->
 
   <div class="newsstand">
-
 
     <!-- =================================================
          ISSUE #1
@@ -716,7 +598,6 @@ footer strong{
 
       </div>
 
-
       <div class="issue-cover-wrap">
 
         <img
@@ -726,7 +607,6 @@ footer strong{
         >
 
       </div>
-
 
       <div class="issue-info">
 
@@ -759,12 +639,11 @@ footer strong{
 
     </article>
 
-
     <!-- =================================================
-         ISSUE #2
+         ISSUE #2 — AVAILABLE NOW
     ================================================== -->
 
-    <article class="issue coming">
+    <article class="issue">
 
       <div class="issue-top">
 
@@ -772,49 +651,21 @@ footer strong{
           ISSUE #002
         </span>
 
-        <span class="issue-status"
-              style="color:#b17aff;">
-          IN PRODUCTION
+        <span class="issue-status">
+          ● AVAILABLE NOW
         </span>
 
       </div>
 
-
       <div class="issue-cover-wrap">
 
-        <div class="coming-cover">
-
-          <div class="coming-inner">
-
-            <div class="coming-f4sn">
-              F4SN COMICS
-            </div>
-
-            <div class="coming-title">
-
-              THE ORACLE'S
-              <br>
-              <span>HALL OF SHAME</span>
-
-            </div>
-
-            <div class="coming-text">
-
-              A WEEKLY RECAP OF
-              QUESTIONABLE DECISIONS
-
-            </div>
-
-          </div>
-
-          <div class="shame-stamp">
-            INDUCTION PENDING
-          </div>
-
-        </div>
+        <img
+          src="comics/issue-2/cover.png"
+          alt="F4SN Comics Issue 2 — The Oracle Goes to Court"
+          class="issue-cover"
+        >
 
       </div>
-
 
       <div class="issue-info">
 
@@ -823,31 +674,32 @@ footer strong{
         </h2>
 
         <div class="issue-subtitle">
-          THE ORACLE ANSWERS FOR HIS CRIMES
+          THE ORACLE GOES TO COURT
         </div>
 
         <div class="issue-description">
 
-          The latest Fant4sy Four chaos gets the
-          full F4SN treatment — culminating in the
-          historic first induction into the
-          F4SN Hall of Shame.
+          The Fantasy Oracle finally faces justice!
+          The latest Fant4sy Four chaos reaches the courtroom,
+          where questionable decisions, family accusations,
+          and the legendary Hall of Shame take center stage.
 
         </div>
 
-        <div class="disabled-button">
-          COMING SOON
-        </div>
+        <a
+          class="issue-button"
+          href="comics/issue-2/index.html"
+        >
+          READ ISSUE #2
+        </a>
 
       </div>
 
     </article>
 
-
   </div>
 
 </section>
-
 
 <!-- =====================================================
      ARCHIVE
@@ -876,9 +728,7 @@ footer strong{
 
 </section>
 
-
 </main>
-
 
 <!-- =====================================================
      FOOTER
