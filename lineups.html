@@ -1,0 +1,2409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+  The Fant4sy Four – Lineup Command Center
+</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+
+  margin: 0;
+
+  min-height: 100vh;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #182d52 0%,
+      #0a1428 42%,
+      #030711 100%
+    );
+
+  color: #ffffff;
+
+}
+
+
+/**************************************************************
+ HEADER
+**************************************************************/
+
+.site-header {
+
+  text-align: center;
+
+  padding:
+    28px 18px
+    20px;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.12);
+
+  background:
+    rgba(0,0,0,.28);
+
+}
+
+.brand {
+
+  font-size:
+    clamp(
+      28px,
+      6vw,
+      52px
+    );
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+}
+
+.subtitle {
+
+  margin-top: 7px;
+
+  color: #aebbd1;
+
+  font-size: 14px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 2px;
+
+}
+
+
+/**************************************************************
+ MAIN
+**************************************************************/
+
+main {
+
+  width:
+    min(
+      1100px,
+      calc(100% - 28px)
+    );
+
+  margin:
+    28px auto
+    70px;
+
+}
+
+
+/**************************************************************
+ PANELS
+**************************************************************/
+
+.panel {
+
+  background:
+    rgba(11,20,38,.94);
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  border-radius:
+    18px;
+
+  box-shadow:
+    0 18px 50px
+    rgba(0,0,0,.35);
+
+  padding: 22px;
+
+}
+
+
+/**************************************************************
+ LOGIN
+**************************************************************/
+
+#loginPanel {
+
+  max-width: 520px;
+
+  margin:
+    45px auto 0;
+
+}
+
+.panel-title {
+
+  margin:
+    0 0 8px;
+
+  font-size: 25px;
+
+  font-weight: 900;
+
+}
+
+.panel-copy {
+
+  margin:
+    0 0 22px;
+
+  color: #aebbd1;
+
+  line-height: 1.5;
+
+}
+
+label {
+
+  display: block;
+
+  margin:
+    15px 0 7px;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  color: #cbd6e8;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+
+}
+
+select,
+input {
+
+  width: 100%;
+
+  padding:
+    13px 14px;
+
+  border-radius: 10px;
+
+  border:
+    1px solid
+    #34435e;
+
+  background: #091326;
+
+  color: #ffffff;
+
+  font-size: 16px;
+
+}
+
+input:focus,
+select:focus {
+
+  outline: none;
+
+  border-color: #72b7ff;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(114,183,255,.15);
+
+}
+
+button {
+
+  border: 0;
+
+  border-radius: 10px;
+
+  padding:
+    13px 18px;
+
+  font-size: 15px;
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+}
+
+.primary-button {
+
+  width: 100%;
+
+  margin-top: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2f8cff,
+      #6d55ff
+    );
+
+  color: white;
+
+}
+
+.primary-button:hover {
+
+  filter: brightness(1.08);
+
+}
+
+button:disabled {
+
+  cursor: not-allowed;
+
+  opacity: .55;
+
+}
+
+
+/**************************************************************
+ STATUS MESSAGE
+**************************************************************/
+
+.message {
+
+  display: none;
+
+  margin-top: 16px;
+
+  padding:
+    12px 14px;
+
+  border-radius: 10px;
+
+  line-height: 1.4;
+
+}
+
+.message.error {
+
+  display: block;
+
+  background:
+    rgba(220,53,69,.15);
+
+  border:
+    1px solid
+    rgba(255,87,103,.5);
+
+  color: #ffadb5;
+
+}
+
+.message.success {
+
+  display: block;
+
+  background:
+    rgba(32,201,151,.12);
+
+  border:
+    1px solid
+    rgba(32,201,151,.4);
+
+  color: #83e8c8;
+
+}
+
+
+/**************************************************************
+ COMMAND CENTER
+**************************************************************/
+
+#commandCenter {
+
+  display: none;
+
+}
+
+.manager-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 16px;
+
+  margin-bottom: 20px;
+
+}
+
+.manager-name {
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      26px,
+      5vw,
+      40px
+    );
+
+  font-weight: 900;
+
+}
+
+.week-label {
+
+  margin-top: 5px;
+
+  color: #9dacbf;
+
+  font-size: 13px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1.5px;
+
+}
+
+.logout-button {
+
+  background: #27334a;
+
+  color: white;
+
+}
+
+
+/**************************************************************
+ EXPLANATION
+**************************************************************/
+
+.rules-note {
+
+  margin-bottom: 22px;
+
+  padding:
+    14px 16px;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255,255,255,.045);
+
+  color: #bac7d9;
+
+  line-height: 1.5;
+
+  font-size: 14px;
+
+}
+
+
+/**************************************************************
+ SECTIONS
+**************************************************************/
+
+.section-title {
+
+  margin:
+    28px 0 12px;
+
+  font-size: 18px;
+
+  font-weight: 900;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+
+}
+
+.roster-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(
+        245px,
+        1fr
+      )
+    );
+
+  gap: 12px;
+
+}
+
+
+/**************************************************************
+ PLAYER CARD
+**************************************************************/
+
+.player-card {
+
+  position: relative;
+
+  padding: 15px;
+
+  border-radius: 13px;
+
+  border:
+    1px solid
+    #2d3c56;
+
+  background:
+    linear-gradient(
+      145deg,
+      #111d32,
+      #0b1527
+    );
+
+}
+
+.player-card.locked {
+
+  opacity: .7;
+
+  border-color: #596171;
+
+}
+
+.player-card.sleeper {
+
+  border-color: #8c65d9;
+
+  background:
+    linear-gradient(
+      145deg,
+      #201637,
+      #100d21
+    );
+
+}
+
+.player-top {
+
+  display: flex;
+
+  justify-content:
+    space-between;
+
+  gap: 10px;
+
+}
+
+.player-name {
+
+  font-size: 17px;
+
+  font-weight: 900;
+
+}
+
+.slot {
+
+  color: #75baff;
+
+  font-size: 13px;
+
+  font-weight: 900;
+
+}
+
+.player-meta {
+
+  margin-top: 6px;
+
+  color: #a8b6ca;
+
+  font-size: 13px;
+
+}
+
+.badges {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  margin-top: 10px;
+
+}
+
+.badge {
+
+  display: inline-block;
+
+  padding:
+    4px 8px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  text-transform: uppercase;
+
+}
+
+.injury-badge {
+
+  background: #6b4d12;
+
+  color: #ffd66b;
+
+}
+
+.lock-badge {
+
+  background: #4c5260;
+
+  color: #e6e8ec;
+
+}
+
+.sleeper-badge {
+
+  background: #51358b;
+
+  color: #e6d7ff;
+
+}
+
+
+/**************************************************************
+ MOVE CONTROLS
+**************************************************************/
+
+.move-area {
+
+  margin-top: 12px;
+
+  padding-top: 12px;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.08);
+
+}
+
+.move-button {
+
+  width: 100%;
+
+  padding: 10px;
+
+  background: #243b62;
+
+  color: white;
+
+}
+
+.move-button:hover {
+
+  background: #315184;
+
+}
+
+
+/**************************************************************
+ MOVE MODAL
+**************************************************************/
+
+.modal-backdrop {
+
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1000;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  background:
+    rgba(0,0,0,.78);
+
+}
+
+.modal {
+
+  width:
+    min(
+      480px,
+      100%
+    );
+
+  border-radius: 18px;
+
+  border:
+    1px solid
+    #34435e;
+
+  background: #0b1527;
+
+  padding: 22px;
+
+  box-shadow:
+    0 30px 80px
+    rgba(0,0,0,.6);
+
+}
+
+.modal h2 {
+
+  margin:
+    0 0 8px;
+
+}
+
+.modal p {
+
+  margin:
+    0 0 18px;
+
+  color: #aebbd1;
+
+  line-height: 1.45;
+
+}
+
+.modal-actions {
+
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 18px;
+
+}
+
+.modal-actions button {
+
+  flex: 1;
+
+}
+
+.cancel-button {
+
+  background: #303a4c;
+
+  color: white;
+
+}
+
+.save-button {
+
+  background:
+    linear-gradient(
+      135deg,
+      #2f8cff,
+      #6d55ff
+    );
+
+  color: white;
+
+}
+
+
+/**************************************************************
+ LOADING
+**************************************************************/
+
+.loading {
+
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 2000;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    rgba(3,7,17,.84);
+
+  font-size: 18px;
+
+  font-weight: 900;
+
+}
+
+.loading.show {
+
+  display: flex;
+
+}
+
+
+/**************************************************************
+ MOBILE
+**************************************************************/
+
+@media (
+  max-width: 600px
+) {
+
+  main {
+
+    width:
+      min(
+        100% - 18px,
+        1100px
+      );
+
+    margin-top: 18px;
+
+  }
+
+  .panel {
+
+    padding: 16px;
+
+  }
+
+  .manager-header {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+  }
+
+  .logout-button {
+
+    width: 100%;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+  <div class="brand">
+    THE FANT4SY FOUR
+  </div>
+
+  <div class="subtitle">
+    Lineup Command Center
+  </div>
+
+</header>
+
+
+<main>
+
+
+  <!-- LOGIN -->
+
+  <section
+    id="loginPanel"
+    class="panel"
+  >
+
+    <h1 class="panel-title">
+      Manager Access
+    </h1>
+
+    <p class="panel-copy">
+      Select your team and enter your private manager PIN
+      to manage your weekly lineup.
+    </p>
+
+
+    <label for="managerSelect">
+      Manager
+    </label>
+
+    <select id="managerSelect">
+
+      <option value="">
+        Select manager
+      </option>
+
+      <option value="Brad">
+        Brad
+      </option>
+
+      <option value="Maria">
+        Maria
+      </option>
+
+      <option value="Mackenzie">
+        Mackenzie
+      </option>
+
+      <option value="Madison">
+        Madison
+      </option>
+
+    </select>
+
+
+    <label for="pinInput">
+      Manager PIN
+    </label>
+
+    <input
+      id="pinInput"
+      type="password"
+      inputmode="numeric"
+      autocomplete="off"
+      placeholder="Enter PIN"
+    >
+
+
+    <button
+      id="loginButton"
+      class="primary-button"
+      type="button"
+    >
+      Enter Command Center
+    </button>
+
+
+    <div
+      id="loginMessage"
+      class="message"
+    ></div>
+
+  </section>
+
+
+
+  <!-- COMMAND CENTER -->
+
+  <section
+    id="commandCenter"
+    class="panel"
+  >
+
+    <div class="manager-header">
+
+      <div>
+
+        <h1
+          id="managerHeading"
+          class="manager-name"
+        >
+          Manager
+        </h1>
+
+        <div
+          id="weekHeading"
+          class="week-label"
+        >
+          Week 5 Lineup
+        </div>
+
+      </div>
+
+
+      <button
+        id="logoutButton"
+        class="logout-button"
+        type="button"
+      >
+        Log Out
+      </button>
+
+    </div>
+
+
+    <div class="rules-note">
+
+      Choose any legal starting nine from your usable roster
+      before the affected NFL games kick off.
+
+      Players lock when their game begins.
+
+      The Sleeper is protected and is used only as the
+      league tiebreaker.
+
+    </div>
+
+
+    <div
+      id="commandMessage"
+      class="message"
+    ></div>
+
+
+    <h2 class="section-title">
+      Starting Lineup
+    </h2>
+
+    <div
+      id="starterGrid"
+      class="roster-grid"
+    ></div>
+
+
+    <h2 class="section-title">
+      Bench
+    </h2>
+
+    <div
+      id="benchGrid"
+      class="roster-grid"
+    ></div>
+
+
+    <h2 class="section-title">
+      Sleeper
+    </h2>
+
+    <div
+      id="sleeperGrid"
+      class="roster-grid"
+    ></div>
+
+  </section>
+
+
+</main>
+
+
+
+<!-- MOVE MODAL -->
+
+<div
+  id="moveBackdrop"
+  class="modal-backdrop"
+>
+
+  <div class="modal">
+
+    <h2>
+      Move Player
+    </h2>
+
+    <p id="movePlayerText">
+      Select the starting slot for this player.
+    </p>
+
+
+    <label for="targetSlotSelect">
+      Starting Slot
+    </label>
+
+    <select id="targetSlotSelect">
+    </select>
+
+
+    <div class="modal-actions">
+
+      <button
+        id="cancelMoveButton"
+        class="cancel-button"
+        type="button"
+      >
+        Cancel
+      </button>
+
+      <button
+        id="saveMoveButton"
+        class="save-button"
+        type="button"
+      >
+        Save Move
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div
+  id="loading"
+  class="loading"
+>
+  The Oracle is consulting the Book of Stats...
+</div>
+
+
+
+<script>
+
+/**************************************************************
+ CONFIGURATION
+**************************************************************/
+
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbxZ8peC-11b7ook2LRoKnsq7hmeDkIt_2_my5taux33KaTdoBy1Rzj_26GVyasQvAB3Pw/exec";
+
+
+/**************************************************************
+ SESSION STATE
+
+ PIN exists only in this page's memory.
+ We intentionally do NOT put it in localStorage.
+**************************************************************/
+
+let currentManager = "";
+
+let currentPin = "";
+
+let currentRoster = [];
+
+let selectedPlayer = null;
+
+
+/**************************************************************
+ DOM
+**************************************************************/
+
+const loginPanel =
+  document.getElementById(
+    "loginPanel"
+  );
+
+const commandCenter =
+  document.getElementById(
+    "commandCenter"
+  );
+
+const managerSelect =
+  document.getElementById(
+    "managerSelect"
+  );
+
+const pinInput =
+  document.getElementById(
+    "pinInput"
+  );
+
+const loginButton =
+  document.getElementById(
+    "loginButton"
+  );
+
+const loginMessage =
+  document.getElementById(
+    "loginMessage"
+  );
+
+const commandMessage =
+  document.getElementById(
+    "commandMessage"
+  );
+
+const managerHeading =
+  document.getElementById(
+    "managerHeading"
+  );
+
+const weekHeading =
+  document.getElementById(
+    "weekHeading"
+  );
+
+const starterGrid =
+  document.getElementById(
+    "starterGrid"
+  );
+
+const benchGrid =
+  document.getElementById(
+    "benchGrid"
+  );
+
+const sleeperGrid =
+  document.getElementById(
+    "sleeperGrid"
+  );
+
+const logoutButton =
+  document.getElementById(
+    "logoutButton"
+  );
+
+const loading =
+  document.getElementById(
+    "loading"
+  );
+
+const moveBackdrop =
+  document.getElementById(
+    "moveBackdrop"
+  );
+
+const movePlayerText =
+  document.getElementById(
+    "movePlayerText"
+  );
+
+const targetSlotSelect =
+  document.getElementById(
+    "targetSlotSelect"
+  );
+
+const cancelMoveButton =
+  document.getElementById(
+    "cancelMoveButton"
+  );
+
+const saveMoveButton =
+  document.getElementById(
+    "saveMoveButton"
+  );
+
+
+/**************************************************************
+ API REQUEST
+
+ text/plain avoids unnecessary browser CORS preflight
+ complications with Apps Script Web Apps.
+
+ Apps Script still receives JSON in e.postData.contents.
+**************************************************************/
+
+async function apiRequest(
+  payload
+) {
+
+  const response =
+    await fetch(
+      API_URL,
+      {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "text/plain;charset=utf-8"
+        },
+
+        body:
+          JSON.stringify(payload)
+
+      }
+    );
+
+
+  if (!response.ok) {
+
+    throw new Error(
+      "Server request failed."
+    );
+
+  }
+
+
+  const text =
+    await response.text();
+
+
+  let data;
+
+
+  try {
+
+    data =
+      JSON.parse(text);
+
+  } catch (error) {
+
+    throw new Error(
+      "The lineup server returned an invalid response."
+    );
+
+  }
+
+
+  return data;
+
+}
+
+
+/**************************************************************
+ LOGIN
+**************************************************************/
+
+async function login() {
+
+  clearMessage(
+    loginMessage
+  );
+
+
+  const manager =
+    managerSelect.value;
+
+
+  const pin =
+    pinInput.value.trim();
+
+
+  if (!manager) {
+
+    showMessage(
+      loginMessage,
+      "Select your manager name.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if (!pin) {
+
+    showMessage(
+      loginMessage,
+      "Enter your manager PIN.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  setLoading(true);
+
+
+  try {
+
+    /*
+     First authenticate.
+    */
+
+    const auth =
+      await apiRequest({
+
+        action:
+          "authenticate",
+
+        manager:
+          manager,
+
+        pin:
+          pin
+
+      });
+
+
+    if (
+      !auth.success ||
+      !auth.authenticated
+    ) {
+
+      throw new Error(
+        auth.error ||
+        "Manager authentication failed."
+      );
+
+    }
+
+
+    /*
+     Store credentials only in memory after
+     successful authentication.
+    */
+
+    currentManager =
+      manager;
+
+    currentPin =
+      pin;
+
+
+    /*
+     Now load authoritative roster.
+    */
+
+    await loadRoster();
+
+
+    pinInput.value = "";
+
+
+    loginPanel.style.display =
+      "none";
+
+    commandCenter.style.display =
+      "block";
+
+
+  } catch (error) {
+
+    currentManager = "";
+
+    currentPin = "";
+
+
+    showMessage(
+      loginMessage,
+      error.message ||
+      "Login failed.",
+      "error"
+    );
+
+  } finally {
+
+    setLoading(false);
+
+  }
+
+}
+
+
+/**************************************************************
+ LOAD ROSTER
+**************************************************************/
+
+async function loadRoster() {
+
+  const data =
+    await apiRequest({
+
+      action:
+        "loadRoster",
+
+      manager:
+        currentManager,
+
+      pin:
+        currentPin
+
+    });
+
+
+  if (!data.success) {
+
+    throw new Error(
+      data.error ||
+      "Roster could not be loaded."
+    );
+
+  }
+
+
+  currentRoster =
+    Array.isArray(
+      data.players
+    )
+      ? data.players
+      : [];
+
+
+  managerHeading.textContent =
+    data.manager ||
+    currentManager;
+
+
+  weekHeading.textContent =
+    "Week " +
+    String(
+      data.week || 5
+    ) +
+    " Lineup";
+
+
+  renderRoster();
+
+}
+
+
+/**************************************************************
+ RENDER ROSTER
+**************************************************************/
+
+function renderRoster() {
+
+  starterGrid.innerHTML = "";
+
+  benchGrid.innerHTML = "";
+
+  sleeperGrid.innerHTML = "";
+
+
+  const starters =
+    currentRoster
+      .filter(
+        function(player) {
+
+          return (
+            player.rosterRole ===
+            "Starter"
+          );
+
+        }
+      )
+      .sort(
+        compareStarterSlots
+      );
+
+
+  const bench =
+    currentRoster.filter(
+      function(player) {
+
+        return (
+          player.rosterRole ===
+          "Bench"
+        );
+
+      }
+    );
+
+
+  const sleepers =
+    currentRoster.filter(
+      function(player) {
+
+        return (
+          player.rosterRole ===
+          "Sleeper"
+        );
+
+      }
+    );
+
+
+  starters.forEach(
+    function(player) {
+
+      starterGrid.appendChild(
+        createPlayerCard(
+          player
+        )
+      );
+
+    }
+  );
+
+
+  bench.forEach(
+    function(player) {
+
+      benchGrid.appendChild(
+        createPlayerCard(
+          player
+        )
+      );
+
+    }
+  );
+
+
+  sleepers.forEach(
+    function(player) {
+
+      sleeperGrid.appendChild(
+        createPlayerCard(
+          player
+        )
+      );
+
+    }
+  );
+
+}
+
+
+/**************************************************************
+ STARTER SLOT ORDER
+**************************************************************/
+
+function compareStarterSlots(
+  a,
+  b
+) {
+
+  const order = {
+
+    QB: 1,
+
+    RB1: 2,
+
+    RB2: 3,
+
+    WR1: 4,
+
+    WR2: 5,
+
+    TE: 6,
+
+    SUPERFLEX: 7,
+
+    K: 8,
+
+    "D/ST": 9
+
+  };
+
+
+  return (
+    (order[a.starterSlot] || 99) -
+    (order[b.starterSlot] || 99)
+  );
+
+}
+
+
+/**************************************************************
+ CREATE PLAYER CARD
+**************************************************************/
+
+function createPlayerCard(
+  player
+) {
+
+  const card =
+    document.createElement(
+      "div"
+    );
+
+
+  card.className =
+    "player-card";
+
+
+  if (player.locked) {
+
+    card.classList.add(
+      "locked"
+    );
+
+  }
+
+
+  if (player.sleeper) {
+
+    card.classList.add(
+      "sleeper"
+    );
+
+  }
+
+
+  const top =
+    document.createElement(
+      "div"
+    );
+
+  top.className =
+    "player-top";
+
+
+  const name =
+    document.createElement(
+      "div"
+    );
+
+  name.className =
+    "player-name";
+
+  name.textContent =
+    player.player;
+
+
+  const slot =
+    document.createElement(
+      "div"
+    );
+
+  slot.className =
+    "slot";
+
+  slot.textContent =
+    player.starterSlot;
+
+
+  top.appendChild(
+    name
+  );
+
+  top.appendChild(
+    slot
+  );
+
+
+  const meta =
+    document.createElement(
+      "div"
+    );
+
+  meta.className =
+    "player-meta";
+
+  meta.textContent =
+    player.nflTeam +
+    " · " +
+    player.position;
+
+
+  card.appendChild(
+    top
+  );
+
+  card.appendChild(
+    meta
+  );
+
+
+  /************************************************************
+   BADGES
+  ************************************************************/
+
+  const badges =
+    document.createElement(
+      "div"
+    );
+
+  badges.className =
+    "badges";
+
+
+  if (player.injuryStatus) {
+
+    const injury =
+      document.createElement(
+        "span"
+      );
+
+    injury.className =
+      "badge injury-badge";
+
+    injury.textContent =
+      player.injuryStatus;
+
+    badges.appendChild(
+      injury
+    );
+
+  }
+
+
+  if (player.locked) {
+
+    const lock =
+      document.createElement(
+        "span"
+      );
+
+    lock.className =
+      "badge lock-badge";
+
+    lock.textContent =
+      "Locked";
+
+    badges.appendChild(
+      lock
+    );
+
+  }
+
+
+  if (player.sleeper) {
+
+    const sleeper =
+      document.createElement(
+        "span"
+      );
+
+    sleeper.className =
+      "badge sleeper-badge";
+
+    sleeper.textContent =
+      "Tiebreak Only";
+
+    badges.appendChild(
+      sleeper
+    );
+
+  }
+
+
+  if (
+    badges.children.length > 0
+  ) {
+
+    card.appendChild(
+      badges
+    );
+
+  }
+
+
+  /************************************************************
+   MOVE BUTTON
+
+   Sleeper can never move.
+
+   Locked players do not receive a move button.
+
+   Starter-to-starter direct rearrangement is not needed
+   for the first version because a bench player replaces
+   the occupant of the selected target slot.
+
+   A current starter may also be selected later if we
+   expand the interface to support slot-to-slot moves.
+  ************************************************************/
+
+  if (
+    player.rosterRole ===
+      "Bench" &&
+    !player.sleeper &&
+    !player.locked
+  ) {
+
+    const moveArea =
+      document.createElement(
+        "div"
+      );
+
+    moveArea.className =
+      "move-area";
+
+
+    const moveButton =
+      document.createElement(
+        "button"
+      );
+
+    moveButton.className =
+      "move-button";
+
+    moveButton.type =
+      "button";
+
+    moveButton.textContent =
+      "Move to Starting Lineup";
+
+
+    moveButton.addEventListener(
+      "click",
+      function() {
+
+        openMoveModal(
+          player
+        );
+
+      }
+    );
+
+
+    moveArea.appendChild(
+      moveButton
+    );
+
+    card.appendChild(
+      moveArea
+    );
+
+  }
+
+
+  return card;
+
+}
+
+
+/**************************************************************
+ POSITION ELIGIBILITY
+**************************************************************/
+
+function eligibleSlotsForPlayer(
+  player
+) {
+
+  const position =
+    String(
+      player.position || ""
+    )
+      .trim()
+      .toUpperCase();
+
+
+  if (position === "QB") {
+
+    return [
+      "QB",
+      "SUPERFLEX"
+    ];
+
+  }
+
+
+  if (position === "RB") {
+
+    return [
+      "RB1",
+      "RB2",
+      "SUPERFLEX"
+    ];
+
+  }
+
+
+  if (position === "WR") {
+
+    return [
+      "WR1",
+      "WR2",
+      "SUPERFLEX"
+    ];
+
+  }
+
+
+  if (position === "TE") {
+
+    return [
+      "TE",
+      "SUPERFLEX"
+    ];
+
+  }
+
+
+  if (position === "K") {
+
+    return [
+      "K"
+    ];
+
+  }
+
+
+  if (position === "D/ST") {
+
+    return [
+      "D/ST"
+    ];
+
+  }
+
+
+  return [];
+
+}
+
+
+/**************************************************************
+ OPEN MOVE MODAL
+**************************************************************/
+
+function openMoveModal(
+  player
+) {
+
+  selectedPlayer =
+    player;
+
+
+  movePlayerText.textContent =
+    "Choose which starting slot " +
+    player.player +
+    " should enter.";
+
+
+  targetSlotSelect.innerHTML =
+    "";
+
+
+  const eligibleSlots =
+    eligibleSlotsForPlayer(
+      player
+    );
+
+
+  eligibleSlots.forEach(
+    function(slotName) {
+
+      const currentStarter =
+        currentRoster.find(
+          function(candidate) {
+
+            return (
+              candidate.rosterRole ===
+                "Starter" &&
+              candidate.starterSlot ===
+                slotName
+            );
+
+          }
+        );
+
+
+      /*
+       If the current starter in that slot is locked,
+       don't even offer the slot in the interface.
+
+       The server independently checks this again.
+      */
+
+      if (
+        currentStarter &&
+        currentStarter.locked
+      ) {
+
+        return;
+
+      }
+
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+
+      option.value =
+        slotName;
+
+
+      if (currentStarter) {
+
+        option.textContent =
+          slotName +
+          " — replace " +
+          currentStarter.player;
+
+      } else {
+
+        option.textContent =
+          slotName;
+
+      }
+
+
+      targetSlotSelect.appendChild(
+        option
+      );
+
+    }
+  );
+
+
+  if (
+    targetSlotSelect.options.length ===
+    0
+  ) {
+
+    selectedPlayer = null;
+
+
+    showMessage(
+      commandMessage,
+      "There are no unlocked legal starting slots available for that player.",
+      "error"
+    );
+
+
+    return;
+
+  }
+
+
+  moveBackdrop.style.display =
+    "flex";
+
+}
+
+
+/**************************************************************
+ CLOSE MOVE MODAL
+**************************************************************/
+
+function closeMoveModal() {
+
+  moveBackdrop.style.display =
+    "none";
+
+  selectedPlayer = null;
+
+  targetSlotSelect.innerHTML =
+    "";
+
+}
+
+
+/**************************************************************
+ SAVE MOVE
+**************************************************************/
+
+async function saveMove() {
+
+  if (!selectedPlayer) {
+
+    return;
+
+  }
+
+
+  const targetSlot =
+    targetSlotSelect.value;
+
+
+  if (!targetSlot) {
+
+    return;
+
+  }
+
+
+  const playerName =
+    selectedPlayer.player;
+
+
+  saveMoveButton.disabled =
+    true;
+
+
+  setLoading(true);
+
+
+  try {
+
+    const data =
+      await apiRequest({
+
+        action:
+          "saveMove",
+
+        manager:
+          currentManager,
+
+        pin:
+          currentPin,
+
+        player:
+          playerName,
+
+        targetSlot:
+          targetSlot
+
+      });
+
+
+    if (!data.success) {
+
+      throw new Error(
+        data.error ||
+        "Lineup move failed."
+      );
+
+    }
+
+
+    currentRoster =
+      Array.isArray(
+        data.players
+      )
+        ? data.players
+        : [];
+
+
+    closeMoveModal();
+
+
+    renderRoster();
+
+
+    const move =
+      data.move || {};
+
+
+    showMessage(
+      commandMessage,
+
+      (move.incomingPlayer ||
+        playerName) +
+      " moved to " +
+      (move.targetSlot ||
+        targetSlot) +
+      ".",
+
+      "success"
+    );
+
+
+  } catch (error) {
+
+    /*
+     Server is authoritative.
+
+     If a game kicked off between page load and clicking
+     Save, the server rejects the move here.
+    */
+
+    closeMoveModal();
+
+
+    showMessage(
+      commandMessage,
+      error.message ||
+      "Lineup move failed.",
+      "error"
+    );
+
+
+    /*
+     Refresh roster after a rejected move when possible,
+     so displayed locks/assignments stay current.
+    */
+
+    try {
+
+      await loadRoster();
+
+    } catch (
+      refreshError
+    ) {
+
+      console.error(
+        refreshError
+      );
+
+    }
+
+
+  } finally {
+
+    saveMoveButton.disabled =
+      false;
+
+    setLoading(false);
+
+  }
+
+}
+
+
+/**************************************************************
+ LOGOUT
+**************************************************************/
+
+function logout() {
+
+  /*
+   Destroy the in-memory credentials.
+  */
+
+  currentManager = "";
+
+  currentPin = "";
+
+  currentRoster = [];
+
+  selectedPlayer = null;
+
+
+  managerSelect.value = "";
+
+  pinInput.value = "";
+
+
+  starterGrid.innerHTML = "";
+
+  benchGrid.innerHTML = "";
+
+  sleeperGrid.innerHTML = "";
+
+
+  clearMessage(
+    loginMessage
+  );
+
+  clearMessage(
+    commandMessage
+  );
+
+
+  commandCenter.style.display =
+    "none";
+
+  loginPanel.style.display =
+    "block";
+
+}
+
+
+/**************************************************************
+ MESSAGE HELPERS
+**************************************************************/
+
+function showMessage(
+  element,
+  text,
+  type
+) {
+
+  element.textContent =
+    text;
+
+  element.className =
+    "message " +
+    type;
+
+}
+
+
+function clearMessage(
+  element
+) {
+
+  element.textContent = "";
+
+  element.className =
+    "message";
+
+}
+
+
+/**************************************************************
+ LOADING
+**************************************************************/
+
+function setLoading(
+  show
+) {
+
+  if (show) {
+
+    loading.classList.add(
+      "show"
+    );
+
+  } else {
+
+    loading.classList.remove(
+      "show"
+    );
+
+  }
+
+}
+
+
+/**************************************************************
+ EVENTS
+**************************************************************/
+
+loginButton.addEventListener(
+  "click",
+  login
+);
+
+
+pinInput.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key ===
+      "Enter"
+    ) {
+
+      login();
+
+    }
+
+  }
+);
+
+
+logoutButton.addEventListener(
+  "click",
+  logout
+);
+
+
+cancelMoveButton.addEventListener(
+  "click",
+  closeMoveModal
+);
+
+
+saveMoveButton.addEventListener(
+  "click",
+  saveMove
+);
+
+
+moveBackdrop.addEventListener(
+  "click",
+  function(event) {
+
+    if (
+      event.target ===
+      moveBackdrop
+    ) {
+
+      closeMoveModal();
+
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key ===
+        "Escape" &&
+      moveBackdrop.style.display ===
+        "flex"
+    ) {
+
+      closeMoveModal();
+
+    }
+
+  }
+);
+
+</script>
+
+
+</body>
+
+</html>
