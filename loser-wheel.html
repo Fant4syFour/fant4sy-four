@@ -1884,6 +1884,31 @@ footer strong{color:var(--orange)}
    BASED ON WINNER'S WHEEL V4.4 MECHANICS
 ========================================================= */
 
+/* OFFICIAL F4SN SPIN CONNECTION — configure after deployment. */
+const F4_OFFICIAL_API_URL="PASTE_NEW_APPS_SCRIPT_WEB_APP_URL_HERE";
+const F4_OFFICIAL_EARNED_WEEK=4;
+let f4OfficialSequence=null;
+let f4OfficialPosition=0;
+let f4OfficialRequestPending=false;
+async function f4RequestOfficialSpin(action){
+  if(!selectedManager) throw new Error("Select your manager first.");
+  if(!/^https:\/\/script\.google\.com\/macros\/s\//.test(F4_OFFICIAL_API_URL)){
+    throw new Error("The official wheel is not connected to the deployed Apps Script yet.");
+  }
+  const pin=window.prompt("Enter " + selectedManager + "'s manager PIN to use the official Week " + F4_OFFICIAL_EARNED_WEEK + " spin:");
+  if(pin===null) return null;
+  if(!pin.trim()) throw new Error("A manager PIN is required.");
+  const response=await fetch(F4_OFFICIAL_API_URL,{
+    method:"POST",redirect:"follow",
+    headers:{"Content-Type":"text/plain;charset=utf-8"},
+    body:JSON.stringify({action,manager:selectedManager,pin,earnedWeek:F4_OFFICIAL_EARNED_WEEK})
+  });
+  if(!response.ok) throw new Error("The official spin server returned HTTP " + response.status + ".");
+  const result=await response.json();
+  if(!result || !result.success) throw new Error((result && result.error)||"Official spin was rejected.");
+  return result;
+}
+
 let selectedManager="";
 let selectedTeam="";
 let selectedColor="#ff6a00";
@@ -3184,9 +3209,29 @@ function pullLever(){
   },550);
 }
 
-function beginSpin(){
+async function beginSpin(){
 
-  if(spinning)return;
+  if(spinning || f4OfficialRequestPending || (!doubleTroubleMode && f4OfficialSequence && f4OfficialPosition>=f4OfficialSequence.length))return;
+  if(!doubleTroubleMode){
+    f4OfficialRequestPending=true;
+    document.getElementById("spin-button").disabled=true;
+    try{
+      const result=await f4RequestOfficialSpin("spinloserwheel");
+      if(!result){document.getElementById("spin-button").disabled=false;return;}
+      if(!Array.isArray(result.sequence)||result.sequence.length<1||result.sequence.length>3||
+        result.sequence.some(item=>!Number.isInteger(item.wedgeIndex)||item.wedgeIndex<0||item.wedgeIndex>=ITEMS.length)){
+        throw new Error("Server returned an invalid penalty sequence. Contact the commissioner.");
+      }
+      f4OfficialSequence=result.sequence.map(item=>item.wedgeIndex);
+      f4OfficialPosition=0;
+    }catch(error){
+      alert("OFFICIAL SPIN NOT STARTED: " + error.message + "\nIf the server may have recorded a result, do not try again until the Wheel Ledger is checked.");
+      return;
+    }finally{f4OfficialRequestPending=false;}
+  }else if(!f4OfficialSequence || f4OfficialPosition>=f4OfficialSequence.length){
+    alert("No remaining official Double Trouble results.");return;
+  }
+
 
   spinning=true;
 
@@ -3376,9 +3421,7 @@ function spinWheel(){
   */
 
   const winningIndex=
-    randomIndex(
-      !doubleTroubleMode
-    );
+    f4OfficialSequence[f4OfficialPosition++];
 
   const winningItem=
     ITEMS[winningIndex];
@@ -4007,10 +4050,10 @@ function revealPenalty(item){
         "spin-button"
       );
 
-    button.disabled=false;
+    button.disabled=true;
 
     button.textContent=
-      "TEST SPIN AGAIN";
+      "OFFICIAL SPIN COMPLETE";
   }
 }
 
@@ -4322,7 +4365,7 @@ function closeTakeover(){
 
   setHud(
     "THE LOSER'S WHEEL",
-    "CONSTRUCTION MODE • TEST SPINS AUTHORIZED"
+    "OFFICIAL SPIN RECORDED"
   );
 }
 
@@ -4467,7 +4510,7 @@ function finishDoubleTrouble(){
   spinButton.disabled=false;
 
   spinButton.textContent=
-    "TEST SPIN AGAIN";
+    "OFFICIAL SPIN COMPLETE";
 
   spinning=false;
 }
