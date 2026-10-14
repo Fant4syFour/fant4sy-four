@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -840,6 +841,15 @@ function teamColor(name){
 return TEAM_COLORS[managerKey(name)]||"#18a8ff";
 }
 
+/* Display-only position aliases; scoring and roster data are unchanged. */
+function displayPosition(position){
+const label=String(position||"").trim();
+const normalized=label.toUpperCase();
+if(normalized==="FLEX"||normalized==="SUPERFLEX"||normalized==="SFLEX")return "SFLEX";
+if(normalized==="SLEEPER"||normalized==="TB")return "TB";
+return label;
+}
+
 function points(value){
 const number=Number(value||0);
 return number.toFixed(2);
@@ -1488,7 +1498,7 @@ players+=`
 <div class="lineup-player">
 
 <div class="position">
-${safeText(player.position)}
+${safeText(displayPosition(player.position))}
 </div>
 
 <div class="player-info">
