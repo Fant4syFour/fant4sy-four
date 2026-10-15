@@ -1597,30 +1597,7 @@ RETURN TO THE ARENA
    THE LIGHT SELECTOR MACHINE
 ========================================================= */
 
-/* OFFICIAL F4SN SPIN CONNECTION — configure after deployment. */
-const F4_OFFICIAL_API_URL="https://script.google.com/macros/s/AKfycbxZ8peC-11b7ook2LRoKnsq7hmeDkIt_2_my5taux33KaTdoBy1Rzj_26GVyasQvAB3Pw/exec";
-const F4_OFFICIAL_EARNED_WEEK=4;
-let f4OfficialSequence=null;
-let f4OfficialPosition=0;
-let f4OfficialRequestPending=false;
-async function f4RequestOfficialSpin(action){
-  if(!selectedManager) throw new Error("Select your manager first.");
-  if(!/^https:\/\/script\.google\.com\/macros\/s\//.test(F4_OFFICIAL_API_URL)){
-    throw new Error("The official wheel is not connected to the deployed Apps Script yet.");
-  }
-  const pin=window.prompt("Enter " + selectedManager + "'s manager PIN to use the official Week " + F4_OFFICIAL_EARNED_WEEK + " spin:");
-  if(pin===null) return null;
-  if(!pin.trim()) throw new Error("A manager PIN is required.");
-  const response=await fetch(F4_OFFICIAL_API_URL,{
-    method:"POST",redirect:"follow",
-    headers:{"Content-Type":"text/plain;charset=utf-8"},
-    body:JSON.stringify({action,manager:selectedManager,pin,earnedWeek:F4_OFFICIAL_EARNED_WEEK})
-  });
-  if(!response.ok) throw new Error("The official spin server returned HTTP " + response.status + ".");
-  const result=await response.json();
-  if(!result || !result.success) throw new Error((result && result.error)||"Official spin was rejected.");
-  return result;
-}
+/* STANDALONE TEST MODE — no server, PIN, or spin restrictions. */
 
 let selectedManager="";
 let selectedTeam="";
@@ -2737,24 +2714,12 @@ arm.classList.remove("pulled");
 
 }
 
-async function beginSpin(){
+function beginSpin(){
 
-if(spinning || f4OfficialRequestPending || (f4OfficialSequence && f4OfficialPosition>=f4OfficialSequence.length))return;
-  f4OfficialRequestPending=true;
-  document.getElementById("spin-button").disabled=true;
-  try{
-    const result=await f4RequestOfficialSpin("spinwinnerwheel");
-    if(!result){document.getElementById("spin-button").disabled=false;return;}
-    if(!Number.isInteger(result.wedgeIndex)||result.wedgeIndex<0||result.wedgeIndex>=ITEMS.length){
-      throw new Error("Server returned an invalid wedge index. Contact the commissioner before trying again.");
-    }
-    f4OfficialSequence=[result.wedgeIndex];
-    f4OfficialPosition=0;
-  }catch(error){
-    alert("OFFICIAL SPIN NOT STARTED: " + error.message + "\nIf the server may have recorded a result, do not try again until the Wheel Ledger is checked.");
-    return;
-  }finally{f4OfficialRequestPending=false;}
+if(spinning)return;
 
+// Each test spin chooses a fresh prize locally.
+// Existing prize weights and animation remain unchanged.
 
 spinning=true;
 
@@ -2896,7 +2861,7 @@ function spinWheel(){
 */
 
 const winningIndex=
-f4OfficialSequence[f4OfficialPosition++];
+weightedIndex();
 
 const winningItem=
 ITEMS[winningIndex];
@@ -3370,7 +3335,7 @@ confetti(190);
 
 setHud(
 selectedTeam+" WINS "+item.result,
-"F4SN OFFICIAL WINNER'S WHEEL RESULT"
+"F4SN TEST WINNER'S WHEEL RESULT"
 );
 
 document.getElementById("side-status").textContent=
@@ -3518,7 +3483,7 @@ startIdleBulbs();
 
 setHud(
 "THE WINNER'S WHEEL",
-"OFFICIAL SPIN RECORDED"
+"TEST SPIN COMPLETE"
 );
 
 }
