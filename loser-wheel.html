@@ -1884,30 +1884,7 @@ footer strong{color:var(--orange)}
    BASED ON WINNER'S WHEEL V4.4 MECHANICS
 ========================================================= */
 
-/* OFFICIAL F4SN SPIN CONNECTION — configure after deployment. */
-const F4_OFFICIAL_API_URL="https://script.google.com/macros/s/AKfycbxZ8peC-11b7ook2LRoKnsq7hmeDkIt_2_my5taux33KaTdoBy1Rzj_26GVyasQvAB3Pw/exec";
-const F4_OFFICIAL_EARNED_WEEK=4;
-let f4OfficialSequence=null;
-let f4OfficialPosition=0;
-let f4OfficialRequestPending=false;
-async function f4RequestOfficialSpin(action){
-  if(!selectedManager) throw new Error("Select your manager first.");
-  if(!/^https:\/\/script\.google\.com\/macros\/s\//.test(F4_OFFICIAL_API_URL)){
-    throw new Error("The official wheel is not connected to the deployed Apps Script yet.");
-  }
-  const pin=window.prompt("Enter " + selectedManager + "'s manager PIN to use the official Week " + F4_OFFICIAL_EARNED_WEEK + " spin:");
-  if(pin===null) return null;
-  if(!pin.trim()) throw new Error("A manager PIN is required.");
-  const response=await fetch(F4_OFFICIAL_API_URL,{
-    method:"POST",redirect:"follow",
-    headers:{"Content-Type":"text/plain;charset=utf-8"},
-    body:JSON.stringify({action,manager:selectedManager,pin,earnedWeek:F4_OFFICIAL_EARNED_WEEK})
-  });
-  if(!response.ok) throw new Error("The official spin server returned HTTP " + response.status + ".");
-  const result=await response.json();
-  if(!result || !result.success) throw new Error((result && result.error)||"Official spin was rejected.");
-  return result;
-}
+/* STANDALONE TEST MODE — no server, PIN, or spin restrictions. */
 
 let selectedManager="";
 let selectedTeam="";
@@ -3209,31 +3186,14 @@ function pullLever(){
   },550);
 }
 
-async function beginSpin(){
+function beginSpin(){
 
-  if(spinning || f4OfficialRequestPending || (!doubleTroubleMode && f4OfficialSequence && f4OfficialPosition>=f4OfficialSequence.length))return;
-  if(!doubleTroubleMode){
-    f4OfficialRequestPending=true;
-    document.getElementById("spin-button").disabled=true;
-    try{
-      const result=await f4RequestOfficialSpin("spinloserwheel");
-      if(!result){document.getElementById("spin-button").disabled=false;return;}
-      if(!Array.isArray(result.sequence)||result.sequence.length<1||result.sequence.length>3||
-        result.sequence.some(item=>!Number.isInteger(item.wedgeIndex)||item.wedgeIndex<0||item.wedgeIndex>=ITEMS.length)){
-        throw new Error("Server returned an invalid penalty sequence. Contact the commissioner.");
-      }
-      f4OfficialSequence=result.sequence.map(item=>item.wedgeIndex);
-      f4OfficialPosition=0;
-    }catch(error){
-      alert("OFFICIAL SPIN NOT STARTED: " + error.message + "\nIf the server may have recorded a result, do not try again until the Wheel Ledger is checked.");
-      return;
-    }finally{f4OfficialRequestPending=false;}
-  }else if(!f4OfficialSequence || f4OfficialPosition>=f4OfficialSequence.length){
-    alert("No remaining official Double Trouble results.");return;
-  }
+if(spinning)return;
 
+// Double Trouble follow-up spins remain part of the same test.
+// No server call, manager PIN, or weekly eligibility lock.
 
-  spinning=true;
+spinning=true;
 
   initAudio();
 
@@ -3421,7 +3381,7 @@ function spinWheel(){
   */
 
   const winningIndex=
-    f4OfficialSequence[f4OfficialPosition++];
+    randomIndex(!doubleTroubleMode);
 
   const winningItem=
     ITEMS[winningIndex];
@@ -3870,7 +3830,7 @@ function lockSelector(
 
   setHud(
     "🔥 FATE SEALED 🔥",
-    "F4SN OFFICIAL PUNISHMENT CONFIRMED"
+    "F4SN TEST PUNISHMENT CONFIRMED"
   );
 
   tone(
@@ -4014,7 +3974,7 @@ function revealPenalty(item){
     selectedTeam+
     " RECEIVES "+
     item.result,
-    "F4SN OFFICIAL LOSER'S WHEEL RESULT"
+    "F4SN TEST LOSER'S WHEEL RESULT"
   );
 
   document.getElementById(
@@ -4053,7 +4013,7 @@ function revealPenalty(item){
     button.disabled=true;
 
     button.textContent=
-      "OFFICIAL SPIN COMPLETE";
+      "TEST SPIN AGAIN";
   }
 }
 
@@ -4365,7 +4325,7 @@ function closeTakeover(){
 
   setHud(
     "THE LOSER'S WHEEL",
-    "OFFICIAL SPIN RECORDED"
+    "TEST SPIN COMPLETE"
   );
 }
 
@@ -4510,7 +4470,7 @@ function finishDoubleTrouble(){
   spinButton.disabled=false;
 
   spinButton.textContent=
-    "OFFICIAL SPIN COMPLETE";
+    "TEST SPIN AGAIN";
 
   spinning=false;
 }
