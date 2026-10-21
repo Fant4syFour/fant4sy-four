@@ -1092,6 +1092,8 @@ button:disabled {
 .f4-adddrop{border:1px solid #5e83bd;background:#182b4a;color:#fff;border-radius:7px;padding:9px 12px;text-decoration:none;font-size:12px;white-space:nowrap}
 .f4-row-extra{font-size:12px;color:#9eafc8;grid-column:1/-1}
 @media(max-width:850px){#starterGrid .player-card,#benchGrid .player-card,#sleeperGrid .player-card{grid-template-columns:1fr auto;gap:8px}.f4-row-stats{grid-column:1/-1}.f4-row-extra{grid-column:1/-1}}
+.player-meta .badges{display:inline-flex;vertical-align:middle;margin:0 0 0 8px;gap:5px;align-items:center}
+.player-meta .badge{padding:3px 7px}
 </style>
 
 </head>
@@ -2394,7 +2396,7 @@ function createPlayerCard(
     badges.children.length > 0
   ) {
 
-    card.appendChild(
+    meta.appendChild(
       badges
     );
 
