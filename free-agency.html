@@ -295,6 +295,21 @@ tr:hover {
   <script>
    const API_URL='https://script.google.com/macros/s/AKfycbxZ8peC-11b7ook2LRoKnsq7hmeDkIt_2_my5taux33KaTdoBy1Rzj_26GVyasQvAB3Pw/exec';
 const el=id=>document.getElementById(id);
+
+/* Shared manager access within this browser tab (cleared on Lock/Switch Manager). */
+const F4_MANAGER_SESSION_KEY='f4_manager_session_v1';
+function f4ReadManagerSession(){
+  try{
+    const s=JSON.parse(sessionStorage.getItem(F4_MANAGER_SESSION_KEY)||'null');
+    if(!s||!['Brad','Maria','Mackenzie','Madison'].includes(s.manager)||!s.pin||Date.now()>s.expires){sessionStorage.removeItem(F4_MANAGER_SESSION_KEY);return null;}
+    return s;
+  }catch(e){return null;}
+}
+function f4WriteManagerSession(manager,pin){
+  try{sessionStorage.setItem(F4_MANAGER_SESSION_KEY,JSON.stringify({manager,pin,expires:Date.now()+8*60*60*1000}));}catch(e){}
+}
+function f4ClearManagerSession(){try{sessionStorage.removeItem(F4_MANAGER_SESSION_KEY);}catch(e){}}
+
 let manager='',pin='',players=[],stats={
 },selected='',shown=100,dropPrefill=new URLSearchParams(location.search).get('drop')||'';
 const n=v=>v===null||v===undefined?'—':Number(v).toFixed(1).replace(/\.0$/,'');
@@ -311,12 +326,14 @@ async function signIn(){
   el('message').textContent='';
   try{
     await api({action:'authenticate'});
+    f4WriteManagerSession(manager,pin);
     el('login').hidden=true;
     el('workspace').hidden=false;
     el('logout').style.display='block';
     el('pin').value='';
     await load();
   }catch(e){
+    f4ClearManagerSession();
     alert(e.message);
   }
 }
@@ -393,6 +410,7 @@ el('pin').onkeydown=e=>{
   if(e.key==='Enter')signIn();
 };
 el('logout').onclick=()=>{
+  f4ClearManagerSession();
   manager='';
   pin='';
   stats={
@@ -422,6 +440,12 @@ el('more').onclick=()=>{
 };
 const initial=new URLSearchParams(location.search).get('manager');
 if(['Brad','Maria','Mackenzie','Madison'].includes(initial))el('manager').value=initial;
+const f4SavedLogin=f4ReadManagerSession();
+if(f4SavedLogin){
+  el('manager').value=f4SavedLogin.manager;
+  el('pin').value=f4SavedLogin.pin;
+  signIn();
+}
   </script>
  </body>
 </html>
