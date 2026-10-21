@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -415,6 +414,22 @@ color:var(--blue)
 }
 
 /* STANDINGS */
+.standings-simple{table-layout:fixed}
+.standings-simple th:first-child,
+.standings-simple td:first-child{width:50%}
+.standings-simple th:nth-child(2),
+.standings-simple td:nth-child(2){width:22%}
+.standings-simple th:nth-child(3),
+.standings-simple td:nth-child(3){width:28%}
+.standings-simple .standings-team{overflow-wrap:anywhere}
+.standings-simple .standings-team strong{vertical-align:middle}
+@media(max-width:650px){
+.standings-simple th,.standings-simple td{padding:12px 8px}
+.standings-simple th{font-size:10px;letter-spacing:0}
+.standings-simple .season-total{font-size:15px}
+.standings-simple .standings-team strong{font-size:12px}
+}
+
 
 .standings-table{
 width:100%;
@@ -1099,7 +1114,7 @@ document
 
 renderNFLScoreboard(nflScoreboard);
 renderScoreboard(orderedTeams);
-renderStandings(data.standings||[],data.weekColumns||[]);
+renderStandings(data.standings||[],data.weekColumns||[],data.week);
 renderLineups(orderedTeams,nflScoreboard);
 }
 
@@ -1300,114 +1315,45 @@ ${points(team.currentWeek)}
  DYNAMIC STANDINGS
 **************************************************************/
 
-function renderStandings(standings,weekColumns){
+function renderStandings(standings,weekColumns,currentWeek){
 
 const container=document.getElementById("standings-data");
-
 if(!standings.length){
-
-container.innerHTML=
-'<div class="loading">No standings available.</div>';
-
+container.innerHTML='<div class="loading">No standings available.</div>';
 return;
 }
 
-const weeks=
-Array.isArray(weekColumns)
-?[...weekColumns].sort(function(a,b){
-return Number(a.week)-Number(b.week);
-})
-:[];
-
-if(!weeks.length){
-
-const foundWeeks={};
-
-standings.forEach(function(team){
-
-const scores=team.weeklyScores||{};
-
-Object.keys(scores).forEach(function(week){
-
-const weekNumber=Number(week);
-
-if(Number.isFinite(weekNumber)){
-foundWeeks[weekNumber]=true;
-}
+// The backend supplies the current week; don't assume the latest
+// week with a score is the current week (future weeks can be zero).
+const week=Number(currentWeek)||0;
+const ordered=[...standings].sort(function(a,b){
+return (Number(b.seasonTotal)||0)-(Number(a.seasonTotal)||0);
 });
-});
-
-Object.keys(foundWeeks)
-.sort(function(a,b){
-return Number(a)-Number(b);
-})
-.forEach(function(week){
-
-weeks.push({
-week:Number(week),
-label:"Week "+week
-});
-});
-}
 
 let html=`
-<table class="standings-table">
-
-<thead>
-<tr>
+<table class="standings-table standings-simple">
+<thead><tr>
 <th>Team</th>
+<th>This Week</th>
+<th>Season Total</th>
+</tr></thead><tbody>`;
 
-${weeks.map(function(info){
-return `
-<th>
-${safeText(info.label||("Week "+info.week))}
-</th>
-`;
-}).join("")}
-
-<th>Season</th>
-</tr>
-</thead>
-
-<tbody>
-`;
-
-standings.forEach(function(team,index){
-
+ordered.forEach(function(team,index){
 const place=index+1;
 const weeklyScores=team.weeklyScores||{};
-
+const weeklyValue=weeklyScores[String(week)]??0;
 html+=`
 <tr class="${place===1?"first-place":""}">
-
-<td>
+<td class="standings-team">
 <span class="rank">${place}</span>
 <strong>${safeText(displayTeamName(team.name))}</strong>
 </td>
-
-${weeks.map(function(info){
-
-const value=weeklyScores[String(info.week)]??0;
-
-return `
-<td>${points(value)}</td>
-`;
-
-}).join("")}
-
-<td class="season-total">
-${points(team.seasonTotal)}
-</td>
-
-</tr>
-`;
+<td>${points(weeklyValue)}</td>
+<td class="season-total">${points(team.seasonTotal)}</td>
+</tr>`;
 });
 
-html+=`
-</tbody>
-</table>
-`;
-
+html+='</tbody></table>';
 container.innerHTML=html;
 }
 
