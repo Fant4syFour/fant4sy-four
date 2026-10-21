@@ -3066,7 +3066,7 @@ document.addEventListener(
 
 /* Season statistics are requested separately; roster moves remain on the existing API. */
 window.f4Stats={};
-function f4StatByName(name){return Object.values(window.f4Stats||{}).find(p=>p.player&&p.player.toLowerCase()===String(name||'').toLowerCase());}
+function f4StatByName(name){const norm=s=>String(s||'').toLowerCase().trim().replace(/\s+(iii|ii|iv|jr\.?|sr\.?)$/,'').replace(/[^a-z0-9]/g,'');return Object.values(window.f4Stats||{}).find(p=>p.player&&norm(p.player)===norm(name));}
 async function f4LoadStats(){
  try{const r=await apiRequest({action:'loadPlayerStats',manager:currentManager,pin:currentPin});
  if(r.success&&r.players){window.f4Stats=r.players;renderRoster();}}
