@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Fant4sy Four | Free Agency
+  </title>
+  <style>
+   :root {
+  color-scheme:dark}
+* {
+  box-sizing:border-box}
+body {
+  margin:0;
+  background:#080d18;
+  color:#e8f0ff;
+  font-family:Arial,sans-serif}
+header {
+  background:#101e32;
+  padding:18px 4%;
+  border-bottom:2px solid #e8ba39}
+nav {
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap}
+a {
+  color:#8acaff}
+h1 {
+  color:#f5d267}
+main {
+  max-width:1220px;
+  margin:24px auto;
+  padding:0 16px}
+.panel {
+  background:#132138;
+  border:1px solid #304564;
+  border-radius:12px;
+  padding:20px;
+  margin-bottom:16px}
+.controls {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:14px 0}
+input,select,button {
+  background:#1b2d47;
+  border:1px solid #46638b;
+  border-radius:7px;
+  color:#fff;
+  padding:11px;
+  font:inherit}
+input {
+  min-width:200px;
+  flex:1}
+button {
+  cursor:pointer;
+  background:#244c85}
+button:disabled {
+  opacity:.45;
+  cursor:default}
+.small {
+  font-size:13px;
+  color:#aabbd4}
+.tablewrap {
+  overflow-x:auto}
+table {
+  border-collapse:collapse;
+  width:100%;
+  min-width:680px}
+th {
+  text-align:left;
+  color:#f5d267;
+  font-size:12px}
+td,th {
+  padding:11px;
+  border-bottom:1px solid #31415a}
+tr:hover {
+  background:#1a304d}
+.picked {
+  background:#1b4660}
+.pill {
+  font-size:12px;
+  color:#99dcff}
+#message {
+  min-height:20px;
+  color:#f5d267}
+.rank {
+  color:#ffd66d}
+.top {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap}
+#logout {
+  display:none}
+@media(max-width:650px) {
+  td,th {
+  padding:8px;
+  font-size:12px}
+.panel {
+  padding:13px}
+}
+  </style>
+ </head>
+ <body>
+  <header>
+   <nav>
+    <a href="index.html#home">
+     Home
+    </a>
+    <a href="lineups.html">
+     Lineups
+    </a>
+    <strong>
+     Free Agency
+    </strong>
+    <a href="index.html#standings">
+     Standings
+    </a>
+   </nav>
+  </header>
+  <main>
+   <div class="top">
+    <div>
+     <h1>
+      FREE AGENCY CENTER
+     </h1>
+     <p class="small">
+      All available NFL players · PPR rankings · Unlimited legal pickups · Weekly TB
+     </p>
+    </div>
+    <button id="logout">
+     Log out
+    </button>
+   </div>
+   <section class="panel" id="login">
+    <h2>
+     Manager Access
+    </h2>
+    <div class="controls">
+     <select id="manager">
+      <option>
+       Brad
+      </option>
+      <option>
+       Maria
+      </option>
+      <option>
+       Mackenzie
+      </option>
+      <option>
+       Madison
+      </option>
+     </select>
+     <input autocomplete="off" id="pin" placeholder="Manager PIN" type="password"/>
+     <button id="signIn">
+      Sign in
+     </button>
+    </div>
+   </section>
+   <section hidden="" id="workspace">
+    <div class="panel">
+     <h2>
+      Pick up a player
+     </h2>
+     <p class="small">
+      TB is an extra slot, not part of the 14-player roster. Any unowned player can be TB; no drop is needed. Locked players cannot be claimed.
+     </p>
+     <div class="controls">
+      <select id="action">
+       <option value="roster">
+        Add to main roster
+       </option>
+       <option value="tb">
+        Choose as weekly TB
+       </option>
+      </select>
+      <label id="dropLabel">
+       Drop player
+       <select id="drop">
+        <option value="">
+         Select player to drop
+        </option>
+       </select>
+      </label>
+     </div>
+     <p id="chosen">
+      Select an available player below.
+     </p>
+     <div class="controls">
+      <button disabled="" id="confirm">
+       Confirm pickup
+      </button>
+      <button id="refresh">
+       Refresh pool
+      </button>
+      <a href="lineups.html">
+       Back to Lineups
+      </a>
+     </div>
+     <p id="message" role="status">
+     </p>
+    </div>
+    <div class="panel">
+     <h2>
+      Available players
+      <span class="pill" id="count">
+      </span>
+     </h2>
+     <div class="controls">
+      <input id="search" placeholder="Search by player or NFL team" type="search"/>
+      <select id="position">
+       <option value="">
+        All positions
+       </option>
+       <option>
+        QB
+       </option>
+       <option>
+        RB
+       </option>
+       <option>
+        WR
+       </option>
+       <option>
+        TE
+       </option>
+       <option>
+        K
+       </option>
+       <option>
+        D/ST
+       </option>
+      </select>
+      <select id="sort">
+       <option value="points">
+        Season PPR points
+       </option>
+       <option value="average">
+        Points per game
+       </option>
+       <option value="rank">
+        Position rank
+       </option>
+       <option value="name">
+        Player name
+       </option>
+      </select>
+     </div>
+     <p class="small" id="statsStatus">
+      Statistics loading after login.
+     </p>
+     <div class="tablewrap">
+      <table>
+       <thead>
+        <tr>
+         <th>
+          PLAYER
+         </th>
+         <th>
+          POS
+         </th>
+         <th>
+          NFL
+         </th>
+         <th>
+          RANK
+         </th>
+         <th>
+          SEASON
+         </th>
+         <th>
+          AVG
+         </th>
+         <th>
+          LAST 3
+         </th>
+         <th>
+          PICK
+         </th>
+        </tr>
+       </thead>
+       <tbody id="rows">
+       </tbody>
+      </table>
+     </div>
+     <button hidden="" id="more">
+      Show more
+     </button>
+    </div>
+   </section>
+  </main>
+  <script>
+   const API_URL='https://script.google.com/macros/s/AKfycbxZ8peC-11b7ook2LRoKnsq7hmeDkIt_2_my5taux33KaTdoBy1Rzj_26GVyasQvAB3Pw/exec';
+const el=id=>document.getElementById(id);
+let manager='',pin='',players=[],stats={
+},selected='',shown=100,dropPrefill=new URLSearchParams(location.search).get('drop')||'';
+const n=v=>v===null||v===undefined?'—':Number(v).toFixed(1).replace(/\.0$/,'');
+async function api(payload){
+  const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({...payload,manager,pin})});
+  if(!r.ok)throw Error('Server request failed');
+  const j=await r.json();
+  if(!j.success)throw Error(j.error||'Request failed');
+  return j;
+}
+async function signIn(){
+  manager=el('manager').value;
+  pin=el('pin').value;
+  el('message').textContent='';
+  try{
+    await api({action:'authenticate'});
+    el('login').hidden=true;
+    el('workspace').hidden=false;
+    el('logout').style.display='block';
+    el('pin').value='';
+    await load();
+  }catch(e){
+    alert(e.message);
+  }
+}
+function statFor(p){
+  return stats[p.playerId]||Object.values(stats).find(s=>s.player&&s.player.toLowerCase()===p.player.toLowerCase())||{
+  };
+}
+async function load(){
+  el('message').textContent='Loading free agents...';
+  try{
+    const r=await api({action:'loadFreeAgents'});
+    players=r.players||[];
+    el('count').textContent='('+players.length+')';
+    const select=el('drop');
+    select.replaceChildren(new Option('Select player to drop',''));
+    (r.managerPlayers||[]).forEach(p=>select.add(new Option(p.player+' · '+p.rosterRole+' '+p.starterSlot,p.player)));
+    if(dropPrefill&&[...select.options].some(o=>o.value===dropPrefill))select.value=dropPrefill;
+    el('message').textContent='';
+    render();
+    updateAction();
+  }catch(e){
+    el('message').textContent=e.message;
+    return;
+  }
+  try{
+    const r=await api({action:'loadPlayerStats'});
+    stats=r.players||{
+    };
+    el('statsStatus').textContent='Sleeper 2026 PPR · '+r.weeksLoaded+' weeks loaded. — means unavailable (not zero).';
+    render();
+  }catch(e){
+    el('statsStatus').textContent='Season stats unavailable: '+e.message;
+  }
+}
+function updateAction(){
+  el('dropLabel').hidden=el('action').value==='tb';
+  el('confirm').textContent=el('action').value==='tb'?'Choose weekly TB':'Add player / drop selected';
+  validate();
+}
+function validate(){
+  el('confirm').disabled=!selected||(el('action').value==='roster'&&!el('drop').value);
+}
+function render(){
+  const q=el('search').value.toLowerCase().trim(),pos=el('position').value,sort=el('sort').value;
+  const filtered=players.filter(p=>(!pos||p.position===pos)&&(!q||(p.player+' '+p.team).toLowerCase().includes(q)));
+  filtered.sort((a,b)=>{const sa=statFor(a),sb=statFor(b);if(sort==='name')return a.player.localeCompare(b.player);if(sort==='rank')return (sa.rank||9999)-(sb.rank||9999);const k=sort==='average'?'average':'seasonPoints';return (sb[k]??-Infinity)-(sa[k]??-Infinity)||a.player.localeCompare(b.player);});
+  const body=el('rows');
+  body.replaceChildren();
+  filtered.slice(0,shown).forEach(p=>{const s=statFor(p),tr=document.createElement('tr');if(selected===p.player)tr.className='picked';const values=[p.player,p.position,p.team,s.rank?'#'+s.rank:'—',n(s.seasonPoints),n(s.average),(s.last3||[]).map(x=>'W'+x.week+': '+n(x.points)).join(' · ')||'—'];values.forEach((v,i)=>{const td=document.createElement('td');td.textContent=v;if(i===3)td.className='rank';tr.appendChild(td);});const td=document.createElement('td'),b=document.createElement('button');b.textContent=selected===p.player?'Selected':'Select';b.onclick=()=>{selected=p.player;el('chosen').textContent=p.player+' · '+p.position+' · '+p.team;validate();render();};td.appendChild(b);tr.appendChild(td);body.appendChild(tr);});
+  el('more').hidden=filtered.length<=shown;
+  el('more').textContent='Show more ('+Math.min(shown,filtered.length)+' of '+filtered.length+')';
+}
+async function save(){
+  const tb=el('action').value==='tb',drop=el('drop').value;
+  if(!selected||(!tb&&!drop))return;
+  const msg=tb?'Select '+selected+' as weekly TB?':'Add '+selected+' and drop '+drop+'?';
+  if(!confirm(msg))return;
+  el('confirm').disabled=true;
+  el('message').textContent='Saving...';
+  try{
+    await api(tb?{action:'saveTB',player:selected}:{action:'swapFreeAgent',addPlayer:selected,dropPlayer:drop});
+    selected='';
+    dropPrefill='';
+    el('chosen').textContent='Transaction saved. Select another player.';
+    await load();
+    el('message').textContent='Transaction saved! Return to Lineups to see your roster.';
+  }catch(e){
+    el('message').textContent=e.message;
+    validate();
+  }
+}
+el('signIn').onclick=signIn;
+el('pin').onkeydown=e=>{
+  if(e.key==='Enter')signIn();
+};
+el('logout').onclick=()=>{
+  manager='';
+  pin='';
+  stats={
+  };
+  players=[];
+  selected='';
+  el('workspace').hidden=true;
+  el('login').hidden=false;
+  el('logout').style.display='none';
+};
+el('refresh').onclick=load;
+el('confirm').onclick=save;
+el('action').onchange=updateAction;
+el('drop').onchange=validate;
+el('search').oninput=()=>{
+  shown=100;
+  render();
+};
+el('position').onchange=()=>{
+  shown=100;
+  render();
+};
+el('sort').onchange=render;
+el('more').onclick=()=>{
+  shown+=100;
+  render();
+};
+const initial=new URLSearchParams(location.search).get('manager');
+if(['Brad','Maria','Mackenzie','Madison'].includes(initial))el('manager').value=initial;
+  </script>
+ </body>
+</html>
