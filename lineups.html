@@ -2001,7 +2001,7 @@ async function loadRoster() {
   weekHeading.textContent =
     "Week " +
     String(
-      data.week || 5
+      data.week || "?"
     ) +
     " Lineup";
 
@@ -2310,7 +2310,7 @@ function createPlayerCard(
       "badge lock-badge";
 
     lock.textContent =
-      "Locked";
+      player.lockVerified === false ? "Kickoff unverified" : "Locked";
 
     badges.appendChild(
       lock
