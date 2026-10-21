@@ -1585,6 +1585,21 @@ const FRANCHISE_CONFIG = {
  SESSION STATE
 **************************************************************/
 
+
+/* Shared manager access within this browser tab (cleared on Lock/Switch Manager). */
+const F4_MANAGER_SESSION_KEY='f4_manager_session_v1';
+function f4ReadManagerSession(){
+  try{
+    const s=JSON.parse(sessionStorage.getItem(F4_MANAGER_SESSION_KEY)||'null');
+    if(!s||!['Brad','Maria','Mackenzie','Madison'].includes(s.manager)||!s.pin||Date.now()>s.expires){sessionStorage.removeItem(F4_MANAGER_SESSION_KEY);return null;}
+    return s;
+  }catch(e){return null;}
+}
+function f4WriteManagerSession(manager,pin){
+  try{sessionStorage.setItem(F4_MANAGER_SESSION_KEY,JSON.stringify({manager,pin,expires:Date.now()+8*60*60*1000}));}catch(e){}
+}
+function f4ClearManagerSession(){try{sessionStorage.removeItem(F4_MANAGER_SESSION_KEY);}catch(e){}}
+
 let currentManager = "";
 
 let currentPin = "";
@@ -1947,6 +1962,7 @@ async function login() {
 
     await loadRoster();
 
+    f4WriteManagerSession(manager,pin);
 
     pinInput.value = "";
 
@@ -1966,6 +1982,7 @@ async function login() {
 
   } catch (error) {
 
+    f4ClearManagerSession();
     currentManager = "";
 
     currentPin = "";
@@ -2822,6 +2839,8 @@ async function saveMove() {
 
 function logout() {
 
+  f4ClearManagerSession();
+
   currentManager = "";
 
   currentPin = "";
@@ -2964,6 +2983,13 @@ loginButton.addEventListener(
   "click",
   login
 );
+
+const f4SavedLogin=f4ReadManagerSession();
+if(f4SavedLogin){
+  managerSelect.value=f4SavedLogin.manager;
+  pinInput.value=f4SavedLogin.pin;
+  login().catch(()=>{f4ClearManagerSession();});
+}
 
 
 pinInput.addEventListener(
