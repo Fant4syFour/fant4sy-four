@@ -1062,6 +1062,26 @@ button:disabled {
 
 }
 
+
+/* Free Agency / ESPN-style compact rows */
+.fa-center{margin:30px 0;padding:20px;background:#0d172a;border:1px solid #344562;border-radius:14px}
+.fa-help{color:#b9c7dd;font-size:14px;line-height:1.5}
+.fa-controls{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.fa-controls input,.fa-controls select,.fa-transaction select{background:#111f36;color:white;border:1px solid #415575;border-radius:7px;padding:11px;min-width:0}
+.fa-controls input{flex:2 1 240px}.fa-controls select{flex:1 1 140px}
+.fa-transaction{display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:12px;background:#101f34;border-radius:10px;margin-bottom:15px}
+.fa-transaction button,.fa-center>button{background:#e5b927;color:#111827;border:0;border-radius:8px;padding:10px 14px;font-weight:800;cursor:pointer}
+.fa-transaction button:disabled{opacity:.45;cursor:not-allowed}
+#faChosen{font-weight:700;min-width:180px}#faDropLabel{display:flex;gap:8px;align-items:center;flex-wrap:wrap}#faMessage{width:100%;font-size:14px}
+.fa-table-wrap{overflow:auto;max-height:530px;border:1px solid #33445c;border-radius:8px}
+.fa-table{border-collapse:collapse;width:100%;font-size:14px}.fa-table th{text-align:left;background:#1a2b45;color:#facc15;position:sticky;top:0;padding:12px}
+.fa-table td{border-top:1px solid #2c3c55;padding:10px}.fa-table tr:hover{background:#172841}
+.fa-table button{background:#24446a;color:#fff;border:1px solid #4d6c92;border-radius:7px;padding:7px 10px;cursor:pointer}
+.fa-table tr.selected{background:#2d3d57}
+#starterGrid,#benchGrid,#sleeperGrid{grid-template-columns:1fr!important}
+#starterGrid .player-card,#benchGrid .player-card,#sleeperGrid .player-card{width:100%;min-width:0}
+@media(max-width:600px){.fa-center{padding:12px}.fa-table td,.fa-table th{padding:8px 5px;font-size:12px}}
+
 </style>
 
 </head>
@@ -1383,6 +1403,26 @@ button:disabled {
       class="roster-grid"
     ></div>
 
+
+
+<section id="freeAgencyCenter" class="fa-center" hidden>
+  <div class="section-heading"><h2 class="section-title">Free Agency Center</h2><span id="faCount" class="section-count"></span></div>
+  <p class="fa-help">Browse every available player. Pick a weekly TB or exchange a free agent for a player on your 14-person roster. Locked players cannot be added or dropped.</p>
+  <div class="fa-controls">
+    <input id="faSearch" type="search" placeholder="Search any player or NFL team" aria-label="Search free agents">
+    <select id="faPosition" aria-label="Filter by position"><option value="">All positions</option><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>K</option><option>D/ST</option></select>
+    <select id="faAction" aria-label="Transaction type"><option value="roster">Add to main roster</option><option value="tb">Choose as weekly TB</option></select>
+  </div>
+  <div class="fa-transaction">
+    <div id="faChosen">Select a free agent below.</div>
+    <label id="faDropLabel">Drop from your roster <select id="faDrop"><option value="">Choose player to drop</option></select></label>
+    <button id="faConfirm" type="button" disabled>Confirm transaction</button>
+    <button id="faRefresh" type="button">Refresh available players</button>
+    <div id="faMessage" role="status"></div>
+  </div>
+  <div class="fa-table-wrap"><table class="fa-table"><thead><tr><th>PLAYER</th><th>POS</th><th>NFL</th><th>SELECT</th></tr></thead><tbody id="faRows"></tbody></table></div>
+  <button id="faMore" type="button" hidden>Show more players</button>
+</section>
 
   </section>
 
@@ -2013,6 +2053,7 @@ async function loadRoster() {
 
 
   renderRoster();
+  faLoad();
 
 }
 
@@ -2125,43 +2166,6 @@ function renderRoster() {
 
     }
   );
-  // Weekly TB is a separate unowned pickup, not a drafted bench player.
-  const pickWrap=document.createElement('div');
-  pickWrap.style.cssText='padding:14px;border:1px solid #667;border-radius:10px;margin-top:12px;width:100%';
-  const title=document.createElement('div');title.textContent='Weekly TB pickup (unowned players)';
-  title.style.cssText='font-weight:bold;margin-bottom:8px';pickWrap.appendChild(title);
-  const search=document.createElement('input');search.placeholder='Search available players...';
-  search.style.cssText='padding:10px;width:100%;margin-bottom:8px;border-radius:6px';pickWrap.appendChild(search);
-  const choices=document.createElement('select');choices.style.cssText='width:100%;padding:10px;margin-bottom:8px';pickWrap.appendChild(choices);
-  const save=document.createElement('button');save.textContent='Pick / change TB';save.type='button';
-  save.style.cssText='padding:10px 16px;cursor:pointer';pickWrap.appendChild(save);
-  const note=document.createElement('div');note.style.cssText='margin-top:8px;font-size:13px';pickWrap.appendChild(note);
-  sleeperGrid.appendChild(pickWrap);
-  (async function(){
-    try {
-      const data=await apiRequest({action:'loadPool',manager:currentManager,pin:currentPin});
-      if(!data.success)throw new Error(data.error||'Player Pool unavailable');
-      const players=data.players||[];
-      function fill(){
-        const q=search.value.trim().toLowerCase();choices.replaceChildren();
-        players.filter(p=>p.player.toLowerCase().includes(q)).slice(0,120).forEach(p=>{
-          const option=document.createElement('option');option.value=p.player;
-          option.textContent=p.player+' ('+p.team+' '+p.position+')';choices.appendChild(option);
-        });
-      }
-      search.addEventListener('input',fill);fill();
-      save.addEventListener('click',async function(){
-        if(!choices.value){note.textContent='Select a player first.';return;}
-        save.disabled=true;
-        try{
-          const result=await apiRequest({action:'saveTB',manager:currentManager,pin:currentPin,player:choices.value});
-          if(!result.success)throw new Error(result.error||'Pickup failed');
-          note.textContent='TB saved: '+result.player;
-          await loadRoster();
-        }catch(e){note.textContent=e.message;}finally{save.disabled=false;}
-      });
-    }catch(e){note.textContent=e.message;}
-  })();
 
 }
 
@@ -3023,6 +3027,65 @@ document.addEventListener(
 
   }
 );
+
+
+/* F4 Free Agency Center: full pool, progressive rendering, server-side locks. */
+let faPlayers=[],faSelected='',faShown=100,faLoadedFor='';
+const faEl=id=>document.getElementById(id);
+async function faLoad(){
+  if(!currentManager||!currentPin)return;
+  faEl('freeAgencyCenter').hidden=false;
+  faEl('faMessage').textContent='Loading available players...';
+  try{
+    const data=await apiRequest({action:'loadFreeAgents',manager:currentManager,pin:currentPin});
+    if(!data.success)throw new Error(data.error||'Unable to load free agents');
+    faPlayers=data.players||[];faLoadedFor=currentManager;faSelected='';faShown=100;
+    faEl('faChosen').textContent='Select a free agent below.';
+    faEl('faCount').textContent=faPlayers.length+' available';
+    faEl('faDrop').replaceChildren(new Option('Choose player to drop',''));
+    (data.managerPlayers||[]).forEach(p=>faEl('faDrop').add(new Option(p.player+' ('+p.rosterRole+' '+p.starterSlot+')',p.player)));
+    faEl('faMessage').textContent='';faRender();faActionChanged();
+  }catch(e){faEl('faMessage').textContent=e.message;}
+}
+function faActionChanged(){
+  const roster=faEl('faAction').value==='roster';faEl('faDropLabel').hidden=!roster;
+  faEl('faConfirm').textContent=roster?'Add player / drop selected':'Set weekly TB';faValidate();
+}
+function faValidate(){faEl('faConfirm').disabled=!faSelected||(faEl('faAction').value==='roster'&&!faEl('faDrop').value);}
+function faRender(){
+  const q=faEl('faSearch').value.trim().toLowerCase(),pos=faEl('faPosition').value;
+  const list=faPlayers.filter(p=>(!pos||p.position===pos)&&(!q||(p.player+' '+p.team).toLowerCase().includes(q)));
+  const tbody=faEl('faRows');tbody.replaceChildren();
+  list.slice(0,faShown).forEach(p=>{
+    const tr=document.createElement('tr');if(p.player===faSelected)tr.className='selected';
+    [p.player,p.position,p.team].forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.appendChild(td);});
+    const td=document.createElement('td'),b=document.createElement('button');b.type='button';b.textContent=p.player===faSelected?'Selected':'Select';
+    b.addEventListener('click',()=>{faSelected=p.player;faEl('faChosen').textContent='Selected: '+p.player+' ('+p.position+', '+p.team+')';faValidate();faRender();});
+    td.appendChild(b);tr.appendChild(td);tbody.appendChild(tr);
+  });
+  faEl('faMore').hidden=list.length<=faShown;faEl('faMore').textContent='Show more ('+Math.min(faShown,list.length)+' of '+list.length+')';
+}
+async function faSave(){
+  if(!faSelected)return;const isTB=faEl('faAction').value==='tb';
+  const drop=faEl('faDrop').value;if(!isTB&&!drop)return;
+  const msg=isTB?'Choose '+faSelected+' as this week’s TB?':'Add '+faSelected+' and release '+drop+' to free agency?';
+  if(!confirm(msg))return;
+  faEl('faConfirm').disabled=true;faEl('faMessage').textContent='Saving transaction...';
+  try{
+    const req={action:isTB?'saveTB':'swapFreeAgent',manager:currentManager,pin:currentPin};
+    if(isTB)req.player=faSelected;else{req.addPlayer=faSelected;req.dropPlayer=drop;}
+    const result=await apiRequest(req);if(!result.success)throw new Error(result.error||'Transaction failed');
+    faEl('faMessage').textContent='Saved successfully.';
+    await loadRoster();await faLoad();
+  }catch(e){faEl('faMessage').textContent=e.message;faValidate();}
+}
+faEl('faSearch').addEventListener('input',()=>{faShown=100;faRender();});
+faEl('faPosition').addEventListener('change',()=>{faShown=100;faRender();});
+faEl('faAction').addEventListener('change',faActionChanged);
+faEl('faDrop').addEventListener('change',faValidate);
+faEl('faMore').addEventListener('click',()=>{faShown+=100;faRender();});
+faEl('faRefresh').addEventListener('click',faLoad);
+faEl('faConfirm').addEventListener('click',faSave);
 
 </script>
 
