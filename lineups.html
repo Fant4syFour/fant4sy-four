@@ -1082,6 +1082,18 @@ button:disabled {
 #starterGrid .player-card,#benchGrid .player-card,#sleeperGrid .player-card{width:100%;min-width:0}
 @media(max-width:600px){.fa-center{padding:12px}.fa-table td,.fa-table th{padding:8px 5px;font-size:12px}}
 
+
+/* ESPN/Yahoo-inspired compact roster rows; retains existing move controls. */
+#starterGrid,#benchGrid,#sleeperGrid{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
+#starterGrid .player-card,#benchGrid .player-card,#sleeperGrid .player-card{width:100%!important;max-width:none!important;display:grid;grid-template-columns:minmax(150px,1.7fr) minmax(90px,1fr) minmax(180px,2fr) auto;gap:12px;align-items:center;padding:13px 16px}
+.player-card .player-top{min-width:0}.player-card .player-name{overflow-wrap:anywhere}
+.f4-row-stats{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12px;color:#d5e0f3}
+.f4-row-stats b{display:block;font-size:15px;color:#fff}.f4-row-stats small{display:block;color:#aab8ce}
+.f4-adddrop{border:1px solid #5e83bd;background:#182b4a;color:#fff;border-radius:7px;padding:9px 12px;text-decoration:none;font-size:12px;white-space:nowrap}
+.f4-row-extra{font-size:12px;color:#9eafc8;grid-column:1/-1}
+@media(max-width:850px){#starterGrid .player-card,#benchGrid .player-card,#sleeperGrid .player-card{grid-template-columns:1fr auto;gap:8px}.f4-row-stats{grid-column:1/-1}.f4-row-extra{grid-column:1/-1}}
+.player-meta .badges{display:inline-flex;vertical-align:middle;margin:0 0 0 8px;gap:5px;align-items:center}
+.player-meta .badge{padding:3px 7px}
 </style>
 
 </head>
@@ -1126,6 +1138,8 @@ button:disabled {
     >
       Lineups
     </a>
+
+    <a class="nav-link" href="free-agency.html">Free Agency</a>
 
     <a
       class="nav-link"
@@ -1386,7 +1400,7 @@ button:disabled {
     <div class="section-heading">
 
       <h2 class="section-title">
-        Sleeper
+        Weekly TB
       </h2>
 
       <span
@@ -1405,26 +1419,7 @@ button:disabled {
 
 
 
-<section id="freeAgencyCenter" class="fa-center" hidden>
-  <div class="section-heading"><h2 class="section-title">Free Agency Center</h2><span id="faCount" class="section-count"></span></div>
-  <p class="fa-help">Browse every available player. Pick a weekly TB or exchange a free agent for a player on your 14-person roster. Locked players cannot be added or dropped.</p>
-  <div class="fa-controls">
-    <input id="faSearch" type="search" placeholder="Search any player or NFL team" aria-label="Search free agents">
-    <select id="faPosition" aria-label="Filter by position"><option value="">All positions</option><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>K</option><option>D/ST</option></select>
-    <select id="faAction" aria-label="Transaction type"><option value="roster">Add to main roster</option><option value="tb">Choose as weekly TB</option></select>
-  </div>
-  <div class="fa-transaction">
-    <div id="faChosen">Select a free agent below.</div>
-    <label id="faDropLabel">Drop from your roster <select id="faDrop"><option value="">Choose player to drop</option></select></label>
-    <button id="faConfirm" type="button" disabled>Confirm transaction</button>
-    <button id="faRefresh" type="button">Refresh available players</button>
-    <div id="faMessage" role="status"></div>
-  </div>
-  <div class="fa-table-wrap"><table class="fa-table"><thead><tr><th>PLAYER</th><th>POS</th><th>NFL</th><th>SELECT</th></tr></thead><tbody id="faRows"></tbody></table></div>
-  <button id="faMore" type="button" hidden>Show more players</button>
 </section>
-
-  </section>
 
 
 </main>
@@ -1591,6 +1586,21 @@ const FRANCHISE_CONFIG = {
 /**************************************************************
  SESSION STATE
 **************************************************************/
+
+
+/* Shared manager access within this browser tab (cleared on Lock/Switch Manager). */
+const F4_MANAGER_SESSION_KEY='f4_manager_session_v1';
+function f4ReadManagerSession(){
+  try{
+    const s=JSON.parse(sessionStorage.getItem(F4_MANAGER_SESSION_KEY)||'null');
+    if(!s||!['Brad','Maria','Mackenzie','Madison'].includes(s.manager)||!s.pin||Date.now()>s.expires){sessionStorage.removeItem(F4_MANAGER_SESSION_KEY);return null;}
+    return s;
+  }catch(e){return null;}
+}
+function f4WriteManagerSession(manager,pin){
+  try{sessionStorage.setItem(F4_MANAGER_SESSION_KEY,JSON.stringify({manager,pin,expires:Date.now()+8*60*60*1000}));}catch(e){}
+}
+function f4ClearManagerSession(){try{sessionStorage.removeItem(F4_MANAGER_SESSION_KEY);}catch(e){}}
 
 let currentManager = "";
 
@@ -1954,6 +1964,7 @@ async function login() {
 
     await loadRoster();
 
+    f4WriteManagerSession(manager,pin);
 
     pinInput.value = "";
 
@@ -1973,6 +1984,7 @@ async function login() {
 
   } catch (error) {
 
+    f4ClearManagerSession();
     currentManager = "";
 
     currentPin = "";
@@ -2053,7 +2065,7 @@ async function loadRoster() {
 
 
   renderRoster();
-  faLoad();
+  f4LoadStats();
 
 }
 
@@ -2351,7 +2363,7 @@ function createPlayerCard(
       "badge lock-badge";
 
     lock.textContent =
-      player.lockVerified === false ? "Schedule unavailable" : "Locked";
+      player.lockVerified === false ? "Kickoff unverified" : "Locked";
 
     badges.appendChild(
       lock
@@ -2384,7 +2396,7 @@ function createPlayerCard(
     badges.children.length > 0
   ) {
 
-    card.appendChild(
+    meta.appendChild(
       badges
     );
 
@@ -2445,6 +2457,21 @@ function createPlayerCard(
   }
 
 
+  const stats=document.createElement('div');stats.className='f4-row-stats';
+  const sid=String(player.sleeperID||player.playerId||'');
+  const stat=(window.f4Stats&&window.f4Stats[sid])||f4StatByName(player.player);
+  function val(v){return v===null||v===undefined?'—':String(v);}
+  stats.innerHTML='<span><small>RANK</small><b>'+ (stat&&stat.rank?'#'+stat.rank:'—')+'</b></span>'+
+    '<span><small>SEASON PPR</small><b>'+val(stat&&stat.seasonPoints)+'</b></span>'+
+    '<span><small>AVG / GAME</small><b>'+val(stat&&stat.average)+'</b></span>'+
+    '<span><small>THIS WEEK</small><b>'+val(stat&&stat.weekPoints)+'</b></span>';
+  card.appendChild(stats);
+  const action=document.createElement('a');action.className='f4-adddrop';
+  action.textContent=player.rosterRole==='TB'?'Free Agency':'Add / Drop';
+  const params=new URLSearchParams({manager:currentManager||'',drop:player.rosterRole==='TB'?'':player.player});
+  action.href='free-agency.html?'+params.toString();card.appendChild(action);
+  if(stat){const detail=document.createElement('div');detail.className='f4-row-extra';
+    detail.textContent='Last 3: '+(stat.last3||[]).map(x=>'W'+x.week+' '+x.points).join(' · ')+(stat.statLine?'   |   '+stat.statLine:'');card.appendChild(detail);}
   return card;
 
 }
@@ -2814,6 +2841,8 @@ async function saveMove() {
 
 function logout() {
 
+  f4ClearManagerSession();
+
   currentManager = "";
 
   currentPin = "";
@@ -2957,6 +2986,13 @@ loginButton.addEventListener(
   login
 );
 
+const f4SavedLogin=f4ReadManagerSession();
+if(f4SavedLogin){
+  managerSelect.value=f4SavedLogin.manager;
+  pinInput.value=f4SavedLogin.pin;
+  login().catch(()=>{f4ClearManagerSession();});
+}
+
 
 pinInput.addEventListener(
   "keydown",
@@ -3029,64 +3065,15 @@ document.addEventListener(
 );
 
 
-/* F4 Free Agency Center: full pool, progressive rendering, server-side locks. */
-let faPlayers=[],faSelected='',faShown=100,faLoadedFor='';
-const faEl=id=>document.getElementById(id);
-async function faLoad(){
-  if(!currentManager||!currentPin)return;
-  faEl('freeAgencyCenter').hidden=false;
-  faEl('faMessage').textContent='Loading available players...';
-  try{
-    const data=await apiRequest({action:'loadFreeAgents',manager:currentManager,pin:currentPin});
-    if(!data.success)throw new Error(data.error||'Unable to load free agents');
-    faPlayers=data.players||[];faLoadedFor=currentManager;faSelected='';faShown=100;
-    faEl('faChosen').textContent='Select a free agent below.';
-    faEl('faCount').textContent=faPlayers.length+' available';
-    faEl('faDrop').replaceChildren(new Option('Choose player to drop',''));
-    (data.managerPlayers||[]).forEach(p=>faEl('faDrop').add(new Option(p.player+' ('+p.rosterRole+' '+p.starterSlot+')',p.player)));
-    faEl('faMessage').textContent='';faRender();faActionChanged();
-  }catch(e){faEl('faMessage').textContent=e.message;}
-}
-function faActionChanged(){
-  const roster=faEl('faAction').value==='roster';faEl('faDropLabel').hidden=!roster;
-  faEl('faConfirm').textContent=roster?'Add player / drop selected':'Set weekly TB';faValidate();
-}
-function faValidate(){faEl('faConfirm').disabled=!faSelected||(faEl('faAction').value==='roster'&&!faEl('faDrop').value);}
-function faRender(){
-  const q=faEl('faSearch').value.trim().toLowerCase(),pos=faEl('faPosition').value;
-  const list=faPlayers.filter(p=>(!pos||p.position===pos)&&(!q||(p.player+' '+p.team).toLowerCase().includes(q)));
-  const tbody=faEl('faRows');tbody.replaceChildren();
-  list.slice(0,faShown).forEach(p=>{
-    const tr=document.createElement('tr');if(p.player===faSelected)tr.className='selected';
-    [p.player,p.position,p.team].forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.appendChild(td);});
-    const td=document.createElement('td'),b=document.createElement('button');b.type='button';b.textContent=p.player===faSelected?'Selected':'Select';
-    b.addEventListener('click',()=>{faSelected=p.player;faEl('faChosen').textContent='Selected: '+p.player+' ('+p.position+', '+p.team+')';faValidate();faRender();});
-    td.appendChild(b);tr.appendChild(td);tbody.appendChild(tr);
-  });
-  faEl('faMore').hidden=list.length<=faShown;faEl('faMore').textContent='Show more ('+Math.min(faShown,list.length)+' of '+list.length+')';
-}
-async function faSave(){
-  if(!faSelected)return;const isTB=faEl('faAction').value==='tb';
-  const drop=faEl('faDrop').value;if(!isTB&&!drop)return;
-  const msg=isTB?'Choose '+faSelected+' as this week’s TB?':'Add '+faSelected+' and release '+drop+' to free agency?';
-  if(!confirm(msg))return;
-  faEl('faConfirm').disabled=true;faEl('faMessage').textContent='Saving transaction...';
-  try{
-    const req={action:isTB?'saveTB':'swapFreeAgent',manager:currentManager,pin:currentPin};
-    if(isTB)req.player=faSelected;else{req.addPlayer=faSelected;req.dropPlayer=drop;}
-    const result=await apiRequest(req);if(!result.success)throw new Error(result.error||'Transaction failed');
-    faEl('faMessage').textContent='Saved successfully.';
-    await loadRoster();await faLoad();
-  }catch(e){faEl('faMessage').textContent=e.message;faValidate();}
-}
-faEl('faSearch').addEventListener('input',()=>{faShown=100;faRender();});
-faEl('faPosition').addEventListener('change',()=>{faShown=100;faRender();});
-faEl('faAction').addEventListener('change',faActionChanged);
-faEl('faDrop').addEventListener('change',faValidate);
-faEl('faMore').addEventListener('click',()=>{faShown+=100;faRender();});
-faEl('faRefresh').addEventListener('click',faLoad);
-faEl('faConfirm').addEventListener('click',faSave);
 
+/* Season statistics are requested separately; roster moves remain on the existing API. */
+window.f4Stats={};
+function f4StatByName(name){const norm=s=>String(s||'').toLowerCase().trim().replace(/\s+(iii|ii|iv|jr\.?|sr\.?)$/,'').replace(/[^a-z0-9]/g,'');return Object.values(window.f4Stats||{}).find(p=>p.player&&norm(p.player)===norm(name));}
+async function f4LoadStats(){
+ try{const r=await apiRequest({action:'loadPlayerStats',manager:currentManager,pin:currentPin});
+ if(r.success&&r.players){window.f4Stats=r.players;renderRoster();}}
+ catch(e){console.warn('Season stats unavailable:',e.message);}
+}
 </script>
 
 
