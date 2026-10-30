@@ -1094,9 +1094,7 @@ button:disabled {
 @media(max-width:850px){#starterGrid .player-card,#benchGrid .player-card,#sleeperGrid .player-card{grid-template-columns:1fr auto;gap:8px}.f4-row-stats{grid-column:1/-1}.f4-row-extra{grid-column:1/-1}}
 .player-meta .badges{display:inline-flex;vertical-align:middle;margin:0 0 0 8px;gap:5px;align-items:center}
 .player-meta .badge{padding:3px 7px}
-.f4-week-points{margin-top:9px;display:flex;gap:10px;align-items:baseline;color:#eaf3ff}
-.f4-week-points small{font-size:10px;font-weight:800;color:#9cb6d9;letter-spacing:.5px}
-.f4-week-points b{font-size:16px;font-weight:900}
+.f4-this-week-points{font-size:12px;font-weight:800;color:#facc15;margin-top:5px;grid-column:1/-1}
 </style>
 
 </head>
@@ -1346,7 +1344,7 @@ button:disabled {
 
       Players lock when their game begins.
 
-      Your roster has nine starters and five bench players.
+      Your drafted roster stays in place for the rest of the season: nine starters and five bench players.
 
     </div>
 
@@ -1397,6 +1395,29 @@ button:disabled {
       id="benchGrid"
       class="roster-grid"
     ></div>
+
+
+    <div class="section-heading" id="retiredTBHeading" style="display:none">
+
+      <h2 class="section-title">
+        Weekly TB (Retired)
+      </h2>
+
+      <span
+        id="sleeperCount"
+        class="section-count"
+      >
+        1/1
+      </span>
+
+    </div>
+
+    <div
+      id="sleeperGrid"
+      style="display:none"
+      class="roster-grid"
+    ></div>
+
 
 
 </section>
@@ -2060,7 +2081,7 @@ function renderRoster() {
 
   benchGrid.innerHTML = "";
 
-  // Weekly TB is retired; the 14 drafted players remain on the roster.
+  sleeperGrid.innerHTML = "";
 
 
   const starters =
@@ -2093,6 +2114,19 @@ function renderRoster() {
     );
 
 
+  const sleepers =
+    currentRoster.filter(
+      function(player) {
+
+        return (
+          player.rosterRole ===
+          "TB" || player.isWeeklyTB === true
+        );
+
+      }
+    );
+
+
   starterCount.textContent =
     starters.length +
     "/9";
@@ -2101,6 +2135,11 @@ function renderRoster() {
   benchCount.textContent =
     bench.length +
     "/5";
+
+
+  sleeperCount.textContent =
+    sleepers.length +
+    "/1";
 
 
   starters.forEach(
@@ -2129,6 +2168,17 @@ function renderRoster() {
   );
 
 
+  sleepers.forEach(
+    function(player) {
+
+      sleeperGrid.appendChild(
+        createPlayerCard(
+          player
+        )
+      );
+
+    }
+  );
 
 }
 
@@ -2200,7 +2250,13 @@ function createPlayerCard(
   }
 
 
+  if (player.sleeper) {
 
+    card.classList.add(
+      "sleeper"
+    );
+
+  }
 
 
   const top =
@@ -2317,6 +2373,26 @@ function createPlayerCard(
   }
 
 
+  if (player.sleeper) {
+
+    const sleeper =
+      document.createElement(
+        "span"
+      );
+
+    sleeper.className =
+      "badge sleeper-badge";
+
+    sleeper.textContent =
+      "Tiebreak Only";
+
+    badges.appendChild(
+      sleeper
+    );
+
+  }
+
+
   if (
     badges.children.length > 0
   ) {
@@ -2389,13 +2465,16 @@ function createPlayerCard(
   stats.innerHTML='<span><small>RANK</small><b>'+ (stat&&stat.rank?'#'+stat.rank:'—')+'</b></span>'+
     '<span><small>SEASON PPR</small><b>'+val(stat&&stat.seasonPoints)+'</b></span>'+
     '<span><small>AVG / GAME</small><b>'+val(stat&&stat.average)+'</b></span>';
-  const weekly=document.createElement('div');weekly.className='f4-week-points';
-  weekly.innerHTML='<small>THIS WEEK</small><b>'+val(stat&&stat.weekPoints)+'</b>';
-  meta.appendChild(weekly);
+  const weeklyPoints=document.createElement('div');
+  weeklyPoints.className='f4-this-week-points';
+  weeklyPoints.textContent='THIS WEEK: '+val(stat&&stat.weekPoints);
+  const playerInfo=card.querySelector('.player-info, .player-details, .player-meta, .player-name');
+  if(playerInfo){playerInfo.insertAdjacentElement('afterend',weeklyPoints);}
+  else{card.appendChild(weeklyPoints);}
   card.appendChild(stats);
   const action=document.createElement('a');action.className='f4-adddrop';
-  action.textContent='Add / Drop';
-  const params=new URLSearchParams({manager:currentManager||'',drop:player.player});
+  action.textContent=player.rosterRole==='TB'?'Free Agency':'Add / Drop';
+  const params=new URLSearchParams({manager:currentManager||'',drop:player.rosterRole==='TB'?'':player.player});
   action.href='free-agency.html?'+params.toString();card.appendChild(action);
   if(stat){const detail=document.createElement('div');detail.className='f4-row-extra';
     detail.textContent='Last 3: '+(stat.last3||[]).map(x=>'W'+x.week+' '+x.points).join(' · ')+(stat.statLine?'   |   '+stat.statLine:'');card.appendChild(detail);}
@@ -2788,7 +2867,7 @@ function logout() {
 
   benchGrid.innerHTML = "";
 
-  // Weekly TB is retired; the 14 drafted players remain on the roster.
+  sleeperGrid.innerHTML = "";
 
 
   franchiseArt.src = "";
