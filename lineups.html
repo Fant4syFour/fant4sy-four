@@ -684,19 +684,31 @@ button:disabled {
   flex:
     0 0 auto;
 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 42px;
+
   padding:
     4px 7px;
 
   border-radius: 6px;
 
   background:
-    var(--accent-soft);
+    rgba(250,204,21,.14);
 
-  color:
-    var(--accent);
+  border:
+    1px solid rgba(250,204,21,.45);
+
+  color: #facc15;
 
   font-size: 11px;
   font-weight: 900;
+
+  letter-spacing: .4px;
+
+  text-transform: uppercase;
 }
 
 .player-meta {
@@ -1078,23 +1090,286 @@ button:disabled {
 .fa-table td{border-top:1px solid #2c3c55;padding:10px}.fa-table tr:hover{background:#172841}
 .fa-table button{background:#24446a;color:#fff;border:1px solid #4d6c92;border-radius:7px;padding:7px 10px;cursor:pointer}
 .fa-table tr.selected{background:#2d3d57}
-#starterGrid,#benchGrid,#sleeperGrid{grid-template-columns:1fr!important}
-#starterGrid .player-card,#benchGrid .player-card,#sleeperGrid .player-card{width:100%;min-width:0}
 @media(max-width:600px){.fa-center{padding:12px}.fa-table td,.fa-table th{padding:8px 5px;font-size:12px}}
 
 
-/* ESPN/Yahoo-inspired compact roster rows; retains existing move controls. */
-#starterGrid,#benchGrid,#sleeperGrid{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
-#starterGrid .player-card,#benchGrid .player-card,#sleeperGrid .player-card{width:100%!important;max-width:none!important;display:grid;grid-template-columns:minmax(150px,1.7fr) minmax(90px,1fr) minmax(180px,2fr) auto;gap:12px;align-items:center;padding:13px 16px}
-.player-card .player-top{min-width:0}.player-card .player-name{overflow-wrap:anywhere}
-.f4-row-stats{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12px;color:#d5e0f3}
-.f4-row-stats b{display:block;font-size:15px;color:#fff}.f4-row-stats small{display:block;color:#aab8ce}
-.f4-adddrop{border:1px solid #5e83bd;background:#182b4a;color:#fff;border-radius:7px;padding:9px 12px;text-decoration:none;font-size:12px;white-space:nowrap}
-.f4-row-extra{font-size:12px;color:#9eafc8;grid-column:1/-1}
-@media(max-width:850px){#starterGrid .player-card,#benchGrid .player-card,#sleeperGrid .player-card{grid-template-columns:1fr auto;gap:8px}.f4-row-stats{grid-column:1/-1}.f4-row-extra{grid-column:1/-1}}
-.player-meta .badges{display:inline-flex;vertical-align:middle;margin:0 0 0 8px;gap:5px;align-items:center}
-.player-meta .badge{padding:3px 7px}
-.f4-this-week-points{font-size:12px;font-weight:800;color:#facc15;margin-top:5px;grid-column:1/-1}
+/**************************************************************
+ ESPN-STYLE COMPACT LINEUP TABLE
+ Uses existing navy / gold tokens — not ESPN gray.
+**************************************************************/
+
+.roster-table {
+  border: 1px solid #2d3c56;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(9,16,30,.92);
+  margin-bottom: 4px;
+}
+
+.roster-table-head,
+.player-card {
+  display: grid;
+  grid-template-columns:
+    64px
+    minmax(160px, 2.2fr)
+    78px
+    72px
+    72px
+    auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.roster-table-head {
+  padding: 9px 14px;
+  background: #1a2b45;
+  border-bottom: 1px solid #2d3c56;
+  color: #facc15;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+
+.roster-table-head span:nth-child(4),
+.roster-table-head span:nth-child(5),
+.player-card .f4-col-proj,
+.player-card .f4-col-live {
+  text-align: right;
+}
+
+#starterGrid,
+#benchGrid,
+#sleeperGrid {
+  display: block !important;
+  grid-template-columns: unset !important;
+  gap: 0 !important;
+}
+
+#starterGrid .player-card,
+#benchGrid .player-card,
+#sleeperGrid .player-card {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0;
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid #2c3c55;
+  background: transparent;
+  cursor: pointer;
+}
+
+#starterGrid .player-card:last-child,
+#benchGrid .player-card:last-child,
+#sleeperGrid .player-card:last-child {
+  border-bottom: 0;
+}
+
+.player-card:not(.locked):not(.sleeper):hover {
+  background: #172841;
+  border-color: transparent;
+  transform: none;
+}
+
+.player-card.locked {
+  opacity: .78;
+}
+
+.player-card.sleeper {
+  background: linear-gradient(90deg, rgba(155,95,255,.10), transparent 55%);
+  border-color: transparent;
+  padding: 8px 14px;
+}
+
+.player-card .f4-col-pos {
+  min-width: 0;
+}
+
+.player-card .player-top {
+  display: contents;
+}
+
+.player-card .f4-col-player {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.player-thumb {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  background: #091326;
+  border: 1px solid #34435e;
+  box-shadow: 0 0 0 1px rgba(250,204,21,.12);
+}
+
+.player-thumb-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aebbd1;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.player-card .player-name {
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-card .player-name a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(79,168,255,.55);
+}
+
+.player-card .player-name a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.player-card .player-meta {
+  margin-top: 2px;
+  color: #a8b6ca;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.player-card .player-meta .badges {
+  display: inline-flex;
+  vertical-align: middle;
+  margin: 0 0 0 6px;
+  gap: 4px;
+  align-items: center;
+}
+
+.player-card .player-meta .badge {
+  padding: 2px 6px;
+  margin-top: 0;
+}
+
+.player-card .badges {
+  margin-top: 0;
+}
+
+.f4-col-opp {
+  color: #d5e0f3;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  white-space: nowrap;
+}
+
+.f4-col-proj,
+.f4-col-live {
+  font-size: 14px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.f4-col-proj {
+  color: #facc15;
+}
+
+.f4-col-live {
+  color: #ffffff;
+}
+
+.f4-col-live.is-live {
+  color: #65df7b;
+}
+
+.f4-col-live.is-scheduled {
+  color: #facc15;
+}
+
+.f4-col-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.player-card .move-area {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.player-card .move-button {
+  width: auto;
+  padding: 7px 10px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.f4-adddrop {
+  border: 1px solid #5e83bd;
+  background: #182b4a;
+  color: #fff;
+  border-radius: 7px;
+  padding: 7px 10px;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.f4-row-stats,
+.f4-row-extra,
+.f4-this-week-points {
+  display: none;
+}
+
+@media (max-width: 850px) {
+  .roster-table {
+    overflow-x: auto;
+  }
+
+  .roster-table-head,
+  .player-card {
+    min-width: 620px;
+    grid-template-columns:
+      56px
+      minmax(150px, 2fr)
+      70px
+      64px
+      64px
+      auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .roster-table-head,
+  .player-card {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .player-thumb {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+
+  .player-card .player-name {
+    font-size: 13px;
+  }
+}
 </style>
 
 </head>
@@ -1370,10 +1645,20 @@ button:disabled {
 
     </div>
 
-    <div
-      id="starterGrid"
-      class="roster-grid"
-    ></div>
+    <div class="roster-table">
+      <div class="roster-table-head" aria-hidden="true">
+        <span>Pos</span>
+        <span>Player</span>
+        <span>Opp</span>
+        <span>Proj</span>
+        <span>Live</span>
+        <span></span>
+      </div>
+      <div
+        id="starterGrid"
+        class="roster-grid"
+      ></div>
+    </div>
 
 
     <div class="section-heading">
@@ -1391,10 +1676,20 @@ button:disabled {
 
     </div>
 
-    <div
-      id="benchGrid"
-      class="roster-grid"
-    ></div>
+    <div class="roster-table">
+      <div class="roster-table-head" aria-hidden="true">
+        <span>Pos</span>
+        <span>Player</span>
+        <span>Opp</span>
+        <span>Proj</span>
+        <span>Live</span>
+        <span></span>
+      </div>
+      <div
+        id="benchGrid"
+        class="roster-grid"
+      ></div>
+    </div>
 
 
     <div class="section-heading" id="retiredTBHeading" style="display:none">
@@ -1412,11 +1707,20 @@ button:disabled {
 
     </div>
 
-    <div
-      id="sleeperGrid"
-      style="display:none"
-      class="roster-grid"
-    ></div>
+    <div class="roster-table" id="sleeperTable" style="display:none">
+      <div class="roster-table-head" aria-hidden="true">
+        <span>Pos</span>
+        <span>Player</span>
+        <span>Opp</span>
+        <span>Proj</span>
+        <span>Live</span>
+        <span></span>
+      </div>
+      <div
+        id="sleeperGrid"
+        class="roster-grid"
+      ></div>
+    </div>
 
 
 
@@ -2224,6 +2528,303 @@ function compareStarterSlots(
 
 
 /**************************************************************
+ NFL.COM PLAYER SLUG / SCOREBOARD HELPERS
+ (same slug rules as index.html lineup links)
+**************************************************************/
+
+function nflPlayerSlug(name){
+
+  let value =
+    String(name || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
+
+  value = value.replace(
+    /^([A-Za-z])([A-Za-z])(?=\s)/,
+    "$1-$2"
+  );
+
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+}
+
+
+function normalizeNFLTeam(team){
+
+  const key =
+    String(team || "")
+      .trim()
+      .toUpperCase();
+
+  const aliases = {
+    JAC: "JAX",
+    WSH: "WAS",
+    LAR: "LA"
+  };
+
+  return aliases[key] || key;
+
+}
+
+
+function playerNFLUrl(player){
+
+  const position =
+    String(
+      player.position ||
+      player.nflPosition ||
+      ""
+    )
+      .trim()
+      .toUpperCase();
+
+  const isDefense =
+    position === "D/ST" ||
+    position === "DEF" ||
+    position === "DST";
+
+  if (isDefense) {
+    return "";
+  }
+
+  const slug =
+    nflPlayerSlug(
+      player.player
+    );
+
+  if (!slug) {
+    return "";
+  }
+
+  return (
+    "https://www.nfl.com/players/" +
+    slug +
+    "/"
+  );
+
+}
+
+
+function formatStatValue(v){
+
+  if (
+    v === null ||
+    v === undefined ||
+    v === ""
+  ) {
+    return "—";
+  }
+
+  const num =
+    Number(v);
+
+  if (
+    !Number.isNaN(num) &&
+    String(v).trim() !== ""
+  ) {
+
+    return (
+      Math.round(num * 100) / 100
+    )
+      .toFixed(1)
+      .replace(/\.0$/, "");
+
+  }
+
+  return String(v);
+
+}
+
+
+function opponentForTeam(nflTeam){
+
+  const team =
+    normalizeNFLTeam(
+      nflTeam
+    );
+
+  if (!team) {
+    return "—";
+  }
+
+  const games =
+    window.f4Scoreboard &&
+    Array.isArray(
+      window.f4Scoreboard.games
+    )
+      ? window.f4Scoreboard.games
+      : [];
+
+  const game =
+    games.find(
+      function(item) {
+
+        return (
+          normalizeNFLTeam(
+            item.awayTeam
+          ) === team ||
+          normalizeNFLTeam(
+            item.homeTeam
+          ) === team
+        );
+
+      }
+    );
+
+  if (!game) {
+    return "—";
+  }
+
+  const home =
+    normalizeNFLTeam(
+      game.homeTeam
+    );
+
+  const away =
+    normalizeNFLTeam(
+      game.awayTeam
+    );
+
+  if (team === home) {
+    return "vs " + away;
+  }
+
+  return "@ " + home;
+
+}
+
+
+function gameStatusForTeam(nflTeam){
+
+  const team =
+    normalizeNFLTeam(
+      nflTeam
+    );
+
+  if (!team) {
+    return "final";
+  }
+
+  const games =
+    window.f4Scoreboard &&
+    Array.isArray(
+      window.f4Scoreboard.games
+    )
+      ? window.f4Scoreboard.games
+      : [];
+
+  const game =
+    games.find(
+      function(item) {
+
+        return (
+          normalizeNFLTeam(
+            item.awayTeam
+          ) === team ||
+          normalizeNFLTeam(
+            item.homeTeam
+          ) === team
+        );
+
+      }
+    );
+
+  if (!game) {
+    return "final";
+  }
+
+  if (game.completed === true) {
+    return "final";
+  }
+
+  if (game.live === true) {
+    return "live";
+  }
+
+  return "scheduled";
+
+}
+
+
+function playerThumbUrl(player){
+
+  const sid =
+    String(
+      player.sleeperID ||
+      player.sleeperId ||
+      player.playerId ||
+      ""
+    )
+      .trim();
+
+  const espnId =
+    String(
+      player.espnAthleteId ||
+      player.espnId ||
+      ""
+    )
+      .trim();
+
+  const position =
+    String(
+      player.position ||
+      player.nflPosition ||
+      ""
+    )
+      .trim()
+      .toUpperCase();
+
+  const isDefense =
+    position === "D/ST" ||
+    position === "DEF" ||
+    position === "DST";
+
+  if (
+    isDefense &&
+    player.nflTeam
+  ) {
+
+    return (
+      "https://sleepercdn.com/images/team_logos/nfl/" +
+      String(player.nflTeam)
+        .trim()
+        .toLowerCase() +
+      ".png"
+    );
+
+  }
+
+  /* Prefer Sleeper headshots; fall back to ESPN athlete art when needed. */
+  if (sid) {
+
+    return (
+      "https://sleepercdn.com/content/nfl/players/thumb/" +
+      sid +
+      ".jpg"
+    );
+
+  }
+
+  if (espnId) {
+
+    return (
+      "https://a.espncdn.com/i/headshots/nfl/players/full/" +
+      espnId +
+      ".png"
+    );
+
+  }
+
+  return "";
+
+}
+
+
+/**************************************************************
  CREATE PLAYER CARD
 **************************************************************/
 
@@ -2239,6 +2840,11 @@ function createPlayerCard(
 
   card.className =
     "player-card";
+
+  card.setAttribute(
+    "role",
+    "link"
+  );
 
 
   if (player.locked) {
@@ -2259,25 +2865,30 @@ function createPlayerCard(
   }
 
 
-  const top =
+  const sid =
+    String(
+      player.sleeperID ||
+      player.playerId ||
+      ""
+    );
+
+  const stat =
+    (
+      window.f4Stats &&
+      window.f4Stats[sid]
+    ) ||
+    f4StatByName(
+      player.player
+    );
+
+
+  const posCol =
     document.createElement(
       "div"
     );
 
-  top.className =
-    "player-top";
-
-
-  const name =
-    document.createElement(
-      "div"
-    );
-
-  name.className =
-    "player-name";
-
-  name.textContent =
-    player.player;
+  posCol.className =
+    "f4-col-pos";
 
 
   const slot =
@@ -2289,16 +2900,204 @@ function createPlayerCard(
     "slot";
 
   slot.textContent =
-    player.starterSlot;
+    player.starterSlot ||
+    player.position ||
+    "—";
 
-
-  top.appendChild(
-    name
-  );
-
-  top.appendChild(
+  posCol.appendChild(
     slot
   );
+
+
+  const playerCol =
+    document.createElement(
+      "div"
+    );
+
+  playerCol.className =
+    "f4-col-player";
+
+
+  const thumbUrl =
+    playerThumbUrl(
+      player
+    );
+
+  if (thumbUrl) {
+
+    const thumb =
+      document.createElement(
+        "img"
+      );
+
+    thumb.className =
+      "player-thumb";
+
+    thumb.src =
+      thumbUrl;
+
+    thumb.alt =
+      player.player ||
+      "Player";
+
+    thumb.loading =
+      "lazy";
+
+    thumb.referrerPolicy =
+      "no-referrer";
+
+    thumb.addEventListener(
+      "error",
+      function onThumbError() {
+
+        const espnId =
+          String(
+            player.espnAthleteId ||
+            player.espnId ||
+            ""
+          )
+            .trim();
+
+        const triedEspn =
+          thumb.dataset.espnFallback ===
+          "1";
+
+        if (
+          espnId &&
+          !triedEspn
+        ) {
+
+          thumb.dataset.espnFallback =
+            "1";
+
+          thumb.src =
+            "https://a.espncdn.com/i/headshots/nfl/players/full/" +
+            espnId +
+            ".png";
+
+          return;
+
+        }
+
+        thumb.removeEventListener(
+          "error",
+          onThumbError
+        );
+
+        const fallback =
+          document.createElement(
+            "div"
+          );
+
+        fallback.className =
+          "player-thumb player-thumb-fallback";
+
+        fallback.textContent =
+          String(
+            player.nflTeam ||
+            player.position ||
+            "?"
+          )
+            .slice(0, 3);
+
+        thumb.replaceWith(
+          fallback
+        );
+
+      }
+    );
+
+    playerCol.appendChild(
+      thumb
+    );
+
+  } else {
+
+    const fallback =
+      document.createElement(
+        "div"
+      );
+
+    fallback.className =
+      "player-thumb player-thumb-fallback";
+
+    fallback.textContent =
+      String(
+        player.nflTeam ||
+        player.position ||
+        "?"
+      )
+        .slice(0, 3);
+
+    playerCol.appendChild(
+      fallback
+    );
+
+  }
+
+
+  const identity =
+    document.createElement(
+      "div"
+    );
+
+  identity.className =
+    "player-identity";
+
+
+  const name =
+    document.createElement(
+      "div"
+    );
+
+  name.className =
+    "player-name";
+
+
+  const nflUrl =
+    playerNFLUrl(
+      player
+    );
+
+  if (nflUrl) {
+
+    const link =
+      document.createElement(
+        "a"
+      );
+
+    link.href =
+      nflUrl;
+
+    link.target =
+      "_blank";
+
+    link.rel =
+      "noopener noreferrer";
+
+    link.textContent =
+      player.player;
+
+    link.setAttribute(
+      "aria-label",
+      "Open " +
+      player.player +
+      " on NFL.com"
+    );
+
+    name.appendChild(
+      link
+    );
+
+    card.dataset.nflUrl =
+      nflUrl;
+
+  } else {
+
+    name.textContent =
+      player.player;
+
+  }
 
 
   const meta =
@@ -2309,18 +3108,12 @@ function createPlayerCard(
   meta.className =
     "player-meta";
 
-  meta.textContent =
-    player.nflTeam +
-    " · " +
-    player.position;
-
-
-  card.appendChild(
-    top
-  );
-
-  card.appendChild(
-    meta
+  meta.appendChild(
+    document.createTextNode(
+      (player.nflTeam || "—") +
+      " · " +
+      (player.position || "—")
+    )
   );
 
 
@@ -2404,6 +3197,108 @@ function createPlayerCard(
   }
 
 
+  identity.appendChild(
+    name
+  );
+
+  identity.appendChild(
+    meta
+  );
+
+  playerCol.appendChild(
+    identity
+  );
+
+
+  const oppCol =
+    document.createElement(
+      "div"
+    );
+
+  oppCol.className =
+    "f4-col-opp";
+
+  oppCol.textContent =
+    opponentForTeam(
+      player.nflTeam
+    );
+
+
+  const projCol =
+    document.createElement(
+      "div"
+    );
+
+  projCol.className =
+    "f4-col-proj";
+
+  const projected =
+    stat && (
+      stat.projected ??
+      stat.projection ??
+      stat.proj ??
+      stat.weekProjection ??
+      stat.average
+    );
+
+  projCol.textContent =
+    formatStatValue(
+      projected
+    );
+
+
+  const liveCol =
+    document.createElement(
+      "div"
+    );
+
+  liveCol.className =
+    "f4-col-live";
+
+  const liveValue =
+    (
+      player.points !== undefined &&
+      player.points !== null &&
+      player.points !== ""
+    )
+      ? player.points
+      : (
+        stat &&
+        stat.weekPoints
+      );
+
+  liveCol.textContent =
+    formatStatValue(
+      liveValue
+    );
+
+  const status =
+    gameStatusForTeam(
+      player.nflTeam
+    );
+
+  if (status === "live") {
+    liveCol.classList.add(
+      "is-live"
+    );
+  } else if (
+    status === "scheduled"
+  ) {
+    liveCol.classList.add(
+      "is-scheduled"
+    );
+  }
+
+
+  const actions =
+    document.createElement(
+      "div"
+    );
+
+  actions.className =
+    "f4-col-actions";
+
+
   if (
     player.rosterRole ===
       "Bench" &&
@@ -2437,7 +3332,10 @@ function createPlayerCard(
 
     moveButton.addEventListener(
       "click",
-      function() {
+      function(event) {
+
+        event.preventDefault();
+        event.stopPropagation();
 
         openMoveModal(
           player
@@ -2451,33 +3349,198 @@ function createPlayerCard(
       moveButton
     );
 
-    card.appendChild(
+    actions.appendChild(
       moveArea
     );
 
   }
 
 
-  const stats=document.createElement('div');stats.className='f4-row-stats';
-  const sid=String(player.sleeperID||player.playerId||'');
-  const stat=(window.f4Stats&&window.f4Stats[sid])||f4StatByName(player.player);
-  function val(v){return v===null||v===undefined?'—':String(v);}
-  stats.innerHTML='<span><small>RANK</small><b>'+ (stat&&stat.rank?'#'+stat.rank:'—')+'</b></span>'+
-    '<span><small>SEASON PPR</small><b>'+val(stat&&stat.seasonPoints)+'</b></span>'+
-    '<span><small>AVG / GAME</small><b>'+val(stat&&stat.average)+'</b></span>';
-  const weeklyPoints=document.createElement('div');
-  weeklyPoints.className='f4-this-week-points';
-  weeklyPoints.textContent='THIS WEEK: '+val(stat&&stat.weekPoints);
-  const playerInfo=card.querySelector('.player-info, .player-details, .player-meta, .player-name');
-  if(playerInfo){playerInfo.insertAdjacentElement('afterend',weeklyPoints);}
-  else{card.appendChild(weeklyPoints);}
-  card.appendChild(stats);
-  const action=document.createElement('a');action.className='f4-adddrop';
-  action.textContent=player.rosterRole==='TB'?'Free Agency':'Add / Drop';
-  const params=new URLSearchParams({manager:currentManager||'',drop:player.rosterRole==='TB'?'':player.player});
-  action.href='free-agency.html?'+params.toString();card.appendChild(action);
-  if(stat){const detail=document.createElement('div');detail.className='f4-row-extra';
-    detail.textContent='Last 3: '+(stat.last3||[]).map(x=>'W'+x.week+' '+x.points).join(' · ')+(stat.statLine?'   |   '+stat.statLine:'');card.appendChild(detail);}
+  const action =
+    document.createElement(
+      "a"
+    );
+
+  action.className =
+    "f4-adddrop";
+
+  action.textContent =
+    player.rosterRole === "TB"
+      ? "Free Agency"
+      : "Add / Drop";
+
+  const params =
+    new URLSearchParams({
+      manager:
+        currentManager || "",
+      drop:
+        player.rosterRole === "TB"
+          ? ""
+          : player.player
+    });
+
+  action.href =
+    "free-agency.html?" +
+    params.toString();
+
+  action.addEventListener(
+    "click",
+    function(event) {
+      event.stopPropagation();
+    }
+  );
+
+  actions.appendChild(
+    action
+  );
+
+
+  /* Keep legacy stat nodes in the DOM for pipeline continuity; CSS hides them in the compact grid. */
+  const stats =
+    document.createElement(
+      "div"
+    );
+
+  stats.className =
+    "f4-row-stats";
+
+  stats.innerHTML =
+    "<span><small>RANK</small><b>" +
+    (
+      stat &&
+      stat.rank
+        ? "#" + stat.rank
+        : "—"
+    ) +
+    "</b></span>" +
+    "<span><small>SEASON PPR</small><b>" +
+    formatStatValue(
+      stat &&
+      stat.seasonPoints
+    ) +
+    "</b></span>" +
+    "<span><small>AVG / GAME</small><b>" +
+    formatStatValue(
+      stat &&
+      stat.average
+    ) +
+    "</b></span>";
+
+  const weeklyPoints =
+    document.createElement(
+      "div"
+    );
+
+  weeklyPoints.className =
+    "f4-this-week-points";
+
+  weeklyPoints.textContent =
+    "THIS WEEK: " +
+    formatStatValue(
+      stat &&
+      stat.weekPoints
+    );
+
+
+  card.appendChild(
+    posCol
+  );
+
+  card.appendChild(
+    playerCol
+  );
+
+  card.appendChild(
+    oppCol
+  );
+
+  card.appendChild(
+    projCol
+  );
+
+  card.appendChild(
+    liveCol
+  );
+
+  card.appendChild(
+    actions
+  );
+
+  card.appendChild(
+    weeklyPoints
+  );
+
+  card.appendChild(
+    stats
+  );
+
+  if (stat) {
+
+    const detail =
+      document.createElement(
+        "div"
+      );
+
+    detail.className =
+      "f4-row-extra";
+
+    detail.textContent =
+      "Last 3: " +
+      (stat.last3 || [])
+        .map(
+          function(x) {
+            return (
+              "W" +
+              x.week +
+              " " +
+              x.points
+            );
+          }
+        )
+        .join(" · ") +
+      (
+        stat.statLine
+          ? "   |   " +
+            stat.statLine
+          : ""
+      );
+
+    card.appendChild(
+      detail
+    );
+
+  }
+
+
+  card.addEventListener(
+    "click",
+    function(event) {
+
+      if (
+        event.target.closest(
+          "a, button, .move-area, .f4-adddrop"
+        )
+      ) {
+        return;
+      }
+
+      const url =
+        card.dataset.nflUrl;
+
+      if (!url) {
+        return;
+      }
+
+      window.open(
+        url,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+    }
+  );
+
+
   return card;
 
 }
@@ -3074,12 +4137,25 @@ document.addEventListener(
 
 /* Season statistics are requested separately; roster moves remain on the existing API. */
 window.f4Stats={};
+window.f4Scoreboard={games:[]};
 function f4StatByName(name){const norm=s=>String(s||'').toLowerCase().trim().replace(/\s+(iii|ii|iv|jr\.?|sr\.?)$/,'').replace(/[^a-z0-9]/g,'');return Object.values(window.f4Stats||{}).find(p=>p.player&&norm(p.player)===norm(name));}
 async function f4LoadStats(){
  try{const r=await apiRequest({action:'loadPlayerStats',manager:currentManager,pin:currentPin});
  if(r.success&&r.players){window.f4Stats=r.players;renderRoster();}}
  catch(e){console.warn('Season stats unavailable:',e.message);}
 }
+async function f4LoadScoreboard(){
+ try{
+  const response=await fetch(API_URL+'?api=1');
+  if(!response.ok){return;}
+  const data=await response.json();
+  if(data&&data.nflScoreboard){
+   window.f4Scoreboard=data.nflScoreboard;
+   if(currentRoster.length){renderRoster();}
+  }
+ }catch(e){console.warn('NFL scoreboard unavailable:',e.message);}
+}
+f4LoadScoreboard();
 </script>
 
 
