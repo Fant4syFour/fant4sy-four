@@ -260,12 +260,65 @@ button:disabled {
   color:#111827;
   border-color:#e5b927
 }
+
+/* Phone: condense stats so Select stays on-screen — no sideways scroll */
 @media(max-width:900px) {
   .roster-table {
-  overflow-x:auto}
+  overflow:visible}
 .roster-table-head,
 .player-card {
-  min-width:620px
+  min-width:0;
+  width:100%;
+  grid-template-columns:
+    46px
+    minmax(0, 1fr)
+    40px
+    48px
+    40px
+    auto;
+  gap:4px;
+  padding-left:10px;
+  padding-right:8px
+}
+.slot {
+  min-width:34px;
+  padding:3px 5px;
+  font-size:10px
+}
+.f4-col-rank,
+.f4-col-season,
+.f4-col-avg {
+  font-size:11px
+}
+.f4-col-actions {
+  position:sticky;
+  right:0;
+  z-index:2;
+  align-self:stretch;
+  margin:-8px 0;
+  padding:8px 0 8px 6px;
+  background:rgba(9,16,30,.97);
+  box-shadow:-10px 0 12px -8px rgba(0,0,0,.55)
+}
+.roster-table-head span:last-child {
+  position:sticky;
+  right:0;
+  z-index:2;
+  align-self:stretch;
+  margin:-9px 0;
+  padding:9px 0 9px 6px;
+  background:#1a2b45;
+  box-shadow:-10px 0 12px -8px rgba(0,0,0,.45)
+}
+.player-card:hover .f4-col-actions {
+  background:#172841
+}
+.player-card.picked .f4-col-actions {
+  background:#1b4660
+}
+.f4-col-actions button {
+  padding:6px 8px;
+  font-size:10px
 }
 }
 @media(max-width:650px) {
@@ -273,14 +326,52 @@ button:disabled {
   padding:13px}
 .roster-table-head,
 .player-card {
-  padding-left:10px;
-  padding-right:10px}
+  padding-left:8px;
+  padding-right:6px;
+  grid-template-columns:
+    40px
+    minmax(0, 1fr)
+    34px
+    42px
+    36px
+    auto;
+  gap:3px
+}
 .player-thumb {
-  width:30px;
-  height:30px;
-  flex-basis:30px}
+  display:none
+}
 .player-card .player-name {
-  font-size:13px}
+  font-size:13px
+}
+.player-card .player-meta {
+  font-size:10px
+}
+.injury-badge {
+  margin-left:4px;
+  padding:1px 4px;
+  font-size:10px
+}
+}
+@media(max-width:420px) {
+  /* Drop Season; keep Rank + Avg + Select in the first viewport */
+  .roster-table-head,
+.player-card {
+  grid-template-columns:
+    36px
+    minmax(0, 1fr)
+    32px
+    36px
+    auto
+}
+.roster-table-head span:nth-child(4),
+.player-card .f4-col-season {
+  display:none
+}
+.slot {
+  min-width:30px;
+  padding:2px 4px;
+  letter-spacing:0
+}
 }
   </style>
  </head>
