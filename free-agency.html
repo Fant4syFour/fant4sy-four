@@ -90,7 +90,7 @@ button:disabled {
 /**************************************************************
  ESPN-STYLE COMPACT FREE-AGENCY TABLE
  Same navy / gold density as lineups.html — not ESPN gray.
- Columns: Pos | Player | Rank | Season | Avg | Last 3 | Pick
+ Columns: Pos | Player | Rank | Season | Avg | Pick
 **************************************************************/
 
 .roster-table {
@@ -109,7 +109,6 @@ button:disabled {
     64px
     72px
     64px
-    minmax(120px, 1.4fr)
     auto;
   gap:8px;
   align-items:center
@@ -238,12 +237,6 @@ button:disabled {
   font-weight:900;
   white-space:nowrap
 }
-.f4-col-last3 {
-  color:#aab8ce;
-  font-size:12px;
-  font-weight:700;
-  line-height:1.3
-}
 .f4-col-actions {
   display:flex;
   flex-wrap:wrap;
@@ -272,7 +265,7 @@ button:disabled {
   overflow-x:auto}
 .roster-table-head,
 .player-card {
-  min-width:760px
+  min-width:620px
 }
 }
 @media(max-width:650px) {
@@ -446,7 +439,6 @@ button:disabled {
        <span>Rank</span>
        <span>Season</span>
        <span>Avg</span>
-       <span>Last 3</span>
        <span></span>
       </div>
       <div id="rows">
@@ -673,10 +665,6 @@ function createFreeAgentRow(p,s){
   avgCol.className='f4-col-avg';
   avgCol.textContent=n(s.average);
 
-  const last3Col=document.createElement('div');
-  last3Col.className='f4-col-last3';
-  last3Col.textContent=(s.last3||[]).map(x=>'W'+x.week+': '+n(x.points)).join(' · ')||'—';
-
   const actions=document.createElement('div');
   actions.className='f4-col-actions';
   const b=document.createElement('button');
@@ -697,7 +685,6 @@ function createFreeAgentRow(p,s){
   card.appendChild(rankCol);
   card.appendChild(seasonCol);
   card.appendChild(avgCol);
-  card.appendChild(last3Col);
   card.appendChild(actions);
 
   card.addEventListener('click',function(event){
