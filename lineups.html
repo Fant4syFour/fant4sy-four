@@ -2750,21 +2750,54 @@ function gameStatusForTeam(nflTeam){
 }
 
 
-function playerThumbUrl(player){
+/*
+  NFL.com headshots (static.www.nfl.com) keyed by the same slug used for
+  nfl.com/players/{slug}/ links. ESPN CDNs are intentionally unused.
+*/
+window.f4NFLHeadshots = {
+  "amon-ra-st-brown": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/fd8nwhm6pvxfyzphzl6i",
+  "ashton-jeanty": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/syspis1mntov9kgspb7r",
+  "bijan-robinson": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/zaxetgy0p0ul6evlsf63",
+  "brandon-aubrey": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/bgwg06zmyohjxvzznbf6",
+  "brock-bowers": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/waorceny0ggpaeckaol8",
+  "cam-little": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/mc9goepr7mglrx6ek1fi",
+  "ceedee-lamb": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/mbblzwtynxr15ovzkevi",
+  "chase-mclaughlin": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/enkzsuyzk232mbq5oe4w",
+  "colston-loveland": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/tdeidev1typrqjijtb3a",
+  "d-andre-swift": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/owpmwzoilitcodc6cmxo",
+  "derrick-henry": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/tm79x0iknqg6hms3ypyt",
+  "drake-london": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/y5mkxrljhsglpwl3ky94",
+  "drake-maye": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/mkauzrg7vo8lfziigsbg",
+  "ja-marr-chase": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/qya3dtjb5kgofcuj2tuw",
+  "jahmyr-gibbs": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/cursejnmmp1i9hnxihkj",
+  "javonte-williams": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/xvwroirev2kie6oiphtz",
+  "jaxon-smith-njigba": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/yx1xjrupbqdknnjaq4a6",
+  "joe-burrow": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/gnnvcgui1cijybukk2w7",
+  "jonathan-taylor": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/d7pmatz5wylijbsplnkg",
+  "josh-allen": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/ynrhq9iv30ysjpwmrfdv",
+  "justin-jefferson": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/tzx1iqbxxa1807m6olwj",
+  "kenneth-walker-iii": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/vk6nruaqdewdglofcwwg",
+  "kyler-murray": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/qzoa3bglbgxpxcvjqzo1",
+  "lamar-jackson": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/eno6s5qzl9grbfbfwhoa",
+  "patrick-mahomes": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/wdckwtob1lybvkmxnf7p",
+  "puka-nacua": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/ipy6qw7hdygdfc8k86ba",
+  "t-j-hockenson": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/rs8o65x0u0n9xzde0fd6",
+  "tetairoa-mcmillan": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/gilgvjemumd6kpc9eiku",
+  "travis-kelce": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/dpxovcfku6ud2aohgf6a",
+  "trevor-lawrence": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/k9uzdernqkx7oquy7dkg",
+  "trey-mcbride": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/psasp10nn5pcvkli9kil",
+  "will-reichard": "https://static.www.nfl.com/image/upload/t_thumb_squared/league/kgctxvtvo8sn1zyh2m1c"
+};
+
+function playerThumbCandidates(player){
+
+  const urls = [];
 
   const sid =
     String(
       player.sleeperID ||
       player.sleeperId ||
       player.playerId ||
-      ""
-    )
-      .trim();
-
-  const espnId =
-    String(
-      player.espnAthleteId ||
-      player.espnId ||
       ""
     )
       .trim();
@@ -2788,7 +2821,7 @@ function playerThumbUrl(player){
     player.nflTeam
   ) {
 
-    return (
+    urls.push(
       "https://sleepercdn.com/images/team_logos/nfl/" +
       String(player.nflTeam)
         .trim()
@@ -2796,12 +2829,38 @@ function playerThumbUrl(player){
       ".png"
     );
 
+    return urls;
+
   }
 
-  /* Prefer Sleeper headshots; fall back to ESPN athlete art when needed. */
+  const slug =
+    nflPlayerSlug(
+      player.player
+    );
+
+  const nflShot =
+    (
+      player.nflHeadshot ||
+      player.headshot ||
+      (slug &&
+        window.f4NFLHeadshots[
+          slug
+        ]) ||
+      ""
+    );
+
+  if (nflShot) {
+    urls.push(
+      String(
+        nflShot
+      )
+    );
+  }
+
+  /* Sleeper only as backup when an NFL.com shot is missing/broken. */
   if (sid) {
 
-    return (
+    urls.push(
       "https://sleepercdn.com/content/nfl/players/thumb/" +
       sid +
       ".jpg"
@@ -2809,17 +2868,18 @@ function playerThumbUrl(player){
 
   }
 
-  if (espnId) {
+  return urls;
 
-    return (
-      "https://a.espncdn.com/i/headshots/nfl/players/full/" +
-      espnId +
-      ".png"
+}
+
+function playerThumbUrl(player){
+
+  const urls =
+    playerThumbCandidates(
+      player
     );
 
-  }
-
-  return "";
+  return urls[0] || "";
 
 }
 
@@ -2918,12 +2978,12 @@ function createPlayerCard(
     "f4-col-player";
 
 
-  const thumbUrl =
-    playerThumbUrl(
+  const thumbUrls =
+    playerThumbCandidates(
       player
     );
 
-  if (thumbUrl) {
+  if (thumbUrls.length) {
 
     const thumb =
       document.createElement(
@@ -2934,7 +2994,7 @@ function createPlayerCard(
       "player-thumb";
 
     thumb.src =
-      thumbUrl;
+      thumbUrls[0];
 
     thumb.alt =
       player.player ||
@@ -2946,34 +3006,31 @@ function createPlayerCard(
     thumb.referrerPolicy =
       "no-referrer";
 
+    thumb.dataset.thumbIndex =
+      "0";
+
     thumb.addEventListener(
       "error",
       function onThumbError() {
 
-        const espnId =
-          String(
-            player.espnAthleteId ||
-            player.espnId ||
-            ""
-          )
-            .trim();
-
-        const triedEspn =
-          thumb.dataset.espnFallback ===
-          "1";
+        const index =
+          Number(
+            thumb.dataset.thumbIndex ||
+            0
+          ) + 1;
 
         if (
-          espnId &&
-          !triedEspn
+          index <
+          thumbUrls.length
         ) {
 
-          thumb.dataset.espnFallback =
-            "1";
+          thumb.dataset.thumbIndex =
+            String(
+              index
+            );
 
           thumb.src =
-            "https://a.espncdn.com/i/headshots/nfl/players/full/" +
-            espnId +
-            ".png";
+            thumbUrls[index];
 
           return;
 
