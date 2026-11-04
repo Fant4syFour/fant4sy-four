@@ -1199,12 +1199,12 @@ button:disabled {
 }
 
 .player-thumb {
-  flex: 0 0 36px;
-  width: 36px;
-  height: 36px;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: top center;
+  object-position: center top;
   background: #091326;
   border: 1px solid #34435e;
   box-shadow: 0 0 0 1px rgba(250,204,21,.12);
@@ -2750,7 +2750,9 @@ function gameStatusForTeam(nflTeam){
 }
 
 
-function playerThumbUrl(player){
+function playerThumbCandidates(player){
+
+  const urls = [];
 
   const sid =
     String(
@@ -2788,7 +2790,7 @@ function playerThumbUrl(player){
     player.nflTeam
   ) {
 
-    return (
+    urls.push(
       "https://sleepercdn.com/images/team_logos/nfl/" +
       String(player.nflTeam)
         .trim()
@@ -2796,22 +2798,14 @@ function playerThumbUrl(player){
       ".png"
     );
 
-  }
-
-  /* Prefer Sleeper headshots; fall back to ESPN athlete art when needed. */
-  if (sid) {
-
-    return (
-      "https://sleepercdn.com/content/nfl/players/thumb/" +
-      sid +
-      ".jpg"
-    );
+    return urls;
 
   }
 
+  /* ESPN face art first (clearer in the compact circle), then Sleeper. */
   if (espnId) {
 
-    return (
+    urls.push(
       "https://a.espncdn.com/i/headshots/nfl/players/full/" +
       espnId +
       ".png"
@@ -2819,7 +2813,28 @@ function playerThumbUrl(player){
 
   }
 
-  return "";
+  if (sid) {
+
+    urls.push(
+      "https://sleepercdn.com/content/nfl/players/thumb/" +
+      sid +
+      ".jpg"
+    );
+
+  }
+
+  return urls;
+
+}
+
+function playerThumbUrl(player){
+
+  const urls =
+    playerThumbCandidates(
+      player
+    );
+
+  return urls[0] || "";
 
 }
 
@@ -2829,8 +2844,13 @@ function playerThumbUrl(player){
 **************************************************************/
 
 function createPlayerCard(
-  player
+  rawPlayer
 ) {
+
+  const player =
+    f4EnrichPlayerMedia(
+      rawPlayer
+    );
 
   const card =
     document.createElement(
@@ -2918,12 +2938,12 @@ function createPlayerCard(
     "f4-col-player";
 
 
-  const thumbUrl =
-    playerThumbUrl(
+  const thumbUrls =
+    playerThumbCandidates(
       player
     );
 
-  if (thumbUrl) {
+  if (thumbUrls.length) {
 
     const thumb =
       document.createElement(
@@ -2934,7 +2954,7 @@ function createPlayerCard(
       "player-thumb";
 
     thumb.src =
-      thumbUrl;
+      thumbUrls[0];
 
     thumb.alt =
       player.player ||
@@ -2946,34 +2966,31 @@ function createPlayerCard(
     thumb.referrerPolicy =
       "no-referrer";
 
+    thumb.dataset.thumbIndex =
+      "0";
+
     thumb.addEventListener(
       "error",
       function onThumbError() {
 
-        const espnId =
-          String(
-            player.espnAthleteId ||
-            player.espnId ||
-            ""
-          )
-            .trim();
-
-        const triedEspn =
-          thumb.dataset.espnFallback ===
-          "1";
+        const index =
+          Number(
+            thumb.dataset.thumbIndex ||
+            0
+          ) + 1;
 
         if (
-          espnId &&
-          !triedEspn
+          index <
+          thumbUrls.length
         ) {
 
-          thumb.dataset.espnFallback =
-            "1";
+          thumb.dataset.thumbIndex =
+            String(
+              index
+            );
 
           thumb.src =
-            "https://a.espncdn.com/i/headshots/nfl/players/full/" +
-            espnId +
-            ".png";
+            thumbUrls[index];
 
           return;
 
@@ -4144,6 +4161,34 @@ async function f4LoadStats(){
  if(r.success&&r.players){window.f4Stats=r.players;renderRoster();}}
  catch(e){console.warn('Season stats unavailable:',e.message);}
 }
+window.f4PlayerMedia={};
+function f4NormPlayerName(name){
+ return String(name||'').toLowerCase().trim().replace(/\s+(iii|ii|iv|jr\.?|sr\.?)$/,'').replace(/[^a-z0-9]/g,'');
+}
+function f4IndexPlayerMedia(data){
+ const media={};
+ (data&&data.teams||[]).forEach(function(team){
+  (team.lineup||[]).forEach(function(p){
+   const key=f4NormPlayerName(p.player);
+   if(!key){return;}
+   media[key]={
+    sleeperID:p.sleeperID||p.sleeperId||'',
+    espnAthleteId:p.espnAthleteId||p.espnId||'',
+    nflTeam:p.nflTeam||''
+   };
+  });
+ });
+ window.f4PlayerMedia=media;
+}
+function f4EnrichPlayerMedia(player){
+ const hit=window.f4PlayerMedia[f4NormPlayerName(player.player)];
+ if(!hit){return player;}
+ return Object.assign({},player,{
+  sleeperID:player.sleeperID||player.sleeperId||hit.sleeperID,
+  espnAthleteId:player.espnAthleteId||player.espnId||hit.espnAthleteId,
+  nflTeam:player.nflTeam||hit.nflTeam
+ });
+}
 async function f4LoadScoreboard(){
  try{
   const response=await fetch(API_URL+'?api=1');
@@ -4151,8 +4196,11 @@ async function f4LoadScoreboard(){
   const data=await response.json();
   if(data&&data.nflScoreboard){
    window.f4Scoreboard=data.nflScoreboard;
-   if(currentRoster.length){renderRoster();}
   }
+  if(data&&data.teams){
+   f4IndexPlayerMedia(data);
+  }
+  if(currentRoster.length){renderRoster();}
  }catch(e){console.warn('NFL scoreboard unavailable:',e.message);}
 }
 f4LoadScoreboard();
