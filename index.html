@@ -414,20 +414,65 @@ color:var(--blue)
 }
 
 /* STANDINGS */
-.standings-simple{table-layout:fixed}
+.standings-scroll{
+width:100%;
+overflow-x:auto;
+-webkit-overflow-scrolling:touch;
+border-radius:12px;
+box-shadow:0 8px 25px rgba(0,0,0,.35)
+}
+
+.standings-simple{table-layout:fixed;min-width:760px}
 .standings-simple th:first-child,
-.standings-simple td:first-child{width:50%}
+.standings-simple td:first-child{width:22%}
 .standings-simple th:nth-child(2),
-.standings-simple td:nth-child(2){width:22%}
+.standings-simple td:nth-child(2),
 .standings-simple th:nth-child(3),
-.standings-simple td:nth-child(3){width:28%}
+.standings-simple td:nth-child(3){width:12%}
+.standings-simple th:nth-child(4),
+.standings-simple td:nth-child(4),
+.standings-simple th:nth-child(5),
+.standings-simple td:nth-child(5){width:18%}
+.standings-simple th:nth-child(6),
+.standings-simple td:nth-child(6){width:14%}
 .standings-simple .standings-team{overflow-wrap:anywhere}
 .standings-simple .standings-team strong{vertical-align:middle}
+
+.standings-player{
+min-width:0;
+vertical-align:middle
+}
+
+.standings-player-name{
+font-size:13px;
+font-weight:bold;
+line-height:1.25;
+overflow-wrap:anywhere
+}
+
+.standings-player-pts{
+margin-top:4px;
+font-size:12px;
+font-weight:900;
+letter-spacing:.2px;
+color:var(--yellow)
+}
+
+.standings-player-pts.low{
+color:#9eacbd
+}
+
+.standings-empty{
+color:#718096
+}
+
 @media(max-width:650px){
 .standings-simple th,.standings-simple td{padding:12px 8px}
 .standings-simple th{font-size:10px;letter-spacing:0}
 .standings-simple .season-total{font-size:15px}
 .standings-simple .standings-team strong{font-size:12px}
+.standings-player-name{font-size:11px}
+.standings-player-pts{font-size:11px}
 }
 
 
@@ -436,8 +481,7 @@ width:100%;
 border-collapse:collapse;
 background:var(--panel);
 border-radius:12px;
-overflow:hidden;
-box-shadow:0 8px 25px rgba(0,0,0,.35)
+overflow:hidden
 }
 
 .standings-table th{
@@ -458,6 +502,11 @@ border-top:1px solid var(--border)
 .standings-table th:not(:first-child),
 .standings-table td:not(:first-child){
 text-align:right
+}
+
+.standings-table th.standings-player-col,
+.standings-table td.standings-player{
+text-align:left
 }
 
 .rank{
@@ -601,34 +650,6 @@ letter-spacing:.8px;
 margin-left:3px
 }
 
-/* HALL OF SHAME */
-
-.shame-card{
-background:linear-gradient(145deg,#151b26,#0c1119);
-border:1px solid #303c4d;
-border-radius:14px;
-padding:34px;
-text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,.35)
-}
-
-.shame-icon{
-font-size:45px;
-margin-bottom:12px
-}
-
-.shame-card h3{
-font-size:25px;
-margin:8px 0
-}
-
-.shame-card p{
-color:#9eacbd;
-max-width:620px;
-margin:10px auto 0;
-line-height:1.6
-}
-
 .loading{
 padding:25px;
 text-align:center;
@@ -721,7 +742,6 @@ class="hero-banner">
 <a href="winner-wheel.html">WINNER'S WHEEL</a>
 <a href="loser-wheel.html">LOSER'S WHEEL</a>
 <a href="comics.html">COMICS</a>
-<a href="#hall-of-shame">HALL OF SHAME</a>
 </nav>
 
 <main id="home">
@@ -777,22 +797,6 @@ Click an NFL player’s name to open their NFL.com player profile.
 
 <div id="lineup-data" class="lineup-grid">
 <div class="loading">Loading lineups...</div>
-</div>
-</section>
-
-<section id="hall-of-shame">
-<h2 class="section-title">Hall of Shame</h2>
-
-<div class="shame-card">
-<div class="shame-icon">🏆</div>
-
-<h3>Fantasy Oracle — Inaugural Inductee</h3>
-
-<p>
-Inducted for repeatedly making the Commissioner explain that the entire
-index.html belongs directly in the chat. League officials described the
-offense as “completely avoidable” and “honestly kind of impressive.”
-</p>
 </div>
 </section>
 
@@ -1114,7 +1118,12 @@ document
 
 renderNFLScoreboard(nflScoreboard);
 renderScoreboard(orderedTeams);
-renderStandings(data.standings||[],data.weekColumns||[],data.week);
+renderStandings(
+data.standings||[],
+data.weekColumns||[],
+data.week,
+orderedTeams
+);
 renderLineups(orderedTeams,nflScoreboard);
 }
 
@@ -1315,7 +1324,56 @@ ${points(team.currentWeek)}
  DYNAMIC STANDINGS
 **************************************************************/
 
-function renderStandings(standings,weekColumns,currentWeek){
+function lineupExtremes(lineup){
+
+const players=(lineup||[]).filter(function(player){
+return player&&String(player.player||"").trim();
+});
+
+if(!players.length){
+return {top:null,low:null};
+}
+
+let top=players[0];
+let low=players[0];
+
+players.forEach(function(player){
+const score=Number(player.points)||0;
+if(score>(Number(top.points)||0))top=player;
+if(score<(Number(low.points)||0))low=player;
+});
+
+return {top:top,low:low};
+}
+
+function standingsPlayerCell(player,tone){
+
+if(!player){
+return `
+<td class="standings-player">
+<span class="standings-empty">—</span>
+</td>
+`;
+}
+
+const ptsClass=
+tone==="low"
+?"standings-player-pts low"
+:"standings-player-pts";
+
+return `
+<td class="standings-player">
+<div class="standings-player-name">
+${safeText(player.player)}
+</div>
+<div class="${ptsClass}">
+${points(player.points)}
+</div>
+</td>
+`;
+}
+
+function renderStandings(standings,weekColumns,currentWeek,teams){
 
 const container=document.getElementById("standings-data");
 if(!standings.length){
@@ -1326,15 +1384,26 @@ return;
 // The backend supplies the current week; don't assume the latest
 // week with a score is the current week (future weeks can be zero).
 const week=Number(currentWeek)||0;
+const previousWeek=week>1?week-1:0;
+const teamsByKey={};
+
+(teams||[]).forEach(function(team){
+teamsByKey[managerKey(team.name)]=team;
+});
+
 const ordered=[...standings].sort(function(a,b){
 return (Number(b.seasonTotal)||0)-(Number(a.seasonTotal)||0);
 });
 
 let html=`
+<div class="standings-scroll">
 <table class="standings-table standings-simple">
 <thead><tr>
 <th>Team</th>
 <th>This Week</th>
+<th>Last Week</th>
+<th class="standings-player-col">Top Scorer</th>
+<th class="standings-player-col">Low Scorer</th>
 <th>Season Total</th>
 </tr></thead><tbody>`;
 
@@ -1342,6 +1411,18 @@ ordered.forEach(function(team,index){
 const place=index+1;
 const weeklyScores=team.weeklyScores||{};
 const weeklyValue=weeklyScores[String(week)]??0;
+const previousRaw=
+previousWeek
+?weeklyScores[String(previousWeek)]
+:undefined;
+const previousMarkup=
+previousRaw===undefined||previousRaw===null
+?'<span class="standings-empty">—</span>'
+:points(previousRaw);
+
+const roster=teamsByKey[managerKey(team.name)];
+const extremes=lineupExtremes(roster&&roster.lineup);
+
 html+=`
 <tr class="${place===1?"first-place":""}">
 <td class="standings-team">
@@ -1349,11 +1430,14 @@ html+=`
 <strong>${safeText(displayTeamName(team.name))}</strong>
 </td>
 <td>${points(weeklyValue)}</td>
+<td>${previousMarkup}</td>
+${standingsPlayerCell(extremes.top,"top")}
+${standingsPlayerCell(extremes.low,"low")}
 <td class="season-total">${points(team.seasonTotal)}</td>
 </tr>`;
 });
 
-html+='</tbody></table>';
+html+='</tbody></table></div>';
 container.innerHTML=html;
 }
 
